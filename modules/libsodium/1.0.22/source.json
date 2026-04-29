@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/jedisct1/libsodium/releases/download/1.0.22-RELEASE/libsodium-1.0.22.tar.gz",
+  "strip_prefix": "libsodium-stable",
+  "overlay": {
+    "BUILD.bazel": "TBD",
+  }
+}
