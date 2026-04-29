@@ -4,7 +4,7 @@
     "github:jedisct1/libsodium"
   ],
   "versions": [
-    "1.0.22.ezr.1"
+    "1.0.22"
   ],
   "yanked_versions": {}
 }
