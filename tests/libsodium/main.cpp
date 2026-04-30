@@ -1,5 +1,5 @@
 #include <sodium.h>
 
 int main() {
-    return sodium_init() < 0;
+  return sodium_init() < 0;
 }
