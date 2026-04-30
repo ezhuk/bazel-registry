@@ -1,0 +1,10 @@
+{
+  "homepage": "https://libsodium.org",
+  "repository": [
+    "github:jedisct1/libsodium"
+  ],
+  "versions": [
+    "1.0.22"
+  ],
+  "yanked_versions": {}
+}
