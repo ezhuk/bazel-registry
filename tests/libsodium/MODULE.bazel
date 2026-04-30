@@ -1,0 +1,3 @@
+module(name = "test_libsodium")
+
+bazel_dep(name = "libsodium", version = "1.0.22")
