@@ -10,7 +10,7 @@ license(
 )
 
 genrule(
-    name = "version_hdr",
+    name = "version",
     srcs = ["src/libsodium/include/sodium/version.h.in"],
     outs = ["sodium/version.h"],
     cmd = """
@@ -18,7 +18,7 @@ sed \
   -e 's/@VERSION@/1.0.22/g' \
   -e 's/@SODIUM_LIBRARY_VERSION_MAJOR@/26/g' \
   -e 's/@SODIUM_LIBRARY_VERSION_MINOR@/4/g' \
-  -e 's/@SODIUM_LIBRARY_MINIMAL_DEF@/#undef SODIUM_LIBRARY_MINIMAL/g' \
+  -e 's/@SODIUM_LIBRARY_MINIMAL_DEF@//g' \
   -e 's/#include "export.h"/#include "sodium\\/export.h"/g' \
   $(location src/libsodium/include/sodium/version.h.in) > $@
 """,
@@ -27,7 +27,7 @@ sed \
 cc_library(
     name = "libsodium",
     srcs = glob(["src/libsodium/**/*.c"]),
-    hdrs = glob(["src/libsodium/**/*.h"]) + [":version_hdr"],
+    hdrs = glob(["src/libsodium/**/*.h"]) + [":version"],
     includes = ["src/libsodium/include"],
     copts = [
         "-I$(GENDIR)/$(RULEDIR)/sodium",
