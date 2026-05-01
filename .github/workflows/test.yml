@@ -1,0 +1,35 @@
+# test.yml
+
+name: test
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          - libsodium
+
+    steps:
+      - uses: actions/checkout@v6
+      - run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y build-essential python3
+      - run: |
+          curl -fsSL -o bazel "https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64"
+          chmod +x bazel
+          sudo mv bazel /usr/local/bin/bazel
+      - run: |
+          cd tests/${{ matrix.module }}
+          bazel build //:test \
+            --registry=file://${{ github.workspace }} \
+            --registry=https://bcr.bazel.build
