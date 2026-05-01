@@ -3,6 +3,6 @@
   "integrity": "sha256-rb3Y8WFJ6BrGB4oDrKb8A7WSuJ73te2DhBwIYZG+M0k=",
   "strip_prefix": "libsodium-1.0.22",
   "overlay": {
-    "BUILD.bazel": "sha256-/lSTr8aos9fYt6o2TCisRSX6d9sgR//JEsD/dUnm1+g="
+    "BUILD.bazel": "sha256-aBWeJmEUoe47Az+fS31AS1eQqovfnpa4lbVAsqxKGaE="
   }
 }
