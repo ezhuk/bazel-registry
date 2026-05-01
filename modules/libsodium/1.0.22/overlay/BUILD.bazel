@@ -28,10 +28,10 @@ cc_library(
     name = "libsodium",
     srcs = glob(["src/libsodium/**/*.c"]),
     hdrs = glob(["src/libsodium/**/*.h"]) + [":version"],
-    includes = ["src/libsodium/include"],
-    copts = [
-        "-I$(GENDIR)/$(RULEDIR)/sodium",
-        "-Isrc/libsodium/include/sodium",
+    includes = [
+        "src/libsodium/include",
+        "src/libsodium/include/sodium",
+        "sodium",
     ],
     local_defines = ["CONFIGURED"],
     visibility = ["//visibility:public"],
