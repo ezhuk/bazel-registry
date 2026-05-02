@@ -11,16 +11,23 @@ license(
 
 cc_library(
     name = "mbedtls",
-    srcs = glob(["library/*.c"]),
-    hdrs = glob(
-        [
-            "include/**/*.h",
-            "library/*.h",
-        ],
-    ),
+    srcs = glob([
+        "library/*.c",
+        "tf-psa-crypto/core/*.c",
+        "tf-psa-crypto/drivers/builtin/src/*.c",
+    ]),
+    hdrs = glob([
+        "include/**/*.h",
+        "library/*.h",
+        "tf-psa-crypto/**/*.h",
+    ],),
     includes = [
         "include",
         "library",
+        "tf-psa-crypto/include",
+        "tf-psa-crypto/drivers/builtin/include",
+        "tf-psa-crypto/drivers/builtin/include/psa",
+        "tf-psa-crypto/core",
     ],
     visibility = ["//visibility:public"],
 )
