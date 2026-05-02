@@ -1,0 +1,4 @@
+module(name = "test_mbedtls")
+
+bazel_dep(name = "rules_cc", version = "0.2.18")
+bazel_dep(name = "mbedtls", version = "4.1.0")
