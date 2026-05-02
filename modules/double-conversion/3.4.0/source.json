@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/google/double-conversion/archive/refs/tags/v3.4.0.tar.gz",
+  "integrity": "TBD",
+  "strip_prefix": "double-conversion-3.4.0",
+  "overlay": {
+    "BUILD.bazel": "TBD"
+  }
+}
