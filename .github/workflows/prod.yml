@@ -21,7 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: actions/configure-pages@v6
+      - run: |
+          mkdir -p dist
+          cp -R modules dist/modules
+          touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: '.'
+          path: './dist'
       - uses: actions/deploy-pages@v5
