@@ -19,7 +19,6 @@ cc_library(
     hdrs = glob([
         "include/**/*.h",
         "library/*.h",
-        "library/include/**/*.h",
         "tf-psa-crypto/**/*.h",
     ],),
     includes = [
