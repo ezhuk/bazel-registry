@@ -28,6 +28,7 @@ cc_library(
         "tf-psa-crypto/drivers/builtin/include",
         "tf-psa-crypto/drivers/builtin/include/psa",
         "tf-psa-crypto/drivers/builtin/src",
+        "tf-psa-crypto/drivers/builtin/src/include",
         "tf-psa-crypto/core",
     ],
     visibility = ["//visibility:public"],
