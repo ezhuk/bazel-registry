@@ -3,6 +3,6 @@
   "integrity": "sha256-Qv1NmA6oZCbkV7JL36g1pvWtlRfdsBzbQrmaucjdXck=",
   "strip_prefix": "double-conversion-3.4.0",
   "overlay": {
-    "BUILD": "sha256-euwC4y8wdXRsirl2Z6Z6btvhBwozsVYFI0reyVXrpDE="
+    "BUILD": "sha256-9ysLimMnaLKqRV8cJBj4pvbPgtbO1PVnNeG6AEAbKbI="
   }
 }
