@@ -1,0 +1,10 @@
+{
+  "homepage": "https://github.com/google/double-conversion",
+  "repository": [
+    "github:google/double-conversion"
+  ],
+  "versions": [
+    "3.4.0"
+  ],
+  "yanked_versions": {}
+}
