@@ -19,6 +19,7 @@ jobs:
         module:
           - libsodium
           - mbedtls
+          - double-conversion
 
     steps:
       - uses: actions/checkout@v6
