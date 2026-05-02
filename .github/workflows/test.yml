@@ -18,6 +18,7 @@ jobs:
       matrix:
         module:
           - libsodium
+          - mbedtls
 
     steps:
       - uses: actions/checkout@v6
