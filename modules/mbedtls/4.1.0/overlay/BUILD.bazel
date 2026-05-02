@@ -19,11 +19,13 @@ cc_library(
     hdrs = glob([
         "include/**/*.h",
         "library/*.h",
+        "library/include/**/*.h",
         "tf-psa-crypto/**/*.h",
     ],),
     includes = [
         "include",
         "library",
+        "library/include",
         "tf-psa-crypto/include",
         "tf-psa-crypto/drivers/builtin/include",
         "tf-psa-crypto/drivers/builtin/include/psa",
