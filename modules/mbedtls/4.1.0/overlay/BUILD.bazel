@@ -33,6 +33,7 @@ cc_library(
         "tf-psa-crypto/core",
         "tf-psa-crypto/dispatch",
         "tf-psa-crypto/extras",
+        "tf-psa-crypto/platform",
         "tf-psa-crypto/utilities",
     ],
     visibility = ["//visibility:public"],
