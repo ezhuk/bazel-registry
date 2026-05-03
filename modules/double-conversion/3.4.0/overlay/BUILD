@@ -1,35 +1,18 @@
-# Bazel BUILD file
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
 
-load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+package(default_applicable_licenses = [":license"])
 
-exports_files(["LICENSE"])
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:BSD-3-Clause"],
+    license_text = "LICENSE",
+)
 
 cc_library(
     name = "double-conversion",
-    srcs = [
-        "double-conversion/bignum.cc",
-        "double-conversion/bignum-dtoa.cc",
-        "double-conversion/cached-powers.cc",
-        "double-conversion/double-to-string.cc",
-        "double-conversion/fast-dtoa.cc",
-        "double-conversion/fixed-dtoa.cc",
-        "double-conversion/string-to-double.cc",
-        "double-conversion/strtod.cc",
-    ],
-    hdrs = [
-        "double-conversion/bignum.h",
-        "double-conversion/bignum-dtoa.h",
-        "double-conversion/cached-powers.h",
-        "double-conversion/diy-fp.h",
-        "double-conversion/double-conversion.h",
-        "double-conversion/double-to-string.h",
-        "double-conversion/fast-dtoa.h",
-        "double-conversion/fixed-dtoa.h",
-        "double-conversion/ieee.h",
-        "double-conversion/string-to-double.h",
-        "double-conversion/strtod.h",
-        "double-conversion/utils.h",
-    ],
+    srcs = glob(["double-conversion/*.cc"]),
+    hdrs = glob(["double-conversion/*.h"]),
     includes = ["."],
     linkopts = ["-lm"],
     visibility = ["//visibility:public"],
