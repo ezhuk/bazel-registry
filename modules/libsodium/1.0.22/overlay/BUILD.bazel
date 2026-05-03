@@ -30,6 +30,7 @@ cc_library(
     hdrs = glob(["src/libsodium/**/*.h"]) + [":version"],
     includes = [
         "src/libsodium/include",
+        "src/libsodium/include/sodium",
         "sodium",
     ],
     local_defines = ["CONFIGURED"],
