@@ -1,0 +1,4 @@
+module(name = "test_brotli")
+
+bazel_dep(name = "brotli", version = "1.2.0")
+bazel_dep(name = "rules_cc", version = "0.2.18")
