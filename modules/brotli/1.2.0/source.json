@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/google/brotli/archive/refs/tags/v1.2.0.tar.gz",
+  "integrity": "sha256-gWyW6Ojxk7QBUdrX6P83sSIdAZ28ucNc0/rb/mR33+w=",
+  "strip_prefix": "brotli-1.2.0",
+  "overlay": {
+    "BUILD.bazel": "sha256-e+ePtD+8PW+hUUP00OtYDJs2VVpVFrZ7+0NSos0KlMw="
+  }
+}
