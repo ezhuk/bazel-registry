@@ -17,9 +17,10 @@ jobs:
     strategy:
       matrix:
         module:
+          - brotli
+          - double-conversion
           - libsodium
           - mbedtls
-          - double-conversion
 
     steps:
       - uses: actions/checkout@v6
