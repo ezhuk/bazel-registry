@@ -9,8 +9,6 @@ license(
     license_text = "COPYING",
 )
 
-SNAPPY_VERSION = (1, 2, 2)
-
 genrule(
     name = "config",
     outs = ["config.h"],
@@ -51,5 +49,6 @@ cc_library(
         ":stubs",
     ],
     defines = ["HAVE_CONFIG_H"],
+    includes = ["."],
     visibility = ["//visibility:public"],
 )
