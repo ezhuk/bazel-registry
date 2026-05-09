@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/facebook/folly/releases/download/v2026.05.04.00/folly-v2026.05.04.00.tar.gz",
+  "integrity": "sha256-ojBojOHr3GitpbsUU5qOUtYy5lcCXiH9JCo7jLo20EM=",
+  "overlay": {
+    "BUILD.bazel": "sha256-gR3KBhpIwElNtkLmflMlB5pXTeD6bAUat/FFAttbjw0=",
+    "folly/portability/BUILD.bazel": "sha256-jYvoAASRi2aoAf8aj7NH3YzKw+6W0bMsdlzATnoI0vk="
+  }
+}

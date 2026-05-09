@@ -1,0 +1,10 @@
+{
+  "homepage": "https://github.com/facebook/folly",
+  "repository": [
+    "github:facebook/folly"
+  ],
+  "versions": [
+    "2026.05.04.00"
+  ],
+  "yanked_versions": {}
+}
