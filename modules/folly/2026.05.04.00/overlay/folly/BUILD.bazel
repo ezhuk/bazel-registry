@@ -1,0 +1,35 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
+
+package(default_applicable_licenses = [":license"])
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:Apache-2.0"],
+    license_text = "LICENSE",
+)
+
+cc_library(
+    name = "c_portability",
+    hdrs = [
+        "CPortability.h",
+    ],
+    deps = [
+        "//:include",
+        "//folly/portability:config",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "portability",
+    hdrs = [
+        "Portability.h",
+    ],
+    deps = [
+        ":c_portability",
+        "//:include",
+        "//folly/portability:config",
+    ],
+    visibility = ["//visibility:public"],
+)

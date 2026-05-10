@@ -5,11 +5,11 @@ cc_library(
     hdrs = [
         "Config.h",
     ],
-    includes = [
-        "../..",
-    ],
     defines = [
         "FOLLY_NO_CONFIG",
+    ],
+    deps = [
+        "//:include",
     ],
     visibility = ["//visibility:public"],
 )

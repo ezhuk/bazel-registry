@@ -4,7 +4,7 @@ cc_binary(
     name = "test",
     srcs = ["main.cpp"],
     deps = [
-        "@folly//:c_portability",
-        "@folly//:portability",
+        "@folly//folly:c_portability",
+        "@folly//folly:portability",
     ],
 )

@@ -1,39 +1,14 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("@rules_license//rules:license.bzl", "license")
 
-package(default_applicable_licenses = [":license"])
-
-license(
-    name = "license",
-    license_kinds = ["@rules_license//licenses/spdx:Apache-2.0"],
-    license_text = "LICENSE",
-)
-
-cc_library(
-    name = "c_portability",
-    hdrs = [
-        "folly/CPortability.h",
-    ],
-    includes = [
-        ".",
-    ],
-    deps = [
-        "//folly/portability:config",
-    ],
+exports_files(
+    ["CMakeLists.txt"],
     visibility = ["//visibility:public"],
 )
 
 cc_library(
-    name = "portability",
-    hdrs = [
-        "folly/Portability.h",
-    ],
+    name = "include",
     includes = [
         ".",
-    ],
-    deps = [
-        ":c_portability",
-        "//folly/portability:config",
     ],
     visibility = ["//visibility:public"],
 )
