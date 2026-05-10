@@ -1,14 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-exports_files(
-    ["CMakeLists.txt"],
-    visibility = ["//visibility:public"],
-)
-
 cc_library(
     name = "include",
     includes = [
         ".",
     ],
-    visibility = ["//visibility:public"],
+    visibility = ["//:__subpackages__"],
 )
