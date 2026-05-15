@@ -1,7 +1,0 @@
-{
-  "url": "https://github.com/facebook/wangle/releases/download/v2026.05.04.00/wangle-v2026.05.04.00.tar.gz",
-  "integrity": "sha256-hy9ntt+e2WqXdDl9HwYi7e5F1yD7wUNcPXbNXEixjx0=",
-  "overlay": {
-    "BUILD.bazel": "sha256-mDilAPh51RA4LfT8xNhBb01C2aboq7GyRF60lMzzTns="
-  }
-}
