@@ -1,5 +1,8 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
+package(default_applicable_licenses = ["//:license"])
+package(default_visibility = ["//visibility:public"])
+
 cc_library(
     name = "config",
     hdrs = [
@@ -11,5 +14,4 @@ cc_library(
     deps = [
         "//:include",
     ],
-    visibility = ["//visibility:public"],
 )
