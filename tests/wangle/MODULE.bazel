@@ -1,4 +1,4 @@
 module(name = "test_wangle")
 
-bazel_dep(name = "wangle", version = "2026.05.11.00")
+bazel_dep(name = "wangle", version = "2026.05.18.00")
 bazel_dep(name = "rules_cc", version = "0.2.18")
