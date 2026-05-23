@@ -1,6 +1,6 @@
 module(
     name = "folly",
-    version = "2026.05.11.00",
+    version = "2026.05.18.00",
 )
 
 bazel_dep(name = "rules_cc", version = "0.2.18")
