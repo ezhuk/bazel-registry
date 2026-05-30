@@ -1,0 +1,15 @@
+module(
+    name = "folly",
+    version = "2026.05.25.00",
+)
+
+bazel_dep(name = "boost.core", version = "1.90.0.bcr.1")
+bazel_dep(name = "boost.thread", version = "1.90.0.bcr.1")
+bazel_dep(name = "cmake_configure_file", version = "0.1.7")
+bazel_dep(name = "fmt", version = "12.1.0")
+bazel_dep(name = "gflags", version = "2.2.2.bcr.1")
+bazel_dep(name = "googletest", version = "1.17.0.bcr.2")
+bazel_dep(name = "libevent", version = "2.1.12-stable.bcr.0")
+bazel_dep(name = "openssl", version = "3.5.5.bcr.4")
+bazel_dep(name = "rules_cc", version = "0.2.18")
+bazel_dep(name = "rules_license", version = "1.0.0")

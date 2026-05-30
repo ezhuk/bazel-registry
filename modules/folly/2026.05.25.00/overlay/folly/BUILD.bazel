@@ -1,0 +1,104 @@
+load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cmake_configure_file(
+    name = "folly-config",
+    src = "//CMake:folly-config.h.cmake",
+    out = "folly-config.h",
+    defines = [
+        "FOLLY_HAVE_PTHREAD",
+        "FOLLY_HAVE_PTHREAD_ATFORK",
+        "FOLLY_HAVE_ACCEPT4",
+        "FOLLY_HAVE_GETRANDOM",
+        "FOLLY_HAVE_PREADV",
+        "FOLLY_HAVE_PWRITEV",
+        "FOLLY_HAVE_CLOCK_GETTIME",
+        "FOLLY_HAVE_PIPE2",
+        "FOLLY_HAVE_UNALIGNED_ACCESS",
+        "FOLLY_HAVE_VLA",
+        "FOLLY_HAVE_WEAK_SYMBOLS",
+        "FOLLY_HAVE_LINUX_VDSO",
+        "FOLLY_HAVE_INT128_T",
+    ],
+    undefines = [
+        "FOLLY_HAVE_LIBGFLAGS",
+        "FOLLY_HAVE_LIBGLOG",
+        "FOLLY_USE_JEMALLOC",
+        "FOLLY_HAVE_IFUNC",
+        "FOLLY_HAVE_MALLOC_USABLE_SIZE",
+        "FOLLY_HAVE_WCHAR_SUPPORT",
+        "FOLLY_HAVE_EXTRANDOM_SFMT19937",
+        "HAVE_VSNPRINTF_ERRORS",
+        "FOLLY_HAVE_LIBUNWIND",
+        "FOLLY_HAVE_DWARF",
+        "FOLLY_HAVE_ELF",
+        "FOLLY_HAVE_SWAPCONTEXT",
+        "FOLLY_HAVE_BACKTRACE",
+        "FOLLY_USE_SYMBOLIZER",
+        "FOLLY_HAVE_SHADOW_LOCAL_WARNINGS",
+        "FOLLY_HAVE_LIBLZ4",
+        "FOLLY_HAVE_LIBLZMA",
+        "FOLLY_HAVE_LIBSNAPPY",
+        "FOLLY_HAVE_LIBZ",
+        "FOLLY_HAVE_LIBZSTD",
+        "FOLLY_HAVE_LIBBZ2",
+        "FOLLY_LIBRARY_SANITIZE_ADDRESS",
+        "FOLLY_SUPPORT_SHARED_LIBRARY",
+        "FOLLY_HAVE_LIBRT",
+        "FOLLY_HAVE_VSOCK",
+    ],
+)
+
+cc_library(
+    name = "c_portability",
+    hdrs = ["CPortability.h"],
+    include_prefix = "folly",
+    deps = ["//folly/portability:config"],
+)
+
+cc_library(
+    name = "config",
+    hdrs = [":folly-config"],
+    include_prefix = "folly",
+)
+
+cc_library(
+    name = "portability",
+    hdrs = ["Portability.h"],
+    include_prefix = "folly",
+    deps = [
+        ":c_portability",
+        "//folly/portability:config",
+    ],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["Traits.h"],
+    include_prefix = "folly",
+    deps = [":portability"],
+)
+
+cc_library(
+    name = "utility",
+    hdrs = ["Utility.h"],
+    include_prefix = "folly",
+    deps = [
+        ":c_portability",
+        ":portability",
+        ":traits",
+    ],
+)
+
+cc_library(
+    name = "folly",
+    deps = [
+        ":c_portability",
+        ":config",
+        ":portability",
+        ":traits",
+        ":utility",
+    ],
+)
