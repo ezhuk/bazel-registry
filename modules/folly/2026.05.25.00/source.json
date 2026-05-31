@@ -5,6 +5,7 @@
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k=",
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
     "folly/BUILD.bazel": "sha256-Ue28eOkNmdVqd8KpnkSmwvW97qrnxkPZ2dE98eku1V4=",
-    "folly/portability/BUILD.bazel": "sha256-W8zAAbzI7zqzsqrT640ELpiEkgw0RCLzON1/7BFOl2Y="
+    "folly/portability/BUILD.bazel": "sha256-W8zAAbzI7zqzsqrT640ELpiEkgw0RCLzON1/7BFOl2Y=",
+    "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4="
   }
 }
