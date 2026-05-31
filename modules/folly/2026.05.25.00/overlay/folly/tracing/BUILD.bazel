@@ -1,0 +1,42 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "async_stack",
+    srcs = ["AsyncStack.cpp"],
+    hdrs = ["AsyncStack.h"],
+    include_prefix = "folly/tracing",
+    textual_hdrs = ["AsyncStack-inl.h"],
+    deps = [
+        "//folly:c_portability",
+        "//folly:cpp_attributes",
+        "//folly:function",
+        "//folly:indestructible",
+        "//folly:likely",
+        "//folly:portability",
+        "//folly:synchronized",
+        "//folly/coro:coroutine",
+        "//folly/lang:hint",
+        "//folly/portability:pthread",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "scoped_trace_section",
+    hdrs = ["ScopedTraceSection.h"],
+    include_prefix = "folly/tracing",
+)
+
+cc_library(
+    name = "static_tracepoint",
+    hdrs = [
+        "StaticTracepoint.h",
+        "StaticTracepoint-ELF.h",
+    ],
+    include_prefix = "folly/tracing",
+    deps = [
+        "//folly:c_portability",
+    ],
+)
