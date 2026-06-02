@@ -1,0 +1,31 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accurate_summation",
+    hdrs = ["AccurateSummation.h"],
+    include_prefix = "folly/math",
+    deps = [
+        "//folly/math:kahan_summation",
+    ],
+)
+
+cc_library(
+    name = "kahan_summation",
+    hdrs = ["KahanSummation.h"],
+    include_prefix = "folly/math",
+    deps = [
+        "//folly/lang:hint",
+    ],
+)
+
+cc_library(
+    name = "reproducible_accumulator",
+    headers = ["ReproducibleAccumulator.h"],
+    include_prefix = "folly/math",
+    deps = [
+        "//folly:constexpr_math",
+        "@fmt",
+    ],
+)
