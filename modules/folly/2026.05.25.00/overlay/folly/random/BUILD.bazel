@@ -1,0 +1,37 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "hash",
+    headers = ["hash.h"],
+    include_prefix = "folly/random",
+    deps = [
+        "//folly:utility",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "seed_seq",
+    headers = ["seed_seq.h"],
+    include_prefix = "folly/random",
+    deps = [
+        "//folly:traits",
+        "//folly/container:span",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "xoshiro256pp",
+    headers = ["xoshiro256pp.h"],
+    include_prefix = "folly/random",
+    deps = [
+        ":seed_seq",
+        "//folly:likely",
+        "//folly:portability",
+        "//folly/container:span",
+        "//folly/functional:invoke",
+    ],
+)
