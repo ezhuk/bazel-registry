@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "clock",
+    hdrs = ["Clock.h"],
+    include_prefix = "folly/chrono",
+)
+
+cc_library(
+    name = "conv",
+    hdrs = ["Conv.h"],
+    include_prefix = "folly/chrono",
+    deps = [
+        "//folly:constexpr_math",
+        "//folly:conv",
+        "//folly:expected",
+        "//folly:utility",
+        "//folly/portability:sys_time",
+        "//folly/portability:sys_types",
+    ],
+)
+
+cc_library(
+    name = "hardware",
+    hdrs = ["Hardware.h"],
+    include_prefix = "folly/chrono",
+    deps = [
+        "//folly:portability",
+    ],
+)
