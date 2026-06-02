@@ -5,6 +5,7 @@
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k=",
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
     "folly/BUILD.bazel": "sha256-Ue28eOkNmdVqd8KpnkSmwvW97qrnxkPZ2dE98eku1V4=",
+    "folly/math/BUILD.bazel": "sha256-y6ACXXJIBgmyGFY7KUPV08LuXZ7IHfO1HUUMFMa3xmw=",
     "folly/poly/BUILD.bazel": "sha256-zZMJT6WVXNhH6DBpiKgnA4+qMW94D4uGPEW2PiF3eiA=",
     "folly/portability/BUILD.bazel": "sha256-W8zAAbzI7zqzsqrT640ELpiEkgw0RCLzON1/7BFOl2Y=",
     "folly/random/BUILD.bazel": "sha256-Ps7fPebs2RGWfKWEznlylE3OWEQtawhB5nLIzN5J72g=",
