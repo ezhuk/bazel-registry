@@ -7,6 +7,8 @@
     "folly/BUILD.bazel": "sha256-Ue28eOkNmdVqd8KpnkSmwvW97qrnxkPZ2dE98eku1V4=",
     "folly/chrono/BUILD.bazel": "sha256-rJ9PNs9GqXMTixWkysC3WT/sEyeZ0vQZ8Ki8apmWnd4=",
     "folly/init/BUILD.bazel": "sha256-u5HCntsEyUWnVzk2EwKPuwrYOn6JXk4VTlnKNNbAZpQ=",
+    "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
+    "folly/io/BUILD.bazel": "sha256-b+w+aAw6IWg1gDrObEdFc7SdtzdGr6nlmCNCvzRghd8=",
     "folly/math/BUILD.bazel": "sha256-y6ACXXJIBgmyGFY7KUPV08LuXZ7IHfO1HUUMFMa3xmw=",
     "folly/poly/BUILD.bazel": "sha256-zZMJT6WVXNhH6DBpiKgnA4+qMW94D4uGPEW2PiF3eiA=",
     "folly/portability/BUILD.bazel": "sha256-W8zAAbzI7zqzsqrT640ELpiEkgw0RCLzON1/7BFOl2Y=",
