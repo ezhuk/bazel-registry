@@ -6,6 +6,7 @@
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
     "folly/BUILD.bazel": "sha256-Ue28eOkNmdVqd8KpnkSmwvW97qrnxkPZ2dE98eku1V4=",
     "folly/chrono/BUILD.bazel": "sha256-rJ9PNs9GqXMTixWkysC3WT/sEyeZ0vQZ8Ki8apmWnd4=",
+    "folly/gen/BUILD.bazel": "sha256-RpjseZkEJczjT4pZ1mzMJfYbDwpPiq/iFqPsgiunlM4=",
     "folly/init/BUILD.bazel": "sha256-u5HCntsEyUWnVzk2EwKPuwrYOn6JXk4VTlnKNNbAZpQ=",
     "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
     "folly/io/BUILD.bazel": "sha256-b+w+aAw6IWg1gDrObEdFc7SdtzdGr6nlmCNCvzRghd8=",
