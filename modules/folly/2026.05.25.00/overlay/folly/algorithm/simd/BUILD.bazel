@@ -1,0 +1,72 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "contains",
+    srcs = ["Contains.cpp"],
+    hdrs = ["Contains.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        "//folly:c_portability",
+        "//folly/algorithm/simd/detail:simd_contains_impl",
+        "//folly/algorithm/simd/detail:traits",
+    ],
+)
+
+cc_library(
+    name = "find_fixed",
+    hdrs = ["FindFixed.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        ":movemask",
+        "//folly:portability",
+        "//folly/algorithm/simd/detail:traits",
+    ],
+)
+
+cc_library(
+    name = "ignore",
+    hdrs = ["Ignore.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        "//folly/lang:bits",
+    ],
+)
+
+cc_library(
+    name = "movemask",
+    hdrs = ["Movemask.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        ":ignore",
+        "//folly:portability",
+        "//folly/lang:bits",
+    ],
+)
+
+cc_library(
+    name = "find_first_of",
+    hdrs = ["find_first_of.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        ":movemask",
+        "//folly:portability",
+        "//folly:utility",
+        "//folly/container:span",
+        "//folly/container:sparse_byte_set",
+        "//folly/lang:align",
+        "//folly/lang:bits",
+        "//folly/lang:hint",
+    ],
+)
+
+cc_library(
+    name = "find_first_of_extra",
+    hdrs = ["find_first_of_extra.h"],
+    include_prefix = "folly/algorithm/simd",
+    deps = [
+        "//folly:range",
+        "//folly/container:span",
+    ],
+)
