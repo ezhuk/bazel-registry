@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "binary_heap",
+    hdrs = ["BinaryHeap.h"],
+    include_prefix = "folly/algorithm",
+    deps = [
+        "//folly/lang:builtin",
+    ],
+)
+
+cc_library(
+    name = "stable_radix_sort",
+    hdrs = ["StableRadixSort.h"],
+    include_prefix = "folly/algorithm",
+    deps = [
+        "//folly:traits",
+    ],
+)

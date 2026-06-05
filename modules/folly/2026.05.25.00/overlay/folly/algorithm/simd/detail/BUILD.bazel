@@ -1,0 +1,75 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "simd_contains_impl",
+    hdrs = ["ContainsImpl.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        ":simd_any_of",
+        ":simd_platform",
+        "//folly:c_portability",
+        "//folly/container:span",
+    ],
+)
+
+cc_library(
+    name = "simd_any_of",
+    hdrs = ["SimdAnyOf.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        ":simd_for_each",
+        ":unroll_utils",
+        "//folly:c_portability",
+    ],
+)
+
+cc_library(
+    name = "simd_for_each",
+    hdrs = ["SimdForEach.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        ":unroll_utils",
+        "//folly:c_portability",
+        "//folly:traits",
+        "//folly/algorithm/simd:ignore",
+        "//folly/lang:align",
+    ],
+)
+
+cc_library(
+    name = "simd_platform",
+    hdrs = ["SimdPlatform.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        "//folly:portability",
+        "//folly/algorithm/simd:ignore",
+        "//folly/algorithm/simd:movemask",
+        "//folly/detail:avx2",
+        "//folly/detail:sse",
+        "//folly/lang:safe_assert",
+    ],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["Traits.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        "//folly:c_portability",
+        "//folly:memory",
+        "//folly:traits",
+        "//folly/container:span",
+    ],
+)
+
+cc_library(
+    name = "unroll_utils",
+    hdrs = ["UnrollUtils.h"],
+    include_prefix = "folly/algorithm/simd/detail",
+    deps = [
+        "//folly:portability",
+        "//folly:traits",
+    ],
+)
