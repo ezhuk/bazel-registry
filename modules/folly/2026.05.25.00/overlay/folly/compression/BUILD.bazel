@@ -1,0 +1,126 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "compression",
+    srcs = [
+        "Compression.cpp",
+        "Zlib.cpp",
+        "Zstd.cpp",
+    ],
+    hdrs = [
+        "Compression.h",
+        "Utils.h",
+        "Zlib.h",
+        "Zstd.h",
+    ],
+    include_prefix = "folly/compression",
+    local_defines = [
+        "LZ4_STATIC_LINKING_ONLY",
+        "LZ4_HC_STATIC_LINKING_ONLY",
+        "LZ4F_STATIC_LINKING_ONLY",
+    ],
+    deps = [
+        ":compression_context_pool_singletons",
+        "//folly:conv",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:portability",
+        "//folly:random",
+        "//folly:range",
+        "//folly:scope_guard",
+        "//folly:stop_watch",
+        "//folly:utility",
+        "//folly:varint",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "//folly/portability:windows",
+        "@bzip2//:bz2",
+        "@glog",
+        "@lz4",
+        "@snappy",
+        "@xz//:lzma",
+        "@zlib",
+        "@zstd",
+    ],
+)
+
+cc_library(
+    name = "compression_context_pool",
+    hdrs = [
+        "CompressionContextPool.h",
+        "CompressionCoreLocalContextPool.h",
+    ],
+    include_prefix = "folly/compression",
+    deps = [
+        "//folly:memory",
+        "//folly:synchronized",
+        "//folly/concurrency:cache_locality",
+    ],
+)
+
+cc_library(
+    name = "compression_context_pool_singletons",
+    srcs = ["CompressionContextPoolSingletons.cpp"],
+    hdrs = ["CompressionContextPoolSingletons.h"],
+    include_prefix = "folly/compression",
+    deps = [
+        ":compression_context_pool",
+        "//folly:portability",
+        "//folly/memory:jemalloc_huge_page_allocator",
+        "//folly/memory:malloc",
+        "//folly/portability:config",
+        "//folly/portability:gflags",
+        "//folly/system:hardware_concurrency",
+        "@zstd",
+    ],
+)
+
+cc_library(
+    name = "instructions",
+    hdrs = ["Instructions.h"],
+    include_prefix = "folly/compression",
+    deps = [
+        "//folly:cpu_id",
+        "//folly:portability",
+        "//folly/lang:assume",
+        "//folly/portability:builtins",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "quotient_multiset",
+    srcs = ["QuotientMultiSet.cpp"],
+    hdrs = ["QuotientMultiSet.h"],
+    include_prefix = "folly/compression",
+    textual_hdrs = ["QuotientMultiSet-inl.h"],
+    deps = [
+        "//folly:format",
+        "//folly:math",
+        "//folly:portability",
+        "//folly:range",
+        "//folly/compression:instructions",
+        "//folly/compression:select64",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "//folly/lang:bits_class",
+        "//folly/lang:safe_assert",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "select64",
+    srcs = ["Select64.cpp"],
+    hdrs = ["Select64.h"],
+    include_prefix = "folly/compression",
+    deps = [
+        ":instructions",
+        "//folly:constexpr_math",
+        "//folly:portability",
+        "//folly:utility",
+        "@glog",
+    ],
+)
