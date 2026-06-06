@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "x86",
+    hdrs = ["x86.h"],
+    include_prefix = "folly/system/arch",
+    deps = [
+        "//folly:portability",
+    ],
+)
