@@ -5,6 +5,7 @@ module(
 
 bazel_dep(name = "boost.core", version = "1.90.0.bcr.1")
 bazel_dep(name = "boost.filesystem", version = "1.90.0.bcr.1")
+bazel_dep(name = "boost.program_options", version = "1.90.0.bcr.1")
 bazel_dep(name = "boost.regex", version = "1.90.0.bcr.1")
 bazel_dep(name = "boost.smart_ptr", version = "1.90.0.bcr.1")
 bazel_dep(name = "boost.thread", version = "1.90.0.bcr.1")
