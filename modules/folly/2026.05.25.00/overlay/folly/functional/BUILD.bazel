@@ -1,0 +1,58 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "apply_tuple",
+    hdrs = ["ApplyTuple.h"],
+    include_prefix = "folly/functional",
+    deps = [
+        ":invoke",
+        "//folly:traits",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "invoke",
+    hdrs = ["Invoke.h"],
+    include_prefix = "folly/functional",
+    deps = [
+        "//folly:cpp_attributes",
+        "//folly:portability",
+        "//folly:preprocessor",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/lang:customization_point",
+        "@boost.preprocessor",
+    ],
+)
+
+cc_library(
+    name = "partial",
+    hdrs = ["Partial.h"],
+    include_prefix = "folly/functional",
+    deps = [
+        ":invoke",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "protocol",
+    hdrs = ["protocol.h"],
+    include_prefix = "folly/functional",
+    deps = [
+        ":invoke",
+        ":traits",
+        "//folly:portability",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["traits.h"],
+    include_prefix = "folly/functional",
+    deps = ["//folly:traits"],
+)
