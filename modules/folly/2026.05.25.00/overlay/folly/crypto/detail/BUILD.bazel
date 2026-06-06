@@ -1,0 +1,99 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "lt_hash_internal",
+    hdrs = ["LtHashInternal.h"],
+    include_prefix = "folly/crypto/detail",
+    deps = ["//folly:range"],
+)
+
+cc_library(
+    name = "math_operation_avx2",
+    srcs = ["MathOperation_AVX2.cpp"],
+    copts = [
+        "-mavx",
+        "-mavx2",
+        "-msse2",
+    ],
+    include_prefix = "folly/crypto/detail",
+    deps = [
+        ":lt_hash_internal",
+        "//folly:memory",
+        "//folly/lang:bits",
+        "@glog",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "math_operation_avx2_disable",
+    srcs = ["MathOperation_AVX2.cpp"],
+    copts = [
+        "-mno-avx",
+        "-mno-avx2",
+        "-mno-sse2",
+    ],
+    include_prefix = "folly/crypto/detail",
+    deps = [
+        ":lt_hash_internal",
+        "//folly:memory",
+        "//folly/lang:bits",
+        "@glog",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "math_operation_sse2",
+    srcs = ["MathOperation_SSE2.cpp"],
+    copts = [
+        "-mno-avx",
+        "-mno-avx2",
+        "-msse2",
+    ],
+    include_prefix = "folly/crypto/detail",
+    deps = [
+        ":lt_hash_internal",
+        "//folly:memory",
+        "//folly/lang:bits",
+        "@glog",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "math_operation_sse2_disable",
+    srcs = ["MathOperation_SSE2.cpp"],
+    copts = [
+        "-mno-avx",
+        "-mno-avx2",
+        "-mno-sse2",
+    ],
+    include_prefix = "folly/crypto/detail",
+    deps = [
+        ":lt_hash_internal",
+        "//folly:memory",
+        "//folly/lang:bits",
+        "@glog",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "math_operation_simple",
+    srcs = ["MathOperation_Simple.cpp"],
+    copts = [
+        "-mno-avx",
+        "-mno-avx2",
+        "-mno-sse2",
+    ],
+    include_prefix = "folly/crypto/detail",
+    deps = [
+        ":lt_hash_internal",
+        "//folly:memory",
+        "//folly/lang:bits",
+        "@glog",
+    ],
+)
