@@ -1,0 +1,421 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "access",
+    hdrs = ["Access.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "array",
+    hdrs = ["Array.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:c_portability",
+        "//folly:traits",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "bit_iterator",
+    hdrs = ["BitIterator.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:portability",
+        "//folly/container/detail:bit_iterator_detail",
+        "//folly/lang:bits",
+        "@boost.iterator",
+    ],
+)
+
+cc_library(
+    name = "collection_util",
+    hdrs = ["CollectionUtil.h"],
+    include_prefix = "folly/container",
+)
+
+cc_library(
+    name = "dynamic_ring_queue",
+    hdrs = ["DynamicRingQueue.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:likely",
+        "//folly/lang:bits",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "enumerate",
+    hdrs = ["Enumerate.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:c_portability",
+        "//folly/portability:sys_types",
+    ],
+)
+
+cc_library(
+    name = "evicting_cache_map",
+    hdrs = ["EvictingCacheMap.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly/container:f14_hash",
+        "//folly/container:heterogeneous_access",
+        "//folly/lang:exception",
+        "@boost.intrusive",
+        "@boost.iterator",
+    ],
+)
+
+cc_library(
+    name = "f14_hash",
+    hdrs = [
+        "F14Map.h",
+        "F14Set.h",
+    ],
+    include_prefix = "folly/container",
+    deps = [
+        ":f14_hash_fwd",
+        ":iterator",
+        ":view",
+        "//folly:portability",
+        "//folly:range",
+        "//folly:traits",
+        "//folly/container/detail:f14_hash_detail",
+        "//folly/container/detail:util",
+        "//folly/lang:exception",
+        "//folly/lang:safe_assert",
+    ],
+)
+
+cc_library(
+    name = "f14_hash_fwd",
+    hdrs = [
+        "F14Map-fwd.h",
+        "F14Set-fwd.h",
+    ],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly/container/detail:f14_defaults",
+        "//folly/memory:memory_resource",
+    ],
+)
+
+cc_library(
+    name = "fbvector",
+    hdrs = ["FBVector.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:format_traits",
+        "//folly:likely",
+        "//folly:scope_guard",
+        "//folly:traits",
+        "//folly/lang:checked_math",
+        "//folly/lang:exception",
+        "//folly/lang:hint",
+        "//folly/memory:malloc",
+    ],
+)
+
+cc_library(
+    name = "fixed_capacity_ring_queue",
+    hdrs = ["FixedCapacityRingQueue.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:likely",
+        "//folly/lang:bits",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "foreach",
+    hdrs = [
+        "Foreach.h",
+        "Foreach-inl.h",
+    ],
+    include_prefix = "folly/container",
+    deps = [
+        ":access",
+        "//folly:portability",
+        "//folly:preprocessor",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "heap_vector_types",
+    hdrs = ["heap_vector_types.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        ":iterator",
+        "//folly:range",
+        "//folly:scope_guard",
+        "//folly:small_vector",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/functional:invoke",
+        "//folly/lang:exception",
+        "//folly/memory:memory_resource",
+        "//folly/portability:builtins",
+    ],
+)
+
+cc_library(
+    name = "heterogeneous_access",
+    hdrs = ["HeterogeneousAccess.h"],
+    include_prefix = "folly/container",
+    deps = [
+        ":heterogeneous_access_fwd",
+        "//folly:range",
+        "//folly:traits",
+        "//folly/hash",
+        "//folly/hash:rapidhash",
+        "//folly/hash/detail:random_seed",
+    ],
+)
+
+cc_library(
+    name = "heterogeneous_access_fwd",
+    hdrs = ["HeterogeneousAccess-fwd.h"],
+    include_prefix = "folly/container",
+)
+
+cc_library(
+    name = "intrusive_heap",
+    hdrs = ["IntrusiveHeap.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:portability",
+        "//folly/lang:builtin",
+        "@boost.core",
+        "@boost.intrusive",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "intrusive_list",
+    hdrs = ["IntrusiveList.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "@boost.intrusive",
+    ],
+)
+
+cc_library(
+    name = "irange",
+    hdrs = ["irange.h"],
+    include_prefix = "folly/container",
+)
+
+cc_library(
+    name = "iterator",
+    hdrs = ["Iterator.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        ":access",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/functional:invoke",
+        "//folly/lang:rvalue_reference_wrapper",
+    ],
+)
+
+cc_library(
+    name = "map_util",
+    hdrs = ["MapUtil.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:optional",
+        "//folly:range",
+        "//folly/functional:invoke",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "merge",
+    hdrs = ["Merge.h"],
+    include_prefix = "folly/container",
+)
+
+cc_library(
+    name = "range_traits",
+    hdrs = ["range_traits.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:traits",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "regex_match_cache",
+    srcs = ["RegexMatchCache.cpp"],
+    hdrs = ["RegexMatchCache.h"],
+    include_prefix = "folly/container",
+    deps = [
+        ":f14_hash",
+        ":reserve",
+        "//folly:chrono",
+        "//folly:function",
+        "//folly:map_util",
+        "//folly:string",
+        "//folly/hash:unique_hash_key",
+        "//folly/lang:bits",
+        "//folly/portability:windows",
+        "//folly/synchronization:atomic_util",
+        "@boost.regex",
+        "@fmt",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "reserve",
+    hdrs = ["Reserve.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:likely",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/lang:exception",
+    ],
+)
+
+cc_library(
+    name = "small_vector",
+    hdrs = ["small_vector.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:constexpr_math",
+        "//folly:format_traits",
+        "//folly:likely",
+        "//folly:portability",
+        "//folly:scope_guard",
+        "//folly:traits",
+        "//folly/functional:invoke",
+        "//folly/hash",
+        "//folly/lang:align",
+        "//folly/lang:assume",
+        "//folly/lang:checked_math",
+        "//folly/lang:exception",
+        "//folly/memory:malloc",
+        "//folly/memory:sanitize_leak",
+        "//folly/portability:malloc",
+        "@boost.utility",
+    ],
+)
+
+cc_library(
+    name = "sorted_vector_types",
+    hdrs = ["sorted_vector_types.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:scope_guard",
+        "//folly:small_vector",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/lang:access",
+        "//folly/lang:exception",
+        "//folly/memory:memory_resource",
+    ],
+)
+
+cc_library(
+    name = "span",
+    hdrs = ["span.h"],
+    include_prefix = "folly/container",
+    deps = [
+        ":access",
+        ":iterator",
+        "//folly:cpp_attributes",
+        "//folly:portability",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/functional:invoke",
+        "//folly/portability:constexpr",
+    ],
+)
+
+cc_library(
+    name = "sparse_byte_set",
+    hdrs = ["SparseByteSet.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:c_portability",
+    ],
+)
+
+cc_library(
+    name = "std_bitset",
+    hdrs = ["StdBitset.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:c_portability",
+        "//folly:likely",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "tape",
+    hdrs = ["tape.h"],
+    include_prefix = "folly/container",
+    deps = [
+        ":iterator",
+        "//folly:portability",
+        "//folly:range",
+        "//folly/container/detail:tape_detail",
+        "//folly/memory:uninitialized_memory_hacks",
+    ],
+)
+
+cc_library(
+    name = "vector_bool",
+    hdrs = ["vector_bool.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly/container/detail:bool_wrapper",
+        "//folly/memory:memory_resource",
+    ],
+)
+
+cc_library(
+    name = "view",
+    hdrs = ["View.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly:portability",
+        "//folly/functional:invoke",
+        "//folly/lang:customization_point",
+    ],
+)
+
+cc_library(
+    name = "weighted_evicting_cache_map",
+    hdrs = ["WeightedEvictingCacheMap.h"],
+    include_prefix = "folly/container",
+    deps = [
+        "//folly/container:evicting_cache_map",
+    ],
+)
