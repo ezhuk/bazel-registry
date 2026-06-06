@@ -11,6 +11,7 @@
     "folly/channels/detail/BUILD.bazel": "sha256-ssQlYF/+qqAZuLCBny9bKr+HITfh3mnCjlRkGqAdOHg=",
     "folly/channels/BUILD.bazel": "sha256-zWuXPjwO+2hsx1iwcKfhOMilZEPdcurU/1Rh7o0+Uhg=",
     "folly/chrono/BUILD.bazel": "sha256-rJ9PNs9GqXMTixWkysC3WT/sEyeZ0vQZ8Ki8apmWnd4=",
+    "folly/cli/BUILD.bazel": "sha256-dvV2+SmuTH0zqSSV+Mlbor5sOlzfql2jTd4Ql/Amido=",
     "folly/gen/BUILD.bazel": "sha256-RpjseZkEJczjT4pZ1mzMJfYbDwpPiq/iFqPsgiunlM4=",
     "folly/init/BUILD.bazel": "sha256-u5HCntsEyUWnVzk2EwKPuwrYOn6JXk4VTlnKNNbAZpQ=",
     "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
