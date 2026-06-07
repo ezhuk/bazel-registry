@@ -1,0 +1,20 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "bser",
+    srcs = [
+        "Dump.cpp",
+        "Load.cpp",
+    ],
+    hdrs = ["Bser.h"],
+    include_prefix = "folly/json/bser",
+    deps = [
+        "//folly:c_portability",
+        "//folly:json",
+        "//folly:optional",
+        "//folly/io:iobuf",
+        "//folly/json:dynamic",
+    ],
+)

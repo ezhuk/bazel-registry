@@ -1,0 +1,61 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "avx512_crc32c_v8s3x4",
+    srcs = ["avx512_crc32c_v8s3x4.cpp"],
+    hdrs = ["avx512_crc32c_v8s3x4.h"],
+    copts = [
+        "-mavx512f",
+        "-mavx512vl",
+        "-mpclmul",
+    ],
+    include_prefix = "folly/external/fast-crc32",
+    deps = [
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "neon_crc32c_v3s4x2e_v2",
+    srcs = ["neon_crc32c_v3s4x2e_v2.cpp"],
+    hdrs = ["neon_crc32c_v3s4x2e_v2.h"],
+    include_prefix = "folly/external/fast-crc32",
+    deps = [
+        "//folly:portability",
+        "//folly/system:aux_vector",
+    ],
+)
+
+cc_library(
+    name = "neon_eor3_crc32_v8s2x4e_s1x2",
+    srcs = ["neon_eor3_crc32_v8s2x4e_s1x2.cpp"],
+    hdrs = ["neon_eor3_crc32_v8s2x4e_s1x2.h"],
+    include_prefix = "folly/external/fast-crc32",
+    deps = [
+        "//folly:portability",
+        "//folly/system:aux_vector",
+    ],
+)
+
+cc_library(
+    name = "neon_eor3_crc32c_v8s2x4e_s2x1",
+    srcs = ["neon_eor3_crc32c_v8s2x4e_s2x1.cpp"],
+    hdrs = ["neon_eor3_crc32c_v8s2x4e_s2x1.h"],
+    include_prefix = "folly/external/fast-crc32",
+    deps = [
+        "//folly:portability",
+        "//folly/system:aux_vector",
+    ],
+)
+
+cc_library(
+    name = "sse_crc32c_v8s3x3",
+    srcs = ["sse_crc32c_v8s3x3.cpp"],
+    hdrs = ["sse_crc32c_v8s3x3.h"],
+    include_prefix = "folly/external/fast-crc32",
+    deps = [
+        "//folly:portability",
+    ],
+)

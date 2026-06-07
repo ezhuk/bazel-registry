@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "rapidhash",
+    hdrs = ["rapidhash.h"],
+    include_prefix = "folly/external/rapidhash",
+    deps = [
+        "//folly:c_portability",
+        "//folly/lang:bits",
+        "//folly/portability:constexpr",
+    ],
+)
