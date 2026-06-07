@@ -1,0 +1,73 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "atomic_utils",
+    hdrs = ["AtomicUtils.h"],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        "//folly/lang:assume",
+    ],
+)
+
+cc_library(
+    name = "hazptr_utils",
+    hdrs = ["HazptrUtils.h"],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        ":sleeper",
+        "//folly:portability",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "inline_function_ref",
+    hdrs = ["InlineFunctionRef.h"],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        "//folly:function",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "rcu-detail",
+    hdrs = [
+        "ThreadCachedLists.h",
+        "ThreadCachedReaders.h",
+        "ThreadCachedTag.h",
+    ],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        "//folly:function",
+        "//folly:synchronized",
+        "//folly:thread_local",
+        "//folly/synchronization:asymmetric_thread_fence",
+        "//folly/synchronization:relaxed_atomic",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "sleeper",
+    srcs = ["Sleeper.cpp"],
+    hdrs = ["Sleeper.h"],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        "//folly/portability:asm",
+    ],
+)
+
+cc_library(
+    name = "spin",
+    hdrs = ["Spin.h"],
+    include_prefix = "folly/synchronization/detail",
+    deps = [
+        "//folly/portability:asm",
+        "//folly/synchronization:wait_options",
+    ],
+)
