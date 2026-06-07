@@ -37,6 +37,8 @@
     "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
     "folly/io/BUILD.bazel": "sha256-b+w+aAw6IWg1gDrObEdFc7SdtzdGr6nlmCNCvzRghd8=",
     "folly/math/BUILD.bazel": "sha256-y6ACXXJIBgmyGFY7KUPV08LuXZ7IHfO1HUUMFMa3xmw=",
+    "folly/memory/detail/BUILD.bazel": "sha256-gDYen7KoGPFDkjeNRCgpgVVA9UBA/vKoRvdJeB0sJXQ=",
+    "folly/memory/BUILD.bazel": "sha256-9EpKtvkwaz71Fuwg24ss19zy2veDBK7FIDYz/1tu/48=",
     "folly/net/detail/BUILD.bazel": "sha256-cx3UqHi9OhTFm1ib2d+TlbSgomsyVpaFc1Iajd3DmE4=",
     "folly/net/BUILD.bazel": "sha256-VM2y0HZbRWeMFu/V0IjGmnP3JpNnfxJ1P5ndEzGnqVI=",
     "folly/observer/detail/BUILD.bazel": "sha256-TdFPIEzqAXpLajo6epamVBmLsvMfzwv8Nvo+JF6vzzY=",
