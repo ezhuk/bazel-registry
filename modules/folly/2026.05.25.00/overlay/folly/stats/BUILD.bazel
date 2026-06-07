@@ -1,0 +1,116 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "bucketed_time_series",
+    hdrs = ["BucketedTimeSeries.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["BucketedTimeSeries-inl.h"],
+    deps = [
+        "//folly:likely",
+        "//folly/stats/detail:bucket",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "digest_builder",
+    hdrs = ["DigestBuilder.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["DigestBuilder-inl.h"],
+    deps = [
+        "//folly:memory",
+        "//folly:spin_lock",
+        "//folly/concurrency:cache_locality",
+        "//folly/lang:bits",
+        "//folly/memory:allocator",
+    ],
+)
+
+cc_library(
+    name = "histogram",
+    hdrs = ["Histogram.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["Histogram-inl.h"],
+    deps = [
+        "//folly:c_portability",
+        "//folly:conv",
+        "//folly:traits",
+        "//folly/lang:exception",
+        "//folly/stats/detail:bucket",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "multi_level_time_series",
+    hdrs = ["MultiLevelTimeSeries.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["MultiLevelTimeSeries-inl.h"],
+    deps = [
+        ":bucketed_time_series",
+        "//folly:constexpr_math",
+        "//folly:string",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "quantile_estimator",
+    srcs = ["QuantileEstimator.cpp"],
+    hdrs = ["QuantileEstimator.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["QuantileEstimator-inl.h"],
+    deps = [
+        ":tdigest",
+        "//folly/stats/detail:buffered_stat",
+    ],
+)
+
+cc_library(
+    name = "quantile_histogram",
+    hdrs = ["QuantileHistogram.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["QuantileHistogram-inl.h"],
+    deps = [
+        "//folly:conv",
+        "//folly:glog",
+        "//folly:range",
+    ],
+)
+
+cc_library(
+    name = "streaming_stats",
+    hdrs = ["StreamingStats.h"],
+    include_prefix = "folly/stats",
+    deps = ["//folly/lang:exception"],
+)
+
+cc_library(
+    name = "tdigest",
+    srcs = ["TDigest.cpp"],
+    hdrs = ["TDigest.h"],
+    include_prefix = "folly/stats",
+    deps = [
+        "//folly:overload",
+        "//folly:range",
+        "//folly:utility",
+        "//folly/algorithm:binary_heap",
+        "//folly/lang:exception",
+        "//folly/memory:malloc",
+        "//folly/stats/detail:double_radix_sort",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "timeseries_histogram",
+    hdrs = ["TimeseriesHistogram.h"],
+    include_prefix = "folly/stats",
+    textual_hdrs = ["TimeseriesHistogram-inl.h"],
+    deps = [
+        ":histogram",
+        ":multi_level_time_series",
+    ],
+)
