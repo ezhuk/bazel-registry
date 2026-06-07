@@ -1,0 +1,84 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+config_setting(
+    name = "arm64",
+    constraint_values = ["@platforms//cpu:aarch64"],
+)
+
+cc_library(
+    name = "memcpy_aarch64",
+    srcs = [
+        "memcpy-advsimd.S",
+        "memcpy-armv8.S",
+        "memcpy-mops.S",
+        "memcpy_sve.S",
+        "memmove-mops.S",
+    ],
+    hdrs = ["asmdefs.h"],
+    include_prefix = "folly/external/aor",
+    target_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
+)
+
+cc_library(
+    name = "memcpy_aarch64-use",
+    srcs = [
+        "memcpy-advsimd.S",
+        "memcpy-armv8.S",
+        "memcpy-mops.S",
+        "memcpy_sve.S",
+        "memmove-mops.S",
+    ],
+    hdrs = ["asmdefs.h"],
+    copts = select({
+        ":arm64": [
+            "-DFOLLY_MEMCPY_IS_MEMCPY",
+        ],
+        "//conditions:default": [],
+    }),
+    include_prefix = "folly/external/aor",
+    target_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
+)
+
+cc_library(
+    name = "memset_aarch64",
+    srcs = [
+        "memset-advsimd.S",
+        "memset-mops.S",
+        "memset-sve.S",
+    ],
+    hdrs = ["asmdefs.h"],
+    include_prefix = "folly/external/aor",
+    target_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
+)
+
+cc_library(
+    name = "memset_aarch64-use",
+    srcs = [
+        "memset-advsimd.S",
+        "memset-mops.S",
+        "memset-sve.S",
+    ],
+    hdrs = ["asmdefs.h"],
+    copts = select({
+        ":arm64": [
+            "-DFOLLY_MEMSET_IS_MEMSET",
+        ],
+        "//conditions:default": [],
+    }),
+    include_prefix = "folly/external/aor",
+    target_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
+)

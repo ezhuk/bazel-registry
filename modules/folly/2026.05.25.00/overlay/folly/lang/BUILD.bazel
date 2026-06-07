@@ -1,0 +1,380 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "access",
+    hdrs = ["Access.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "align",
+    hdrs = ["Align.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:portability",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "aligned",
+    hdrs = ["Aligned.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":align",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "assume",
+    hdrs = ["Assume.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":hint",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "badge",
+    hdrs = ["Badge.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "bits",
+    hdrs = ["Bits.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":assume",
+        ":c_string",
+        "//folly:constexpr_math",
+        "//folly:portability",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/portability:builtins",
+    ],
+)
+
+cc_library(
+    name = "bits_class",
+    hdrs = ["BitsClass.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:portability",
+        "//folly:range",
+        "//folly/lang:bits",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "builtin",
+    hdrs = ["Builtin.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "c_array",
+    hdrs = ["CArray.h"],
+    include_prefix = "folly/lang",
+)
+
+cc_library(
+    name = "c_string",
+    srcs = ["CString.cpp"],
+    hdrs = ["CString.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:c_portability",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "cast",
+    hdrs = ["Cast.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":safe_assert",
+        "//folly:portability",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "checked_math",
+    hdrs = ["CheckedMath.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:c_portability",
+        "//folly:likely",
+    ],
+)
+
+cc_library(
+    name = "cstring_view",
+    hdrs = ["cstring_view.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:traits",
+        "//folly:utility",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "customization_point",
+    hdrs = ["CustomizationPoint.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":static_const",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "exception",
+    srcs = ["Exception.cpp"],
+    hdrs = ["Exception.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":align",
+        ":assume",
+        ":new",
+        ":safe_assert",
+        ":thunk",
+        ":type_info",
+        "//folly:c_portability",
+        "//folly:cpp_attributes",
+        "//folly:likely",
+        "//folly:portability",
+        "//folly:traits",
+        "//folly:utility",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "extern",
+    hdrs = ["Extern.h"],
+    include_prefix = "folly/lang",
+)
+
+cc_library(
+    name = "hint",
+    hdrs = [
+        "Hint.h",
+        "Hint-inl.h",
+    ],
+    include_prefix = "folly/lang",
+    deps = [
+        ":safe_assert",
+        "//folly:portability",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "keep",
+    hdrs = ["Keep.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:c_portability",
+        "//folly:cpp_attributes",
+    ],
+)
+
+cc_library(
+    name = "must_use_immediately",
+    hdrs = ["MustUseImmediately.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":safe_alias_fwd",
+        "//folly:utility",
+        "//folly/detail:tuple",
+    ],
+)
+
+cc_library(
+    name = "new",
+    hdrs = ["New.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:cpp_attributes",
+        "//folly:portability",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "ordering",
+    hdrs = ["Ordering.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":exception",
+    ],
+)
+
+cc_library(
+    name = "pretty",
+    hdrs = ["Pretty.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":c_array",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "propagate_const",
+    hdrs = ["PropagateConst.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:traits",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "rvalue_reference_wrapper",
+    hdrs = ["RValueReferenceWrapper.h"],
+    include_prefix = "folly/lang",
+)
+
+cc_library(
+    name = "safe_alias",
+    hdrs = ["SafeAlias.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":safe_alias_fwd",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "safe_alias_fwd",
+    hdrs = ["SafeAlias-fwd.h"],
+    include_prefix = "folly/lang",
+)
+
+cc_library(
+    name = "safe_assert",
+    srcs = ["SafeAssert.cpp"],
+    hdrs = ["SafeAssert.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":c_array",
+        ":to_ascii",
+        "//folly:cpp_attributes",
+        "//folly:portability",
+        "//folly:preprocessor",
+        "//folly/detail:file_util_detail",
+        "//folly/portability:sys_types",
+        "//folly/portability:windows",
+    ],
+)
+
+cc_library(
+    name = "safe_closure",
+    hdrs = ["SafeClosure.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":safe_alias",
+        "//folly/detail:tuple",
+        "//folly/lang/bind",
+        "//folly/lang/bind:as_argument",
+        "//folly/lang/bind:to_storage",
+    ],
+)
+
+cc_library(
+    name = "static_const",
+    hdrs = ["StaticConst.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "strong",
+    hdrs = ["Strong.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "switch",
+    hdrs = ["Switch.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:c_portability",
+    ],
+)
+
+cc_library(
+    name = "thunk",
+    hdrs = ["Thunk.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":new",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "to_ascii",
+    srcs = ["ToAscii.cpp"],
+    hdrs = ["ToAscii.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":align",
+        ":c_array",
+        "//folly:constexpr_math",
+        "//folly:likely",
+        "//folly:portability",
+        "//folly:utility",
+        "//folly/portability:builtins",
+    ],
+)
+
+cc_library(
+    name = "type_info",
+    hdrs = ["TypeInfo.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        "//folly:cpp_attributes",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "uncaught_exceptions",
+    srcs = ["UncaughtExceptions.cpp"],
+    hdrs = ["UncaughtExceptions.h"],
+    include_prefix = "folly/lang",
+    deps = [
+        ":exception",
+    ],
+)
+
+cc_library(
+    name = "vector_traits",
+    hdrs = ["VectorTraits.h"],
+    include_prefix = "folly/lang",
+)

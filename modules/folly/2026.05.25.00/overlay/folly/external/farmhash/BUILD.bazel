@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "farmhash",
+    srcs = ["farmhash.cpp"],
+    hdrs = ["farmhash.h"],
+    include_prefix = "folly/external/farmhash",
+    deps = [
+        "//folly/portability:config",
+    ],
+)

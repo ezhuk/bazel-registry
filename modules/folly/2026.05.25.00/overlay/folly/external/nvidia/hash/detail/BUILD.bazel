@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "crc32c_detail",
+    srcs = ["Crc32cDetail.cpp"],
+    hdrs = ["Crc32cCombineDetail.h"],
+    include_prefix = "folly/external/nvidia/hash/detail",
+    deps = [
+        "//folly:portability",
+    ],
+)

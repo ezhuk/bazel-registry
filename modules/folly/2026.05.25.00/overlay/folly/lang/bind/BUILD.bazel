@@ -1,0 +1,53 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "as_argument",
+    hdrs = ["AsArgument.h"],
+    include_prefix = "folly/lang/bind",
+    deps = [
+        ":bind",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "bind",
+    hdrs = ["Bind.h"],
+    include_prefix = "folly/lang/bind",
+    deps = [
+        "//folly:utility",
+        "//folly/detail:tuple",
+    ],
+)
+
+cc_library(
+    name = "named",
+    hdrs = ["Named.h"],
+    include_prefix = "folly/lang/bind",
+    deps = [
+        ":bind",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "named_to_storage",
+    hdrs = ["NamedToStorage.h"],
+    include_prefix = "folly/lang/bind",
+    deps = [
+        ":named",
+        ":to_storage",
+    ],
+)
+
+cc_library(
+    name = "to_storage",
+    hdrs = ["ToStorage.h"],
+    include_prefix = "folly/lang/bind",
+    deps = [
+        ":bind",
+        "//folly:utility",
+    ],
+)

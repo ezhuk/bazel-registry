@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "test_ext",
+    srcs = ["test_ext.cpp"],
+    deps = [
+        "//folly/ext:test_ext",
+        "//folly/io:fs_util",
+        "//folly/json:dynamic",
+        "@boost.filesystem",
+    ],
+    alwayslink = True,
+)
