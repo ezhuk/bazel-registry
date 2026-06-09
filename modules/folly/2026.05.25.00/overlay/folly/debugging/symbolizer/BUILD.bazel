@@ -1,0 +1,165 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "dwarf",
+    srcs = [
+        "Dwarf.cpp",
+        "DwarfImpl.cpp",
+        "DwarfLineNumberVM.cpp",
+        "DwarfSection.cpp",
+        "DwarfUtil.cpp",
+    ],
+    hdrs = [
+        "Dwarf.h",
+        "DwarfImpl.h",
+        "DwarfLineNumberVM.h",
+        "DwarfSection.h",
+        "DwarfUtil.h",
+    ],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        ":elf",
+        ":elf_cache",
+        ":symbolized_frame",
+        "//folly:function",
+        "//folly:optional",
+        "//folly:range",
+        "//folly/lang:safe_assert",
+        "//folly/portability:config",
+        "//folly/portability:unistd",
+        "//folly/portability/provide:libdwarf",
+    ],
+)
+
+cc_library(
+    name = "elf",
+    srcs = ["Elf.cpp"],
+    hdrs = ["Elf.h"],
+    include_prefix = "folly/debugging/symbolizer",
+    textual_hdrs = ["Elf-inl.h"],
+    deps = [
+        "//folly:conv",
+        "//folly:exception",
+        "//folly:likely",
+        "//folly:range",
+        "//folly:scope_guard",
+        "//folly/container:span",
+        "//folly/lang:c_string",
+        "//folly/lang:cstring_view",
+        "//folly/lang:safe_assert",
+        "//folly/portability:config",
+        "//folly/portability:sys_mman",
+        "//folly/portability:unistd",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "elf_cache",
+    srcs = ["ElfCache.cpp"],
+    hdrs = ["ElfCache.h"],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        ":elf",
+        "//folly:optional",
+        "//folly:range",
+        "//folly:scope_guard",
+        "//folly/hash",
+        "//folly/memory:reentrant_allocator",
+        "//folly/portability:config",
+        "//folly/portability:sys_mman",
+        "@boost",
+    ],
+)
+
+cc_library(
+    name = "line_reader",
+    srcs = ["LineReader.cpp"],
+    hdrs = ["LineReader.h"],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        "//folly:file_util",
+        "//folly:range",
+    ],
+)
+
+cc_library(
+    name = "signal_handler",
+    deps = [":symbolizer"],
+)
+
+cc_library(
+    name = "stack_trace",
+    srcs = ["StackTrace.cpp"],
+    hdrs = ["StackTrace.h"],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        "//folly:c_portability",
+        "//folly:portability",
+        "//folly/portability:config",
+        "//folly/portability:libunwind",
+        "//folly/portability:sys_types",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "symbolize_printer",
+    deps = [":symbolizer"],
+)
+
+cc_library(
+    name = "symbolized_frame",
+    srcs = ["SymbolizedFrame.cpp"],
+    hdrs = ["SymbolizedFrame.h"],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        "//folly:range",
+    ],
+)
+
+cc_library(
+    name = "symbolizer",
+    srcs = [
+        "SignalHandler.cpp",
+        "SymbolizePrinter.cpp",
+        "Symbolizer.cpp",
+    ],
+    hdrs = [
+        "SignalHandler.h",
+        "SymbolizePrinter.h",
+        "Symbolizer.h",
+    ],
+    include_prefix = "folly/debugging/symbolizer",
+    deps = [
+        ":dwarf",
+        ":elf",
+        ":elf_cache",
+        ":stack_trace",
+        ":symbolized_frame",
+        "//folly:demangle",
+        "//folly:fbstring",
+        "//folly:file_util",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:portability",
+        "//folly:range",
+        "//folly:scope_guard",
+        "//folly:string",
+        "//folly:synchronized",
+        "//folly/container:evicting_cache_map",
+        "//folly/debugging/symbolizer/detail:debug",
+        "//folly/io:iobuf",
+        "//folly/lang:safe_assert",
+        "//folly/lang:to_ascii",
+        "//folly/memory:sanitize_address",
+        "//folly/portability:config",
+        "//folly/portability:sys_mman",
+        "//folly/portability:sys_syscall",
+        "//folly/portability:unistd",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)

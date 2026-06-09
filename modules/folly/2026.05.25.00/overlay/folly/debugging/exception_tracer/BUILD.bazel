@@ -1,0 +1,169 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "compatibility",
+    hdrs = ["Compatibility.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+)
+
+cc_library(
+    name = "exception_abi",
+    hdrs = ["ExceptionAbi.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    deps = [
+        ":compatibility",
+    ],
+)
+
+cc_library(
+    name = "exception_counter",
+    srcs = ["ExceptionCounterLib.cpp"],
+    hdrs = ["ExceptionCounterLib.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    deps = [
+        ":compatibility",
+        ":exception_tracer_base",
+        ":exception_tracer_callbacks",
+        ":stacktrace",
+        "//folly:range",
+        "//folly:singleton_thread_local",
+        "//folly:synchronized",
+        "//folly/debugging/symbolizer",
+        "//folly/hash:spooky_hash_v2",
+        "//folly/synchronization:rw_spin_lock",
+    ],
+)
+
+cc_library(
+    name = "exception_counter_static_registration",
+    srcs = ["ExceptionCounterLibStaticRegistration.cpp"],
+    deps = [
+        ":exception_counter",
+        ":exception_tracer_callbacks",
+    ],
+    alwayslink = True,
+)
+
+cc_library(
+    name = "exception_tracer",
+    srcs = ["ExceptionStackTraceLib.cpp"],
+    deps = [
+        ":exception_abi",
+        ":exception_tracer_base",
+        ":exception_tracer_callbacks",
+        ":stacktrace",
+        "//folly:utility",
+        "//folly/lang:exception",
+    ],
+    alwayslink = True,
+)
+
+cc_library(
+    name = "exception_tracer_base",
+    srcs = ["ExceptionTracer.cpp"],
+    hdrs = ["ExceptionTracer.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    linkopts = select({
+        "@platforms//os:linux": ["-ldl"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        ":exception_abi",
+        ":stacktrace",
+        "//folly:portability",
+        "//folly:string",
+        "//folly/debugging/symbolizer",
+        "//folly/portability:config",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "exception_tracer_callbacks",
+    srcs = ["ExceptionTracerLib.cpp"],
+    hdrs = ["ExceptionTracerLib.h"],
+    copts = select({
+        "@platforms//os:linux": [
+            "-DFOLLY_INSTALL_STATIC_CXA_FUNCTIONS_WRAPPERS=1",
+            "-DFOLLY_INSTALL_STD_RETHROW_EXCEPTION_WRAPPER=1",
+        ],
+        "//conditions:default": [],
+    }),
+    include_prefix = "folly/debugging/exception_tracer",
+    linkopts = select({
+        "@platforms//os:linux": [
+            "-Wl,--wrap=__cxa_throw",
+            "-Wl,--wrap=__cxa_rethrow",
+            "-Wl,--wrap=__cxa_begin_catch",
+            "-Wl,--wrap=__cxa_end_catch",
+            "-Wl,--wrap=_ZSt17rethrow_exceptionNSt15__exception_ptr13exception_ptrE",
+            "-ldl",
+        ],
+        "//conditions:default": [],
+    }),
+    deps = [
+        ":compatibility",
+        "//folly:indestructible",
+        "//folly:portability",
+        "//folly:shared_mutex",
+        "//folly:synchronized",
+    ],
+    alwayslink = True,
+)
+
+cc_library(
+    name = "smart_exception_stack_trace_hooks",
+    srcs = ["SmartExceptionStackTraceHooks.cpp"],
+    deps = [
+        ":exception_tracer_callbacks",
+        ":smart_exception_tracer_singleton",
+        "//folly/debugging/symbolizer",
+    ],
+    alwayslink = True,
+)
+
+cc_library(
+    name = "smart_exception_tracer",
+    srcs = ["SmartExceptionTracer.cpp"],
+    hdrs = ["SmartExceptionTracer.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    deps = [
+        ":compatibility",
+        ":exception_tracer_base",
+        ":exception_tracer_callbacks",
+        ":smart_exception_tracer_singleton",
+        ":stacktrace",
+        "//folly:exception_wrapper",
+        "//folly:map_util",
+        "//folly:scope_guard",
+        "//folly:synchronized",
+        "//folly/container:f14_hash",
+        "//folly/lang:exception",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "smart_exception_tracer_singleton",
+    srcs = ["SmartExceptionTracerSingleton.cpp"],
+    hdrs = ["SmartExceptionTracerSingleton.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    deps = [
+        ":stacktrace",
+        "//folly:synchronized",
+        "//folly/container:f14_hash",
+    ],
+)
+
+cc_library(
+    name = "stacktrace",
+    srcs = ["StackTrace.cpp"],
+    hdrs = ["StackTrace.h"],
+    include_prefix = "folly/debugging/exception_tracer",
+    deps = [
+        "//folly:portability",
+        "//folly/debugging/symbolizer:stack_trace",
+    ],
+)
