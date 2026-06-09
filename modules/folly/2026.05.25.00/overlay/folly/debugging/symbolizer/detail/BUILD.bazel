@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "debug",
+    srcs = ["Debug.cpp"],
+    hdrs = ["Debug.h"],
+    include_prefix = "folly/debugging/symbolizer/detail",
+    linkopts = select({
+        "@platforms//os:linux": ["-ldl"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//folly:portability",
+    ],
+)
