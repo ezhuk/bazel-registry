@@ -2,9 +2,7 @@
   "url": "https://github.com/facebook/folly/releases/download/v2026.05.25.00/folly-v2026.05.25.00.tar.gz",
   "integrity": "sha256-D3hiL0k4eAsI6LPDaBnqvO6iv0gtVj4F5l5IBqJOLJA=",
   "overlay": {
-    "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k=",
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
-    "folly/BUILD.bazel": "sha256-Ue28eOkNmdVqd8KpnkSmwvW97qrnxkPZ2dE98eku1V4=",
     "folly/algorithm/simd/detail/BUILD.bazel": "sha256-hElLABihaOT0mEw/szOvsvlX76Al9qm5FFN4J8XxVlM=",
     "folly/algorithm/simd/BUILD.bazel": "sha256-MXODeDTMU+JNLJLsPUBPJRrf9mhWRVDG7GK0mZmIWGE=",
     "folly/algorithm/BUILD.bazel": "sha256-dgSSmEY7T1YTp4pCNpJ667ajInJcFOmBhU358+YwvLQ=",
@@ -90,6 +88,8 @@
     "folly/system/os/BUILD.bazel": "sha256-FIsBwXfQ96oS4fE23B7c8iaqdboteVjb7CoGRjin40w=",
     "folly/system/BUILD.bazel": "sha256-ICprFk2Q21rYRGVEffAuNAlw6C3UPDYeIDyLkGd1lDw=",
     "folly/testing/BUILD.bazel": "sha256-zBZng1pBpYDPjpYaC6ZddgiqZoxogcLS3eX8h4UhZKU=",
-    "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4="
+    "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4=",
+    "folly/BUILD.bazel": "sha256-Qdh58afY8Fu9Khurqj84VEJXbRHCuZ4oyAq7QaPe8U8=",
+    "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k="
   }
 }
