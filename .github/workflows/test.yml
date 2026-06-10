@@ -19,6 +19,7 @@ jobs:
         module:
           - double-conversion
           - libsodium
+          - folly
 
     steps:
       - uses: actions/checkout@v6
