@@ -26,14 +26,14 @@ cc_library(
         "//folly/coro:auto_cleanup_fwd",
         "//folly/coro:base_promise",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_malloc",
-        "//folly/coro:detail_manual_lifetime",
         "//folly/coro:invoke",
         "//folly/coro:result",
         "//folly/coro:scope_exit",
         "//folly/coro:via_if_async",
         "//folly/coro:with_async_stack",
         "//folly/coro:with_cancellation",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:manual_lifetime",
         "//folly/lang:safe_alias_fwd",
         "//folly/tracing:async_stack",
         "@glog",
@@ -62,11 +62,11 @@ cc_library(
     deps = [
         ":coroutine",
         ":current_executor",
-        ":detail_barrier",
-        ":detail_barrier_task",
         ":task",
         "//folly:cancellation_token",
         "//folly:exception_wrapper",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
         "//folly/futures:core",
         "//folly/portability:source_location",
         "//folly/synchronization:relaxed_atomic",
@@ -139,12 +139,12 @@ cc_library(
     deps = [
         "//folly:try",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_malloc",
-        "//folly/coro:detail_traits",
         "//folly/coro:task",
         "//folly/coro:traits",
         "//folly/coro:via_if_async",
         "//folly/coro:with_async_stack",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:traits",
         "//folly/executors:manual_executor",
         "//folly/executors:sequenced_executor",
         "//folly/fibers:core",
@@ -189,15 +189,15 @@ cc_library(
         "//folly/coro:async_pipe",
         "//folly/coro:async_scope",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_barrier",
-        "//folly/coro:detail_barrier_task",
-        "//folly/coro:detail_current_async_frame",
-        "//folly/coro:detail_helpers",
-        "//folly/coro:detail_traits",
         "//folly/coro:mutex",
         "//folly/coro:task",
         "//folly/coro:via_if_async",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
+        "//folly/coro/detail:current_async_frame",
+        "//folly/coro/detail:helpers",
         "//folly/coro/detail:pick_task_wrapper",
+        "//folly/coro/detail:traits",
         "//folly/coro/safe:now_task",
         "//folly/coro/safe:safe_task",
     ],
@@ -244,86 +244,11 @@ cc_library(
     deps = [
         "//folly/coro:baton",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_helpers",
         "//folly/coro:invoke",
         "//folly/coro:task",
         "//folly/coro:traits",
+        "//folly/coro/detail:helpers",
     ],
-)
-
-cc_library(
-    name = "detail_barrier",
-    hdrs = ["detail/Barrier.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        ":coroutine",
-        ":traits",
-        ":with_async_stack",
-        "//folly/tracing:async_stack",
-    ],
-)
-
-cc_library(
-    name = "detail_barrier_task",
-    hdrs = ["detail/BarrierTask.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        ":coroutine",
-        ":detail_barrier",
-        ":detail_malloc",
-        ":with_async_stack",
-    ],
-)
-
-cc_library(
-    name = "detail_current_async_frame",
-    hdrs = ["detail/CurrentAsyncFrame.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        ":coroutine",
-        ":with_async_stack",
-        "//folly:executor",
-        "//folly/tracing:async_stack",
-    ],
-)
-
-cc_library(
-    name = "detail_helpers",
-    hdrs = ["detail/Helpers.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        ":coroutine",
-        "//folly:executor",
-        "//folly:singleton_thread_local",
-        "//folly/io/async:request_context",
-        "//folly/tracing:async_stack",
-    ],
-)
-
-cc_library(
-    name = "detail_malloc",
-    srcs = ["detail/Malloc.cpp"],
-    hdrs = ["detail/Malloc.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        "//folly:c_portability",
-        "//folly/lang:hint",
-        "//folly/lang:new",
-    ],
-)
-
-cc_library(
-    name = "detail_manual_lifetime",
-    hdrs = ["detail/ManualLifetime.h"],
-    include_prefix = "folly/coro",
-    deps = ["//folly:scope_guard"],
-)
-
-cc_library(
-    name = "detail_traits",
-    hdrs = ["detail/Traits.h"],
-    include_prefix = "folly/coro",
-    deps = ["//folly:traits"],
 )
 
 cc_library(
@@ -403,21 +328,6 @@ cc_library(
 )
 
 cc_library(
-    name = "inline_task",
-    hdrs = ["detail/InlineTask.h"],
-    include_prefix = "folly/coro",
-    deps = [
-        ":coroutine",
-        ":detail_malloc",
-        ":with_async_stack",
-        "//folly:scope_guard",
-        "//folly:try",
-        "//folly/lang:assume",
-        "//folly/tracing:async_stack",
-    ],
-)
-
-cc_library(
     name = "invoke",
     hdrs = ["Invoke.h"],
     include_prefix = "folly/coro",
@@ -439,14 +349,14 @@ cc_library(
         "//folly/coro:async_generator",
         "//folly/coro:baton",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_barrier",
-        "//folly/coro:detail_barrier_task",
-        "//folly/coro:detail_current_async_frame",
-        "//folly/coro:detail_helpers",
         "//folly/coro:mutex",
         "//folly/coro:task",
         "//folly/coro:via_if_async",
         "//folly/coro:with_cancellation",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
+        "//folly/coro/detail:current_async_frame",
+        "//folly/coro/detail:helpers",
     ],
 )
 
@@ -660,8 +570,6 @@ cc_library(
         "//folly:try",
         "//folly/coro:base_promise",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_malloc",
-        "//folly/coro:detail_traits",
         "//folly/coro:inline_task",
         "//folly/coro:invoke",
         "//folly/coro:result",
@@ -670,6 +578,8 @@ cc_library(
         "//folly/coro:via_if_async",
         "//folly/coro:with_async_stack",
         "//folly/coro:with_cancellation",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:traits",
         "//folly/futures:core",
         "//folly/io/async:request_context",
         "//folly/lang:assume",
@@ -700,10 +610,10 @@ cc_library(
         "//folly:optional",
         "//folly/coro:baton",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_helpers",
         "//folly/coro:invoke",
         "//folly/coro:task",
         "//folly/coro:traits",
+        "//folly/coro/detail:helpers",
         "//folly/futures:core",
     ],
 )
@@ -794,10 +704,10 @@ cc_library(
         "//folly:executor",
         "//folly:traits",
         "//folly/coro:coroutine",
-        "//folly/coro:detail_malloc",
         "//folly/coro:traits",
         "//folly/coro:with_async_stack",
         "//folly/coro:with_cancellation",
+        "//folly/coro/detail:malloc",
         "//folly/io/async:request_context",
         "//folly/lang:customization_point",
         "//folly/lang:must_use_immediately",

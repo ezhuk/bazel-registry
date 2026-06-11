@@ -39,6 +39,18 @@ cc_library(
 )
 
 cc_library(
+    name = "benchmark_adaptive",
+    srcs = ["BenchmarkAdaptive.cpp"],
+    hdrs = ["BenchmarkAdaptive.h"],
+    include_prefix = "folly/detail",
+    deps = [
+        "//folly:random",
+        "//folly:string",
+        "@glog",
+    ],
+)
+
+cc_library(
     name = "discriminated_ptr_detail",
     hdrs = ["DiscriminatedPtrDetail.h"],
     include_prefix = "folly/detail",

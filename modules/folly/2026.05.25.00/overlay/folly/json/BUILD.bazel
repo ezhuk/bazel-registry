@@ -38,7 +38,6 @@ cc_library(
         "//folly/lang:bits",
         "//folly/lang:exception",
         "//folly/portability:constexpr",
-        "@boost",
         "@fmt",
         "@glog",
     ],
@@ -58,7 +57,6 @@ cc_library(
         "//folly:optional",
         "//folly:scope_guard",
         "//folly:traits",
-        "@boost",
         "@glog",
     ],
 )
@@ -68,8 +66,8 @@ cc_library(
     hdrs = ["JsonMockUtil.h"],
     include_prefix = "folly/json",
     deps = [
+        ":json_test_util",
         "//folly/portability:gmock",
-        "//folly/test:json_test_util",
     ],
 )
 
