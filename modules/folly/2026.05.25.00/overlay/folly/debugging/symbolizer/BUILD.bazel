@@ -29,7 +29,6 @@ cc_library(
         "//folly/lang:safe_assert",
         "//folly/portability:config",
         "//folly/portability:unistd",
-        "//folly/portability/provide:libdwarf",
     ],
 )
 
@@ -70,7 +69,6 @@ cc_library(
         "//folly/memory:reentrant_allocator",
         "//folly/portability:config",
         "//folly/portability:sys_mman",
-        "@boost",
     ],
 )
 

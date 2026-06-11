@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 cc_library(
     name = "hash",
-    headers = ["hash.h"],
+    hdrs = ["hash.h"],
     include_prefix = "folly/random",
     deps = [
         "//folly:utility",
@@ -14,7 +14,7 @@ cc_library(
 
 cc_library(
     name = "seed_seq",
-    headers = ["seed_seq.h"],
+    hdrs = ["seed_seq.h"],
     include_prefix = "folly/random",
     deps = [
         "//folly:traits",
@@ -25,7 +25,7 @@ cc_library(
 
 cc_library(
     name = "xoshiro256pp",
-    headers = ["xoshiro256pp.h"],
+    hdrs = ["xoshiro256pp.h"],
     include_prefix = "folly/random",
     deps = [
         ":seed_seq",

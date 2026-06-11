@@ -3,6 +3,96 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
+    name = "barrier",
+    hdrs = ["Barrier.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        "//folly:traits",
+        "//folly/coro:coroutine",
+        "//folly/coro:with_async_stack",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "barrier_task",
+    hdrs = ["BarrierTask.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        ":barrier",
+        ":malloc",
+        "//folly/coro:coroutine",
+        "//folly/coro:with_async_stack",
+    ],
+)
+
+cc_library(
+    name = "current_async_frame",
+    hdrs = ["CurrentAsyncFrame.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        "//folly:executor",
+        "//folly/coro:coroutine",
+        "//folly/coro:with_async_stack",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "helpers",
+    hdrs = ["Helpers.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        "//folly:executor",
+        "//folly:singleton_thread_local",
+        "//folly/coro:coroutine",
+        "//folly/io/async:request_context",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "inline_task",
+    hdrs = ["InlineTask.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        ":malloc",
+        "//folly:scope_guard",
+        "//folly:try",
+        "//folly/coro:coroutine",
+        "//folly/coro:with_async_stack",
+        "//folly/lang:assume",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "malloc",
+    srcs = ["Malloc.cpp"],
+    hdrs = ["Malloc.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        "//folly:c_portability",
+        "//folly/lang:hint",
+        "//folly/lang:new",
+    ],
+)
+
+cc_library(
+    name = "manual_lifetime",
+    hdrs = ["ManualLifetime.h"],
+    include_prefix = "folly/coro/detail",
+    deps = ["//folly:scope_guard"],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["Traits.h"],
+    include_prefix = "folly/coro/detail",
+    deps = ["//folly:traits"],
+)
+
+cc_library(
     name = "pick_task_wrapper",
     hdrs = ["PickTaskWrapper.h"],
     include_prefix = "folly/coro/detail",
