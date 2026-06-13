@@ -2,7 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
-cpp_library(
+cc_library(
     name = "openssl_session",
     srcs = ["OpenSSLSession.cpp"],
     hdrs = ["OpenSSLSession.h"],
