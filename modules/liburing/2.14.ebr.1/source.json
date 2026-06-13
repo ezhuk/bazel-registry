@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/axboe/liburing/archive/2750b94a77ea9e4e156fd0caa5c14552e7d1397f.tar.gz",
+  "integrity": "sha256-9TJavOTjSbQdmBtwF/geYsZcp5OqhfdP+haMCJXeMfU=",
+  "strip_prefix": "libsodium-2750b94a77ea9e4e156fd0caa5c14552e7d1397f",
+  "overlay": {
+    "BUILD.bazel": "sha256-7vMht1QR44GYCkUzIOaZ+Y19z50TYMrWjlJHYLsM6ic="
+  }
+}
