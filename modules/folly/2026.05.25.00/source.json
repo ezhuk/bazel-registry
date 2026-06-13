@@ -26,10 +26,10 @@
     "folly/crypto/BUILD.bazel": "sha256-UDoSqyWzhU0wuA6zKAG0ocHUrrP3U+ZhhShe3cY0zJ0=",
     "folly/debugging/exception_tracer/BUILD.bazel": "sha256-x3dRLg2jtCMmldYM32Z5gKkNsG+iDLdQegtQQKlTg8E=",
     "folly/debugging/symbolizer/detail/BUILD.bazel": "sha256-BDl98F/g6qZuiZYaAxZK0R/YB5u/UW8ppZGQlzI2Pwc=",
-    "folly/debugging/symbolizer/BUILD.bazel": "sha256-JieD/mbWFa3jngsE5tR1CkgDi8GNyRoWXTWoBtOWLZ0=",
+    "folly/debugging/symbolizer/BUILD.bazel": "sha256-hbQHT+iI8Ic5/iAc6kMpiar6gri8EkT67JxSRj4rHyQ=",
     "folly/debugging/BUILD.bazel": "sha256-a7jmmU56fY2oLselHOx5bb16GB9YvXUfCG6M7VyxVh8=",
     "folly/detail/base64_detail/BUILD.bazel": "sha256-IjPJ1cryqYKdFJ15NlRCLrReY6icRqBvRERkEtS74NI=",
-    "folly/detail/BUILD.bazel": "sha256-zx6J3sMUA1wKROUinxxuhCA/PiTEjkrehog+WGaZbc0=",
+    "folly/detail/BUILD.bazel": "sha256-BRs5W1a7R803ER83/XOaHMNd9LOSd70/Svn5EUfpoqE=",
     "folly/executors/task_queue/BUILD.bazel": "sha256-OF+5D2dJ4rZq2+AYsHus18O6CuRkpg1T5hoNKCSpuD4=",
     "folly/executors/thread_factory/BUILD.bazel": "sha256-DrxPSEPq4OxCqXtIWE5sQLi1sEfC3XOjeVK1+wU0xoY=",
     "folly/executors/BUILD.bazel": "sha256-cCXuW7vG0wejHvRjYVPTF4dBLv7knRg+HxZYeOiJJ+U=",
@@ -73,7 +73,7 @@
     "folly/observer/detail/BUILD.bazel": "sha256-TdFPIEzqAXpLajo6epamVBmLsvMfzwv8Nvo+JF6vzzY=",
     "folly/observer/BUILD.bazel": "sha256-eg4t+YWj2b9Rna+MjN4GyQCXDloz5B728ECx9IJT5c8=",
     "folly/poly/BUILD.bazel": "sha256-zZMJT6WVXNhH6DBpiKgnA4+qMW94D4uGPEW2PiF3eiA=",
-    "folly/portability/BUILD.bazel": "sha256-W8zAAbzI7zqzsqrT640ELpiEkgw0RCLzON1/7BFOl2Y=",
+    "folly/portability/BUILD.bazel": "sha256-1BogD0gqvn0rx759/um/HxVWya/knVXdLiQ7zeePHZs=",
     "folly/random/BUILD.bazel": "sha256-IsZlMNc9aWmgP956FlyGwXUjHoUBYu5zLAR0hg44hG8=",
     "folly/result/detail/BUILD.bazel": "sha256-psz0zZIPZExzGHGzStGmE7EmDO45tjBmoX5M46DLLWM=",
     "folly/result/BUILD.bazel": "sha256-MVttOnCIQ1uw7fMXAAZ8d/S13QVFQE53S26Hyfu3ykU=",
@@ -89,7 +89,7 @@
     "folly/system/BUILD.bazel": "sha256-ICprFk2Q21rYRGVEffAuNAlw6C3UPDYeIDyLkGd1lDw=",
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4=",
-    "folly/BUILD.bazel": "sha256-/3l6gHkak5Nlf6z8v4gUz0bJKFRtd930+TeTk9yf3TM=",
+    "folly/BUILD.bazel": "sha256-NuTySweIbtH7EQCfX4bSTZtz/FTLthu32RKzaTy1jm4=",
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k="
   }
 }

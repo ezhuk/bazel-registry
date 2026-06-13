@@ -128,11 +128,38 @@ cc_library(
 )
 
 cc_library(
-    name = "benchmark",
-    srcs = ["Benchmark.cpp"],
+    name = "benchmark_header",
     hdrs = ["Benchmark.h"],
     include_prefix = "folly",
     deps = [
+        ":benchmark_util",
+        ":file_util",
+        ":map_util",
+        ":overload",
+        ":portability",
+        ":preprocessor",
+        ":random",
+        ":range",
+        ":scope_guard",
+        ":string",
+        ":traits",
+        "//folly/detail:perf_scoped",
+        "//folly/functional:invoke",
+        "//folly/json:dynamic",
+        "//folly/lang:hint",
+        "//folly/portability:gflags",
+        "//folly/stats:streaming_stats",
+        "@boost.regex",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "benchmark",
+    srcs = ["Benchmark.cpp"],
+    include_prefix = "folly",
+    deps = [
+        ":benchmark_header",
         ":benchmark_util",
         ":file_util",
         ":map_util",
@@ -199,6 +226,7 @@ cc_library(
         ":optional",
         ":scope_guard",
         "//folly/lang:new",
+        "//folly/portability:memory",
         "//folly/synchronization/detail:sleeper",
         "@glog",
     ],
@@ -344,6 +372,7 @@ cc_library(
         "//folly/lang:safe_assert",
         "//folly/lang:to_ascii",
         "//folly/portability:math",
+        "@double-conversion",
         "@fast_float",
         "@fmt",
     ],
@@ -1117,6 +1146,7 @@ cc_library(
         "//folly/net:network_socket",
         "//folly/portability:config",
         "//folly/portability:sockets",
+        "@boost.container_hash",
         "@fmt",
     ],
 )

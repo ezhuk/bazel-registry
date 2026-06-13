@@ -44,6 +44,7 @@ cc_library(
     hdrs = ["BenchmarkAdaptive.h"],
     include_prefix = "folly/detail",
     deps = [
+        "//folly:benchmark_header",
         "//folly:random",
         "//folly:string",
         "@glog",
