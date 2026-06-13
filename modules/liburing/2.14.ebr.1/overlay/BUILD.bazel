@@ -75,7 +75,11 @@ cc_library(
         "src/syscall.c",
         "src/version.c",
     ],
-    hdrs = glob(["src/include/**/*.h"]) + [":headers"],
+    hdrs = glob([
+        "src/include/**/*.h",
+        "src/arch/**/*.h",
+        "src/*.h",
+    ]) + [":headers"],
     copts = [
         "-D_GNU_SOURCE",
         "-D_LARGEFILE_SOURCE",
@@ -84,9 +88,8 @@ cc_library(
         "-Wno-unused-parameter",
     ],
     includes = [
-        "src",
-        "src/include",
         ".",
+        "src/include",
     ],
     visibility = ["//visibility:public"],
 )
