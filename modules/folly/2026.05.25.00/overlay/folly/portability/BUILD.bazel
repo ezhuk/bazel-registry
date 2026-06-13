@@ -191,6 +191,15 @@ cc_library(
 )
 
 cc_library(
+    name = "memory",
+    hdrs = ["Memory.h"],
+    include_prefix = "folly/portability",
+    deps = [
+        "//folly:memory",
+    ],
+)
+
+cc_library(
     name = "openssl",
     srcs = ["OpenSSL.cpp"],
     hdrs = ["OpenSSL.h"],

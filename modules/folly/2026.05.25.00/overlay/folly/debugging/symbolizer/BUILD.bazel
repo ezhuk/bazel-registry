@@ -51,6 +51,7 @@ cc_library(
         "//folly/portability:config",
         "//folly/portability:sys_mman",
         "//folly/portability:unistd",
+        "@boost.intrusive",
         "@glog",
     ],
 )
