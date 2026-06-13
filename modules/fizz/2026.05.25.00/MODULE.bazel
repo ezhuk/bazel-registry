@@ -6,6 +6,7 @@ module(
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "boost.variant", version = "1.90.0.bcr.1")
 bazel_dep(name = "brotli", version = "1.2.0.bcr.1")
+bazel_dep(name = "cmake_configure_file", version = "0.1.7")
 bazel_dep(name = "double-conversion", version = "3.4.0")
 bazel_dep(name = "fast_float", version = "8.2.4")
 bazel_dep(name = "fmt", version = "12.1.0")
