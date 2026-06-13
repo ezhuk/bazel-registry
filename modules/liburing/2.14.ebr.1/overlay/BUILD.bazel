@@ -84,6 +84,7 @@ cc_library(
         "-Wno-unused-parameter",
     ],
     includes = [
+        "src",
         "src/include",
         ".",
     ],
