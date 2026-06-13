@@ -1,4 +1,4 @@
-load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@rules_license//rules:license.bzl", "license")
 
@@ -9,6 +9,21 @@ license(
     license_kinds = ["@rules_license//licenses/spdx:BSD-3-Clause"],
     license_text = "LICENSE",
     visibility = ["//visibility:public"],
+)
+
+cmake_configure_file(
+    name = "fizz-config_h",
+    src = "fizz/fizz-config.h.in",
+    out = "fizz/fizz-config.h",
+    defines = [
+        "FIZZ_HAVE_LIBAEGIS=0",
+        "FIZZ_HAVE_SODIUM=1",
+        "FIZZ_CERTIFICATE_USE_OPENSSL_CERT=1",
+        "FIZZ_HAVE_OQS=0",
+    ],
+    substitutions = {
+        "@FIZZ_LOGGING_BACKEND@": "DISABLED",
+    },
 )
 
 cc_library(
@@ -95,16 +110,4 @@ cc_library(
         "@zlib",
         "@zstd",
     ],
-)
-
-expand_template(
-    name = "fizz_config_h",
-    out = "fizz/fizz-config.h",
-    substitutions = {
-        "#cmakedefine01 FIZZ_HAVE_LIBAEGIS": "/* #undef FIZZ_HAVE_LIBAEGIS */",
-        "#cmakedefine01 FIZZ_HAVE_SODIUM": "#define FIZZ_HAVE_SODIUM 1",
-        "#cmakedefine01 FIZZ_CERTIFICATE_USE_OPENSSL_CERT": "#define FIZZ_CERTIFICATE_USE_OPENSSL_CERT 1",
-        "#cmakedefine01 FIZZ_HAVE_OQS": "/* #undef FIZZ_HAVE_OQS */",
-    },
-    template = "fizz/fizz-config.h.in",
 )

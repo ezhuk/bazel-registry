@@ -2,6 +2,6 @@
   "url": "https://github.com/facebookincubator/fizz/releases/download/v2026.05.25.00/fizz-v2026.05.25.00.tar.gz",
   "integrity": "sha256-nsDqkZ2ZmlEwZhVYcXQ6HFB5niFmKyqfkhwLnLG3ZGw=",
   "overlay": {
-    "BUILD.bazel": "sha256-gU7CwGveoxImdx82Oi+nf3pPzy36ax0JE9Fxn0bHikg="
+    "BUILD.bazel": "sha256-3jvrzQ04YAn/SaE7WQvKMgVKfM/WC6mBNaa3/R/qMcc="
   }
 }
