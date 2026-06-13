@@ -18,8 +18,9 @@ jobs:
       matrix:
         module:
           - double-conversion
-          - libsodium
           - folly
+          - libsodium
+          - liburing
 
     steps:
       - uses: actions/checkout@v6
