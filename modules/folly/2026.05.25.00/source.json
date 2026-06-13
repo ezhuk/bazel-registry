@@ -41,7 +41,6 @@
     "folly/external/nvidia/hash/detail/BUILD.bazel": "sha256-uBBmxF+AELpswQljNm1ROvNWS7VZXn4fLXxlfF5Nl7k=",
     "folly/external/nvidia/hash/BUILD.bazel": "sha256-WW+zLS3Jz5H9NR2ENRDGodItAGOnD0Ol7GUW7/FBEX8=",
     "folly/external/rapidhash/BUILD.bazel": "sha256-GjRDiRIbTp7HFLMAAUgxGSiAxyOnS+L3GDbmtjamTuQ=",
-    "folly/external/BUILD.bazel": "sha256-a7jmmU56fY2oLselHOx5bb16GB9YvXUfCG6M7VyxVh8=",
     "folly/fibers/async/BUILD.bazel": "sha256-Sk/UU/3SRP88L9ofk1Pb/On491S+awvJetuZp7mUdUo=",
     "folly/fibers/detail/BUILD.bazel": "sha256-rmZDJaFCgU9nB+68p4Csw8Q2Fb6uqtmJdEky1gZe8DQ=",
     "folly/fibers/BUILD.bazel": "sha256-4tDTqtTFEvXhzDjGpBeOVlsL4KocPCKpTtNu5KHjX8Q=",
