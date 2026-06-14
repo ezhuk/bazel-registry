@@ -31,9 +31,9 @@ cc_library(
         "@folly//folly:random",
         "@folly//folly:range",
         "@folly//folly:string",
-        "@folly//folly/experimental/io:async_io_uring_socket",
         "@folly//folly/io:socket_option_map",
         "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_io_uring_socket",
         "@folly//folly/io/async:async_socket",
         "@folly//folly/io/async:async_ssl_socket",
         "@folly//folly/io/async:async_transport",
@@ -223,6 +223,7 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         ":util",
+        "@fizz",
         "@folly//folly:conv",
         "@folly//folly:file_util",
         "@folly//folly:format",
