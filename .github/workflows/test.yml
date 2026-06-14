@@ -18,6 +18,7 @@ jobs:
       matrix:
         module:
           - double-conversion
+          - fizz
           - folly
           - libsodium
           - liburing
