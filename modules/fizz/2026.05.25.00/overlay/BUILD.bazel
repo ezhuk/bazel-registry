@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@rules_license//rules:license.bzl", "license")
@@ -11,19 +12,27 @@ license(
     visibility = ["//visibility:public"],
 )
 
-cmake_configure_file(
-    name = "fizz-config_h",
-    src = "fizz/fizz-config.h.in",
-    out = "fizz/fizz-config.h",
-    defines = [
-        "FIZZ_HAVE_LIBAEGIS=0",
-        "FIZZ_HAVE_SODIUM=1",
-        "FIZZ_CERTIFICATE_USE_OPENSSL_CERT=1",
-        "FIZZ_HAVE_OQS=0",
-    ],
+expand_template(
+    name = "fizz_config_h_template",
+    out = "fizz/fizz-config.h.in.tpl",
     substitutions = {
         "@FIZZ_LOGGING_BACKEND@": "DISABLED",
     },
+    template = "fizz/fizz-config.h.in",
+)
+
+cmake_configure_file(
+    name = "fizz_config_h",
+    src = "fizz/fizz-config.h.in.tpl",
+    out = "fizz/fizz-config.h",
+    defines = [
+        "FIZZ_HAVE_SODIUM=1",
+        "FIZZ_CERTIFICATE_USE_OPENSSL_CERT=1",
+    ],
+    undefines = [
+        "FIZZ_HAVE_LIBAEGIS",
+        "FIZZ_HAVE_OQS",
+    ],
 )
 
 cc_library(
@@ -32,7 +41,6 @@ cc_library(
         ["fizz/**/*.cpp"],
         exclude = [
             "fizz/**/test/*",
-            "fizz/backend/libaegis/*",
             "fizz/extensions/javacrypto/*",
             "fizz/tool/**/*",
         ],
@@ -42,7 +50,6 @@ cc_library(
         exclude = [
             "fizz/**/test/*",
             "fizz/**/*-inl.h",
-            "fizz/backend/libaegis/*",
             "fizz/extensions/javacrypto/*",
             "fizz/tool/**/*",
         ],
@@ -51,9 +58,6 @@ cc_library(
         "@platforms//cpu:x86_64": ["-maes"],
         "//conditions:default": [],
     }),
-    defines = [
-        "FOLLY_GNU_ENABLE_ERROR(x)=",
-    ],
     includes = ["."],
     textual_hdrs = glob(["fizz/**/*-inl.h"]),
     visibility = ["//visibility:public"],
