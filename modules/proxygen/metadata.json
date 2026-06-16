@@ -1,0 +1,10 @@
+{
+  "homepage": "https://github.com/facebook/proxygen",
+  "repository": [
+    "github:facebook/proxygen"
+  ],
+  "versions": [
+    "2026.05.25.00"
+  ],
+  "yanked_versions": {}
+}
