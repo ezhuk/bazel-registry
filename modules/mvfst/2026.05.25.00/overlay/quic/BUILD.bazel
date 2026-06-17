@@ -1,0 +1,41 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "config",
+    hdrs = ["mvfst-config.h"],
+    include_prefix = "quic",
+    deps = [
+        "//quic/common/third-party:tiny_optional",
+        "@folly//folly:small_vector",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/container:heap_vector_types",
+    ],
+)
+
+cc_library(
+    name = "constants",
+    srcs = ["QuicConstants.cpp"],
+    hdrs = [
+        "QuicConstants.h",
+        "QuicTypealiases.h",
+    ],
+    include_prefix = "quic",
+    deps = [
+        ":enum",
+        "@folly//folly/lang:assume",
+        "@folly//folly/chrono:clock",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "enum",
+    hdrs = ["QuicEnum.h"],
+    include_prefix = "quic",
+    deps = [
+        "//quic/common/third-party:better_enums",
+        "@folly//folly/lang:assume",
+    ],
+)
