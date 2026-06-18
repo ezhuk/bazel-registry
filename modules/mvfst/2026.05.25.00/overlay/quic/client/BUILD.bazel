@@ -1,0 +1,148 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cached_server_tp",
+    hdrs = ["handshake/CachedServerTransportParameters.h"],
+    include_prefix = "quic/client",
+    deps = [
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "cached_server_tp_serialization",
+    srcs = ["handshake/CachedServerTransportParametersSerialization.cpp"],
+    hdrs = ["handshake/CachedServerTransportParametersSerialization.h"],
+    include_prefix = "quic/client",
+    deps = [
+        ":cached_server_tp",
+        "//fizz/record",
+        "//fizz/util:status",
+        "//folly:range",
+        "//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "client",
+    srcs = ["QuicClientTransport.cpp"],
+    hdrs = ["QuicClientTransport.h"],
+    include_prefix = "quic/client",
+    deps = [
+        ":client_lite",
+        "//folly:string",
+        "//quic/api:transport",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/happyeyeballs",
+        "//quic/loss",
+    ],
+)
+
+cc_library(
+    name = "client_async_transport",
+    srcs = ["QuicClientAsyncTransport.cpp"],
+    headers = ["QuicClientAsyncTransport.h"],
+    include_prefix = "quic/client",
+    deps = [
+        "//folly/debugging/symbolizer",
+        "//quic/api:stream_async_transport",
+        "//quic/client",
+        "//quic/common:mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "client_extension",
+    hdrs = ["handshake/ClientTransportParametersExtension.h"],
+    include_prefix = "quic/client",
+    deps = [
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/handshake:transport_parameters",
+    ],
+)
+
+cc_library(
+    name = "client_lite",
+    srcs = ["QuicClientTransportLite.cpp"],
+    hdrs = ["QuicClientTransportLite.h"],
+    include_prefix = "quic/client",
+    deps = [
+        ":client_extension",
+        ":state_and_handshake",
+        "//folly:network_address",
+        "//folly:random",
+        "//folly/io:socket_option_map",
+        "//folly/net:net_ops",
+        "//folly/portability:sockets",
+        "//quic:constants",
+        "//quic/api:loop_detector_callback",
+        "//quic/api:transport_helpers",
+        "//quic/api:transport_lite",
+        "//quic/common:buf_accessor",
+        "//quic/common:buf_util",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:string_utils",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/fizz/client/handshake:token_cache",
+        "//quic/flowcontrol:flow_control",
+        "//quic/handshake",
+        "//quic/happyeyeballs",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/loss",
+        "//quic/state:ack_handler",
+        "//quic/state:datagram_handler",
+        "//quic/state:pacing_functions",
+        "//quic/state:quic_connection_stats",
+        "//quic/state:simple_frame_functions",
+        "//quic/state/stream",
+    ],
+)
+
+cc_library(
+    name = "state_and_handshake",
+    srcs = [
+        "handshake/ClientHandshake.cpp",
+        "state/ClientStateMachine.cpp",
+    ],
+    hdrs = [
+        "handshake/ClientHandshake.h",
+        "handshake/ClientHandshakeFactory.h",
+        "state/ClientStateMachine.h",
+    ],
+    include_prefix = "quic/client",
+    deps = [
+        ":cached_server_tp",
+        ":client_extension",
+        "//fizz/protocol:certificate_base",
+        "//folly:exception_wrapper",
+        "//folly/io/async:delayed_destruction",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:time_util",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/congestion_control:cubic",
+        "//quic/flowcontrol:flow_control",
+        "//quic/handshake",
+        "//quic/handshake:aead",
+        "//quic/handshake:transport_parameters",
+        "//quic/logging:qlogger_macros",
+        "//quic/loss",
+        "//quic/state:quic_state_machine",
+        "//quic/state:quic_stream_utilities",
+        "//quic/state:state_functions",
+        "//quic/state:stream_functions",
+    ],
+)

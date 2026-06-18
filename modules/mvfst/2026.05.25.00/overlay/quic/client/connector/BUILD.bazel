@@ -1,0 +1,27 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "connector",
+    srcs = ["QuicConnector.cpp"],
+    hdrs = ["QuicConnector.h"],
+    include_prefix = "quic/client/connector",
+    deps = [
+        "//fizz/client:async_fizz_client",
+        "//folly/io:socket_option_map",
+        "//folly/io/async:async_ssl_socket",
+        "//folly/io/async:async_udp_socket",
+        "//quic/api:loop_detector_callback",
+        "//quic/api:transport",
+        "//quic/client",
+        "//quic/common:mvfst_logging",
+        "//quic/common:time_util",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/fizz/client/handshake:psk_cache",
+        "//quic/logging:qlogger",
+    ],
+)

@@ -1,0 +1,182 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "codec",
+    srcs = [
+        "QuicReadCodec.cpp",
+        "QuicWriteCodec.cpp",
+    ],
+    hdrs = [
+        "QuicReadCodec.h",
+        "QuicWriteCodec.h",
+    ],
+    include_prefix = "quic/codec",
+    deps = [
+        ":decode",
+        ":packet_number",
+        ":packet_number_cipher",
+        ":pktbuilder",
+        ":types",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:buf_util",
+        "//quic/common:circular_deque",
+        "//quic/common:contiguous_cursor",
+        "//quic/common:interval_set",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:string_utils",
+        "//quic/handshake:aead",
+        "//quic/state:ack_states",
+        "//quic/state:stats_callback",
+        "//quic/state:transport_settings",
+    ],
+)
+
+cc_library(
+    name = "decode",
+    srcs = ["Decode.cpp"],
+    hdrs = ["Decode.h"],
+    copts = [
+        "-fstrict-aliasing",
+    ],
+    include_prefix = "quic/codec",
+    deps = [
+        ":packet_number",
+        ":types",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:contiguous_cursor",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/state:transport_settings",
+    ],
+)
+
+cc_library(
+    name = "header_codec",
+    srcs = ["QuicHeaderCodec.cpp"],
+    hdrs = ["QuicHeaderCodec.h"],
+    include_prefix = "quic/codec",
+    deps = [
+        ":decode",
+        ":packet_number",
+        ":types",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "packet_number",
+    srcs = ["PacketNumber.cpp"],
+    hdrs = ["PacketNumber.h"],
+    include_prefix = "quic/codec",
+    deps = [
+        "//folly/lang:bits",
+        "//quic:constants",
+        "//quic/common:mvfst_logging",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "packet_number_cipher",
+    srcs = ["PacketNumberCipher.cpp"],
+    hdrs = ["PacketNumberCipher.h"],
+    include_prefix = "quic/codec",
+    deps = [
+        ":decode",
+        ":types",
+        "//folly:unit",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:buf_util",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "pktbuilder",
+    srcs = ["QuicPacketBuilder.cpp"],
+    hdrs = ["QuicPacketBuilder.h"],
+    copts = [
+        "-fstrict-aliasing",
+    ],
+    include_prefix = "quic/codec",
+    deps = [
+        ":packet_number",
+        ":types",
+        "//folly:portability",
+        "//folly:random",
+        "//folly/io:iobuf",
+        "//quic/common:buf_accessor",
+        "//quic/common:buf_util",
+        "//quic/common:mvfst_logging",
+        "//quic/handshake",
+    ],
+)
+
+cc_library(
+    name = "pktrebuilder",
+    srcs = ["QuicPacketRebuilder.cpp"],
+    hdrs = ["QuicPacketRebuilder.h"],
+    include_prefix = "quic/codec",
+    deps = [
+        ":codec",
+        ":pktbuilder",
+        "//quic/api:ack_scheduler",
+        "//quic/common:mvfst_logging",
+        "//quic/flowcontrol:flow_control",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:simple_frame_functions",
+        "//quic/state:state_functions",
+        "//quic/state:stream_functions",
+    ],
+)
+
+cc_library(
+    name = "types",
+    srcs = [
+        "DefaultConnectionIdAlgo.cpp",
+        "QuicConnectionId.cpp",
+        "QuicInteger.cpp",
+        "Types.cpp",
+    ],
+    hdrs = [
+        "ConnectionIdAlgo.h",
+        "DefaultConnectionIdAlgo.h",
+        "QuicConnectionId.h",
+        "QuicInteger.h",
+        "Types.h",
+    ],
+    include_prefix = "quic/codec",
+    deps = [
+        ":packet_number",
+        "//folly:network_address",
+        "//folly:random",
+        "//folly/hash",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "//quic:config",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:buf_util",
+        "//quic/common:circular_deque",
+        "//quic/common:contiguous_cursor",
+        "//quic/common:expected",
+        "//quic/common:interval_set",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:optional",
+        "//quic/common:string_utils",
+        "//quic/common:variant",
+        "//quic/folly_utils",
+    ],
+)
