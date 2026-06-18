@@ -1,0 +1,239 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "buf_accessor",
+    srcs = ["BufAccessor.cpp"],
+    hdrs = ["BufAccessor.h"],
+    include_prefix = "quic/common",
+    deps = [":mvfst_logging"],
+    deps = [
+        "//folly/io:iobuf",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "buf_util",
+    srcs = [
+        "BufUtil.cpp",
+        "ChainedByteRange.cpp",
+    ],
+    hdrs = [
+        "BufUtil.h",
+        "ChainedByteRange.h",
+    ],
+    include_prefix = "quic/common",
+    deps = [
+        ":mvfst_logging",
+        "//folly:range",
+        "//folly/io:iobuf",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "circular_deque",
+    hdrs = ["CircularDeque.h"],
+    include_prefix = "quic/common",
+    textual_hdrs = ["CircularDeque-inl.h"],
+    deps = [
+        ":mvfst_logging",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "contiguous_cursor",
+    srcs = ["ContiguousCursor.cpp"],
+    hdrs = ["ContiguousCursor.h"],
+    include_prefix = "quic/common",
+    deps = [
+        "//folly:likely",
+        "//folly:utility",
+        "//folly/lang:bits",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "enum_array",
+    hdrs = ["EnumArray.h"],
+    include_prefix = "quic/common",
+    deps = [
+        "//folly:portability",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "expected",
+    hdrs = ["Expected.h"],
+    include_prefix = "quic/common",
+    deps = [
+        "//quic/common/third-party:expected",
+    ],
+)
+
+cc_library(
+    name = "function_ref",
+    hdrs = ["FunctionRef.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":mvfst_check",
+    ],
+)
+
+cc_library(
+    name = "interval_set",
+    hdrs = [
+        "IntervalSet.h",
+        "IntervalSet-inl.h",
+    ],
+    include_prefix = "quic/common",
+    deps = [
+        ":circular_deque",
+        ":expected",
+        ":mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "linux_kernel_version",
+    srcs = ["LinuxKernelVersion.cpp"],
+    hdrs = ["LinuxKernelVersion.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":optional",
+        "//folly/synchronization:call_once",
+    ],
+)
+
+cc_library(
+    name = "mvfst_check",
+    hdrs = ["MvfstCheck.h"],
+    include_prefix = "quic/common",
+    deps = ["@glog"],
+)
+
+cc_library(
+    name = "mvfst_logging",
+    hdrs = ["MvfstLogging.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":mvfst_check",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "network_data",
+    hdrs = ["NetworkData.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":buf_util",
+        ":optional",
+        ":time_points",
+        "//folly:network_address",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "optional",
+    hdrs = ["Optional.h"],
+    include_prefix = "quic/common",
+    deps = [
+        "//quic:config",
+    ],
+)
+
+cc_library(
+    name = "quic_buffer",
+    srcs = ["QuicBuffer.cpp"],
+    hdrs = [
+        "QuicBuffer.h",
+        "QuicRange.h",
+    ],
+    include_prefix = "quic/common",
+    deps = [
+        ":mvfst_logging",
+        "//folly/portability:sys_uio",
+        "//quic/logging/oops_logger",
+    ],
+)
+
+cc_library(
+    name = "quic_iobuf_queue",
+    srcs = ["QuicIOBufQueue.cpp"],
+    hdrs = ["QuicIOBufQueue.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":quic_buffer",
+    ],
+)
+
+cc_library(
+    name = "socket_util",
+    hdrs = ["SocketUtil.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":expected",
+        "//folly/io:socket_option_map",
+        "//folly/net:net_ops",
+        "//quic:exception",
+    ],
+)
+
+cc_library(
+    name = "string_utils",
+    srcs = ["StringUtils.cpp"],
+    hdrs = ["StringUtils.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":expected",
+        "//quic:constants",
+        "//quic:exception",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "time_points",
+    hdrs = ["TimePoints.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":optional",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "time_util",
+    hdrs = ["TimeUtil.h"],
+    include_prefix = "quic/common",
+    deps = [
+        "//folly:traits",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "transport_knobs",
+    srcs = ["TransportKnobs.cpp"],
+    hdrs = ["TransportKnobs.h"],
+    include_prefix = "quic/common",
+    deps = [
+        ":mvfst_logging",
+        ":optional",
+        "//folly:dynamic",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "variant",
+    hdrs = ["Variant.h"],
+    include_prefix = "quic/common",
+)

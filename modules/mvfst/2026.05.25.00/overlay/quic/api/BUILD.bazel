@@ -1,0 +1,216 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ack_scheduler",
+    srcs = ["QuicAckScheduler.cpp"],
+    hdrs = ["QuicAckScheduler.h"],
+    include_prefix = "quic/api",
+    deps = [
+        "//quic:constants",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "quic_batch_writer",
+    srcs = ["QuicBatchWriter.cpp"],
+    hdrs = [
+        "QuicBatchWriter.h",
+        "QuicBatchWriterFactory.h",
+    ],
+    include_prefix = "quic/api",
+    deps = [
+        "//folly:network_address",
+        "//folly:portability",
+        "//folly/io:iobuf",
+        "//quic:config",
+        "//quic:constants",
+        "//quic/common:buf_accessor",
+        "//quic/common:mvfst_logging",
+        "//quic/common/events:eventbase",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "quic_callbacks",
+    hdrs = ["QuicCallbacks.h"],
+    include_prefix = "quic/api",
+    deps = [
+        "//quic:exception",
+    ],
+)
+
+cc_library(
+    name = "loop_detector_callback",
+    hdrs = ["LoopDetectorCallback.h"],
+    include_prefix = "quic/api",
+    deps = [
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "stream_async_transport",
+    srcs = ["QuicStreamAsyncTransport.cpp"],
+    hdrs = ["QuicStreamAsyncTransport.h"],
+    include_prefix = "quic/api",
+    deps = [
+        ":transport",
+        "//folly/io/async:async_transport",
+        "//quic/common:mvfst_check",
+        "//quic/common:mvfst_logging",
+        "//quic/common/events:eventbase",
+        "//quic/common/events:folly_eventbase",
+    ],
+)
+
+cc_library(
+    name = "transport",
+    srcs = ["QuicTransportBase.cpp"],
+    hdrs = [
+        "QuicSocket.h",
+        "QuicTransportBase.h",
+    ],
+    include_prefix = "quic/api",
+    deps = [
+        ":quic_batch_writer",
+        ":transport_lite",
+        "//folly:chrono",
+        "//folly:exception_wrapper",
+        "//folly:maybe_managed_ptr",
+        "//folly:portability",
+        "//folly:scope_guard",
+        "//folly/io:iobuf",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:function_ref",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:optional",
+        "//quic/common:time_util",
+        "//quic/common/events:eventbase",
+        "//quic/common/events:quic_timer",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/congestion_control:copa",
+        "//quic/congestion_control:cubic",
+        "//quic/congestion_control:newreno",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/loss",
+        "//quic/observer:socket_observer_container",
+        "//quic/observer:socket_observer_macros",
+        "//quic/priority:priority_queue",
+        "//quic/state:early_data_app_params_handler",
+        "//quic/state:pacing_functions",
+        "//quic/state:quic_state_machine",
+        "//quic/state:state_functions",
+        "//quic/state:stream_functions",
+    ],
+)
+
+cc_library(
+    name = "transport_helpers",
+    srcs = [
+        "IoBufQuicBatch.cpp",
+        "QuicPacketScheduler.cpp",
+        "QuicTransportFunctions.cpp",
+    ],
+    hdrs = [
+        "IoBufQuicBatch.h",
+        "QuicPacketScheduler.h",
+        "QuicTransportFunctions.h",
+    ],
+    include_prefix = "quic/api",
+    deps = [
+        ":ack_scheduler",
+        ":quic_batch_writer",
+        "//folly/lang:assume",
+        "//folly/tracing:static_tracepoint",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/client:state_and_handshake",
+        "//quic/codec",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:pktrebuilder",
+        "//quic/codec:types",
+        "//quic/common:buf_accessor",
+        "//quic/common:expected",
+        "//quic/common:function_ref",
+        "//quic/common:mvfst_logging",
+        "//quic/common:socket_util",
+        "//quic/common:string_utils",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/flowcontrol:flow_control",
+        "//quic/handshake:transport_parameters",
+        "//quic/happyeyeballs",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:ack_frequency_functions",
+        "//quic/state:ack_handler",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:simple_frame_functions",
+        "//quic/state:state_functions",
+        "//quic/state:stats_callback",
+        "//quic/state:stream_functions",
+    ],
+)
+
+cc_library(
+    name = "transport_info",
+    hdrs = ["TransportInfo.h"],
+    include_prefix = "quic/api",
+    deps = [
+        "//quic/common:optional",
+        "//quic/congestion_control:congestion_controller",
+    ],
+)
+
+cc_library(
+    name = "transport_lite",
+    srcs = ["QuicTransportBaseLite.cpp"],
+    hdrs = [
+        "QuicSocketLite.h",
+        "QuicTransportBaseLite.h",
+    ],
+    include_prefix = "quic/api",
+    deps = [
+        ":loop_detector_callback",
+        ":quic_callbacks",
+        ":transport_helpers",
+        ":transport_info",
+        "//fizz/protocol:certificate_base",
+        "//folly:maybe_managed_ptr",
+        "//folly:scope_guard",
+        "//folly/io/async:delayed_destruction",
+        "//quic:exception",
+        "//quic/codec:types",
+        "//quic/common:function_ref",
+        "//quic/common:mvfst_logging",
+        "//quic/common/events:eventbase",
+        "//quic/common/events:quic_timer",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/congestion_control:ecn_l4s_tracker",
+        "//quic/congestion_control:pacer_factory",
+        "//quic/flowcontrol:flow_control",
+        "//quic/handshake",
+        "//quic/handshake:transport_parameters",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/loss",
+        "//quic/observer:socket_observer_macros",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:pacing_functions",
+        "//quic/state:quic_state_machine",
+        "//quic/state:stream_functions",
+        "//quic/state/stream",
+    ],
+)
