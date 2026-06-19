@@ -1,0 +1,227 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "bandwidth",
+    srcs = ["Bandwidth.cpp"],
+    hdrs = ["Bandwidth.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        "//folly/lang:assume",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "congestion_control_functions",
+    srcs = ["CongestionControlFunctions.cpp"],
+    hdrs = ["CongestionControlFunctions.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/common:time_util",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "congestion_controller",
+    hdrs = ["CongestionController.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bandwidth",
+        "//quic:constants",
+        "//quic/state:cloned_packet_identifier",
+        "//quic/state:loss_event",
+        "//quic/state:outstanding_packet",
+    ],
+)
+
+cc_library(
+    name = "congestion_controller_factory",
+    srcs = ["CongestionControllerFactory.cpp"],
+    hdrs = ["CongestionControllerFactory.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bbr",
+        ":bbr2",
+        ":bbr_bandwidth_sampler",
+        ":bbr_rtt_sampler",
+        ":copa",
+        ":cubic",
+        ":newreno",
+        "//quic:constants",
+        "//quic/common:mvfst_logging",
+        "//quic/congestion_control/modular:bbr2_startup",
+    ],
+)
+
+cc_library(
+    name = "copa",
+    srcs = ["Copa.cpp"],
+    hdrs = ["Copa.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":congestion_control_functions",
+        ":congestion_controller",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:time_util",
+        "//quic/congestion_control/third_party:chromium_windowed_filter",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:ack_event",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "cubic",
+    srcs = ["QuicCubic.cpp"],
+    hdrs = ["QuicCubic.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":congestion_control_functions",
+        ":congestion_controller",
+        ":ecn_l4s_tracker",
+        "//folly:chrono",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:ack_event",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:state_functions",
+    ],
+)
+
+cc_library(
+    name = "ecn_l4s_tracker",
+    srcs = ["EcnL4sTracker.cpp"],
+    hdrs = ["EcnL4sTracker.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":packet_processor",
+        "//quic:exception",
+        "//quic/logging:qlogger_macros",
+        "//quic/observer:socket_observer_macros",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "newreno",
+    srcs = ["NewReno.cpp"],
+    hdrs = ["NewReno.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":congestion_control_functions",
+        ":congestion_controller",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:ack_event",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "pacer",
+    srcs = ["TokenlessPacer.cpp"],
+    hdrs = [
+        "Pacer.h",
+        "TokenlessPacer.h",
+    ],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":congestion_control_functions",
+        "//quic/logging:qlogger_macros",
+        "//quic/observer:socket_observer_macros",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "pacer_factory",
+    srcs = ["PacerFactory.cpp"],
+    hdrs = ["PacerFactory.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [":pacer"],
+)
+
+cc_library(
+    name = "packet_processor",
+    hdrs = ["PacketProcessor.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        "//folly/io:socket_option_map",
+        "//quic/common:network_data",
+        "//quic/common:optional",
+        "//quic/state:cloned_packet_identifier",
+        "//quic/state:outstanding_packet",
+    ],
+)
+
+cc_library(
+    name = "server_congestion_controller_factory",
+    srcs = ["ServerCongestionControllerFactory.cpp"],
+    hdrs = ["ServerCongestionControllerFactory.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bbr",
+        ":bbr2",
+        ":bbr_bandwidth_sampler",
+        ":bbr_rtt_sampler",
+        ":congestion_controller_factory",
+        ":copa",
+        ":cubic",
+        ":newreno",
+        "//quic/congestion_control/modular:bbr2_startup",
+    ],
+)
+
+cc_library(
+    name = "simulated_tbf",
+    srcs = ["SimulatedTBF.cpp"],
+    hdrs = ["SimulatedTBF.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        "//folly:token_bucket",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "static_cwnd_congestion_controller",
+    srcs = ["StaticCwndCongestionController.cpp"],
+    hdrs = ["StaticCwndCongestionController.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":congestion_control_functions",
+        ":congestion_controller",
+        "//quic/state:ack_event",
+        "//quic/state:quic_state_machine",
+        "//quic/state:transport_settings",
+    ],
+)
+
+cc_library(
+    name = "throttling_signal_provider",
+    hdrs = ["ThrottlingSignalProvider.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        "//quic/common:optional",
+    ],
+)
