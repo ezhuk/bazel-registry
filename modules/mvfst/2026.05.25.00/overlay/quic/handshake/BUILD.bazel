@@ -1,0 +1,63 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "aead",
+    hdrs = ["Aead.h"],
+    include_prefix = "quic/handshake",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "handshake",
+    srcs = [
+        "CryptoFactory.cpp",
+        "HandshakeLayer.cpp",
+    ],
+    hdrs = [
+        "CryptoFactory.h",
+        "HandshakeLayer.h",
+    ],
+    include_prefix = "quic/handshake",
+    deps = [
+        ":aead",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/codec:packet_number_cipher",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "retry_integrity_tag_generator",
+    hdrs = ["RetryIntegrityTagGenerator.h"],
+    include_prefix = "quic/handshake",
+    deps = [
+        "//folly/io:iobuf",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "transport_parameters",
+    srcs = ["TransportParameters.cpp"],
+    hdrs = ["TransportParameters.h"],
+    include_prefix = "quic/handshake",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/state:quic_state_machine",
+    ],
+)

@@ -1,0 +1,48 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "socket_observer_container",
+    hdrs = ["SocketObserverContainer.h"],
+    include_prefix = "quic/observer",
+    deps = [
+        ":socket_observer_interface",
+        "//folly:observer_container",
+        "//quic/common:mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "socket_observer_interface",
+    srcs = ["SocketObserverInterface.cpp"],
+    hdrs = ["SocketObserverInterface.h"],
+    include_prefix = "quic/observer",
+    deps = [
+        "//quic:exception",
+        "//quic/common:function_ref",
+        "//quic/common:mvfst_logging",
+        "//quic/state:ack_event",
+        "//quic/state:outstanding_packet",
+        "//quic/state:quic_stream_utilities",
+    ],
+)
+
+cc_library(
+    name = "socket_observer_macros",
+    hdrs = ["SocketObserverMacros.h"],
+    include_prefix = "quic/observer",
+    deps = [
+        ":socket_observer_container",
+        ":socket_observer_interface",
+    ],
+)
+
+cc_library(
+    name = "socket_observer_types",
+    hdrs = ["SocketObserverTypes.h"],
+    include_prefix = "quic/observer",
+    deps = [
+        ":socket_observer_container",
+    ],
+)
