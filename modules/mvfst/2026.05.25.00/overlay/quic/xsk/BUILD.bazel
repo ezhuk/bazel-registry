@@ -1,0 +1,63 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "xsk_container",
+    srcs = [
+        "BaseXskContainer.cpp",
+        "HashingXskContainer.cpp",
+        "ThreadLocalXskContainer.cpp",
+    ],
+    hdrs = [
+        "BaseXskContainer.h",
+        "HashingXskContainer.h",
+        "ThreadLocalXskContainer.h",
+    ],
+    include_prefix = "quic/xsk",
+    deps = [
+        ":xsk_sender",
+        "//folly:thread_local",
+        "//folly/container:f14_hash",
+        "//quic/common:mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "xsk_lib",
+    srcs = [
+        "packet_utils.cpp",
+        "xsk_lib.cpp",
+    ],
+    hdrs = [
+        "packet_utils.h",
+        "xsk_lib.h",
+    ],
+    include_prefix = "quic/xsk",
+    deps = [
+        "//folly:benchmark",
+        "//folly:cpp_attributes",
+        "//folly:network_address",
+        "//folly/net:net_ops",
+    ],
+)
+
+cc_library(
+    name = "xsk_sender",
+    srcs = ["XskSender.cpp"],
+    hdrs = ["XskSender.h"],
+    include_prefix = "quic/xsk",
+    deps = [
+        ":xsk_lib",
+        "//folly:benchmark",
+        "//folly:network_address",
+        "//folly/container:f14_hash",
+        "//folly/io:iobuf",
+        "//folly/net:net_ops",
+        "//quic/common:expected",
+        "//quic/common:linux_kernel_version",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:string_utils",
+    ],
+)

@@ -1,0 +1,326 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ack_event",
+    srcs = ["AckEvent.cpp"],
+    hdrs = ["AckEvent.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":outstanding_packet",
+        "//folly:map_util",
+        "//quic/codec:types",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/congestion_control:congestion_controller",
+    ],
+)
+
+cc_library(
+    name = "ack_frequency_functions",
+    srcs = ["QuicAckFrequencyFunctions.cpp"],
+    hdrs = ["QuicAckFrequencyFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/common:time_util",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "ack_handler",
+    srcs = [
+        "AckHandlers.cpp",
+        "AckedPacketIterator.cpp",
+    ],
+    hdrs = [
+        "AckHandlers.h",
+        "AckedPacketIterator.h",
+    ],
+    include_prefix = "quic/state",
+    deps = [
+        ":connection_oops_fields",
+        ":outstanding_packet",
+        ":quic_state_machine",
+        ":state_functions",
+        ":stream_functions",
+        "//folly:map_util",
+        "//folly/tracing:static_tracepoint",
+        "//quic:constants",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:function_ref",
+        "//quic/common:interval_set",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/congestion_control:congestion_control_functions",
+        "//quic/congestion_control:congestion_controller",
+        "//quic/logging/oops_logger",
+        "//quic/loss",
+        "//quic/observer:socket_observer_macros",
+    ],
+)
+
+cc_library(
+    name = "ack_states",
+    hdrs = ["AckStates.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//folly:random",
+        "//quic:constants",
+        "//quic/codec:types",
+        "//quic/common:interval_set",
+    ],
+)
+
+cc_library(
+    name = "cloned_packet_identifier",
+    srcs = ["ClonedPacketIdentifier.cpp"],
+    hdrs = ["ClonedPacketIdentifier.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic/codec:types",
+    ],
+)
+
+cc_library(
+    name = "connection_oops_fields",
+    hdrs = ["ConnectionOopsFields.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":quic_state_machine",
+        "//quic/logging/oops_logger:oops_fields",
+    ],
+)
+
+cc_library(
+    name = "datagram_handler",
+    srcs = ["DatagramHandlers.cpp"],
+    hdrs = ["DatagramHandlers.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":quic_state_machine",
+        "//quic/codec:types",
+    ],
+)
+
+cc_library(
+    name = "early_data_app_params_handler",
+    hdrs = ["EarlyDataAppParamsHandler.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic/common:buf_util",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "loss_event",
+    hdrs = ["LossEvent.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":outstanding_packet",
+        "//quic:constants",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "loss_state",
+    hdrs = ["LossState.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic/codec:types",
+        "//quic/common:enum_array",
+    ],
+)
+
+cc_library(
+    name = "outstanding_packet",
+    hdrs = ["OutstandingPacket.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":cloned_packet_identifier",
+        ":loss_state",
+        "//folly/io:socket_option_map",
+        "//quic/codec:types",
+    ],
+)
+
+cc_library(
+    name = "pacing_functions",
+    srcs = ["QuicPacingFunctions.cpp"],
+    hdrs = ["QuicPacingFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "quic_connection_stats",
+    hdrs = ["QuicConnectionStats.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic:config",
+        "//quic:constants",
+        "//quic/congestion_control:congestion_controller",
+    ],
+)
+
+cc_library(
+    name = "quic_state_machine",
+    srcs = [
+        "QuicPathManager.cpp",
+        "QuicStreamManager.cpp",
+        "StateData.cpp",
+    ],
+    hdrs = [
+        "QuicPathManager.h",
+        "QuicStreamManager.h",
+        "QuicStreamUtilities.h",
+        "StateData.h",
+        "StreamData.h",
+    ],
+    include_prefix = "quic/state",
+    deps = [
+        ":ack_event",
+        ":ack_states",
+        ":cloned_packet_identifier",
+        ":early_data_app_params_handler",
+        ":loss_state",
+        ":outstanding_packet",
+        ":quic_connection_stats",
+        ":stats_callback",
+        ":transport_settings",
+        "//folly:token_bucket",
+        "//folly/container:f14_hash",
+        "//folly/io/async:delayed_destruction",
+        "//quic:config",
+        "//quic:constants",
+        "//quic/codec",
+        "//quic/codec:types",
+        "//quic/common:buf_accessor",
+        "//quic/common:circular_deque",
+        "//quic/common:expected",
+        "//quic/common:function_ref",
+        "//quic/common:interval_set",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:congestion_controller",
+        "//quic/congestion_control:packet_processor",
+        "//quic/congestion_control:throttling_signal_provider",
+        "//quic/datagram:datagram_flow_manager",
+        "//quic/handshake",
+        "//quic/logging:qlogger",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/observer:socket_observer_types",
+        "//quic/priority:http_priority_queue",
+        "//quic/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "quic_stream_utilities",
+    srcs = ["QuicStreamUtilities.cpp"],
+    hdrs = ["QuicStreamUtilities.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic:constants",
+        "//quic/codec:types",
+    ],
+)
+
+cc_library(
+    name = "simple_frame_functions",
+    srcs = ["SimpleFrameFunctions.cpp"],
+    hdrs = ["SimpleFrameFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":connection_oops_fields",
+        ":quic_state_machine",
+        ":state_functions",
+        "//quic:constants",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/logging/oops_logger",
+        "//quic/state/stream",
+    ],
+)
+
+cc_library(
+    name = "stats_callback",
+    hdrs = ["QuicTransportStatsCallback.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "state_functions",
+    srcs = ["QuicStateFunctions.cpp"],
+    hdrs = ["QuicStateFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":quic_state_machine",
+        "//quic:constants",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:interval_set",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:time_util",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+    ],
+)
+
+cc_library(
+    name = "stream_functions",
+    srcs = ["QuicStreamFunctions.cpp"],
+    hdrs = ["QuicStreamFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":quic_state_machine",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/common:function_ref",
+        "//quic/common:mvfst_logging",
+        "//quic/flowcontrol:flow_control",
+        "//quic/logging/oops_logger",
+    ],
+)
+
+cc_library(
+    name = "transport_settings",
+    hdrs = ["TransportSettings.h"],
+    include_prefix = "quic/state",
+    deps = [
+        "//folly:network_address",
+        "//quic:constants",
+        "//quic/common:optional",
+        "//quic/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "transport_settings_functions",
+    srcs = ["TransportSettingsFunctions.cpp"],
+    hdrs = ["TransportSettingsFunctions.h"],
+    include_prefix = "quic/state",
+    deps = [
+        ":transport_settings",
+        "//folly:dynamic",
+    ],
+)
