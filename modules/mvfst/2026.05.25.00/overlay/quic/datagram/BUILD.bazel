@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "datagram_flow_manager",
+    srcs = ["DatagramFlowManager.cpp"],
+    hdrs = ["DatagramFlowManager.h"],
+    include_prefix = "quic/datagram",
+    deps = [
+        "//folly/container:f14_hash",
+        "//folly/io:iobuf",
+        "//quic:constants",
+        "//quic/common:buf_util",
+        "//quic/common:circular_deque",
+        "//quic/common:expected",
+        "//quic/priority:priority_queue",
+    ],
+)
