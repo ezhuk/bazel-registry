@@ -2,21 +2,21 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
-cpp_library(
+cc_library(
     name = "happyeyeballs",
     srcs = ["QuicHappyEyeballsFunctions.cpp"],
     hdrs = ["QuicHappyEyeballsFunctions.h"],
     include_prefix = "quic/happyeyeballs",
     deps = [
         "//common/network:mvfst_hooks",
-        "//folly/io:socket_option_map",
-        "//folly/net:net_ops",
-        "//folly/portability:sockets",
         "//quic/client:state_and_handshake",
         "//quic/common:mvfst_logging",
         "//quic/common:socket_util",
         "//quic/common/events:eventbase",
         "//quic/common/udpsocket:quic_async_udp_socket",
         "//quic/state:quic_state_machine",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/net:net_ops",
+        "@folly//folly/portability:sockets",
     ],
 )

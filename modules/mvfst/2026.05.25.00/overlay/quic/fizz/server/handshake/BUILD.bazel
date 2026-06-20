@@ -15,10 +15,6 @@ cc_library(
     include_prefix = "quic/fizz/server/handshake",
     deps = [
         ":handshake_app_token",
-        "//fizz/protocol",
-        "//fizz/server:fizz_server_context",
-        "//fizz/server:protocol",
-        "//fizz/server:replay_cache",
         "//quic:constants",
         "//quic/common:circular_deque",
         "//quic/common:mvfst_logging",
@@ -26,6 +22,10 @@ cc_library(
         "//quic/fizz/handshake:fizz_handshake",
         "//quic/server/handshake:server_handshake",
         "//quic/server/state:server",
+        "@fizz//fizz/protocol",
+        "@fizz//fizz/server:fizz_server_context",
+        "@fizz//fizz/server:protocol",
+        "@fizz//fizz/server:replay_cache",
     ],
 )
 
@@ -35,11 +35,11 @@ cc_library(
     hdrs = ["AppToken.h"],
     include_prefix = "quic/fizz/server/handshake",
     deps = [
-        "//fizz/record",
-        "//fizz/server:protocol",
         "//quic:constants",
         "//quic/common:optional",
         "//quic/fizz/handshake:fizz_handshake",
         "//quic/server/handshake:app_token",
+        "@fizz//fizz/record",
+        "@fizz//fizz/server:protocol",
     ],
 )

@@ -8,7 +8,6 @@ cc_library(
     hdrs = ["QuicLossFunctions.h"],
     include_prefix = "quic/loss",
     deps = [
-        "//folly:chrono",
         "//quic:constants",
         "//quic/codec:types",
         "//quic/common:expected",
@@ -28,5 +27,6 @@ cc_library(
         "//quic/state:simple_frame_functions",
         "//quic/state:state_functions",
         "//quic/state:stream_functions",
+        "@folly//folly:chrono",
     ],
 )

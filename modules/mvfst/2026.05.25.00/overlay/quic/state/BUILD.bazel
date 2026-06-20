@@ -9,7 +9,7 @@ cc_library(
     include_prefix = "quic/state",
     deps = [
         ":outstanding_packet",
-        "//folly:map_util",
+        "@folly//folly:map_util",
         "//quic/codec:types",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
@@ -46,8 +46,8 @@ cc_library(
         ":quic_state_machine",
         ":state_functions",
         ":stream_functions",
-        "//folly:map_util",
-        "//folly/tracing:static_tracepoint",
+        "@folly//folly:map_util",
+        "@folly//folly/tracing:static_tracepoint",
         "//quic:constants",
         "//quic/codec:types",
         "//quic/common:expected",
@@ -68,7 +68,7 @@ cc_library(
     hdrs = ["AckStates.h"],
     include_prefix = "quic/state",
     deps = [
-        "//folly:random",
+        "@folly//folly:random",
         "//quic:constants",
         "//quic/codec:types",
         "//quic/common:interval_set",
@@ -144,7 +144,7 @@ cc_library(
     deps = [
         ":cloned_packet_identifier",
         ":loss_state",
-        "//folly/io:socket_option_map",
+        "@folly//folly/io:socket_option_map",
         "//quic/codec:types",
     ],
 )
@@ -195,9 +195,9 @@ cc_library(
         ":quic_connection_stats",
         ":stats_callback",
         ":transport_settings",
-        "//folly:token_bucket",
-        "//folly/container:f14_hash",
-        "//folly/io/async:delayed_destruction",
+        "@folly//folly:token_bucket",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io/async:delayed_destruction",
         "//quic:config",
         "//quic:constants",
         "//quic/codec",
@@ -307,7 +307,7 @@ cc_library(
     hdrs = ["TransportSettings.h"],
     include_prefix = "quic/state",
     deps = [
-        "//folly:network_address",
+        "@folly//folly:network_address",
         "//quic:constants",
         "//quic/common:optional",
         "//quic/priority:priority_queue",
@@ -321,6 +321,6 @@ cc_library(
     include_prefix = "quic/state",
     deps = [
         ":transport_settings",
-        "//folly:dynamic",
+        "@folly//folly:dynamic",
     ],
 )

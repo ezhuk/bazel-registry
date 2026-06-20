@@ -8,12 +8,12 @@ cc_library(
     hdrs = ["DatagramFlowManager.h"],
     include_prefix = "quic/datagram",
     deps = [
-        "//folly/container:f14_hash",
-        "//folly/io:iobuf",
         "//quic:constants",
         "//quic/common:buf_util",
         "//quic/common:circular_deque",
         "//quic/common:expected",
         "//quic/priority:priority_queue",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io:iobuf",
     ],
 )

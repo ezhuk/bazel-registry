@@ -8,8 +8,8 @@ cc_library(
     include_prefix = "quic/observer",
     deps = [
         ":socket_observer_interface",
-        "//folly:observer_container",
         "//quic/common:mvfst_logging",
+        "@folly//folly:observer_container",
     ],
 )
 

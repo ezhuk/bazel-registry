@@ -8,10 +8,10 @@ cc_library(
     hdrs = ["FizzBridge.h"],
     include_prefix = "quic/fizz/handshake",
     deps = [
-        "//fizz/crypto/aead",
-        "//fizz/protocol:types",
         "//quic:constants",
         "//quic/handshake:aead",
+        "@fizz//fizz/crypto/aead",
+        "@fizz//fizz/protocol:types",
     ],
 )
 
@@ -34,12 +34,6 @@ cc_library(
     include_prefix = "quic/fizz/handshake",
     deps = [
         ":fizz_bridge",
-        "//fizz/crypto",
-        "//fizz/crypto:utils",
-        "//fizz/crypto/aead",
-        "//fizz/protocol:default_factory",
-        "//fizz/record",
-        "//folly/ssl:openssl_ptr_types",
         "//quic/codec:packet_number_cipher",
         "//quic/common:buf_util",
         "//quic/common:mvfst_logging",
@@ -48,5 +42,11 @@ cc_library(
         "//quic/handshake",
         "//quic/handshake:retry_integrity_tag_generator",
         "//quic/handshake:transport_parameters",
+        "@fizz//fizz/crypto",
+        "@fizz//fizz/crypto:utils",
+        "@fizz//fizz/crypto/aead",
+        "@fizz//fizz/protocol:default_factory",
+        "@fizz//fizz/record",
+        "@folly//folly/ssl:openssl_ptr_types",
     ],
 )

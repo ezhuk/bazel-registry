@@ -24,9 +24,6 @@ cc_library(
     ],
     include_prefix = "quic/api",
     deps = [
-        "//folly:network_address",
-        "//folly:portability",
-        "//folly/io:iobuf",
         "//quic:config",
         "//quic:constants",
         "//quic/common:buf_accessor",
@@ -34,6 +31,9 @@ cc_library(
         "//quic/common/events:eventbase",
         "//quic/common/udpsocket:quic_async_udp_socket",
         "//quic/state:quic_state_machine",
+        "@folly//folly:network_address",
+        "@folly//folly:portability",
+        "@folly//folly/io:iobuf",
     ],
 )
 
@@ -62,11 +62,11 @@ cc_library(
     include_prefix = "quic/api",
     deps = [
         ":transport",
-        "//folly/io/async:async_transport",
         "//quic/common:mvfst_check",
         "//quic/common:mvfst_logging",
         "//quic/common/events:eventbase",
         "//quic/common/events:folly_eventbase",
+        "@folly//folly/io/async:async_transport",
     ],
 )
 
@@ -81,12 +81,6 @@ cc_library(
     deps = [
         ":quic_batch_writer",
         ":transport_lite",
-        "//folly:chrono",
-        "//folly:exception_wrapper",
-        "//folly:maybe_managed_ptr",
-        "//folly:portability",
-        "//folly:scope_guard",
-        "//folly/io:iobuf",
         "//quic:constants",
         "//quic:exception",
         "//quic/common:function_ref",
@@ -112,6 +106,12 @@ cc_library(
         "//quic/state:quic_state_machine",
         "//quic/state:state_functions",
         "//quic/state:stream_functions",
+        "@folly//folly:chrono",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:maybe_managed_ptr",
+        "@folly//folly:portability",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io:iobuf",
     ],
 )
 
@@ -131,8 +131,6 @@ cc_library(
     deps = [
         ":ack_scheduler",
         ":quic_batch_writer",
-        "//folly/lang:assume",
-        "//folly/tracing:static_tracepoint",
         "//quic:constants",
         "//quic:exception",
         "//quic/client:state_and_handshake",
@@ -160,6 +158,8 @@ cc_library(
         "//quic/state:state_functions",
         "//quic/state:stats_callback",
         "//quic/state:stream_functions",
+        "@folly//folly/lang:assume",
+        "@folly//folly/tracing:static_tracepoint",
     ],
 )
 
@@ -186,10 +186,6 @@ cc_library(
         ":quic_callbacks",
         ":transport_helpers",
         ":transport_info",
-        "//fizz/protocol:certificate_base",
-        "//folly:maybe_managed_ptr",
-        "//folly:scope_guard",
-        "//folly/io/async:delayed_destruction",
         "//quic:exception",
         "//quic/codec:types",
         "//quic/common:function_ref",
@@ -212,5 +208,9 @@ cc_library(
         "//quic/state:quic_state_machine",
         "//quic/state:stream_functions",
         "//quic/state/stream",
+        "@fizz//fizz/protocol:certificate_base",
+        "@folly//folly:maybe_managed_ptr",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io/async:delayed_destruction",
     ],
 )

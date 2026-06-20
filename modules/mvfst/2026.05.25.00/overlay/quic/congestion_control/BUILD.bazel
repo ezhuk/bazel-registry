@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["Bandwidth.h"],
     include_prefix = "quic/congestion_control",
     deps = [
-        "//folly/lang:assume",
         "@fmt",
+        "@folly//folly/lang:assume",
     ],
 )
 
@@ -88,7 +88,6 @@ cc_library(
         ":congestion_control_functions",
         ":congestion_controller",
         ":ecn_l4s_tracker",
-        "//folly:chrono",
         "//quic:exception",
         "//quic/common:mvfst_logging",
         "//quic/logging:qlogger_constants",
@@ -98,6 +97,7 @@ cc_library(
         "//quic/state:connection_oops_fields",
         "//quic/state:quic_state_machine",
         "//quic/state:state_functions",
+        "@folly//folly:chrono",
     ],
 )
 
@@ -163,11 +163,11 @@ cc_library(
     hdrs = ["PacketProcessor.h"],
     include_prefix = "quic/congestion_control",
     deps = [
-        "//folly/io:socket_option_map",
         "//quic/common:network_data",
         "//quic/common:optional",
         "//quic/state:cloned_packet_identifier",
         "//quic/state:outstanding_packet",
+        "@folly//folly/io:socket_option_map",
     ],
 )
 
@@ -195,10 +195,10 @@ cc_library(
     hdrs = ["SimulatedTBF.h"],
     include_prefix = "quic/congestion_control",
     deps = [
-        "//folly:token_bucket",
         "//quic:constants",
         "//quic:exception",
         "//quic/common:mvfst_logging",
+        "@folly//folly:token_bucket",
         "@glog",
     ],
 )

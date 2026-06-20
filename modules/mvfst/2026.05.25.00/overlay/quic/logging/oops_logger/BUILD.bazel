@@ -8,9 +8,9 @@ cc_library(
     include_prefix = "quic/logging/oops_logger",
     deps = [
         ":oops_logger",
-        "//folly/debugging/symbolizer",
         "//quic/common:mvfst_logging",
         "@fmt",
+        "@folly//folly/debugging/symbolizer",
     ],
 )
 

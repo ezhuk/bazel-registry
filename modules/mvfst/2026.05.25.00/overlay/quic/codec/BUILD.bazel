@@ -75,9 +75,9 @@ cc_library(
     hdrs = ["PacketNumber.h"],
     include_prefix = "quic/codec",
     deps = [
-        "//folly/lang:bits",
         "//quic:constants",
         "//quic/common:mvfst_logging",
+        "@folly//folly/lang:bits",
         "@glog",
     ],
 )
@@ -90,13 +90,13 @@ cc_library(
     deps = [
         ":decode",
         ":types",
-        "//folly:unit",
         "//quic:constants",
         "//quic:exception",
         "//quic/common:buf_util",
         "//quic/common:expected",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
+        "@folly//folly:unit",
     ],
 )
 
@@ -111,13 +111,13 @@ cc_library(
     deps = [
         ":packet_number",
         ":types",
-        "//folly:portability",
-        "//folly:random",
-        "//folly/io:iobuf",
         "//quic/common:buf_accessor",
         "//quic/common:buf_util",
         "//quic/common:mvfst_logging",
         "//quic/handshake",
+        "@folly//folly:portability",
+        "@folly//folly:random",
+        "@folly//folly/io:iobuf",
     ],
 )
 
@@ -159,11 +159,6 @@ cc_library(
     include_prefix = "quic/codec",
     deps = [
         ":packet_number",
-        "//folly:network_address",
-        "//folly:random",
-        "//folly/hash",
-        "//folly/io:iobuf",
-        "//folly/lang:bits",
         "//quic:config",
         "//quic:constants",
         "//quic:exception",
@@ -178,5 +173,10 @@ cc_library(
         "//quic/common:string_utils",
         "//quic/common:variant",
         "//quic/folly_utils",
+        "@folly//folly:network_address",
+        "@folly//folly:random",
+        "@folly//folly/hash",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:bits",
     ],
 )
