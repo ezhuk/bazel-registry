@@ -1,0 +1,57 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "fizz_client_handshake",
+    srcs = [
+        "FizzClientHandshake.cpp",
+        "FizzClientQuicHandshakeContext.cpp",
+    ],
+    hdrs = [
+        "FizzClientExtensions.h",
+        "FizzClientHandshake.h",
+        "FizzClientQuicHandshakeContext.h",
+    ],
+    include_prefix = "quic/fizz/client/handshake",
+    deps = [
+        ":psk_cache",
+        "//fizz/client:actions",
+        "//fizz/client:client_extensions",
+        "//fizz/client:early_data_rejection",
+        "//fizz/client:ech_policy",
+        "//fizz/client:ech_retry_callback",
+        "//fizz/client:fizz_client_context",
+        "//fizz/client:protocol",
+        "//fizz/extensions/clientpadding:types",
+        "//fizz/protocol",
+        "//fizz/protocol:default_certificate_verifier",
+        "//fizz/protocol:exporter",
+        "//quic/client:client_extension",
+        "//quic/client:state_and_handshake",
+        "//quic/codec:pktbuilder",
+        "//quic/common:mvfst_logging",
+        "//quic/fizz/handshake:fizz_bridge",
+        "//quic/fizz/handshake:fizz_handshake",
+    ],
+)
+
+cc_library(
+    name = "psk_cache",
+    hdrs = ["QuicPskCache.h"],
+    include_prefix = "quic/fizz/client/handshake",
+    deps = [
+        "//fizz/client:psk_cache",
+        "//quic/client:cached_server_tp",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "token_cache",
+    hdrs = ["QuicTokenCache.h"],
+    include_prefix = "quic/fizz/client/handshake",
+    deps = [
+        "//quic/common:optional",
+    ],
+)
