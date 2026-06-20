@@ -17,9 +17,9 @@ cc_library(
     include_prefix = "quic/xsk",
     deps = [
         ":xsk_sender",
-        "//folly:thread_local",
-        "//folly/container:f14_hash",
         "//quic/common:mvfst_logging",
+        "@folly//folly:thread_local",
+        "@folly//folly/container:f14_hash",
     ],
 )
 
@@ -35,10 +35,10 @@ cc_library(
     ],
     include_prefix = "quic/xsk",
     deps = [
-        "//folly:benchmark",
-        "//folly:cpp_attributes",
-        "//folly:network_address",
-        "//folly/net:net_ops",
+        "@folly//folly:benchmark",
+        "@folly//folly:cpp_attributes",
+        "@folly//folly:network_address",
+        "@folly//folly/net:net_ops",
     ],
 )
 
@@ -49,15 +49,15 @@ cc_library(
     include_prefix = "quic/xsk",
     deps = [
         ":xsk_lib",
-        "//folly:benchmark",
-        "//folly:network_address",
-        "//folly/container:f14_hash",
-        "//folly/io:iobuf",
-        "//folly/net:net_ops",
         "//quic/common:expected",
         "//quic/common:linux_kernel_version",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
         "//quic/common:string_utils",
+        "@folly//folly:benchmark",
+        "@folly//folly:network_address",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/net:net_ops",
     ],
 )

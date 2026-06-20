@@ -7,8 +7,8 @@ cc_library(
     hdrs = ["QuicEnum.h"],
     include_prefix = "quic",
     deps = [
-        "//folly/lang:assume",
         "//quic/common/third-party:better_enums",
+        "@folly//folly/lang:assume",
     ],
 )
 
@@ -20,11 +20,11 @@ cc_library(
     deps = [
         ":constants",
         ":tls_exception",
-        "//folly:range",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
         "//quic/common:variant",
         "@fmt",
+        "@folly//folly:range",
     ],
 )
 
@@ -69,6 +69,6 @@ cc_library(
     include_prefix = "quic",
     deps = [
         ":constants",
-        "//fizz/record",
+        "@fizz//fizz/record",
     ],
 )

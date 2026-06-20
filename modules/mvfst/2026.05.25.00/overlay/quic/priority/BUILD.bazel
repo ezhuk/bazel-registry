@@ -10,10 +10,10 @@ cc_library(
     deps = [
         ":priority_queue",
         ":round_robin",
-        "//folly:cpp_attributes",
         "//quic:config",
         "//quic/common:mvfst_logging",
         "//quic/logging/oops_logger",
+        "@folly//folly:cpp_attributes",
     ],
 )
 

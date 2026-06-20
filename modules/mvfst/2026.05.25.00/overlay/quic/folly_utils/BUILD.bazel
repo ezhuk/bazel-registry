@@ -8,9 +8,9 @@ cc_library(
     hdrs = ["BufConv.h"],
     include_prefix = "quic/folly_utils",
     deps = [
-        "//folly/io:iobuf",
-        "//folly/lang:assume",
         "//quic/common:quic_buffer",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
     ],
 )
 
@@ -20,8 +20,8 @@ cc_library(
     hdrs = ["Utils.h"],
     include_prefix = "quic/folly_utils",
     deps = [
-        "//folly/io:iobuf",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
+        "@folly//folly/io:iobuf",
     ],
 )

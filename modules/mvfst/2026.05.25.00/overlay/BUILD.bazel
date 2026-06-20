@@ -1,3 +1,4 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@rules_license//rules:license.bzl", "license")
 
 package(default_applicable_licenses = [":license"])
@@ -6,4 +7,20 @@ license(
     name = "license",
     license_kinds = ["@rules_license//licenses/spdx:MIT"],
     license_text = "LICENSE",
+)
+
+cc_library(
+    name = "mvfst",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//quic:config",
+        "//quic:constants",
+        "//quic:enum",
+        "//quic:exception",
+        "//quic:logging_config",
+        "//quic:tls_exception",
+        "//quic/api:transport",
+        "//quic/client",
+        "//quic/server",
+    ],
 )

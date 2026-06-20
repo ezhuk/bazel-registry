@@ -7,10 +7,10 @@ cc_library(
     srcs = ["BufAccessor.cpp"],
     hdrs = ["BufAccessor.h"],
     include_prefix = "quic/common",
-    deps = [":mvfst_logging"],
     deps = [
-        "//folly/io:iobuf",
+        ":mvfst_logging",
         "//quic:constants",
+        "@folly//folly/io:iobuf",
     ],
 )
 
@@ -27,9 +27,9 @@ cc_library(
     include_prefix = "quic/common",
     deps = [
         ":mvfst_logging",
-        "//folly:range",
-        "//folly/io:iobuf",
         "//quic:constants",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
     ],
 )
 
@@ -50,10 +50,10 @@ cc_library(
     hdrs = ["ContiguousCursor.h"],
     include_prefix = "quic/common",
     deps = [
-        "//folly:likely",
-        "//folly:utility",
-        "//folly/lang:bits",
         "//quic:constants",
+        "@folly//folly:likely",
+        "@folly//folly:utility",
+        "@folly//folly/lang:bits",
     ],
 )
 
@@ -62,7 +62,7 @@ cc_library(
     hdrs = ["EnumArray.h"],
     include_prefix = "quic/common",
     deps = [
-        "//folly:portability",
+        "@folly//folly:portability",
         "@glog",
     ],
 )
@@ -106,7 +106,7 @@ cc_library(
     include_prefix = "quic/common",
     deps = [
         ":optional",
-        "//folly/synchronization:call_once",
+        "@folly//folly/synchronization:call_once",
     ],
 )
 
@@ -135,8 +135,8 @@ cc_library(
         ":buf_util",
         ":optional",
         ":time_points",
-        "//folly:network_address",
         "//quic:constants",
+        "@folly//folly:network_address",
     ],
 )
 
@@ -159,8 +159,8 @@ cc_library(
     include_prefix = "quic/common",
     deps = [
         ":mvfst_logging",
-        "//folly/portability:sys_uio",
         "//quic/logging/oops_logger",
+        "@folly//folly/portability:sys_uio",
     ],
 )
 
@@ -180,9 +180,9 @@ cc_library(
     include_prefix = "quic/common",
     deps = [
         ":expected",
-        "//folly/io:socket_option_map",
-        "//folly/net:net_ops",
         "//quic:exception",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/net:net_ops",
     ],
 )
 
@@ -214,8 +214,8 @@ cc_library(
     hdrs = ["TimeUtil.h"],
     include_prefix = "quic/common",
     deps = [
-        "//folly:traits",
         "//quic:constants",
+        "@folly//folly:traits",
     ],
 )
 
@@ -227,8 +227,8 @@ cc_library(
     deps = [
         ":mvfst_logging",
         ":optional",
-        "//folly:dynamic",
         "//quic:constants",
+        "@folly//folly:dynamic",
     ],
 )
 

@@ -9,15 +9,15 @@ cc_library(
     include_prefix = "quic/common/udpsocket",
     deps = [
         ":quic_async_udp_socket_impl",
-        "//folly/io/async:async_socket_exception",
-        "//folly/io/async:async_udp_socket",
-        "//folly/net:network_socket",
         "//quic:exception",
         "//quic/common:expected",
         "//quic/common:mvfst_logging",
         "//quic/common:network_data",
         "//quic/common:string_utils",
         "//quic/common/events:folly_eventbase",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async:async_udp_socket",
+        "@folly//folly/net:network_socket",
     ],
 )
 
@@ -44,12 +44,6 @@ cc_library(
     hdrs = ["QuicAsyncUDPSocket.h"],
     include_prefix = "quic/common/udpsocket",
     deps = [
-        "//folly:network_address",
-        "//folly:range",
-        "//folly/io:iobuf",
-        "//folly/io:socket_option_map",
-        "//folly/io/async:async_socket_exception",
-        "//folly/portability:sockets",
         "//quic:constants",
         "//quic:exception",
         "//quic/common:expected",
@@ -57,6 +51,12 @@ cc_library(
         "//quic/common:network_data",
         "//quic/common:optional",
         "//quic/common/events:eventbase",
+        "@folly//folly:network_address",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/portability:sockets",
     ],
 )
 
@@ -67,9 +67,9 @@ cc_library(
     include_prefix = "quic/common/udpsocket",
     deps = [
         ":quic_async_udp_socket",
-        "//folly:likely",
         "//quic:exception",
         "//quic/common:mvfst_logging",
         "//quic/common:string_utils",
+        "@folly//folly:likely",
     ],
 )

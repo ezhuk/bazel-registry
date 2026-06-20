@@ -16,11 +16,11 @@ cc_library(
     ],
     include_prefix = "quic/server/async_tran",
     deps = [
-        "//folly/io/async:async_transport",
-        "//folly/io/async:scoped_event_base_thread",
-        "//folly/system:hardware_concurrency",
         "//quic/api:stream_async_transport",
         "//quic/common:mvfst_logging",
         "//quic/server",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:scoped_event_base_thread",
+        "@folly//folly/system:hardware_concurrency",
     ],
 )

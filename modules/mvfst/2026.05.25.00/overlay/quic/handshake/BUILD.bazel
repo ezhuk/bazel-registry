@@ -41,8 +41,8 @@ cc_library(
     hdrs = ["RetryIntegrityTagGenerator.h"],
     include_prefix = "quic/handshake",
     deps = [
-        "//folly/io:iobuf",
         "//quic:constants",
+        "@folly//folly/io:iobuf",
     ],
 )
 

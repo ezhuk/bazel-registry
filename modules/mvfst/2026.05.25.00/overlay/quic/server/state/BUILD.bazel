@@ -9,11 +9,6 @@ cc_library(
     include_prefix = "quic/server/state",
     deps = [
         ":server_connection_id_rejector",
-        "//folly:exception_wrapper",
-        "//folly:network_address",
-        "//folly:overload",
-        "//folly:random",
-        "//folly/io/async:async_socket_exception",
         "//quic:exception",
         "//quic/api:transport_helpers",
         "//quic/codec:types",
@@ -42,6 +37,11 @@ cc_library(
         "//quic/state:stats_callback",
         "//quic/state:stream_functions",
         "//quic/state/stream",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:network_address",
+        "@folly//folly:overload",
+        "@folly//folly:random",
+        "@folly//folly/io/async:async_socket_exception",
         "@glog",
     ],
 )

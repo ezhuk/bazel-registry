@@ -7,8 +7,8 @@ cc_library(
     hdrs = ["QuicEventBase.h"],
     include_prefix = "quic/common/events",
     deps = [
-        "//folly:glog",
         "//quic/common:mvfst_logging",
+        "@folly//folly:glog",
     ],
 )
 
@@ -19,8 +19,8 @@ cc_library(
     include_prefix = "quic/common/events",
     deps = [
         ":eventbase",
-        "//folly/io/async:async_base",
-        "//folly/io/async:async_base_fwd",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_base_fwd",
     ],
 )
 
@@ -31,8 +31,8 @@ cc_library(
     include_prefix = "quic/common/events",
     deps = [
         ":quic_timer",
-        "//folly/io/async:async_base",
-        "//folly/io/async:timerfd",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:timerfd",
     ],
 )
 
@@ -44,9 +44,9 @@ cc_library(
     deps = [
         ":eventbase",
         ":quic_timer",
-        "//folly:glog",
-        "//folly:intrusive_list",
         "//quic/common:mvfst_logging",
+        "@folly//folly:glog",
+        "@folly//folly:intrusive_list",
         "@libev",
     ],
 )
@@ -57,6 +57,6 @@ cc_library(
     include_prefix = "quic/common/events",
     deps = [
         ":eventbase",
-        "//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:delayed_destruction",
     ],
 )

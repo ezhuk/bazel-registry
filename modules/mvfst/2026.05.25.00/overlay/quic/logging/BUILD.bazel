@@ -16,11 +16,11 @@ cc_library(
     deps = [
         ":qlogger",
         ":qlogger_constants",
-        "//folly:dynamic",
         "//quic:exception",
         "//quic/codec:types",
         "//quic/common:string_utils",
         "//quic/priority:priority_queue",
+        "@folly//folly:dynamic",
     ],
 )
 
@@ -33,11 +33,11 @@ cc_library(
         ":base_qlogger",
         ":qlog_schema",
         ":qlogger_constants",
-        "//folly:dynamic",
-        "//folly/compression",
-        "//folly/logging",
         "//quic/codec:types",
         "//quic/common:mvfst_logging",
+        "@folly//folly:dynamic",
+        "@folly//folly/compression",
+        "@folly//folly/logging",
     ],
 )
 
@@ -48,8 +48,8 @@ cc_library(
     include_prefix = "quic/logging",
     deps = [
         ":qlogger_constants",
-        "//folly/json:dynamic",
         "//quic:constants",
+        "@folly//folly/json:dynamic",
     ],
 )
 
