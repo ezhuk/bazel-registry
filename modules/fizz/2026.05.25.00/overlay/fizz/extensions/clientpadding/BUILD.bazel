@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "padding_client_extension",
+    srcs = ["PaddingClientExtension.cpp"],
+    hdrs = ["PaddingClientExtension.h"],
+    include_prefix = "fizz/extensions/clientpadding",
+    deps = [
+        ":types",
+        "//fizz/client:client_extensions",
+    ],
+)
+
+cc_library(
+    name = "types",
+    srcs = ["Types.cpp"],
+    hdrs = ["Types.h"],
+    include_prefix = "fizz/extensions/clientpadding",
+    deps = [
+        "//fizz/record",
+    ],
+)

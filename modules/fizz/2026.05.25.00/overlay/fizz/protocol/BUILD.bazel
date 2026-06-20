@@ -1,0 +1,250 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "actions",
+    hdrs = ["Actions.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":key_scheduler",
+        ":types",
+        "//fizz/record:record_layer",
+        "@folly//folly:c_portability",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:range",
+        "@folly//folly:small_vector",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:write_flags",
+    ],
+)
+
+cc_library(
+    name = "async_fizz_base",
+    srcs = ["AsyncFizzBase.cpp"],
+    hdrs = ["AsyncFizzBase.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":certificate",
+        ":key_scheduler",
+        "//fizz/record",
+        "//fizz/util:logging",
+        "@folly//folly:conv",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:decorated_async_transport_wrapper",
+    ],
+)
+
+cc_library(
+    name = "certificate",
+    srcs = ["Certificate.cpp"],
+    hdrs = [
+        "CertMatch.h",
+        "Certificate.h",
+    ],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":certificate_base",
+        "//fizz:config",
+        "//fizz/record",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+    ],
+)
+
+cc_library(
+    name = "certificate_base",
+    hdrs = ["CertificateBase.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        "//fizz:config",
+        "@folly//folly/io/async:async_transport_certificate",
+    ],
+)
+
+cc_library(
+    name = "certificate_verifier",
+    hdrs = ["CertificateVerifier.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":certificate",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "default_certificate_verifier",
+    hdrs = ["DefaultCertificateVerifier.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":certificate_verifier",
+        "//fizz/backend:openssl",
+    ],
+)
+
+cc_library(
+    name = "default_factory",
+    hdrs = ["DefaultFactory.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":multi_backend_factory",
+        "//fizz:config",
+    ],
+)
+
+cc_library(
+    name = "events",
+    srcs = ["Events.cpp"],
+    hdrs = ["Events.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "exporter",
+    srcs = ["Exporter.cpp"],
+    hdrs = ["Exporter.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":factory",
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:key_derivation",
+    ],
+)
+
+cc_library(
+    name = "factory",
+    srcs = ["Factory.cpp"],
+    hdrs = ["Factory.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":certificate",
+        ":handshake_context",
+        ":key_scheduler",
+        ":types",
+        "//fizz/crypto",
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:key_derivation",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/record",
+        "//fizz/record:encrypted_record_layer",
+        "//fizz/record:plaintext_record_layer",
+    ],
+)
+
+cc_library(
+    name = "fizz_base",
+    hdrs = ["FizzBase.h"],
+    include_prefix = "fizz/protocol",
+    textual_hdrs = ["FizzBase-inl.h"],
+    deps = [
+        ":exporter",
+        ":factory",
+        ":params",
+        "//fizz/util:variant",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)
+
+cc_library(
+    name = "handshake_context",
+    srcs = ["HandshakeContext.cpp"],
+    hdrs = ["HandshakeContext.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:hkdf",
+        "//fizz/crypto:key_derivation",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "key_scheduler",
+    srcs = ["KeyScheduler.cpp"],
+    hdrs = ["KeyScheduler.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        "//fizz/crypto:key_derivation",
+        "//fizz/crypto/aead",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/util:logging",
+        "//fizz/util:variant",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "multi_backend_factory",
+    srcs = ["MultiBackendFactory.cpp"],
+    hdrs = ["MultiBackendFactory.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":factory",
+        "//fizz:config",
+        "//fizz/backend:libaegis",
+        "//fizz/backend:liboqs",
+        "//fizz/backend:libsodium",
+        "//fizz/backend:openssl",
+        "//fizz/crypto:hkdf",
+        "//fizz/crypto/exchange:hybrid_key_exchange",
+    ],
+)
+
+cc_library(
+    name = "params",
+    srcs = ["Params.cpp"],
+    hdrs = ["Params.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":events",
+        "//fizz/client:client_extensions",
+        "//fizz/client:psk_cache",
+        "//fizz/crypto/aead",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/record",
+        "//fizz/util:variant",
+        "@folly//folly:executor",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:write_flags",
+    ],
+)
+
+cc_library(
+    name = "protocol",
+    hdrs = ["Protocol.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        ":factory",
+        ":key_scheduler",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "state_machine",
+    hdrs = ["StateMachine.h"],
+    include_prefix = "fizz/protocol",
+    textual_hdrs = ["StateMachine-inl.h"],
+    deps = [
+        "//fizz/util:logging",
+        "//fizz/util:status",
+    ],
+)
+
+cc_library(
+    name = "types",
+    srcs = ["Types.cpp"],
+    hdrs = ["Types.h"],
+    include_prefix = "fizz/protocol",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/record",
+        "@folly//folly:range",
+        "@folly//folly/lang:assume",
+    ],
+)

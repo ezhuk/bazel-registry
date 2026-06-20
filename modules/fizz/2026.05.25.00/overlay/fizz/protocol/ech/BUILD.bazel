@@ -1,0 +1,73 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "decrypter",
+    srcs = ["Decrypter.cpp"],
+    hdrs = ["Decrypter.h"],
+    include_prefix = "fizz/protocol/ech",
+    deps = [
+        ":encrypted_client_hello",
+        ":encryption",
+        "//fizz/protocol:factory",
+    ],
+)
+
+cc_library(
+    name = "encrypted_client_hello",
+    srcs = ["Types.cpp"],
+    hdrs = [
+        "ECHExtensions.h",
+        "Types.h",
+    ],
+    include_prefix = "fizz/protocol/ech",
+    textual_hdrs = [
+        "ECHExtensions-inl.h",
+        "Types-inl.h",
+    ],
+    deps = [
+        "//fizz/crypto/hpke:types",
+        "//fizz/record",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "encryption",
+    srcs = ["Encryption.cpp"],
+    hdrs = ["Encryption.h"],
+    include_prefix = "fizz/protocol/ech",
+    deps = [
+        ":encrypted_client_hello",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/crypto/hpke",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/protocol",
+        "//fizz/protocol:factory",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "grease_ech",
+    srcs = ["GreaseECH.cpp"],
+    hdrs = ["GreaseECH.h"],
+    include_prefix = "fizz/protocol/ech",
+    deps = [
+        ":encrypted_client_hello",
+        ":grease_ech_setting",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/protocol:factory",
+    ],
+)
+
+cc_library(
+    name = "grease_ech_setting",
+    hdrs = ["GreaseECHSetting.h"],
+    include_prefix = "fizz/protocol/ech",
+    deps = [
+        "//fizz/crypto/hpke",
+    ],
+)

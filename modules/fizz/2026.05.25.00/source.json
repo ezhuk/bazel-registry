@@ -2,6 +2,25 @@
   "url": "https://github.com/facebookincubator/fizz/releases/download/v2026.05.25.00/fizz-v2026.05.25.00.tar.gz",
   "integrity": "sha256-nsDqkZ2ZmlEwZhVYcXQ6HFB5niFmKyqfkhwLnLG3ZGw=",
   "overlay": {
-    "BUILD.bazel": "sha256-CWspLDC56FNvMAHABELaYQRrfM+hxa8sOSNWvazvusg="
+    "fizz/experimental/batcher/BUILD.bazel": "sha256-UI2tu527stJLN7xjTOaidEj2qqijezOBNHiLHTEzVAM=",
+    "fizz/experimental/client/BUILD.bazel": "sha256-1r5XKp804TOh4nvJ7cx0mHOAaF4TkvQ80nbWCAtwrBs=",
+    "fizz/experimental/crypto/BUILD.bazel": "sha256-EbNrOthFXhOvZy5MvkQmKM+BbNrHti2OpPbjrIUAUAI=",
+    "fizz/experimental/ktls/BUILD.bazel": "sha256-FXDxpyKfdMvaDwtyiHFuBIOk5YhZucNZZVF/3oo3Kow=",
+    "fizz/experimental/protocol/BUILD.bazel": "sha256-yOOxn7yoODopURqcyq/mzL9vV4Fir56j0RC9zt+8U+4=",
+    "fizz/experimental/psp/BUILD.bazel": "sha256-GLTcODpU+L4vK/9brjBagu79ox8H9PIbAsP/x9fbm3o=",
+    "fizz/experimental/server/BUILD.bazel": "sha256-fthAFsfkwx4PBIi9Vk8LcNOGCxS/tuIbSLbaDTb2Xzs=",
+    "fizz/experimental/util/BUILD.bazel": "sha256-TGWoLugJPL+cjsoaReAFbUJ4sgRNmCMQdK3nj6mA7RU=",
+    "fizz/extensions/clientpadding/BUILD.bazel": "sha256-NIgdkV647NTXUb+EBJHBJthGD+3aV0n5zYtFu88XoiQ=",
+    "fizz/extensions/delegatedcred/BUILD.bazel": "sha256-zojTfl3bLeaohr4IyFPJkNJx9/RowMOp8gI1uAjgBJ0=",
+    "fizz/extensions/exportedauth/BUILD.bazel": "sha256-cuXej+8VDAiJkJdwof65PGB3+2LvYtZ4d7ekavxtDa0=",
+    "fizz/extensions/tokenbinding/BUILD.bazel": "sha256-MLseMmZL/SVcxrKhZhH+8LFl5n2c5QnGDLKgDKsImAY=",
+    "fizz/protocol/clock/BUILD.bazel": "sha256-kDWYY4txsC3jVyieMz0UoDEhEGFBKO/+Krg9aXzOF1E=",
+    "fizz/protocol/ech/BUILD.bazel": "sha256-N81S6P9MXvuwvl6rBbNFgLRgKifPob0KImWUFkJCIh8=",
+    "fizz/protocol/BUILD.bazel": "sha256-vl7ttXN/FFD4PviceTDVHiM+KpDgdojl9flIOol5FEU=",
+    "fizz/record/BUILD.bazel": "sha256-3e6lk4FyEvRymS/EkiPydQQuhDU70N/BllpbfiddpcA=",
+    "fizz/server/BUILD.bazel": "sha256-A8B/ha7wiysq8tD9eqf2iYjKqFWxdf8T2lmGRcGwxUA=",
+    "fizz/util/BUILD.bazel": "sha256-TU6WHoZQu6tQd5dd6iysq8HyDEAOE7Ap8rNBRfFmfBM=",
+    "fizz/BUILD.bazel": "sha256-4LBPNPj1sFuxS/Z+qjWQqgMSfNTbRdzmWYLGXMOFiAA=",
+    "BUILD.bazel": "sha256-pSk7Sv1k4MLoblI8Otsp2SzfiRQzEOJ6JZrqFIaCsv8="
   }
 }

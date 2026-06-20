@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "exported_authenticator",
+    srcs = ["ExportedAuthenticator.cpp"],
+    hdrs = [
+        "ExportedAuthenticator.h",
+        "Util.h",
+    ],
+    include_prefix = "fizz/extensions/exportedauth",
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:utils",
+        "//fizz/protocol",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:exporter",
+        "//fizz/record",
+        "//fizz/record:record_layer",
+    ],
+)

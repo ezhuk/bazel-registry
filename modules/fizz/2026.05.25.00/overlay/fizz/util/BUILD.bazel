@@ -1,0 +1,104 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "exceptions",
+    hdrs = ["Exceptions.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        "//fizz/record:alerts",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "fizz_util",
+    srcs = ["FizzUtil.cpp"],
+    hdrs = ["FizzUtil.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        "//fizz/backend:libsodium",
+        "//fizz/extensions/tokenbinding:token_binding_context",
+        "//fizz/protocol:certificate",
+        "//fizz/server:fizz_server_context",
+        "//fizz/server:ticket_policy",
+        "//fizz/server:ticket_types",
+        "@folly//folly:file_util",
+        "@folly//folly:format",
+        "@folly//folly/io/async:password_in_file",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@libsodium",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "key_log_writer",
+    hdrs = ["KeyLogWriter.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        "//fizz/protocol:key_scheduler",
+        "//fizz/protocol:types",
+        "@fmt",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "logging",
+    hdrs = ["Logging.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        "@folly//folly:glog",
+    ],
+)
+
+cc_library(
+    name = "parse",
+    hdrs = ["Parse.h"],
+    include_prefix = "fizz/util",
+    textual_hdrs = ["Parse-inl.h"],
+    deps = [
+        "//fizz/record",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "status",
+    srcs = ["Status.cpp"],
+    hdrs = ["Status.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        ":exceptions",
+        "//fizz/record:alerts",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "tracer",
+    srcs = ["Tracing.cpp"],
+    hdrs = ["Tracing.h"],
+    include_prefix = "fizz/util",
+    deps = [
+        ":key_log_writer",
+        "@folly//folly/tracing:static_tracepoint",
+    ],
+)
+
+cc_library(
+    name = "variant",
+    hdrs = ["Variant.h"],
+    include_prefix = "fizz/util",
+)
+
+cc_library(
+    name = "workarounds",
+    hdrs = ["Workarounds.h"],
+    include_prefix = "fizz/util",
+)

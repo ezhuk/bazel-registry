@@ -1,0 +1,41 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ktls",
+    srcs = [
+        "AsyncFizzBaseKTLS.cpp",
+        "AsyncKTLSSocket.cpp",
+        "FizzKTLSCallback.cpp",
+        "KTLS.cpp",
+    ],
+    hdrs = [
+        "AsyncFizzBaseKTLS.h",
+        "AsyncKTLSSocket.h",
+        "FizzKTLSCallback.h",
+        "KTLS.h",
+        "LinuxKTLS.h",
+    ],
+    include_prefix = "fizz/experimental/ktls",
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/client:state",
+        "//fizz/crypto/aead",
+        "//fizz/experimental/util:cert_extraction",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:key_scheduler",
+        "//fizz/record",
+        "//fizz/record:record_layer",
+        "//fizz/util:logging",
+        "@folly//folly:c_portability",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:expected",
+        "@folly//folly:file",
+        "@folly//folly:function",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/net:network_socket",
+        "@folly//folly/portability:sockets",
+        "@glog",
+    ],
+)

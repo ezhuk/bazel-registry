@@ -1,0 +1,83 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "alerts",
+    hdrs = ["Alerts.h"],
+    include_prefix = "fizz/record",
+)
+
+cc_library(
+    name = "buf_and_padding_policy",
+    srcs = ["BufAndPaddingPolicy.cpp"],
+    hdrs = ["BufAndPaddingPolicy.h"],
+    include_prefix = "fizz/record",
+    deps = [
+        ":record",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "encrypted_record_layer",
+    srcs = ["EncryptedRecordLayer.cpp"],
+    hdrs = ["EncryptedRecordLayer.h"],
+    include_prefix = "fizz/record",
+    deps = [
+        ":buf_and_padding_policy",
+        ":record_layer",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/aead:iobuf",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "plaintext_record_layer",
+    srcs = ["PlaintextRecordLayer.cpp"],
+    hdrs = ["PlaintextRecordLayer.h"],
+    include_prefix = "fizz/record",
+    deps = [
+        ":record_layer",
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
+    name = "record",
+    srcs = ["Types.cpp"],
+    hdrs = [
+        "Extensions.h",
+        "Types.h",
+    ],
+    include_prefix = "fizz/record",
+    textual_hdrs = [
+        "Extensions-inl.h",
+        "Types-inl.h",
+    ],
+    deps = [
+        ":alerts",
+        "//fizz/protocol:events",
+        "//fizz/util:status",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "record_layer",
+    srcs = ["RecordLayer.cpp"],
+    hdrs = ["RecordLayer.h"],
+    include_prefix = "fizz/record",
+    deps = [
+        ":record",
+        "//fizz/crypto/aead",
+        "//fizz/protocol:params",
+        "//fizz/util:logging",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+    ],
+)

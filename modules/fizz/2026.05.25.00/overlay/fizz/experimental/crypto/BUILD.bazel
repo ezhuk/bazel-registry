@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "batch_signature",
+    hdrs = ["BatchSignature.h"],
+    include_prefix = "fizz/experimental/crypto",
+    deps = [
+        ":merkle_tree",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "merkle_tree",
+    hdrs = ["MerkleTree.h"],
+    include_prefix = "fizz/experimental/crypto",
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:random",
+        "//fizz/record",
+        "@folly//folly/container:f14_hash",
+    ],
+)

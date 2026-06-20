@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "batch_signature_factory",
+    hdrs = ["BatchSignatureFactory.h"],
+    include_prefix = "fizz/experimental/protocol",
+    deps = [
+        "//fizz/experimental/client:batch_signature_peer_cert",
+        "//fizz/protocol:factory",
+    ],
+)
+
+cc_library(
+    name = "batch_signature_types",
+    srcs = ["BatchSignatureTypes.cpp"],
+    hdrs = ["BatchSignatureTypes.h"],
+    include_prefix = "fizz/experimental/protocol",
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/record",
+    ],
+)

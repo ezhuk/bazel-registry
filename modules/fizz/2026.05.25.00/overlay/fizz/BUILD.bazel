@@ -1,0 +1,34 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+expand_template(
+    name = "fizz_config_h_tpl",
+    out = "fizz-config.h.in.tpl",
+    substitutions = {
+        "@FIZZ_LOGGING_BACKEND@": "DISABLED",
+    },
+    template = "fizz-config.h.in",
+)
+
+cmake_configure_file(
+    name = "fizz_config_h",
+    src = [":fizz_config_h_tpl"],
+    out = "fizz-config.h",
+    defines = [
+        "FIZZ_HAVE_SODIUM=1",
+        "FIZZ_CERTIFICATE_USE_OPENSSL_CERT=1",
+    ],
+    undefines = [
+        "FIZZ_HAVE_LIBAEGIS",
+        "FIZZ_HAVE_OQS",
+    ],
+)
+
+cc_library(
+    name = "config",
+    hdrs = [":fizz_config_h"],
+    include_prefix = "fizz",
+)

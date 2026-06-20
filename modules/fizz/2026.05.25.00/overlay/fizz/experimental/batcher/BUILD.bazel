@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "batcher",
+    hdrs = ["Batcher.h"],
+    include_prefix = "fizz/experimental/batcher",
+    deps = [
+        "//fizz/experimental/crypto:batch_signature",
+        "//fizz/experimental/protocol:batch_signature_types",
+        "//fizz/server:async_self_cert",
+        "@folly//folly/futures:shared_promise",
+    ],
+)
