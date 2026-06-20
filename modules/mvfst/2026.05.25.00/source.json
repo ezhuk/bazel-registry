@@ -15,6 +15,9 @@
     "quic/congestion_control/third_party/BUILD.bazel": "sha256-vwCo4tVnYeOeH/n5t69y7lWi/iuot9aaA6QPZ618Ixc=",
     "quic/congestion_control/BUILD.bazel": "sha256-5SU3g3m/v8TeM+IrB4PcPkJSSE/YZYV99y4uwPgVlcM=",
     "quic/datagram/BUILD.bazel": "sha256-DxQGcoDl4PVm6iv5ajE2oQm/HekX5TWQB3Gv3NxGApg=",
+    "quic/fizz/client/handshake/BUILD.bazel": "sha256-2XytA5LCPqp+6+gjQ2kc1xzLA4nDEU/gTw6ivI5RkIc=",
+    "quic/fizz/handshake/BUILD.bazel": "sha256-JX/N94Bb0G7jCSn+JAnYOsOZrGQv2Vf3hVs9z0q2EH0=",
+    "quic/fizz/server/handshake/BUILD.bazel": "sha256-aECXa5foo1GWnjRtxR5Xu+VNxs9Tkgv3ta1FaQ4i6L8=",
     "quic/BUILD.bazel": "sha256-QylmyahvmaQnWl2tIoy5+OzUh3MqjYWg0V6JjFiFeas=",
     "BUILD.bazel": "sha256-1yyOAyXQnDx4SJOXlb1b9ioaYOLG2NCgF02L/UPgTJE="
   }

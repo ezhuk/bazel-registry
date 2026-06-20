@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "fizz_server_handshake",
+    srcs = [
+        "FizzServerHandshake.cpp",
+        "FizzServerQuicHandshakeContext.cpp",
+    ],
+    hdrs = [
+        "FizzServerHandshake.h",
+        "FizzServerQuicHandshakeContext.h",
+    ],
+    include_prefix = "quic/fizz/server/handshake",
+    deps = [
+        ":handshake_app_token",
+        "//fizz/protocol",
+        "//fizz/server:fizz_server_context",
+        "//fizz/server:protocol",
+        "//fizz/server:replay_cache",
+        "//quic:constants",
+        "//quic/common:circular_deque",
+        "//quic/common:mvfst_logging",
+        "//quic/fizz/handshake:fizz_bridge",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/server/handshake:server_handshake",
+        "//quic/server/state:server",
+    ],
+)
+
+cc_library(
+    name = "handshake_app_token",
+    srcs = ["AppToken.cpp"],
+    hdrs = ["AppToken.h"],
+    include_prefix = "quic/fizz/server/handshake",
+    deps = [
+        "//fizz/record",
+        "//fizz/server:protocol",
+        "//quic:constants",
+        "//quic/common:optional",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/server/handshake:app_token",
+    ],
+)
