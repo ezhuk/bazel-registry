@@ -3,6 +3,32 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
+    name = "enum",
+    hdrs = ["QuicEnum.h"],
+    include_prefix = "quic",
+    deps = [
+        "//folly/lang:assume",
+        "//quic/common/third-party:better_enums",
+    ],
+)
+
+cc_library(
+    name = "exception",
+    srcs = ["QuicException.cpp"],
+    hdrs = ["QuicException.h"],
+    include_prefix = "quic",
+    deps = [
+        ":constants",
+        ":tls_exception",
+        "//folly:range",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:variant",
+        "@fmt",
+    ],
+)
+
+cc_library(
     name = "config",
     hdrs = ["mvfst-config.h"],
     include_prefix = "quic",
@@ -24,18 +50,25 @@ cc_library(
     include_prefix = "quic",
     deps = [
         ":enum",
-        "@folly//folly/lang:assume",
         "@folly//folly/chrono:clock",
         "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
     ],
 )
 
 cc_library(
-    name = "enum",
-    hdrs = ["QuicEnum.h"],
+    name = "logging_config",
+    hdrs = ["quic-logging-config.h"],
+    include_prefix = "quic",
+)
+
+cc_library(
+    name = "tls_exception",
+    srcs = ["QuicTLSExceptionFizz.cpp"],
+    hdrs = ["QuicTLSException.h"],
     include_prefix = "quic",
     deps = [
-        "//quic/common/third-party:better_enums",
-        "@folly//folly/lang:assume",
+        ":constants",
+        "//fizz/record",
     ],
 )
