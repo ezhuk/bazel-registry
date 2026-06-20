@@ -1,0 +1,95 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "base_qlogger",
+    srcs = [
+        "BaseQLogger.cpp",
+        "QLoggerTypes.cpp",
+    ],
+    hdrs = [
+        "BaseQLogger.h",
+        "QLoggerTypes.h",
+    ],
+    include_prefix = "quic/logging",
+    deps = [
+        ":qlogger",
+        ":qlogger_constants",
+        "//folly:dynamic",
+        "//quic:exception",
+        "//quic/codec:types",
+        "//quic/common:string_utils",
+        "//quic/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "file_qlogger",
+    srcs = ["FileQLogger.cpp"],
+    hdrs = ["FileQLogger.h"],
+    include_prefix = "quic/logging",
+    deps = [
+        ":base_qlogger",
+        ":qlog_schema",
+        ":qlogger_constants",
+        "//folly:dynamic",
+        "//folly/compression",
+        "//folly/logging",
+        "//quic/codec:types",
+        "//quic/common:mvfst_logging",
+    ],
+)
+
+cc_library(
+    name = "qlog_schema",
+    srcs = ["QLogSchema.cpp"],
+    hdrs = ["QLogSchema.h"],
+    include_prefix = "quic/logging",
+    deps = [
+        ":qlogger_constants",
+        "//folly/json:dynamic",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
+    name = "qlogger",
+    srcs = ["QLogger.cpp"],
+    hdrs = ["QLogger.h"],
+    include_prefix = "quic/logging",
+    deps = [
+        ":qlogger_constants",
+        "//quic/codec:types",
+        "//quic/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "qlogger_common",
+    srcs = ["QLoggerCommon.cpp"],
+    hdrs = ["QLoggerCommon.h"],
+    include_prefix = "quic/logging",
+    deps = [
+        ":base_qlogger",
+        ":qlogger_constants",
+    ],
+)
+
+cc_library(
+    name = "qlogger_constants",
+    srcs = ["QLoggerConstants.cpp"],
+    hdrs = ["QLoggerConstants.h"],
+    include_prefix = "quic/logging",
+    deps = [
+        "//quic:constants",
+        "//quic/codec:types",
+    ],
+)
+
+cc_library(
+    name = "qlogger_macros",
+    hdrs = ["QLoggerMacros.h"],
+    include_prefix = "quic/logging",
+    deps = [":qlogger"],
+)

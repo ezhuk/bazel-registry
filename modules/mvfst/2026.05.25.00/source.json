@@ -18,6 +18,15 @@
     "quic/fizz/client/handshake/BUILD.bazel": "sha256-2XytA5LCPqp+6+gjQ2kc1xzLA4nDEU/gTw6ivI5RkIc=",
     "quic/fizz/handshake/BUILD.bazel": "sha256-JX/N94Bb0G7jCSn+JAnYOsOZrGQv2Vf3hVs9z0q2EH0=",
     "quic/fizz/server/handshake/BUILD.bazel": "sha256-aECXa5foo1GWnjRtxR5Xu+VNxs9Tkgv3ta1FaQ4i6L8=",
+    "quic/flowcontrol/BUILD.bazel": "sha256-D1wCO6M2cKGKuBj8c0lUcF6EqGdrbPMmDgJPN3wn/tA=",
+    "quic/folly_utils/BUILD.bazel": "sha256-XX1rUP+KmhWCtfNKO3bR/DtuQBe7u55RXlQgUm8Ho7Y=",
+    "quic/handshake/BUILD.bazel": "sha256-VBBCafEZ3bsQPuALa7lQ2F/d4290jvhEhkodA7MAWBk=",
+    "quic/happyeyeballs/BUILD.bazel": "sha256-wPn0u4aGQNN2NrjgecrobiA0vGCu5SE5aPJ24wyWr5Y=",
+    "quic/logging/oops_logger/BUILD.bazel": "sha256-hQarbcc7TLUGQqxPr+HV7HaTMJW8go0A5EPquWSCWD0=",
+    "quic/logging/BUILD.bazel": "sha256-0y8GpVd5lelnSb92rm/cp4tsXn9QmiaqHAFoH0uvbks=",
+    "quic/loss/BUILD.bazel": "sha256-uik0UCtiY+qG7b4worsTUaDYF/RU70m5wDqys+l7T+0=",
+    "quic/observer/BUILD.bazel": "sha256-brHhIEcPM0gSB1N/ALvg2MbiFo6qMSNVwGMEa7YG814=",
+    "quic/prioirty/BUILD.bazel": "sha256-NMMcTpxFvaixS/8yhhzMBRtBrhh5St2l3O3ZB9rMbfI=",
     "quic/BUILD.bazel": "sha256-QylmyahvmaQnWl2tIoy5+OzUh3MqjYWg0V6JjFiFeas=",
     "BUILD.bazel": "sha256-1yyOAyXQnDx4SJOXlb1b9ioaYOLG2NCgF02L/UPgTJE="
   }

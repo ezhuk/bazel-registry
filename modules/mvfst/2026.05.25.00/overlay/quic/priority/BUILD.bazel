@@ -1,0 +1,42 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "http_priority_queue",
+    srcs = ["HTTPPriorityQueue.cpp"],
+    hdrs = ["HTTPPriorityQueue.h"],
+    include_prefix = "quic/priority",
+    deps = [
+        ":priority_queue",
+        ":round_robin",
+        "//folly:cpp_attributes",
+        "//quic:config",
+        "//quic/common:mvfst_logging",
+        "//quic/logging/oops_logger",
+    ],
+)
+
+cc_library(
+    name = "priority_queue",
+    hdrs = ["PriorityQueue.h"],
+    include_prefix = "quic/priority",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "round_robin",
+    srcs = ["RoundRobin.cpp"],
+    hdrs = ["RoundRobin.h"],
+    include_prefix = "quic/priority",
+    deps = [
+        ":priority_queue",
+        "//quic:config",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/logging/oops_logger",
+    ],
+)

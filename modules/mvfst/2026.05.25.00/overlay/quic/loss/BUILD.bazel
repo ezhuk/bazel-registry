@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "loss",
+    srcs = ["QuicLossFunctions.cpp"],
+    hdrs = ["QuicLossFunctions.h"],
+    include_prefix = "quic/loss",
+    deps = [
+        "//folly:chrono",
+        "//quic:constants",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:time_util",
+        "//quic/congestion_control:congestion_control_functions",
+        "//quic/congestion_control:congestion_controller",
+        "//quic/flowcontrol:flow_control",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/observer:socket_observer_macros",
+        "//quic/observer:socket_observer_types",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:simple_frame_functions",
+        "//quic/state:state_functions",
+        "//quic/state:stream_functions",
+    ],
+)
