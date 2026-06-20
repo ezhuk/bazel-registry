@@ -27,6 +27,11 @@
     "quic/loss/BUILD.bazel": "sha256-uik0UCtiY+qG7b4worsTUaDYF/RU70m5wDqys+l7T+0=",
     "quic/observer/BUILD.bazel": "sha256-brHhIEcPM0gSB1N/ALvg2MbiFo6qMSNVwGMEa7YG814=",
     "quic/prioirty/BUILD.bazel": "sha256-NMMcTpxFvaixS/8yhhzMBRtBrhh5St2l3O3ZB9rMbfI=",
+    "quic/server/async_tran/BUILD.bazel": "sha256-PjbXFMCdbzMoBuz4wTQ0IiN5Gh/N1F9ajaqbYo/EgsQ=",
+    "quic/server/handshake/BUILD.bazel": "sha256-ir9s+XjMsmq5h6VhcSoQbXb8meETLhz0ZlDo8f/stoc=",
+    "quic/server/state/BUILD.bazel": "sha256-tQUT9LNrQ0uz3ZLIQtbk2An6Pp2BjRyo2zVvtfTtPpY=",
+    "quic/server/third-party/BUILD.bazel": "sha256-YnvdfzfP6LmVyUeANn/hxAW+cltwngvfqQy5009TJDU=",
+    "quic/server/BUILD.bazel": "sha256-aQDHPoQJz9bECc1xSLzx9jGD4g3vOd6gqG6O+Z+pfXY=",
     "quic/BUILD.bazel": "sha256-QylmyahvmaQnWl2tIoy5+OzUh3MqjYWg0V6JjFiFeas=",
     "BUILD.bazel": "sha256-1yyOAyXQnDx4SJOXlb1b9ioaYOLG2NCgF02L/UPgTJE="
   }

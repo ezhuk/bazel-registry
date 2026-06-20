@@ -1,0 +1,113 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accept_observer",
+    hdrs = ["AcceptObserver.h"],
+    include_prefix = "quic/server",
+)
+
+cc_library(
+    name = "quic_handshake_socket_holder",
+    hdrs = ["QuicHandshakeSocketHolder.h"],
+    include_prefix = "quic/server",
+    deps = [
+        ":server",
+        "//quic/api:transport",
+    ],
+)
+
+cc_library(
+    name = "rate_limiter",
+    srcs = ["SlidingWindowRateLimiter.cpp"],
+    hdrs = [
+        "RateLimiter.h",
+        "SlidingWindowRateLimiter.h",
+    ],
+    include_prefix = "quic/server",
+    deps = [
+        "//quic:constants",
+        "//quic/common:optional",
+    ],
+)
+
+cc_library(
+    name = "server",
+    srcs = [
+        "QuicServer.cpp",
+        "QuicServerBackend.cpp",
+        "QuicServerPacketRouter.cpp",
+        "QuicServerTransport.cpp",
+        "QuicServerWorker.cpp",
+    ],
+    hdrs = [
+        "QuicReusePortUDPSocketFactory.h",
+        "QuicServer.h",
+        "QuicServerPacketRouter.h",
+        "QuicServerTransport.h",
+        "QuicServerTransportFactory.h",
+        "QuicServerWorker.h",
+        "QuicSharedUDPSocketFactory.h",
+        "QuicUDPSocketFactory.h",
+    ],
+    include_prefix = "quic/server",
+    deps = [
+        ":accept_observer",
+        ":rate_limiter",
+        "//common/network:mvfst_hooks",
+        "//fizz/record",
+        "//fizz/server:fizz_server_context",
+        "//folly:random",
+        "//folly:thread_local",
+        "//folly:token_bucket",
+        "//folly/chrono:conv",
+        "//folly/container:evicting_cache_map",
+        "//folly/container:f14_hash",
+        "//folly/io:socket_option_map",
+        "//folly/io/async:async_base",
+        "//folly/io/async:async_transport_certificate",
+        "//folly/io/async:async_udp_socket",
+        "//folly/io/async:event_base_manager",
+        "//folly/io/async:scoped_event_base_thread",
+        "//folly/portability:gflags",
+        "//folly/system:hardware_concurrency",
+        "//folly/system:thread_id",
+        "//quic:constants",
+        "//quic/api:transport",
+        "//quic/api:transport_helpers",
+        "//quic/codec:header_codec",
+        "//quic/codec:types",
+        "//quic/common:buf_accessor",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/common:socket_util",
+        "//quic/common:transport_knobs",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/events:highres_quic_timer",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "//quic/congestion_control:bbr",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/congestion_control:copa",
+        "//quic/congestion_control:server_congestion_controller_factory",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/handshake",
+        "//quic/logging/oops_logger",
+        "//quic/priority:http_priority_queue",
+        "//quic/server/handshake:app_token",
+        "//quic/server/handshake:default_app_token_validator",
+        "//quic/server/handshake:server_extension",
+        "//quic/server/handshake:stateless_reset_generator",
+        "//quic/server/handshake:token_generator",
+        "//quic/server/state:server",
+        "//quic/server/state:server_connection_id_rejector",
+        "//quic/server/third-party:siphash",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_connection_stats",
+        "//quic/state:stats_callback",
+        "//quic/state:transport_settings_functions",
+        "@fmt",
+    ],
+)

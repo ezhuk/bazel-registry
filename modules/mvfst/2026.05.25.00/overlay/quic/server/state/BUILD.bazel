@@ -1,0 +1,56 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "server",
+    srcs = ["ServerStateMachine.cpp"],
+    hdrs = ["ServerStateMachine.h"],
+    include_prefix = "quic/server/state",
+    deps = [
+        ":server_connection_id_rejector",
+        "//folly:exception_wrapper",
+        "//folly:network_address",
+        "//folly:overload",
+        "//folly:random",
+        "//folly/io/async:async_socket_exception",
+        "//quic:exception",
+        "//quic/api:transport_helpers",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/congestion_control:congestion_controller_factory",
+        "//quic/congestion_control:cubic",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/flowcontrol:flow_control",
+        "//quic/handshake:transport_parameters",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/loss",
+        "//quic/server/handshake:server_handshake",
+        "//quic/server/handshake:token_generator",
+        "//quic/state:ack_handler",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:datagram_handler",
+        "//quic/state:pacing_functions",
+        "//quic/state:quic_state_machine",
+        "//quic/state:simple_frame_functions",
+        "//quic/state:state_functions",
+        "//quic/state:stats_callback",
+        "//quic/state:stream_functions",
+        "//quic/state/stream",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "server_connection_id_rejector",
+    hdrs = ["ServerConnectionIdRejector.h"],
+    include_prefix = "quic/server/state",
+    deps = [
+        "//quic/codec:types",
+    ],
+)
