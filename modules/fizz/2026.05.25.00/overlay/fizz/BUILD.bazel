@@ -15,7 +15,7 @@ expand_template(
 
 cmake_configure_file(
     name = "fizz_config_h",
-    src = [":fizz_config_h_tpl"],
+    src = ":fizz_config_h_tpl",
     out = "fizz-config.h",
     defines = [
         "FIZZ_HAVE_SODIUM=1",
