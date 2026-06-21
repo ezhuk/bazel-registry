@@ -10,7 +10,7 @@ license(
 )
 
 cc_library(
-    name = "libaegis",
+    name = "aegis",
     srcs = glob([
         "src/aegis128l/*.c",
         "src/aegis128l/*.h",

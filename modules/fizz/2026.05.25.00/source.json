@@ -2,7 +2,7 @@
   "url": "https://github.com/facebookincubator/fizz/releases/download/v2026.05.25.00/fizz-v2026.05.25.00.tar.gz",
   "integrity": "sha256-nsDqkZ2ZmlEwZhVYcXQ6HFB5niFmKyqfkhwLnLG3ZGw=",
   "overlay": {
-    "fizz/backend/BUILD.bazel": "sha256-2uka3O7xv7wQzJKhZqJeBt7sG8aDRkae4CCjqMU3piY=",
+    "fizz/backend/BUILD.bazel": "sha256-Yrg3OxswDYC8GwXhdqXb/8VmL/MihKnEAzdUZrlUCrE=",
     "fizz/client/BUILD.bazel": "sha256-R393OydbGORRXR+WU2A/0he6E8az5cHQ8cmEK0DcSXA=",
     "fizz/compression/BUILD.bazel": "sha256-VCtsvbvR/Ynrkmsy0SkAm1mPosRZp4JV9eDPn6pERfI=",
     "fizz/crypto/aead/BUILD.bazel": "sha256-cnaWy1HrLhBCG+k/G6DQHU5+no75MGGABAQqbO4vaQA=",
@@ -27,7 +27,7 @@
     "fizz/record/BUILD.bazel": "sha256-3e6lk4FyEvRymS/EkiPydQQuhDU70N/BllpbfiddpcA=",
     "fizz/server/BUILD.bazel": "sha256-A8B/ha7wiysq8tD9eqf2iYjKqFWxdf8T2lmGRcGwxUA=",
     "fizz/util/BUILD.bazel": "sha256-TU6WHoZQu6tQd5dd6iysq8HyDEAOE7Ap8rNBRfFmfBM=",
-    "fizz/BUILD.bazel": "sha256-4LBPNPj1sFuxS/Z+qjWQqgMSfNTbRdzmWYLGXMOFiAA=",
+    "fizz/BUILD.bazel": "sha256-qEdr0C3MOxxzHGq7X/ig2goJ7cOhHCi+jnnGrH5k5oQ=",
     "BUILD.bazel": "sha256-pSk7Sv1k4MLoblI8Otsp2SzfiRQzEOJ6JZrqFIaCsv8="
   }
 }

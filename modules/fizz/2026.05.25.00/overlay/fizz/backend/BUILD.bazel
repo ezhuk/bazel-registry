@@ -13,7 +13,7 @@ cc_library(
         "//fizz/crypto/aead",
         "//fizz/crypto/aead:cryptoutil",
         "@folly//folly/lang:checked_math",
-        "@libaegis:aegis",
+        "@libaegis//:aegis",
     ],
 )
 
@@ -30,7 +30,7 @@ cc_library(
         "//fizz/crypto",
         "//fizz/crypto/exchange:key_exchange",
         "@folly//folly:memory",
-        "@liboqs:oqs",
+        "@liboqs//:oqs",
     ],
 )
 
