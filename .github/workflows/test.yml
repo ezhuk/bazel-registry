@@ -24,6 +24,7 @@ jobs:
           - liboqs
           - libsodium
           - liburing
+          - mvfst
           - wangle
 
     steps:
