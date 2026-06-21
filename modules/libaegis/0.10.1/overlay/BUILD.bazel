@@ -1,0 +1,35 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
+
+package(default_applicable_licenses = [":license"])
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:MIT"],
+    license_text = "LICENSE",
+)
+
+cc_library(
+    name = "libaegis",
+    srcs = glob([
+        "src/aegis128l/*.c",
+        "src/aegis128l/*.h",
+        "src/aegis128x2/*.c",
+        "src/aegis128x2/*.h",
+        "src/aegis128x4/*.c",
+        "src/aegis128x4/*.h",
+        "src/aegis256/*.c",
+        "src/aegis256/*.h",
+        "src/aegis256x2/*.c",
+        "src/aegis256x2/*.h",
+        "src/aegis256x4/*.c",
+        "src/aegis256x4/*.h",
+        "src/common/*.c",
+        "src/common/*.h",
+        "src/raf/*.c",
+        "src/raf/*.h",
+    ]),
+    hdrs = glob(["src/include/*.h"]),
+    includes = ["src/include"],
+    visibility = ["//visibility:public"],
+)

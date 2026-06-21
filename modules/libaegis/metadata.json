@@ -1,0 +1,10 @@
+{
+  "homepage": "https://github.com/aegis-aead/libaegis",
+  "repository": [
+    "github:aegis-aead/libaegis"
+  ],
+  "versions": [
+    "0.10.1"
+  ],
+  "yanked_versions": {}
+}
