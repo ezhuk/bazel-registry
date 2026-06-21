@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/aegis-aead/libaegis/archive/refs/tags/0.10.1.tar.gz",
+  "integrity": "sha256-DzNQ2r8dVN25SjSo/IUJuiHLhDGoQamL547CdCOKhvw=",
+  "strip_prefix": "libaegis-0.10.1",
+  "overlay": {
+    "BUILD.bazel": "sha256-Pf4LC3NI6QQwHFipzue/iaUkRMfSTMsfRSNC7aim+tc="
+  }
+}

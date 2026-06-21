@@ -1,0 +1,4 @@
+module(name = "test_libaegis")
+
+bazel_dep(name = "libaegis", version = "0.10.1")
+bazel_dep(name = "rules_cc", version = "0.2.18")
