@@ -3,6 +3,6 @@
   "integrity": "sha256-DzNQ2r8dVN25SjSo/IUJuiHLhDGoQamL547CdCOKhvw=",
   "strip_prefix": "libaegis-0.10.1",
   "overlay": {
-    "BUILD.bazel": "sha256-Pf4LC3NI6QQwHFipzue/iaUkRMfSTMsfRSNC7aim+tc="
+    "BUILD.bazel": "sha256-bQJ0+gd2wUpnY2jmI6UTHJ0P6WgbIPx6KTuJCUBZPnY="
   }
 }
