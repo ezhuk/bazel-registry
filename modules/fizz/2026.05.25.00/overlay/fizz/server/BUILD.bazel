@@ -1,0 +1,345 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "aead_cookie_cipher",
+    srcs = ["AeadCookieCipher.cpp"],
+    hdrs = ["AeadCookieCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":cookie_cipher",
+        ":fizz_server_context",
+        ":token_cipher",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "aead_ticket_cipher",
+    hdrs = ["AeadTicketCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":aead_token_cipher",
+        ":fizz_server_context",
+        ":ticket_cipher",
+        ":ticket_policy",
+    ],
+)
+
+cc_library(
+    name = "aead_token_cipher",
+    srcs = ["AeadTokenCipher.cpp"],
+    hdrs = ["AeadTokenCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":token_cipher",
+        "//fizz/backend:openssl",
+        "//fizz/crypto:hkdf",
+        "//fizz/crypto:random",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/aead",
+        "//fizz/record",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "async_fizz_server",
+    hdrs = ["AsyncFizzServer.h"],
+    include_prefix = "fizz/server",
+    textual_hdrs = ["AsyncFizzServer-inl.h"],
+    deps = [
+        ":fizz_server",
+        ":fizz_server_context",
+        ":protocol",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:exporter",
+        "//fizz/util:tracer",
+    ],
+)
+
+cc_library(
+    name = "async_self_cert",
+    srcs = ["AsyncSelfCert.cpp"],
+    hdrs = ["AsyncSelfCert.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:handshake_context",
+        "//fizz/record",
+        "//fizz/util:status",
+        "@folly//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "cert_manager",
+    srcs = ["DefaultCertManager.cpp"],
+    hdrs = [
+        "CertManager.h",
+        "DefaultCertManager.h",
+    ],
+    include_prefix = "fizz/server",
+    deps = [
+        "//fizz/protocol:certificate",
+        "//fizz/util:logging",
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
+    name = "cookie_cipher",
+    srcs = ["CookieCipher.cpp"],
+    hdrs = ["CookieCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":negotiator",
+        "//fizz/protocol:factory",
+        "//fizz/protocol:handshake_context",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "cookie_types",
+    hdrs = ["CookieTypes.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":aead_cookie_cipher",
+        "//fizz/backend:openssl",
+        "//fizz/crypto:hkdf",
+        "//fizz/protocol:types",
+    ],
+)
+
+cc_library(
+    name = "dual_ticket_cipher",
+    hdrs = ["DualTicketCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":ticket_cipher",
+    ],
+)
+
+cc_library(
+    name = "fizz_server",
+    srcs = ["FizzServer.cpp"],
+    hdrs = ["FizzServer.h"],
+    include_prefix = "fizz/server",
+    textual_hdrs = ["FizzServer-inl.h"],
+    deps = [
+        ":fizz_server_context",
+        ":protocol",
+        "//fizz/protocol:fizz_base",
+        "//fizz/util:workarounds",
+        "@folly//folly:overload",
+    ],
+)
+
+cc_library(
+    name = "fizz_server_context",
+    srcs = ["FizzServerContext.cpp"],
+    hdrs = ["FizzServerContext.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":cert_manager",
+        ":cookie_cipher",
+        ":negotiator",
+        ":replay_cache",
+        ":ticket_cipher",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:factory",
+        "//fizz/protocol/clock:system_clock",
+        "//fizz/protocol/ech:decrypter",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "handshake_logging",
+    srcs = ["HandshakeLogging.cpp"],
+    hdrs = ["HandshakeLogging.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "multi_server_extensions",
+    srcs = ["MultiServerExtensions.cpp"],
+    hdrs = ["MultiServerExtensions.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":server_extensions",
+    ],
+)
+
+cc_library(
+    name = "negotiator",
+    hdrs = ["Negotiator.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "protocol",
+    srcs = [
+        "ServerProtocol.cpp",
+        "State.cpp",
+    ],
+    hdrs = [
+        "Actions.h",
+        "ServerProtocol.h",
+        "State.h",
+    ],
+    include_prefix = "fizz/server",
+    deps = [
+        ":async_self_cert",
+        ":fizz_server_context",
+        ":handshake_logging",
+        ":negotiator",
+        ":replay_cache",
+        ":resumption_state",
+        ":server_extensions",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/exchange:async_key_exchange",
+        "//fizz/protocol",
+        "//fizz/protocol:actions",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/protocol:key_scheduler",
+        "//fizz/protocol:params",
+        "//fizz/protocol:state_machine",
+        "//fizz/protocol:types",
+        "//fizz/protocol/ech:decrypter",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/record",
+        "//fizz/record:plaintext_record_layer",
+        "//fizz/record:record_layer",
+        "//fizz/util:status",
+        "//fizz/util:variant",
+        "//fizz/util:workarounds",
+        "@folly//folly:optional",
+        "@folly//folly:overload",
+        "@folly//folly:small_vector",
+        "@folly//folly/futures:core",
+        "@folly//folly/tracing:static_tracepoint",
+    ],
+)
+
+cc_library(
+    name = "replay_cache",
+    srcs = ["ReplayCache.cpp"],
+    hdrs = ["ReplayCache.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "@folly//folly:range",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "resumption_state",
+    hdrs = ["ResumptionState.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:types",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "server_extensions",
+    hdrs = ["ServerExtensions.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "sliding_bloom_replay_cache",
+    srcs = ["SlidingBloomReplayCache.cpp"],
+    hdrs = ["SlidingBloomReplayCache.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":replay_cache",
+        "//fizz/crypto:random",
+        "//fizz/util:logging",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:unistd",
+    ],
+)
+
+cc_library(
+    name = "ticket_cipher",
+    hdrs = ["TicketCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":resumption_state",
+        "@folly//folly:optional",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "ticket_codec",
+    srcs = ["TicketCodec.cpp"],
+    hdrs = ["TicketCodec.h"],
+    include_prefix = "fizz/server",
+    textual_hdrs = ["TicketCodec-inl.h"],
+    deps = [
+        ":fizz_server_context",
+        ":resumption_state",
+        "//fizz/record",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/ssl:openssl_cert_utils",
+    ],
+)
+
+cc_library(
+    name = "ticket_policy",
+    hdrs = ["TicketPolicy.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":resumption_state",
+        "//fizz/protocol:types",
+        "//fizz/protocol/clock:system_clock",
+    ],
+)
+
+cc_library(
+    name = "ticket_types",
+    hdrs = ["TicketTypes.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        ":aead_ticket_cipher",
+        ":ticket_codec",
+        "//fizz/backend:openssl",
+        "//fizz/crypto:hkdf",
+        "//fizz/protocol:types",
+    ],
+)
+
+cc_library(
+    name = "token_cipher",
+    hdrs = ["TokenCipher.h"],
+    include_prefix = "fizz/server",
+    deps = [
+        "@folly//folly:optional",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+    ],
+)

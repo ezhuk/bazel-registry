@@ -1,0 +1,122 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "delegated_credential",
+    srcs = ["Types.cpp"],
+    hdrs = ["Types.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        "//fizz/record",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "delegated_credential_cert_manager",
+    srcs = ["DelegatedCredentialCertManager.cpp"],
+    hdrs = ["DelegatedCredentialCertManager.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        ":self_delegated_credential",
+        "//fizz/server:cert_manager",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "delegated_credential_client_cert_manager",
+    srcs = ["DelegatedCredentialClientCertManager.cpp"],
+    hdrs = ["DelegatedCredentialClientCertManager.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        "//fizz/client:cert_manager",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "delegated_credential_client_extension",
+    srcs = ["DelegatedCredentialClientExtension.cpp"],
+    hdrs = ["DelegatedCredentialClientExtension.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        "//fizz/client:client_extensions",
+    ],
+)
+
+cc_library(
+    name = "delegated_credential_factory",
+    srcs = ["DelegatedCredentialFactory.cpp"],
+    hdrs = ["DelegatedCredentialFactory.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        ":peer_delegated_credential",
+        "//fizz/protocol:default_factory",
+        "@folly//folly/portability:openssl",
+    ],
+)
+
+cc_library(
+    name = "delegated_credential_utils",
+    srcs = ["DelegatedCredentialUtils.cpp"],
+    hdrs = ["DelegatedCredentialUtils.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        "//fizz/backend:openssl",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol/clock",
+        "//fizz/util:logging",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)
+
+cc_library(
+    name = "peer_delegated_credential",
+    hdrs = ["PeerDelegatedCredential.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    textual_hdrs = ["PeerDelegatedCredential-inl.h"],
+    deps = [
+        ":delegated_credential",
+        ":delegated_credential_utils",
+        "//fizz/backend:openssl",
+        "//fizz/protocol/clock:system_clock",
+        "@folly//folly/ssl:openssl_cert_utils",
+    ],
+)
+
+cc_library(
+    name = "self_delegated_credential",
+    hdrs = ["SelfDelegatedCredential.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    textual_hdrs = ["SelfDelegatedCredential-inl.h"],
+    deps = [
+        ":delegated_credential",
+        ":delegated_credential_utils",
+        "//fizz/backend:openssl",
+        "@folly//folly/ssl:openssl_cert_utils",
+    ],
+)
+
+cc_library(
+    name = "serialization",
+    srcs = ["Serialization.cpp"],
+    hdrs = ["Serialization.h"],
+    include_prefix = "fizz/extensions/delegatedcred",
+    deps = [
+        ":delegated_credential",
+        ":delegated_credential_utils",
+        ":self_delegated_credential",
+        "@fmt",
+        "@folly//folly:base64",
+        "@folly//folly:range",
+    ],
+)

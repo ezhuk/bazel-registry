@@ -1,5 +1,3 @@
-load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
-load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@rules_license//rules:license.bzl", "license")
 
@@ -9,109 +7,12 @@ license(
     name = "license",
     license_kinds = ["@rules_license//licenses/spdx:BSD-3-Clause"],
     license_text = "LICENSE",
-    visibility = ["//visibility:public"],
-)
-
-expand_template(
-    name = "fizz_config_h_template",
-    out = "fizz/fizz-config.h.in.tpl",
-    substitutions = {
-        "@FIZZ_LOGGING_BACKEND@": "DISABLED",
-    },
-    template = "fizz/fizz-config.h.in",
-)
-
-cmake_configure_file(
-    name = "fizz_config_h",
-    src = "fizz/fizz-config.h.in.tpl",
-    out = "fizz/fizz-config.h",
-    defines = [
-        "FIZZ_HAVE_SODIUM=1",
-        "FIZZ_CERTIFICATE_USE_OPENSSL_CERT=1",
-    ],
-    undefines = [
-        "FIZZ_HAVE_LIBAEGIS",
-        "FIZZ_HAVE_OQS",
-    ],
 )
 
 cc_library(
     name = "fizz",
-    srcs = glob(
-        ["fizz/**/*.cpp"],
-        exclude = [
-            "fizz/**/test/*",
-            "fizz/extensions/javacrypto/*",
-            "fizz/tool/**/*",
-        ],
-    ),
-    hdrs = glob(
-        ["fizz/**/*.h"],
-        exclude = [
-            "fizz/**/test/*",
-            "fizz/**/*-inl.h",
-            "fizz/extensions/javacrypto/*",
-            "fizz/tool/**/*",
-        ],
-    ) + [":fizz_config_h"],
-    copts = select({
-        "@platforms//cpu:x86_64": ["-maes"],
-        "//conditions:default": [],
-    }),
-    includes = ["."],
-    textual_hdrs = glob(["fizz/**/*-inl.h"]),
     visibility = ["//visibility:public"],
     deps = [
-        "@boost.variant",
-        "@brotli//:brotlidec",
-        "@brotli//:brotlienc",
-        "@fmt",
-        "@folly//folly:base64",
-        "@folly//folly:c_portability",
-        "@folly//folly:conv",
-        "@folly//folly:exception_wrapper",
-        "@folly//folly:executor",
-        "@folly//folly:expected",
-        "@folly//folly:file",
-        "@folly//folly:file_util",
-        "@folly//folly:function",
-        "@folly//folly:memory",
-        "@folly//folly:optional",
-        "@folly//folly:overload",
-        "@folly//folly:range",
-        "@folly//folly:small_vector",
-        "@folly//folly:string",
-        "@folly//folly:synchronized",
-        "@folly//folly/container:evicting_cache_map",
-        "@folly//folly/container:f14_hash",
-        "@folly//folly/futures:core",
-        "@folly//folly/futures:shared_promise",
-        "@folly//folly/io:iobuf",
-        "@folly//folly/io:socket_option_map",
-        "@folly//folly/io/async:async_base",
-        "@folly//folly/io/async:async_socket",
-        "@folly//folly/io/async:async_transport",
-        "@folly//folly/io/async:decorated_async_transport_wrapper",
-        "@folly//folly/io/async:delayed_destruction",
-        "@folly//folly/io/async:password_in_file",
-        "@folly//folly/io/async:ssl_context",
-        "@folly//folly/io/async:write_flags",
-        "@folly//folly/io/async/ssl:openssl_transport_certificate",
-        "@folly//folly/lang:assume",
-        "@folly//folly/lang:bits",
-        "@folly//folly/lang:checked_math",
-        "@folly//folly/net:network_socket",
-        "@folly//folly/portability:openssl",
-        "@folly//folly/portability:sockets",
-        "@folly//folly/portability:unistd",
-        "@folly//folly/ssl:openssl_cert_utils",
-        "@folly//folly/ssl:openssl_hash",
-        "@folly//folly/ssl:openssl_ptr_types",
-        "@folly//folly/tracing:static_tracepoint",
-        "@glog",
-        "@libsodium",
-        "@openssl//:ssl",
-        "@zlib",
-        "@zstd",
+        "//fizz:config",
     ],
 )

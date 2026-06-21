@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cert_extraction",
+    hdrs = ["CertExtraction.h"],
+    include_prefix = "fizz/experimental/util",
+    deps = [
+        "//fizz/client:async_fizz_client",
+        "//fizz/server:async_fizz_server",
+    ],
+)

@@ -1,0 +1,205 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "actions",
+    hdrs = ["Actions.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":psk_cache",
+        "//fizz/protocol:actions",
+        "//fizz/protocol:params",
+        "//fizz/util:variant",
+        "@folly//folly:c_portability",
+    ],
+)
+
+cc_library(
+    name = "async_fizz_client",
+    hdrs = ["AsyncFizzClient.h"],
+    include_prefix = "fizz/client",
+    textual_hdrs = ["AsyncFizzClient-inl.h"],
+    deps = [
+        ":client_extensions",
+        ":early_data_rejection",
+        ":ech_retry_callback",
+        ":fizz_client",
+        ":fizz_client_context",
+        ":protocol",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:default_certificate_verifier",
+        "//fizz/protocol:exporter",
+        "//fizz/util:tracer",
+        "@folly//folly/io:socket_option_map",
+    ],
+)
+
+cc_library(
+    name = "cert_manager",
+    srcs = ["CertManager.cpp"],
+    hdrs = ["CertManager.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        "//fizz/protocol:certificate",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "client_extensions",
+    hdrs = ["ClientExtensions.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "early_data_rejection",
+    srcs = ["EarlyDataRejectionPolicy.cpp"],
+    hdrs = ["EarlyDataRejectionPolicy.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":state",
+    ],
+)
+
+cc_library(
+    name = "ech_policy",
+    hdrs = ["ECHPolicy.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "ech_retry_callback",
+    hdrs = ["ECHRetryCallback.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":actions",
+    ],
+)
+
+cc_library(
+    name = "fizz_client",
+    hdrs = ["FizzClient.h"],
+    include_prefix = "fizz/client",
+    textual_hdrs = ["FizzClient-inl.h"],
+    deps = [
+        ":fizz_client_context",
+        ":protocol",
+        ":psk_cache",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/protocol:fizz_base",
+        "@folly//folly/lang:switch",
+    ],
+)
+
+cc_library(
+    name = "fizz_client_context",
+    srcs = ["FizzClientContext.cpp"],
+    hdrs = ["FizzClientContext.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":cert_manager",
+        ":psk_cache",
+        "//fizz/compression:cert_decompression_manager",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:factory",
+        "//fizz/protocol/clock:system_clock",
+        "//fizz/protocol/ech:grease_ech_setting",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "multi_client_extensions",
+    srcs = ["MultiClientExtensions.cpp"],
+    hdrs = ["MultiClientExtensions.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":client_extensions",
+    ],
+)
+
+cc_library(
+    name = "protocol",
+    srcs = ["ClientProtocol.cpp"],
+    hdrs = ["ClientProtocol.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":actions",
+        ":client_extensions",
+        ":fizz_client_context",
+        ":psk_cache",
+        ":state",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/protocol",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/protocol:state_machine",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/protocol/ech:encryption",
+        "//fizz/protocol/ech:grease_ech",
+        "//fizz/record",
+        "//fizz/util:status",
+    ],
+)
+
+cc_library(
+    name = "psk_cache",
+    hdrs = ["PskCache.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:types",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "psk_serialization_utils",
+    srcs = ["PskSerializationUtils.cpp"],
+    hdrs = ["PskSerializationUtils.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":psk_cache",
+        "//fizz/protocol:certificate",
+        "//fizz/record",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "state",
+    srcs = ["State.cpp"],
+    hdrs = ["State.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":client_extensions",
+        ":fizz_client_context",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:key_scheduler",
+        "//fizz/protocol:types",
+        "//fizz/protocol/ech:encryption",
+        "//fizz/record:record_layer",
+    ],
+)
+
+cc_library(
+    name = "synchronized_lru_psk_cache",
+    srcs = ["SynchronizedLruPskCache.cpp"],
+    hdrs = ["SynchronizedLruPskCache.h"],
+    include_prefix = "fizz/client",
+    deps = [
+        ":psk_cache",
+        "//fizz/util:logging",
+        "@folly//folly:synchronized",
+        "@folly//folly/container:evicting_cache_map",
+    ],
+)

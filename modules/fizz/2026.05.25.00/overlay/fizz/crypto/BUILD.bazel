@@ -1,0 +1,82 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "crypto",
+    srcs = ["Crypto.cpp"],
+    hdrs = ["Crypto.h"],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "//fizz/util:status",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "hasher",
+    srcs = [
+        "Hasher.cpp",
+        "Hmac.cpp",
+    ],
+    hdrs = [
+        "Hasher.h",
+        "Hmac.h",
+    ],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/util:logging",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "hkdf",
+    srcs = ["Hkdf.cpp"],
+    hdrs = ["Hkdf.h"],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/crypto:hasher",
+        "//fizz/util:logging",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "key_derivation",
+    srcs = ["KeyDerivation.cpp"],
+    hdrs = ["KeyDerivation.h"],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/crypto:hkdf",
+        "//fizz/record",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "random",
+    hdrs = ["RandomGenerator.h"],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "@folly//folly/io:iobuf",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "utils",
+    srcs = ["Utils.cpp"],
+    hdrs = ["Utils.h"],
+    include_prefix = "fizz/crypto",
+    deps = [
+        "//fizz:config",
+        "//fizz/util:status",
+        "@folly//folly:range",
+        "@libsodium",
+    ],
+)

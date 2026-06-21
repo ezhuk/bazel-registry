@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "clock",
+    hdrs = ["Clock.h"],
+    include_prefix = "fizz/protocol/clock",
+)
+
+cc_library(
+    name = "system_clock",
+    srcs = ["SystemClock.cpp"],
+    hdrs = ["SystemClock.h"],
+    include_prefix = "fizz/protocol/clock",
+    deps = [
+        ":clock",
+    ],
+)
