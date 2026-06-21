@@ -1,0 +1,122 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "libaegis",
+    srcs = ["libaegis/AEGISCipher.cpp"],
+    hdrs = ["libaegis/LibAEGIS.h"],
+    include_prefix = "fizz/backend",
+    deps = [
+        "//fizz:config",
+        "//fizz/crypto",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/aead:cryptoutil",
+        "@folly//folly/lang:checked_math",
+        "@libaegis:aegis",
+    ],
+)
+
+cc_library(
+    name = "liboqs",
+    srcs = ["liboqs/OQSKeyExchange.cpp"],
+    hdrs = [
+        "liboqs/LibOQS.h",
+        "liboqs/OQSKeyExchange.h",
+    ],
+    include_prefix = "fizz/backend",
+    deps = [
+        "//fizz:config",
+        "//fizz/crypto",
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly:memory",
+        "@liboqs:oqs",
+    ],
+)
+
+cc_library(
+    name = "libsodium",
+    srcs = ["libsodium/crypto/exchange/X25519.cpp"],
+    hdrs = [
+        "libsodium/LibSodium.h",
+        "libsodium/crypto/exchange/X25519.h",
+    ],
+    include_prefix = "fizz/backend",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@libsodium:sodium",
+    ],
+)
+
+cc_library(
+    name = "openssl",
+    srcs = [
+        "openssl/certificate/CertUtils.cpp",
+        "openssl/certificate/OpenSSLCertificateVerifier.cpp",
+        "openssl/crypto/OpenSSLKeyUtils.cpp",
+        "openssl/crypto/Sha.cpp",
+        "openssl/crypto/aead/OpenSSLEVPCipher.cpp",
+        "openssl/crypto/exchange/OpenSSLKeyExchange.cpp",
+        "openssl/crypto/signature/Signature.cpp",
+    ],
+    hdrs = [
+        "openssl/Hasher.h",
+        "openssl/OpenSSL.h",
+        "openssl/Properties.h",
+        "openssl/certificate/CertUtils.h",
+        "openssl/certificate/CertUtils-inl.h",
+        "openssl/certificate/OpenSSLCertificateVerifier.h",
+        "openssl/certificate/OpenSSLPeerCertImpl.h",
+        "openssl/certificate/OpenSSLPeerCertImpl-inl.h",
+        "openssl/certificate/OpenSSLSelfCertImpl.h",
+        "openssl/certificate/OpenSSLSelfCertImpl-inl.h",
+        "openssl/certificate/X509ChainWithPkey.h",
+        "openssl/crypto/ECCurve.h",
+        "openssl/crypto/OpenSSL.h",
+        "openssl/crypto/OpenSSLKeyUtils.h",
+        "openssl/crypto/Sha.h",
+        "openssl/crypto/aead/OpenSSLEVPCipher.h",
+        "openssl/crypto/aead/OpenSSLEVPCipher-inl.h",
+        "openssl/crypto/exchange/OpenSSLKeyExchange.h",
+        "openssl/crypto/signature/Signature.h",
+        "openssl/crypto/signature/Signature-inl.h",
+    ],
+    include_prefix = "fizz/backend",
+    deps = [
+        "//fizz:config",
+        "//fizz/compression:certificate_compressor",
+        "//fizz/crypto",
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:hkdf",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/aead:cryptoutil",
+        "//fizz/crypto/aead:iobuf",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/record",
+        "//fizz/util:logging",
+        "//fizz/util:status",
+        "@folly//folly:conv",
+        "@folly//folly:file_util",
+        "@folly//folly:memory",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/lang:assume",
+        "@folly//folly/lang:bits",
+        "@folly//folly/lang:checked_math",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_hash",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@glog",
+        "@openssl:crypto",
+    ],
+)

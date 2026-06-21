@@ -1,0 +1,78 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "context",
+    srcs = ["Context.cpp"],
+    hdrs = ["Context.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        ":utils",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/hpke:hkdf",
+        "//fizz/crypto/hpke:types",
+        "//fizz/protocol:types",
+    ],
+)
+
+cc_library(
+    name = "dhkem",
+    srcs = ["DHKEM.cpp"],
+    hdrs = ["DHKEM.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        ":hkdf",
+        ":types",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/record",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "hkdf",
+    srcs = ["Hkdf.cpp"],
+    hdrs = ["Hkdf.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:hkdf",
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "hpke",
+    srcs = ["Hpke.cpp"],
+    hdrs = ["Hpke.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        ":context",
+        ":dhkem",
+        ":types",
+        "//fizz/crypto/aead",
+    ],
+)
+
+cc_library(
+    name = "types",
+    hdrs = ["Types.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "utils",
+    srcs = ["Utils.cpp"],
+    hdrs = ["Utils.h"],
+    include_prefix = "fizz/crypto/hpke",
+    deps = [
+        ":types",
+        "//fizz/crypto",
+        "//fizz/protocol:types",
+        "@folly//folly:optional",
+    ],
+)

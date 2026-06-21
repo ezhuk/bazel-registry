@@ -1,0 +1,40 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "aead",
+    hdrs = ["Aead.h"],
+    include_prefix = "fizz/crypto/aead",
+    deps = [
+        "//fizz/util:status",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "cryptoutil",
+    hdrs = ["CryptoUtil.h"],
+    include_prefix = "fizz/crypto/aead",
+    deps = [
+        ":aead",
+        ":iobuf",
+        "@folly//folly:conv",
+        "@folly//folly:memory",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "iobuf",
+    srcs = ["IOBufUtil.cpp"],
+    hdrs = ["IOBufUtil.h"],
+    include_prefix = "fizz/crypto/aead",
+    deps = [
+        "//fizz/util:logging",
+        "//fizz/util:status",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+    ],
+)

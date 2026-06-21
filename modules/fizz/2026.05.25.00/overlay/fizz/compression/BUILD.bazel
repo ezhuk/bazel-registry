@@ -1,0 +1,88 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "brotli_certificate_compressor",
+    srcs = ["BrotliCertificateCompressor.cpp"],
+    hdrs = ["BrotliCertificateCompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@brotli//brotli:brotli_encode",
+    ],
+)
+
+cc_library(
+    name = "brotli_certificate_decompressor",
+    srcs = ["BrotliCertificateDecompressor.cpp"],
+    hdrs = ["BrotliCertificateDecompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@brotli//brotli:brotli_decode",
+    ],
+)
+
+cc_library(
+    name = "certificate_compressor",
+    hdrs = ["CertificateCompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "cert_decompression_manager",
+    srcs = ["CertDecompressionManager.cpp"],
+    hdrs = ["CertDecompressionManager.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "//fizz/util:logging",
+    ],
+)
+
+cc_library(
+    name = "zlib_certificate_compressor",
+    srcs = ["ZlibCertificateCompressor.cpp"],
+    hdrs = ["ZlibCertificateCompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@zlib",
+    ],
+)
+
+cc_library(
+    name = "zlib_certificate_decompressor",
+    srcs = ["ZlibCertificateDecompressor.cpp"],
+    hdrs = ["ZlibCertificateDecompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@zlib",
+    ],
+)
+
+cc_library(
+    name = "zstd_certificate_compressor",
+    srcs = ["ZstdCertificateCompressor.cpp"],
+    hdrs = ["ZstdCertificateCompressor.h"],
+    include_prefix = "fizz/compression",
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@zstd",
+    ],
+)
+
+cc_library(
+    name = "zstd_certificate_decompressor",
+    srcs = ["ZstdCertificateDecompressor.cpp"],
+    hdrs = ["ZstdCertificateDecompressor.h"],
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@zstd",
+    ],
+)
