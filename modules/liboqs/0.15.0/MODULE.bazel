@@ -1,0 +1,9 @@
+module(
+    name = "liboqs",
+    version = "0.15.0",
+)
+
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
+bazel_dep(name = "cmake_configure_file", version = "0.1.7")
+bazel_dep(name = "rules_cc", version = "0.2.18")
+bazel_dep(name = "rules_license", version = "1.0.0")

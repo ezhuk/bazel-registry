@@ -21,6 +21,7 @@ jobs:
           - fizz
           - folly
           - libaegis
+          - liboqs
           - libsodium
           - liburing
           - wangle
