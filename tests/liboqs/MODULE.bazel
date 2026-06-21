@@ -1,0 +1,4 @@
+module(name = "test_liboqs")
+
+bazel_dep(name = "liboqs", version = "0.15.0")
+bazel_dep(name = "rules_cc", version = "0.2.18")
