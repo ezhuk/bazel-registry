@@ -8,7 +8,6 @@ cc_library(
     hdrs = ["QuicHappyEyeballsFunctions.h"],
     include_prefix = "quic/happyeyeballs",
     deps = [
-        "//common/network:mvfst_hooks",
         "//quic/client:state_and_handshake",
         "//quic/common:mvfst_logging",
         "//quic/common:socket_util",
