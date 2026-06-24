@@ -9,7 +9,7 @@ cc_library(
     include_prefix = "fizz/compression",
     deps = [
         "//fizz/compression:certificate_compressor",
-        "@brotli//brotli:brotli_encode",
+        "@brotli//:brotlienc",
     ],
 )
 
@@ -20,7 +20,7 @@ cc_library(
     include_prefix = "fizz/compression",
     deps = [
         "//fizz/compression:certificate_compressor",
-        "@brotli//brotli:brotli_decode",
+        "@brotli//:brotlidec",
     ],
 )
 

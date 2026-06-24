@@ -4,7 +4,7 @@
   "overlay": {
     "fizz/backend/BUILD.bazel": "sha256-4eRFBWcG35jzZSVzhKW9EchgqXtHRGnqZzSDGpFCwu4=",
     "fizz/client/BUILD.bazel": "sha256-R393OydbGORRXR+WU2A/0he6E8az5cHQ8cmEK0DcSXA=",
-    "fizz/compression/BUILD.bazel": "sha256-VCtsvbvR/Ynrkmsy0SkAm1mPosRZp4JV9eDPn6pERfI=",
+    "fizz/compression/BUILD.bazel": "sha256-rsgULtIJnIO9SPP1AHiCF8KpX0qVCyRaNaqp+gAkwzQ=",
     "fizz/crypto/aead/BUILD.bazel": "sha256-cnaWy1HrLhBCG+k/G6DQHU5+no75MGGABAQqbO4vaQA=",
     "fizz/crypto/exchange/BUILD.bazel": "sha256-HnqmtZqO8begNUkcAAZoyfPoyp/HMR8azUlxE02eEbc=",
     "fizz/crypto/hpke/BUILD.bazel": "sha256-PfgWQFIZeI6qWqrd9NNwMsW5ORslFECXBoEsUmuUKDk=",
