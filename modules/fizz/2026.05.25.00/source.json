@@ -28,6 +28,6 @@
     "fizz/server/BUILD.bazel": "sha256-A8B/ha7wiysq8tD9eqf2iYjKqFWxdf8T2lmGRcGwxUA=",
     "fizz/util/BUILD.bazel": "sha256-TU6WHoZQu6tQd5dd6iysq8HyDEAOE7Ap8rNBRfFmfBM=",
     "fizz/BUILD.bazel": "sha256-qEdr0C3MOxxzHGq7X/ig2goJ7cOhHCi+jnnGrH5k5oQ=",
-    "BUILD.bazel": "sha256-pSk7Sv1k4MLoblI8Otsp2SzfiRQzEOJ6JZrqFIaCsv8="
+    "BUILD.bazel": "sha256-0NxiVugktuJ9UYyzSdsmxd3J0myXx90S1Ee7Cw1GZLg="
   }
 }
