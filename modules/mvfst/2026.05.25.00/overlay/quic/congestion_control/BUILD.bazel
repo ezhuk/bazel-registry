@@ -101,7 +101,6 @@ cc_library(
         ":bandwidth",
         "//quic:constants",
         "//quic/state:cloned_packet_identifier",
-        "//quic/state:loss_event",
         "//quic/state:outstanding_packet",
     ],
 )
