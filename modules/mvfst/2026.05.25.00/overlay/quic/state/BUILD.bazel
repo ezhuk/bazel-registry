@@ -9,11 +9,11 @@ cc_library(
     include_prefix = "quic/state",
     deps = [
         ":outstanding_packet",
-        "@folly//folly:map_util",
         "//quic/codec:types",
         "//quic/common:mvfst_logging",
         "//quic/common:optional",
         "//quic/congestion_control:congestion_controller",
+        "@folly//folly:map_util",
     ],
 )
 
@@ -46,8 +46,6 @@ cc_library(
         ":quic_state_machine",
         ":state_functions",
         ":stream_functions",
-        "@folly//folly:map_util",
-        "@folly//folly/tracing:static_tracepoint",
         "//quic:constants",
         "//quic/codec:types",
         "//quic/common:expected",
@@ -60,6 +58,8 @@ cc_library(
         "//quic/logging/oops_logger",
         "//quic/loss",
         "//quic/observer:socket_observer_macros",
+        "@folly//folly:map_util",
+        "@folly//folly/tracing:static_tracepoint",
     ],
 )
 
@@ -68,10 +68,10 @@ cc_library(
     hdrs = ["AckStates.h"],
     include_prefix = "quic/state",
     deps = [
-        "@folly//folly:random",
         "//quic:constants",
         "//quic/codec:types",
         "//quic/common:interval_set",
+        "@folly//folly:random",
     ],
 )
 
@@ -117,17 +117,6 @@ cc_library(
 )
 
 cc_library(
-    name = "loss_event",
-    hdrs = ["LossEvent.h"],
-    include_prefix = "quic/state",
-    deps = [
-        ":outstanding_packet",
-        "//quic:constants",
-        "//quic/common:optional",
-    ],
-)
-
-cc_library(
     name = "loss_state",
     hdrs = ["LossState.h"],
     include_prefix = "quic/state",
@@ -144,8 +133,8 @@ cc_library(
     deps = [
         ":cloned_packet_identifier",
         ":loss_state",
-        "@folly//folly/io:socket_option_map",
         "//quic/codec:types",
+        "@folly//folly/io:socket_option_map",
     ],
 )
 
@@ -195,9 +184,6 @@ cc_library(
         ":quic_connection_stats",
         ":stats_callback",
         ":transport_settings",
-        "@folly//folly:token_bucket",
-        "@folly//folly/container:f14_hash",
-        "@folly//folly/io/async:delayed_destruction",
         "//quic:config",
         "//quic:constants",
         "//quic/codec",
@@ -221,6 +207,9 @@ cc_library(
         "//quic/observer:socket_observer_types",
         "//quic/priority:http_priority_queue",
         "//quic/priority:priority_queue",
+        "@folly//folly:token_bucket",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io/async:delayed_destruction",
     ],
 )
 
@@ -307,10 +296,10 @@ cc_library(
     hdrs = ["TransportSettings.h"],
     include_prefix = "quic/state",
     deps = [
-        "@folly//folly:network_address",
         "//quic:constants",
         "//quic/common:optional",
         "//quic/priority:priority_queue",
+        "@folly//folly:network_address",
     ],
 )
 

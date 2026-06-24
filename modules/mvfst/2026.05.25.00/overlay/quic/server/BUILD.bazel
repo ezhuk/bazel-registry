@@ -55,7 +55,6 @@ cc_library(
     deps = [
         ":accept_observer",
         ":rate_limiter",
-        "//common/network:mvfst_hooks",
         "//quic:constants",
         "//quic/api:transport",
         "//quic/api:transport_helpers",

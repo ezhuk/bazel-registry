@@ -14,6 +14,74 @@ cc_library(
 )
 
 cc_library(
+    name = "bbr",
+    srcs = ["Bbr.cpp"],
+    hdrs = ["Bbr.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bandwidth",
+        ":congestion_control_functions",
+        ":congestion_controller",
+        "//quic:constants",
+        "//quic/common:mvfst_logging",
+        "//quic/common:time_util",
+        "//quic/congestion_control/third_party:chromium_windowed_filter",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:ack_frequency_functions",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:transport_settings",
+        "@folly//folly:random",
+    ],
+)
+
+cc_library(
+    name = "bbr2",
+    srcs = ["Bbr2.cpp"],
+    hdrs = ["Bbr2.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bandwidth",
+        ":congestion_control_functions",
+        ":congestion_controller",
+        "//quic/common:mvfst_logging",
+        "//quic/congestion_control/third_party:chromium_windowed_filter",
+        "//quic/logging:qlogger_constants",
+        "//quic/logging:qlogger_macros",
+        "//quic/state:quic_state_machine",
+        "//quic/state:transport_settings",
+    ],
+)
+
+cc_library(
+    name = "bbr_bandwidth_sampler",
+    srcs = ["BbrBandwidthSampler.cpp"],
+    hdrs = ["BbrBandwidthSampler.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bbr",
+        "//quic/congestion_control/third_party:chromium_windowed_filter",
+        "//quic/logging:qlogger_macros",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "bbr_rtt_sampler",
+    srcs = ["BbrRttSampler.cpp"],
+    hdrs = ["BbrRttSampler.h"],
+    include_prefix = "quic/congestion_control",
+    deps = [
+        ":bbr",
+        "//quic:constants",
+    ],
+)
+
+cc_library(
     name = "congestion_control_functions",
     srcs = ["CongestionControlFunctions.cpp"],
     hdrs = ["CongestionControlFunctions.h"],
@@ -33,7 +101,6 @@ cc_library(
         ":bandwidth",
         "//quic:constants",
         "//quic/state:cloned_packet_identifier",
-        "//quic/state:loss_event",
         "//quic/state:outstanding_packet",
     ],
 )

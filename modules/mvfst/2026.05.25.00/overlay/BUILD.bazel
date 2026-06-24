@@ -17,7 +17,6 @@ cc_library(
         "//quic:constants",
         "//quic:enum",
         "//quic:exception",
-        "//quic:logging_config",
         "//quic:tls_exception",
         "//quic/api:transport",
         "//quic/client",
