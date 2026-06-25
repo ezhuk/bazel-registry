@@ -4,7 +4,7 @@
   "overlay": {
     "fizz/backend/BUILD.bazel": "sha256-4eRFBWcG35jzZSVzhKW9EchgqXtHRGnqZzSDGpFCwu4=",
     "fizz/client/BUILD.bazel": "sha256-R393OydbGORRXR+WU2A/0he6E8az5cHQ8cmEK0DcSXA=",
-    "fizz/compression/BUILD.bazel": "sha256-rsgULtIJnIO9SPP1AHiCF8KpX0qVCyRaNaqp+gAkwzQ=",
+    "fizz/compression/BUILD.bazel": "sha256-WefwhdqVoWol+U7gE5BCMp9IM3Udkr6cJn23degAizM=",
     "fizz/crypto/aead/BUILD.bazel": "sha256-cnaWy1HrLhBCG+k/G6DQHU5+no75MGGABAQqbO4vaQA=",
     "fizz/crypto/exchange/BUILD.bazel": "sha256-HnqmtZqO8begNUkcAAZoyfPoyp/HMR8azUlxE02eEbc=",
     "fizz/crypto/hpke/BUILD.bazel": "sha256-PfgWQFIZeI6qWqrd9NNwMsW5ORslFECXBoEsUmuUKDk=",
@@ -28,6 +28,6 @@
     "fizz/server/BUILD.bazel": "sha256-A8B/ha7wiysq8tD9eqf2iYjKqFWxdf8T2lmGRcGwxUA=",
     "fizz/util/BUILD.bazel": "sha256-TU6WHoZQu6tQd5dd6iysq8HyDEAOE7Ap8rNBRfFmfBM=",
     "fizz/BUILD.bazel": "sha256-qEdr0C3MOxxzHGq7X/ig2goJ7cOhHCi+jnnGrH5k5oQ=",
-    "BUILD.bazel": "sha256-0NxiVugktuJ9UYyzSdsmxd3J0myXx90S1Ee7Cw1GZLg="
+    "BUILD.bazel": "sha256-WLZIumKaWsOMgkfSQYRoNwvMNeU595jfkVbT2fxvaNo="
   }
 }
