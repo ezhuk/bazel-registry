@@ -81,6 +81,7 @@ cc_library(
     name = "zstd_certificate_decompressor",
     srcs = ["ZstdCertificateDecompressor.cpp"],
     hdrs = ["ZstdCertificateDecompressor.h"],
+    include_prefix = "fizz/compression",
     deps = [
         "//fizz/compression:certificate_compressor",
         "@zstd",
