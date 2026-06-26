@@ -2,6 +2,7 @@
   "url": "https://github.com/facebook/proxygen/releases/download/v2026.05.25.00/proxygen-v2026.05.25.00.tar.gz",
   "integrity": "sha256-1O4dwjW0nHl/Kq/vQmrZ9MUQ+5abqWbQUse6AyCBi6A=",
   "overlay": {
-    "BUILD.bazel": "sha256-MLEDIrke5WNHXRg4m51I5hsm1n+S1Sp+UPP+3n1yxi0="
+    "proxygen/BUILD.bazel": "sha256-",
+    "BUILD.bazel": "sha256-1mG1DA7DxdWz6uyJZgbwc91ssDgpB5yo2iLukJkp1JY="
   }
 }
