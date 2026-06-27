@@ -4,6 +4,8 @@
   "overlay": {
     "proxygen/lib/dns/BUILD.bazel": "sha256-vgTWYs1HBo1SzLkn74hm9yMArV1HJLn2sYDB46xgMuo=",
     "proxygen/lib/healthcheck/BUILD.bazel": "sha256-r10G912/JBLLj/kDNN1lKiTghHog0A0GKxVfmWLbSjQ=",
+    "proxygen/lib/pools/generators/coro/BUILD.bazel": "sha256-k/d6UIRihSrPpBCIPFVyrYLtwl4ZDLx9ry24M8r85ds=",
+    "proxygen/lib/pools/generators/BUILD.bazel": "sha256-pWzv0eJQL+ZiWQf73MQRJzXwv4AJG/z/bLdmvrT4DoA=",
     "proxygen/lib/sampling/BUILD.bazel": "sha256-UuI/I5Hf6n1pfhrRFvaMYnrfgMljxPlK8o7CZf0WiQI=",
     "proxygen/lib/services/BUILD.bazel": "sha256-8QIKPXACb/GpDl7pS5p0AqJQ+Lap6VJ/ckWiecvQGXM=",
     "proxygen/lib/ssl/BUILD.bazel": "sha256-jfjW6XQx5JGuIXE8OqXPDTyJFuTaj9p8Wh/t+8camHA=",

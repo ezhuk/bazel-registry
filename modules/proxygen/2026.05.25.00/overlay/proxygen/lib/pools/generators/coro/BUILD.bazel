@@ -1,0 +1,49 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "file_server_list_generator",
+    srcs = ["FileCoroServerListGenerator.cpp"],
+    hdrs = ["FileCoroServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators/coro",
+    deps = [
+        ":server_list_generator",
+        "@folly//folly:file_util",
+    ],
+)
+
+cc_library(
+    name = "json_file_server_list_generator",
+    srcs = ["JsonFileCoroServerListGenerator.cpp"],
+    hdrs = ["JsonFileCoroServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators/coro",
+    deps = [
+        ":file_server_list_generator",
+        "@folly//folly:network_address",
+        "@folly//folly/json:dynamic",
+    ],
+)
+
+cc_library(
+    name = "plain_text_file_server_list_generator",
+    srcs = ["PlainTextFileCoroServerListGenerator.cpp"],
+    hdrs = ["PlainTextFileCoroServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators/coro",
+    deps = [
+        ":file_server_list_generator",
+        "@folly//folly:network_address",
+    ],
+)
+
+cc_library(
+    name = "server_list_generator",
+    hdrs = ["CoroServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators/coro",
+    deps = [
+        "//proxygen/pools/generators:member_group_config",
+        "//proxygen/pools/generators:server_config",
+        "//proxygen/pools/generators:server_list_generator",
+        "@folly//folly/coro:task",
+    ],
+)

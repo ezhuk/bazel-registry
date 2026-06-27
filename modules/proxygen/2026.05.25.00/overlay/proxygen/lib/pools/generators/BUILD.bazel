@@ -1,0 +1,47 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "file_server_list_generator",
+    srcs = ["FileServerListGenerator.cpp"],
+    hdrs = ["FileServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators",
+    deps = [
+        ":server_list_generator",
+        "//proxygen/utils:exception",
+        "@folly//folly:file_util",
+        "@folly//folly:network_address",
+        "@folly//folly/json:dynamic",
+    ],
+)
+
+cc_library(
+    name = "member_group_config",
+    hdrs = ["MemberGroupConfig.h"],
+    include_prefix = "proxygen/lib/pools/generators",
+)
+
+cc_library(
+    name = "server_config",
+    hdrs = ["ServerConfig.h"],
+    include_prefix = "proxygen/lib/pools/generators",
+    deps = [
+        ":member_group_config",
+        "@folly//folly:network_address",
+    ],
+)
+
+cc_library(
+    name = "server_list_generator",
+    srcs = ["ServerListGenerator.cpp"],
+    hdrs = ["ServerListGenerator.h"],
+    include_prefix = "proxygen/lib/pools/generators",
+    deps = [
+        ":member_group_config",
+        ":server_config",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@glog",
+    ],
+)
