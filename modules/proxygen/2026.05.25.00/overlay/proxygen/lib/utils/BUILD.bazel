@@ -1,0 +1,190 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cob_helper",
+    hdrs = ["CobHelper.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "crypt",
+    srcs = ["CryptUtil.cpp"],
+    hdrs = ["CryptUtil.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:range",
+        "@folly//folly/portability:openssl",
+        "@openssl"
+    ],
+)
+
+cc_library(
+    name = "exception",
+    srcs = ["Exception.cpp"],
+    hdrs = ["Exception.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "//proxygen/lib/http:error",
+        "@folly//folly:conv",
+    ],
+)
+
+cc_library(
+    name = "export",
+    hdrs = ["Export.h"],
+    include_prefix = "proxygen/lib/utils",
+)
+
+cc_library(
+    name = "filter_chain",
+    hdrs = ["FilterChain.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:function",
+        "@folly//folly:memory",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "headers",
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:conv",
+        "@folly//folly:function",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:sys_resource",
+        "@folly//folly/portability:time",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "logging",
+    srcs = ["Logging.cpp"],
+    hdrs = ["Logging.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@fmt",
+        "@folly//folly:optional",
+        "@folly//folly:singleton",
+        "@folly//folly:string",
+        "@folly//folly/debugging/symbolizer",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "parse_url",
+    srcs = ["ParseURL.cpp"],
+    hdrs = ["ParseURL.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":export",
+        ":util_inl",
+        "//proxygen/external:http_parser",
+        "@folly//folly:string",
+        "@folly//folly/portability:sockets",
+        "@folly//folly/portability:windows",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "state_machine",
+    hdrs = ["StateMachine.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "test_utils",
+    hdrs = ["TestUtils.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:range",
+        "@folly//folly:random",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:sys_resource",
+    ],
+)
+
+cc_library(
+    name = "time",
+    srcs = ["HTTPTime.cpp"],
+    hdrs = ["HTTPTime.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:optional",
+        "@folly//folly/portability:time",
+    ],
+)
+
+cc_library(
+    name = "time_util",
+    hdrs = ["Time.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly/portability:time",
+    ],
+)
+
+cc_library(
+    name = "timeoutset",
+    srcs = ["AsyncTimeoutSet.cpp"],
+    hdrs = ["AsyncTimeoutSet.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":time_util",
+       "@folly//folly/io/async:async_base",
+       "@folly//folly/io/async:delayed_destruction",
+       "@folly//folly/io/async:request_context",
+       "@folly//folly:scope_guard",
+    ],
+)
+
+cc_library(
+    name = "trace",
+    srcs = [
+        "TraceEvent.cpp",
+        "TraceEventContext.cpp"
+    ],
+    hdrs = [
+        "TraceEvent.h",
+        "TraceEventContext.h"
+    ],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":exception",
+        ":export",
+        ":time_util",
+        "@folly//folly:conv",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/lang:exception",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "util_inl",
+    hdrs = ["UtilInl.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:range",
+        "@folly//folly/portability:windows",
+    ],
+)
