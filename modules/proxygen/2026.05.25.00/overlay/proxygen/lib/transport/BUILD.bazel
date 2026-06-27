@@ -1,0 +1,90 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "async_udp_socket_factory",
+    hdrs = ["AsyncUDPSocketFactory.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["AsyncUDPSocketFactory.cpp"],
+    deps = [
+        "//proxygen/utils:exception",
+        "@folly//folly:expected",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_udp_socket",
+    ],
+)
+
+cc_library(
+    name = "connect_udp_utils",
+    hdrs = ["ConnectUDPUtils.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["ConnectUDPUtils.cpp"],
+    deps = [
+        "@folly//folly:optional",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@mvfst//mvfst:folly_utils",
+        "@mvfst//mvfst/codec:types",
+    ],
+)
+
+cc_library(
+    name = "h3_datagram_async_socket",
+    hdrs = ["H3DatagramAsyncSocket.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["H3DatagramAsyncSocket.cpp"],
+    deps = [
+        ":connect_udp_utils",
+        "//proxygen/http/session:hq_upstream_session",
+        "//proxygen/http/session:http_transaction",
+        "@fizz",
+        "@folly//folly:file_util",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async:udp_socket",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/client",
+        "@mvfst//mvfst/client/handshake",
+        "@mvfst//mvfst/common/udpsocket:folly_async_udp_socket",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "persistent_fizz_psk_cache",
+    hdrs = ["PersistentFizzPskCache.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["PersistentFizzPskCache.cpp"],
+    deps = [
+        "@fizz",
+        "@wangle//wangle:client_persistence",
+    ],
+)
+
+cc_library(
+    name = "persistent_quic_psk_cache",
+    hdrs = ["PersistentQuicPskCache.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["PersistentQuicPskCache.cpp"],
+    deps = [
+        ":persistent_fizz_psk_cache",
+        "@fizz",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly/json:dynamic",
+        "@mvfst//mvfst/client:cached_server_tp_serialization",
+        "@mvfst//mvfst/client/handshake:psk_cache",
+        "@wangle//wangle:client_persistence",
+    ],
+)
+
+cc_library(
+    name = "persistent_quic_token_cache",
+    hdrs = ["PersistentQuicTokenCache.h"],
+    include_prefix = "proxygen/lib/transport",
+    srcd = ["PersistentQuicTokenCache.cpp"],
+    deps = [
+        "@mvfst//mvfst/fizz/client/handshake:token_cache",
+        "@wangle//wangle:client_persistence",
+    ],
+)
