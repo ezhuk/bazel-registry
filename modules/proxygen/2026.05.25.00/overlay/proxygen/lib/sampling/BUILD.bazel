@@ -1,0 +1,46 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "multi_sampled",
+    hdrs = ["MultiSampled.h"],
+    include_prefix = "proxygen/lib/sampling",
+    deps = [
+        ":sampling",
+        "@folly//folly/container:f14_hash",
+    ],
+)
+
+cc_library(
+    name = "sampled",
+    hdrs = ["Sampled.h"],
+    include_prefix = "proxygen/lib/sampling",
+    deps = [
+        ":sampling",
+    ],
+)
+
+cc_library(
+    name = "sampling",
+    srcs = ["Sampling.cpp"],
+    hdrs = ["Sampling.h"],
+    include_prefix = "proxygen/lib/sampling",
+    deps = [
+        "@folly//folly:function",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly/hash",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "sampling_functions",
+    hdrs = ["SamplingFunctions.h"],
+    include_prefix = "proxygen/lib/sampling",
+    deps = [
+        "@folly//folly/hash",
+        "@mvfst//mvfst/codec:types",
+    ],
+)
