@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "callback",
+    srcs = ["ServerHealthCheckerCallback.cpp"],
+    hdrs = ["ServerHealthCheckerCallback.h"],
+    include_prefix = "proxygen/lib/healthcheck",
+    deps = [
+        "//proxygen/utils:time_util",
+        "@folly//folly:network_address",
+        "@folly//folly/container:f14_hash",
+    ],
+)
+
+cc_library(
+    name = "pool_healthcheck",
+    include_prefix = "proxygen/lib/healthcheck",
+    deps = [
+        ":callback",
+        "//proxygen/utils:time_util",
+        "@folly//folly:network_address",
+        "@folly//folly/io:socket_option_map",
+    ],
+)

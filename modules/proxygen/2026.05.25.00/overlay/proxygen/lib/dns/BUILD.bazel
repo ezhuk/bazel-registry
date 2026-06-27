@@ -1,0 +1,110 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cares_dns",
+    srcs = ["CAresResolver.cpp"],
+    hdrs = ["CAresResolver.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        ":dns_base",
+        "//proxygen/utils:time_util",
+        "@c-ares//:cares",
+        "@folly//folly:conv",
+        "@folly//folly:expected",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:sockets",
+        "@folly//folly/portability:windows",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "dns",
+    srcs = ["CachingDNSResolver.cpp"],
+    hdrs = ["CachingDNSResolver.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        ":dns_base",
+        "//proxygen/utils:time_util",
+        "@folly//folly:random",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/container:f14_hash",
+    ],
+)
+
+cc_library(
+    name = "dns_base",
+    srcs = [
+        "DNSResolver.cpp",
+        "NaiveResolutionCallback.cpp",
+    ],
+    hdrs = [
+        "DNSResolver.h",
+        "NaiveResolutionCallback.h",
+    ],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        "//proxygen/utils:trace",
+        "@folly//folly:conv",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:network_address",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:delayed_destruction",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "dns_module",
+    srcs = ["DNSModule.cpp"],
+    hdrs = ["DNSModule.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        ":cares_dns",
+        ":dns",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly:singleton",
+    ],
+)
+
+cc_library(
+    name = "future_dns",
+    srcs = ["FutureDNSResolver.cpp"],
+    hdrs = ["FutureDNSResolver.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        ":dns_base",
+        "@folly//folly:network_address",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_base",
+    ],
+)
+
+cc_library(
+    name = "rfc6724",
+    srcs = ["Rfc6724.cpp"],
+    hdrs = ["Rfc6724.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        "@folly//folly:network_address",
+        "@folly//folly/portability:unistd",
+        "@folly//folly/portability:windows",
+    ],
+)
+
+cc_library(
+    name = "sync_resolver",
+    srcs = ["SyncDNSResolver.cpp"],
+    hdrs = ["SyncDNSResolver.h"],
+    include_prefix = "proxygen/lib/dns",
+    deps = [
+        ":dns_base",
+        ":dns_module",
+        ":rfc6724",
+    ],
+)
