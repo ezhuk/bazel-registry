@@ -3,10 +3,43 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
+    name = "acceptor_address",
+    hdrs = ["AcceptorAddress.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:network_address",
+        "@glog",
+    ],
+)
+
+cc_library(
     name = "cob_helper",
     hdrs = ["CobHelper.h"],
     include_prefix = "proxygen/lib/utils",
     deps = [
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "compression_filter_utils",
+    hdrs = ["CompressionFilterUtils.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":stream_compressor",
+        ":zlib_stream_compressor",
+        ":zstd_stream_compressor",
+        "//proxygen/http:headers",
+        "//proxygen/http:message",
+    ],
+)
+
+cc_library(
+    name = "conditional_gate",
+    hdrs = ["ConditionalGate.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:function",
         "@glog",
     ],
 )
@@ -19,7 +52,7 @@ cc_library(
     deps = [
         "@folly//folly:range",
         "@folly//folly/portability:openssl",
-        "@openssl"
+        "@openssl",
     ],
 )
 
@@ -86,6 +119,15 @@ cc_library(
 )
 
 cc_library(
+    name = "null_trace_event_observer",
+    hdrs = ["NullTraceEventObserver.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":trace",
+    ],
+)
+
+cc_library(
     name = "parse_url",
     srcs = ["ParseURL.cpp"],
     hdrs = ["ParseURL.h"],
@@ -102,6 +144,75 @@ cc_library(
 )
 
 cc_library(
+    name = "prefect_index_map",
+    hdrs = ["PerfectIndexMap.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":util_inl",
+        "@folly//folly:fbvector",
+        "@folly//folly:optional",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "rendezvous_hash",
+    srcs = ["RendezvousHash.cpp"],
+    hdrs = ["RendezvousHash.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly/hash",
+    ],
+)
+
+cc_library(
+    name = "safe_path",
+    srcs = ["SafePathUtils.cpp"],
+    hdrs = ["SafePathUtils.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@fmt",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:expected",
+        "@folly//folly:string",
+        "@folly//folly/container:foreach",
+        "@folly//folly/portability:stdlib",
+    ],
+)
+
+cc_library(
+    name = "shared_wheel_timer",
+    srcs = ["WheelTimerInstance.cpp"],
+    hdrs = ["WheelTimerInstance.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:singleton",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+    ],
+)
+
+cc_library(
+    name = "sockopts",
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@folly//folly:conv",
+        "@folly//folly:function",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:sys_resource",
+        "@folly//folly/portability:time",
+        "@glog",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
     name = "state_machine",
     hdrs = ["StateMachine.h"],
     include_prefix = "proxygen/lib/utils",
@@ -111,12 +222,24 @@ cc_library(
 )
 
 cc_library(
+    name = "stream_compressor",
+    hdrs = ["StreamCompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+)
+
+cc_library(
+    name = "stream_decompressor",
+    hdrs = ["StreamDecompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+)
+
+cc_library(
     name = "test_utils",
     hdrs = ["TestUtils.h"],
     include_prefix = "proxygen/lib/utils",
     deps = [
-        "@folly//folly:range",
         "@folly//folly:random",
+        "@folly//folly:range",
         "@folly//folly:string",
         "@folly//folly/io:iobuf",
         "@folly//folly/portability:sys_resource",
@@ -150,10 +273,10 @@ cc_library(
     include_prefix = "proxygen/lib/utils",
     deps = [
         ":time_util",
-       "@folly//folly/io/async:async_base",
-       "@folly//folly/io/async:delayed_destruction",
-       "@folly//folly/io/async:request_context",
-       "@folly//folly:scope_guard",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:request_context",
     ],
 )
 
@@ -161,11 +284,11 @@ cc_library(
     name = "trace",
     srcs = [
         "TraceEvent.cpp",
-        "TraceEventContext.cpp"
+        "TraceEventContext.cpp",
     ],
     hdrs = [
         "TraceEvent.h",
-        "TraceEventContext.h"
+        "TraceEventContext.h",
     ],
     include_prefix = "proxygen/lib/utils",
     deps = [
@@ -186,5 +309,73 @@ cc_library(
     deps = [
         "@folly//folly:range",
         "@folly//folly/portability:windows",
+    ],
+)
+
+cc_library(
+    name = "weak_ref_counted_ptr",
+    hdrs = ["WeakRefCountedPtr.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "zlib_stream",
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":zlib_stream_compressor",
+        ":zlib_stream_decompressor",
+    ],
+)
+
+cc_library(
+    name = "zlib_stream_compressor",
+    srcs = ["ZlibStreamCompressor.cpp"],
+    hdrs = ["ZlibStreamCompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":stream_compressor",
+        ":zlib_stream_decompressor",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gflags",
+        "@zlib",
+    ],
+)
+
+cc_library(
+    name = "zlib_stream_decompressor",
+    srcs = ["ZlibStreamDecompressor.cpp"],
+    hdrs = ["ZlibStreamDecompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":stream_decompressor",
+        "@folly//folly/io:iobuf",
+        "@zlib",
+    ],
+)
+
+cc_library(
+    name = "zstd_stream_compressor",
+    srcs = ["ZstdStreamCompressor.cpp"],
+    hdrs = ["ZstdStreamCompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":stream_compressor",
+        "@folly//folly/compression",
+    ],
+)
+
+cc_library(
+    name = "zstd_stream_decompressor",
+    srcs = ["ZstdStreamDecompressor.cpp"],
+    hdrs = ["ZstdStreamDecompressor.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":stream_decompressor",
+        "@folly//folly:memory",
+        "@folly//folly/io:iobuf",
+        "@zstd",
     ],
 )
