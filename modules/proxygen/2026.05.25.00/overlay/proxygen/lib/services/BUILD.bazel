@@ -1,0 +1,73 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "acceptor_configuration",
+    hdrs = ["AcceptorConfiguration.h"],
+    include_prefix = "proxygen/lib/services",
+    deps = [
+        "//proxygen/http/codec:codec_common",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_socket",
+        "@wangle//wangle:acceptor",
+        "@zlib",
+    ],
+)
+
+cc_library(
+    name = "http_acceptor",
+    hdrs = ["HTTPAcceptor.h"],
+    include_prefix = "proxygen/lib/services",
+    deps = [
+        ":acceptor_configuration",
+        "//proxygen/utils:shared_wheel_timer",
+        "//proxygen/utils:timeoutset",
+        "@folly//folly/io/async:server_socket",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "service_configuration",
+    hdrs = ["ServiceConfiguration.h"],
+    include_prefix = "proxygen/lib/services",
+)
+
+cc_library(
+    name = "service",
+    srcs = [
+        "RequestWorkerThread.cpp",
+        "RequestWorkerThreadNoExecutor.cpp",
+        "Service.cpp",
+    ],
+    hdrs = [
+        "RequestWorkerThread.h",
+        "RequestWorkerThreadNoExecutor.h",
+        "Service.h",
+    ],
+    include_prefix = "proxygen/lib/services",
+    deps = [
+        ":worker",
+        "//proxygen/utils:acceptor_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:server_socket",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "worker",
+    srcs = ["WorkerThread.cpp"],
+    hdrs = ["WorkerThread.h"],
+    include_prefix = "proxygen/lib/services",
+    deps = [
+        "@folly//folly:portability",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:io_uring_backend",
+        "@glog",
+    ],
+)
