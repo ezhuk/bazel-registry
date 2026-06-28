@@ -1,0 +1,290 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "client",
+    srcs = ["HTTPConnector.cpp"],
+    hdrs = ["HTTPConnector.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:codec_factory",
+        "//proxygen/http/codec:http1x_codec",
+        "//proxygen/http/codec:http2_codec",
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/http/session:http_upstream_session",
+        "//proxygen/utils:shared_wheel_timer",
+        "//proxygen/utils:time_util",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/logging",
+        "@folly//folly/ssl:ssl_session",
+        "@wangle//wangle/acceptor",
+        "@wangle//wangle/ssl:ssl_util",
+    ],
+)
+
+cc_library(
+    name = "client_base",
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http/session:http_upstream_session",
+    ],
+)
+
+cc_library(
+    name = "error",
+    srcs = ["ProxygenErrorEnum.cpp"],
+    hdrs = ["ProxygenErrorEnum.h"],
+    include_prefix = "proxygen/lib/http",
+)
+
+cc_library(
+    name = "h3_errors",
+    srcs = ["HTTP3ErrorCode.cpp"],
+    hdrs = ["HTTP3ErrorCode.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "header_constants",
+    srcs = ["HeaderConstants.cpp"],
+    hdrs = ["HeaderConstants.h"],
+    include_prefix = "proxygen/lib/http",
+)
+
+cc_library(
+    name = "hq_connector",
+    srcs = ["HQConnector.cpp"],
+    hdrs = ["HQConnector.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http/codec:h3_early_data_handler",
+        "//proxygen/http/session:hq_session",
+        "//proxygen/http/session:hq_upstream_session",
+        "@fizz",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/api:loop_detector_callback",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/client",
+        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
+        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//mvfst/common/udpsocket:folly_async_udp_socket",
+        "@mvfst//mvfst/congestion_control:congestion_controller_factory",
+        "@mvfst//mvfst/fizz/client/handshake",
+        "@mvfst//mvfst/fizz/client/handshake:psk_cache",
+        "@mvfst//mvfst/logging:qlogger",
+    ],
+)
+
+cc_library(
+    name = "http",
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":client",
+        ":session_server",
+        "@folly//folly:conv",
+        "@folly//folly:fbstring",
+        "@folly//folly:fbvector",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly:portability",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:thread_local",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/lang:bits",
+    ],
+)
+
+cc_library(
+    name = "http_common",
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http/session",
+    ],
+)
+
+cc_library(
+    name = "http_connector_with_fizz",
+    srcs = ["HTTPConnectorWithFizz.cpp"],
+    hdrs = ["HTTPConnectorWithFizz.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":client",
+        "//proxygen/http/session:http_upstream_session",
+        "@fizz",
+        "@folly//folly/io:socket_option_map",
+    ],
+)
+
+cc_library(
+    name = "http_header_size",
+    hdrs = ["HTTPHeaderSize.h"],
+    include_prefix = "proxygen/lib/http",
+)
+
+cc_library(
+    name = "http_headers",
+    srcs = [
+        "HTTPHeaders.cpp",
+        "HTTPMethod.cpp",
+        "RFC2616.cpp",
+    ],
+    hdrs = [
+        "HTTPHeaders.cpp",
+        "HTTPMethod.cpp",
+        "RFC2616.cpp",
+    ],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http:http_common_headers",
+        "//proxygen/utils:export",
+        "//proxygen/utils:util_inl",
+        "@folly//folly:fbvector",
+        "@folly//folly:indestructible",
+        "@folly//folly:optional",
+        "@folly//folly:range",
+        "@folly//folly:small_vector",
+        "@folly//folly:string",
+        "@folly//folly:thread_local",
+        "@folly//folly:try",
+        "@folly//folly:utility",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "http_message_filters",
+    srcs = ["HTTPMessageFilters.cpp"],
+    hdrs = ["HTTPMessageFilters.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/http/sink/client:sink_interface",
+        "@folly//folly:memory",
+        "@folly//folly/io/async:destructor_check",
+    ],
+)
+
+cc_library(
+    name = "http_utils",
+    srcs = [
+        "HTTPConstants.cpp",
+        "HTTPException.cpp",
+    ],
+    hdrs = [
+        "HTTPConstants.h",
+        "HTTPException.h",
+    ],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "//proxygen/http:h3_errors",
+        "//proxygen/http:message",
+        "//proxygen/http/codec:error_code",
+        "//proxygen/utils:exception",
+        "@folly//folly:memory",
+    ],
+)
+
+cc_library(
+    name = "message",
+    srcs = ["HTTPMessage.cpp"],
+    hdrs = ["HTTPMessage.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":header_constants",
+        ":http_header_size",
+        ":http_headers",
+        ":types",
+        "//proxygen/utils:parse_url",
+        "//proxygen/utils:time_util",
+        "@folly//folly:conv",
+        "@folly//folly:format",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly:range",
+        "@folly//folly:singleton_thread_local",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "priority_functions",
+    srcs = ["HTTPPriorityFunctions.cpp"],
+    hdrs = ["HTTPPriorityFunctions.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":message",
+        ":structuredheaders_decoder",
+        "@folly//folly:optional",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "proxy_status",
+    srcs = ["ProxyStatus.cpp"],
+    hdrs = ["ProxyStatus.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":status_type",
+        ":structuredheaders_encoder",
+        "@folly//folly:range",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "status_type",
+    srcs = ["StatusTypeEnum.cpp"],
+    hdrs = ["StatusTypeEnum.h"],
+    include_prefix = "proxygen/lib/http",
+)
+
+cc_library(
+    name = "synchronized_quic_lrucache",
+    srcs = ["SynchronizedLruQuicPskCache.cpp"],
+    hdrs = ["SynchronizedLruQuicPskCache.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "@folly//folly:synchronized",
+        "@folly//folly/container:evicting_cache_map",
+        "@mvfst//mvfst/fizz/client/handshake:psk_cache",
+    ],
+)
+
+cc_library(
+    name = "types",
+    hdrs = ["Types.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "@folly//folly/container:f14_hash",
+    ],
+)
+
+cc_library(
+    name = "window",
+    srcs = ["Window.cpp"],
+    hdrs = ["Window.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        "@glog",
+    ],
+)

@@ -4,6 +4,12 @@
   "overlay": {
     "proxygen/lib/dns/BUILD.bazel": "sha256-vgTWYs1HBo1SzLkn74hm9yMArV1HJLn2sYDB46xgMuo=",
     "proxygen/lib/healthcheck/BUILD.bazel": "sha256-r10G912/JBLLj/kDNN1lKiTghHog0A0GKxVfmWLbSjQ=",
+    "proxygen/lib/http/codec/compress/BUILD.bazel": "sha256-DQeawkcHjAc283YleIolpk0CdthGBTCstc3gjoAhOXo=",
+    "proxygen/lib/http/codec/webtransport/BUILD.bazel": "sha256-ek3FqXpPzG9qDguHN/c6ctOYTeKBuGtjWcXRNfZywqs=",
+    "proxygen/lib/http/codec/BUILD.bazel": "sha256-BrdPFkFJfAL+yB1TLHGLGWsDdBa1jZONEtFu6MbElEU=",
+    "proxygen/lib/http/connpool/BUILD.bazel": "sha256-4RZXaBc1lx6ck/LAJAH+mvHqjckMq1EKsy45l3Cxi5c=",
+    "proxygen/lib/http/observer/BUILD.bazel": "sha256-u+BqVGvCfbmW0ftdhqAPzlpyjPQYCUjoj1j6Wtu12O8=",
+    "proxygen/lib/http/BUILD.bazel": "sha256-CAupFjct7owo3h8Is3c7l1SLmS1E+NZvOuEWAzirm5o=",
     "proxygen/lib/pools/generators/coro/BUILD.bazel": "sha256-k/d6UIRihSrPpBCIPFVyrYLtwl4ZDLx9ry24M8r85ds=",
     "proxygen/lib/pools/generators/BUILD.bazel": "sha256-pWzv0eJQL+ZiWQf73MQRJzXwv4AJG/z/bLdmvrT4DoA=",
     "proxygen/lib/sampling/BUILD.bazel": "sha256-UuI/I5Hf6n1pfhrRFvaMYnrfgMljxPlK8o7CZf0WiQI=",

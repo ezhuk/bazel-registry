@@ -1,0 +1,39 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "connpool",
+    srcs = [
+        "ServerIdleSessionController.cpp",
+        "SessionPool.cpp",
+        "ThreadIdleSessionController.cpp",
+    ],
+    hdrs = [
+        "ServerIdleSessionController.h",
+        "SessionPool.h",
+        "ThreadIdleSessionController.h",
+    ],
+    include_prefix = "proxygen/lib/http/connpool",
+    deps = [
+        ":session_holder",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+    ],
+)
+
+cc_library(
+    name = "session_holder",
+    srcs = ["SessionHolder.cpp"],
+    hdrs = ["SessionHolder.h"],
+    include_prefix = "proxygen/lib/http/connpool",
+    deps = [
+        "//proxygen/http:error",
+        "//proxygen/http/session",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:network_address",
+        "@folly//folly:random",
+        "@folly//folly/io/async:async_socket",
+    ],
+)

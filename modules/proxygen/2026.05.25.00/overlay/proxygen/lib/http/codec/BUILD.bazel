@@ -1,0 +1,290 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "capsule_codec",
+    srcs = ["CapsuleCodec.cpp"],
+    hdrs = ["CapsuleCodec.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        "@folly//folly:expected",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/folly:utils",
+    ],
+)
+
+cc_library(
+    name = "codec",
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":http1x_codec",
+        ":http2_codec",
+    ],
+)
+
+cc_library(
+    name = "codec_common",
+    srcs = [
+        "CodecProtocol.cpp",
+        "HTTP2Constants.cpp",
+        "HTTPCodecFilter.cpp",
+        "HTTPCodecPrinter.cpp",
+        "HTTPParallelCodec.cpp",
+        "HTTPSettings.cpp",
+        "HeaderDecodeInfo.cpp",
+    ],
+    hdrs = [
+        "CodecProtocol.h",
+        "HTTP2Constants.h",
+        "HTTPCodecFilter.h",
+        "HTTPCodecPrinter.h",
+        "HTTPParallelCodec.h",
+        "HTTPSettings.h",
+        "HeaderDecodeInfo.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":direction",
+        ":error_code",
+        ":util",
+        "//proxygen:error",
+        "//proxygen/http:header_constants",
+        "//proxygen/http:http_header_size",
+        "//proxygen/http:http_headers",
+        "//proxygen/http:http_utils",
+        "//proxygen/http:message",
+        "//proxygen/http/codec/compress:compression_info",
+        "//proxygen/http/codec/compress:fast_header_name",
+        "//proxygen/http/codec/compress:header_codec",
+        "//proxygen/http/codec/compress:hpack",
+        "//proxygen/utils:export",
+        "//proxygen/utils:filter_chain",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly:portability",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "codec_factory",
+    srcs = [
+        "DefaultHTTPCodecFactory.cpp",
+        "HTTPCodecFactory.cpp",
+    ],
+    hdrs = [
+        "DefaultHTTPCodecFactory.h",
+        "HTTPCodecFactory.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":direction",
+        ":http1x_codec",
+        ":http2_codec",
+    ],
+)
+
+cc_library(
+    name = "debug_filter",
+    hdrs = ["DebugFilter.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        "//proxygen/utils:logging",
+        "@folly//folly/container:evicting_cache_map",
+    ],
+)
+
+cc_library(
+    name = "direction",
+    srcs = ["TransportDirection.cpp"],
+    hdrs = ["TransportDirection.h"],
+    include_prefix = "proxygen/lib/http/codec",
+)
+
+cc_library(
+    name = "error_code",
+    srcs = ["ErrorCode.cpp"],
+    hdrs = ["ErrorCode.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = ["@glog"],
+)
+
+cc_library(
+    name = "h3_early_data_handler",
+    srcs = ["H3EarlyDataHandler.cpp"],
+    hdrs = ["H3EarlyDataHandler.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":hq_codec",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/codec:types",
+        "@mvfst//mvfst/folly:utils",
+        "@mvfst//mvfst/state:early_data_app_params_handler",
+    ],
+)
+
+cc_library(
+    name = "hq_codec",
+    srcs = [
+        "HQControlCodec.cpp",
+        "HQFramedCodec.cpp",
+        "HQFramer.cpp",
+        "HQStreamCodec.cpp",
+        "HQUnidirectionalCodec.cpp",
+        "HQUtils.cpp",
+    ],
+    hdrs = [
+        "HQControlCodec.h",
+        "HQFramedCodec.h",
+        "HQFramer.h",
+        "HQStreamCodec.h",
+        "HQUnidirectionalCodec.h",
+        "HQUtils.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":util",
+        "//proxygen/http:h3_errors",
+        "//proxygen/http:http_utils",
+        "//proxygen/http:priority_functions",
+        "//proxygen/http/codec:error_code",
+        "//proxygen/http/codec/compress:hpack",
+        "//proxygen/http/codec/compress:qpack",
+        "//proxygen/utils:logging",
+        "@folly//folly:format",
+        "@folly//folly:function",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
+        "@folly//folly/tracing:scoped_trace_section",
+        "@mvfst//mvfst/codec:types",
+        "@mvfst//mvfst/folly:utils",
+    ],
+)
+
+cc_library(
+    name = "http_binary_codec",
+    srcs = ["HTTPBinaryCodec.cpp"],
+    hdrs = ["HTTPBinaryCodec.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":direction",
+        "//proxygen/http:message",
+        "@folly//folly/io:iobuf",
+        "@mvfst//mvfst/codec:types",
+        "@mvfst//mvfst/folly:utils",
+    ],
+)
+
+cc_library(
+    name = "http1x_codec",
+    srcs = [
+        "HTTP1xCodec.cpp",
+        "HTTPChecks.cpp",
+    ],
+    hdrs = [
+        "HTTP1xCodec.h",
+        "HTTPChecks.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":direction",
+        ":util",
+        "//proxygen/external:http_parser",
+        "//proxygen/http:http_headers",
+        "//proxygen/http:message",
+        "@folly//folly:base64",
+        "@folly//folly:random",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/ssl:openssl_hash",
+    ],
+)
+
+cc_library(
+    name = "http2_codec",
+    srcs = [
+        "FlowControlFilter.cpp",
+        "HTTP2Codec.cpp",
+        "HTTP2Framer.cpp",
+    ],
+    hdrs = [
+        "FlowControlFilter.h",
+        "HTTP2Codec.h",
+        "HTTP2Framer.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":error_code",
+        ":util",
+        "//proxygen/http:priority_functions",
+        "//proxygen/http:window",
+        "//proxygen/http/codec/compress:hpack",
+        "//proxygen/utils:export",
+        "//proxygen/utils:logging",
+        "@folly//folly:base64",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:try",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/tracing:scoped_trace_section",
+    ],
+)
+
+cc_library(
+    name = "rate_limit_filters",
+    srcs = ["RateLimitFilter.cpp"],
+    hdrs = ["RateLimitFilter.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":codec_common",
+        ":http2_codec",
+        "//proxygen/http:session_stats",
+        "@folly//folly/io/async:async_base",
+    ],
+)
+
+cc_library(
+    name = "util",
+    srcs = ["CodecUtil.cpp"],
+    hdrs = ["CodecUtil.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        ":compress_header_codec",
+        "//proxygen/http:http_headers",
+        "//proxygen/http:message",
+        "//proxygen/utils:util_inl",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/portability:windows",
+    ],
+)
+
+cc_library(
+    name = "varint_utils",
+    hdrs = ["VarintUtils.h"],
+    include_prefix = "proxygen/lib/http/codec",
+    deps = [
+        "@folly//folly/io:iobuf",
+        "@mvfst//mvfst/codec:types",
+    ],
+)
