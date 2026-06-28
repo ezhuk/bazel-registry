@@ -1,0 +1,46 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "http_transaction_observer_container",
+    hdrs = ["HTTPTransactionObserverContainer.h"],
+    include_prefix = "proxygen/lib/http/observer",
+    deps = [
+        ":http_transaction_observer_interface",
+        "@folly//folly:observer_container",
+    ],
+)
+
+cc_library(
+    name = "http_transaction_observer_interface",
+    srcs = ["HTTPTransactionObserverInterface.cpp"],
+    hdrs = ["HTTPTransactionObserverInterface.h"],
+    include_prefix = "proxygen/lib/http/observer",
+    deps = [
+        "//proxygen/http:message",
+        "//proxygen/utils:time_util",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "session_observer_container",
+    hdrs = ["HTTPSessionObserverContainer.h"],
+    include_prefix = "proxygen/lib/http/observer",
+    deps = [
+        ":session_observer_interface",
+        "@folly//folly:observer_container",
+    ],
+)
+
+cc_library(
+    name = "session_observer_interface",
+    srcs = ["HTTPSessionObserverInterface.cpp"],
+    hdrs = ["HTTPSessionObserverInterface.h"],
+    include_prefix = "proxygen/lib/http/observer",
+    deps = [
+        "//proxygen/http:message",
+        "@glog",
+    ],
+)

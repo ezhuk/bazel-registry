@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "webtransport_capsule_codec",
+    srcs = ["WebTransportCapsuleCodec.cpp"],
+    hdrs = ["WebTransportCapsuleCodec.h"],
+    include_prefix = "proxygen/lib/http/codec/webtransport",
+    deps = [
+        ":webtransport_framer",
+        "//proxygen/http/codec:capsule_codec",
+    ],
+)
+
+cc_library(
+    name = "webtransport_framer",
+    srcs = ["WebTransportFramer.cpp"],
+    hdrs = ["WebTransportFramer.h"],
+    include_prefix = "proxygen/lib/http/codec/webtransport",
+    deps = [
+        "//proxygen/http/codec:capsule_codec",
+        "//proxygen/http/codec:varint_utils",
+        "@folly//folly:utility",
+        "@folly//folly/io:iobuf",
+        "@mvfst//mvfst/codec:types",
+        "@mvfst//mvfst/folly:utils",
+    ],
+)
