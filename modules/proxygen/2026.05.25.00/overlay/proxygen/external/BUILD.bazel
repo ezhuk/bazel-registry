@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "http_parser",
+    srcs = ["http_parser/http_parser_cpp.cpp"],
+    hdrs = ["http_parser/http_parser.h"],
+    include_prefix = "proxygen/external",
+)
