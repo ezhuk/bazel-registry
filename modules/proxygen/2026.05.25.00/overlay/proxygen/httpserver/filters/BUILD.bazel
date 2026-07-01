@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "decompression_filter",
+    srcs = ["DecompressionFilter.cpp"],
+    hdrs = ["DecompressionFilter.h"],
+    include_prefix = "proxygen/httpserver/filters",
+    deps = [
+        "//proxygen/httpserver:httpserver_headers",
+        "//proxygen/utils:stream_decompressor",
+        "//proxygen/utils:zstd_stream_decompressor",
+    ],
+)
