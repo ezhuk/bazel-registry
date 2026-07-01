@@ -1,0 +1,80 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "httpserver",
+    srcs = [
+        "HTTPServer.cpp",
+        "HTTPServerAcceptor.cpp",
+        "RequestHandlerAdaptor.cpp",
+        "SignalHandler.cpp",
+    ],
+    hdrs = [
+        "HTTPServer.h",
+        "HTTPServerAcceptor.h",
+        "RequestHandlerAdaptor.h",
+        "SignalHandler.h",
+    ],
+    include_prefix = "proxygen/httpserver",
+    deps = [
+        ":httpserver_headers",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:codec_factory",
+        "//proxygen/http/codec:http1x_codec",
+        "//proxygen/http/session",
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/http/session:server",
+        "//proxygen/services:acceptor_configuration",
+        "@folly//folly:exception_string",
+        "@folly//folly:range",
+        "@folly//folly/executors/thread_factory:named_thread_factory",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_signal_handler",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/system:hardware_concurrency",
+        "@folly//folly_executors_io_thread_pool_executor",
+        "@wangle//wangle/bootstrap:server_bootstrap",
+        "@wangle//wangle/ssl:ssl_context_config",
+        "@wangle//wangle/ssl:ssl_context_manager",
+    ],
+)
+
+cc_library(
+    name = "httpserver_headers",
+    hdrs = ["Mocks.h"],
+    include_prefix = "proxygen/httpserver",
+    deps = [
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/utils:compression_filter_utils",
+        "//proxygen/utils:stream_decompressor",
+        "@folly//folly:expected",
+        "@folly//folly:function",
+        "@folly//folly:network_address",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io/async:server_socket",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "proxygen/httpserver",
+    deps = [
+        ":httpserver_headers",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "scoped_httpserver",
+    hdrs = ["ScopedHTTPServer.h"],
+    include_prefix = "proxygen/httpserver",
+    deps = [
+        ":httpserver",
+        ":httpserver_headers",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/system:thread_name",
+    ],
+)
