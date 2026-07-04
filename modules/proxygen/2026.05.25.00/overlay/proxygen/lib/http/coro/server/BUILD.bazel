@@ -1,0 +1,60 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "coro_acceptor",
+    srcs = ["HTTPCoroAcceptor.cpp"],
+    hdrs = ["HTTPCoroAcceptor.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        "m@vfst//mvfst/api:transport",
+        "//proxygen/http:error",
+        "//proxygen/http/codec:compress_header_codec",
+        "//proxygen/http/coro",
+        "//proxygen/http/session:http_session_codec_factory",
+        "//proxygen/services:acceptor_configuration",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
+        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "coro_httpserver",
+    srcs = ["HTTPServer.cpp"],
+    hdrs = ["HTTPServer.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        ":coro_acceptor",
+        "//proxygen/http:sampling",
+        "//proxygen/http/codec:h3_early_data_handler",
+        "//proxygen/http/coro/filter:factory_handler",
+        "//proxygen/http/coro/filters:ServerFilterFactory",
+        "//proxygen/utils:time_util",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/fibers:batch_semaphore",
+        "@folly//folly/io/async:async_signal_handler",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/logging",
+        "@folly//folly/system:hardware_concurrency",
+        "@mvfst//mvfst:config",
+        "@mvfst//mvfst:server",
+        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//mvfst/congestion_control:server_congestion_controller_factory",
+        "@mvfst//mvfst/logging:file_qlogger",
+        "@mvfst//mvfst/server/quic:handshake_socket_holder",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "scoped_coro_httpserver",
+    hdrs = ["ScopedHTTPServer.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        ":coro_httpserver",
+    ],
+)

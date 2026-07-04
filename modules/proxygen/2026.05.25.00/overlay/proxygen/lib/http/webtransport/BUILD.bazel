@@ -1,0 +1,144 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "flow_controller",
+    hdrs = ["FlowController.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+)
+
+cc_library(
+    name = "httpwebtransport",
+    srcs = ["HTTPWebTransport.cpp"],
+    hdrs = ["HTTPWebTransport.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        "//proxygen/http:message",
+        "//proxygen/http/structuredheaders:decoder",
+        "//proxygen/http/structuredheaders:encoder",
+        "@folly//folly:expected",
+        "@folly//folly:optional",
+    ],
+)
+
+cc_library(
+    name = "quicwebtransport",
+    srcs = ["QuicWebTransport.cpp"],
+    hdrs = ["QuicWebTransport.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":webtransportimpl",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
+    ],
+)
+
+cc_library(
+    name = "quic_wt_session",
+    srcs = ["QuicWtSession.cpp"],
+    hdrs = ["QuicWtSession.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":webtransport",
+        ":wt_stream_manager",
+        ":wt_util",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
+        "@mvfst//mvfst/priority:http_priority_queue",
+    ],
+)
+
+cc_library(
+    name = "webtransport",
+    srcs = ["WebTransport.cpp"],
+    hdrs = ["WebTransport.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        "@folly//folly:cancellation_token",
+        "@folly//folly:expected",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+        "@mvfst//mvfst/api:quic_callbacks",
+        "@mvfst//mvfst/api:transport_info",
+        "@mvfst//mvfst/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "webtransportimpl",
+    srcs = ["WebTransportImpl.cpp"],
+    hdrs = ["WebTransportImpl.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":flow_controller",
+        ":webtransport",
+        "//proxygen/http/codec:codec_common",
+        "@glog",
+        "@mvfst//mvfst:constants",
+    ],
+)
+
+cc_library(
+    name = "webtransport_session",
+    srcs = ["WebTransportSession.cpp"],
+    hdrs = ["WebTransportSession.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":wt_stream_manager",
+        ":wt_util",
+        "//proxygen/http/session:http_transaction",
+        "@mvfst//mvfst/priority:priority_queue",
+    ],
+)
+
+cc_library(
+    name = "wt_hq_session",
+    srcs = ["HqWtSession.cpp"],
+    hdrs = ["HqWtSession.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":quic_wt_session",
+        ":webtransport_session",
+    ],
+)
+
+cc_library(
+    name = "wt_stream_manager",
+    srcs = [
+        "WtEgressContainer.cpp",
+        "WtStreamManager.cpp",
+    ],
+    hdrs = [
+        "WtEgressContainer.h",
+        "WtStreamManager.h",
+    ],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":flow_controller",
+        ":webtransport",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/priority:http_priority_queue",
+    ],
+)
+
+cc_library(
+    name = "wt_util",
+    srcs = ["WtUtils.cpp"],
+    hdrs = ["WtUtils.h"],
+    include_prefix = "proxygen/lib/http/webtransport",
+    deps = [
+        ":webtransport_capsule_codec",
+        ":wt_stream_manager",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:direction",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/codec:types",
+    ],
+)

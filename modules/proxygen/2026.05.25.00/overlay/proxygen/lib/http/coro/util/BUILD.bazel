@@ -1,0 +1,102 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "awaitable_keepalive",
+    hdrs = ["AwaitableKeepalive.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        ":cancellable_baton",
+        "@folly//folly/coro:baton",
+        "@folly//folly/coro:task",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "cancellable_baton",
+    srcs = ["CancellableBaton.cpp"],
+    hdrs = ["CancellableBaton.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        ":timed_baton",
+    ],
+)
+
+cc_library(
+    name = "CoroWtSession",
+    srcs = ["CoroWtSession.cpp"],
+    hdrs = ["CoroWtSession.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "//proxygen/http/codec/webtransport:webtransport_capsule_codec",
+        "//proxygen/http/coro:coro_stream_source",
+        "//proxygen/http/coro:source",
+        "//proxygen/http/coro/util:cancellable_baton",
+        "//proxygen/http/webtransport:wt_stream_manager",
+        "//proxygen/http/webtransport:wt_util",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/priority:http_priority_queue",
+    ],
+)
+
+cc_library(
+    name = "DetachableExecutor",
+    srcs = ["DetachableExecutor.cpp"],
+    hdrs = ["DetachableExecutor.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "@folly//folly:intrusive_list",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "executor_source_filter",
+    srcs = ["ExecutorSourceFilter.cpp"],
+    hdrs = ["ExecutorSourceFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "//proxygen/http/coro:source",
+    ],
+)
+
+cc_library(
+    name = "timed_baton",
+    hdrs = ["TimedBaton.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "@folly//folly:cancellation_token",
+        "@folly//folly/coro:baton",
+        "@folly//folly/coro:task",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:destructor_check",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "Transport",
+    srcs = ["Transport.cpp"],
+    hdrs = ["Transport.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/io/coro:transport_callbacks",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "window_container",
+    hdrs = ["WindowContainer.h"],
+    include_prefix = "proxygen/lib/http/coro/util",
+    deps = [
+        "//proxygen/http:window",
+        "@folly//folly/logging",
+    ],
+)

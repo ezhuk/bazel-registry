@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "RFC1867",
+    srcs = ["RFC1867.cpp"],
+    hdrs = ["RFC1867.h"],
+    include_prefix = "proxygen/lib/http/experimental",
+    deps = [
+        "//proxygen/http/codec:http1x_codec",
+        "//proxygen/utils:logging",
+        "@folly//folly:conv",
+    ],
+)

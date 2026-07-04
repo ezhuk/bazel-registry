@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "expect_continue_wrapper_handler",
+    srcs = ["ExpectContinueWrapperHandler.cpp"],
+    hdrs = ["ExpectContinueWrapperHandler.h"],
+    include_prefix = "proxygen/lib/http/coro/server/handlers",
+    deps = [
+        "//proxygen/http:http_headers",
+        "//proxygen/http/coro",
+        "//proxygen/http/coro:source",
+        "@folly//folly/logging",
+    ],
+)

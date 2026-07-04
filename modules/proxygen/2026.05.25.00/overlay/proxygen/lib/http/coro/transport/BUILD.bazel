@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "coro_ssl_transport",
+    srcs = ["CoroSSLTransport.cpp"],
+    hdrs = ["CoroSSLTransport.h"],
+    include_prefix = "proxygen/lib/http/coro/transport",
+    deps = [
+        "//proxygen/http/coro/util:timed_baton",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:certificate_identity_verifier",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/io/async/ssl:basic_transport_certificate",
+        "@folly//folly/io/async/ssl:ssl_errors",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/logging",
+        "@folly//folly/ssl:ssl_session",
+        "@folly//folly/ssl:ssl_session_manager",
+    ],
+)
+
+cc_library(
+    name = "http_connect_transport",
+    srcs = [
+        "HTTPConnectAsyncTransport.cpp",
+        "HTTPConnectStream.cpp",
+        "HTTPConnectTransport.cpp",
+    ],
+    hdrs = [
+        "HTTPConnectAsyncTransport.h",
+        "HTTPConnectStream.h",
+        "HTTPConnectTransport.h",
+    ],
+    include_prefix = "proxygen/lib/http/coro/transport",
+    deps = [
+        "//proxygen/http/coro",
+        "//proxygen/http/coro:coro_stream_source",
+        "@folly//folly/coro:bounded_queue",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/logging",
+    ],
+)

@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["ByteEvents.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "@folly//folly:conv",
         "//proxygen/utils:time_util",
+        "@folly//folly:conv",
         "@folly//folly:intrusive_list",
         "@folly//folly:portability",
     ],
@@ -32,8 +32,8 @@ cc_library(
     hdrs = ["HTTPEvent.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "//proxygen/http/codec:codec_common",
         "//proxygen/http:http_utils",
+        "//proxygen/http/codec:codec_common",
         "@glog",
     ],
 )
@@ -65,16 +65,16 @@ cc_library(
     name = "http_state_machine_lib",
     srcs = [
         "HTTPTransactionEgressSM.cpp",
-        "HTTPTransactionIngressSM.cpp"
+        "HTTPTransactionIngressSM.cpp",
     ],
     hdrs = [
         "HTTPTransactionEgressSM.h",
-        "HTTPTransactionIngressSM.h"
+        "HTTPTransactionIngressSM.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "@folly//folly:indestructible",
         "//proxygen/utils:state_machine",
+        "@folly//folly:indestructible",
     ],
 )
 
@@ -84,39 +84,39 @@ cc_library(
     hdrs = ["HTTPTransaction.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "//proxygen_http_codec_webtransport_webtransport_framer",
-        "//proxygen_http_http_headers",
-        ":stats",
-        "//proxygen/http/webtransport:httpwebtransport",
-        "@folly//folly:conv",
-        "@folly//folly/io/async:event_base_manager",
-        "@folly//folly/tracing:scoped_trace_section",
-        "@glog",
-        "//proxygen/http:error",
-        "//proxygen/http/codec:codec_common",
-        "//proxygen/http:http_header_size",
-        "//proxygen/http:http_utils",
-        "//proxygen/http:message",
-        "//proxygen/http/observer:http_transaction_observer_container",
-        "//proxygen/http/observer:http_transaction_observer_interface",
         ":byte_events",
         ":http2_priority_queue",
         ":http_event",
         ":http_state_machine_lib",
+        ":stats",
+        "//proxygen/http:error",
+        "//proxygen/http:http_header_size",
+        "//proxygen/http:http_utils",
+        "//proxygen/http:message",
+        "//proxygen/http:window",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/observer:http_transaction_observer_container",
+        "//proxygen/http/observer:http_transaction_observer_interface",
         "//proxygen/http/sink:flow_control_info",
         "//proxygen/http/webtransport",
+        "//proxygen/http/webtransport:httpwebtransport",
         "//proxygen/http/webtransport:webtransportimpl",
-        "//proxygen/http:window",
         "//proxygen/utils:shared_wheel_timer",
         "//proxygen/utils:time_util",
         "//proxygen/utils:trace",
-        "@wangle//wangle/acceptor:acceptor_core",
+        "//proxygen_http_codec_webtransport_webtransport_framer",
+        "//proxygen_http_http_headers",
+        "@folly//folly:conv",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
         "@folly//folly/io/async:async_base",
         "@folly//folly/io/async:async_transport",
         "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:event_base_manager",
         "@folly//folly/lang:assume",
-        "@folly//folly:network_address",
-        "@folly//folly:optional",
+        "@folly//folly/tracing:scoped_trace_section",
+        "@glog",
+        "@wangle//wangle/acceptor:acceptor_core",
     ],
 )
 
@@ -126,12 +126,12 @@ cc_library(
     hdrs = ["HTTPUpstreamSession.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "@wangle//wangle/acceptor:managed",
-        "@folly//folly/io/async:async_ssl_socket",
-        "//proxygen_http_codec_compress_header_codec",
         ":session",
         ":stats",
+        "//proxygen_http_codec_compress_header_codec",
+        "@folly//folly/io/async:async_ssl_socket",
         "@folly//folly/io/async:ssl_context",
+        "@wangle//wangle/acceptor:managed",
     ],
 )
 
@@ -157,7 +157,7 @@ cc_library(
         "HTTPDownstreamSession.cpp",
         "HTTPErrorPage.cpp",
         "HTTPSessionAcceptor.cpp",
-        "SimpleController.cpp"
+        "SimpleController.cpp",
     ],
     hdrs = [
         "CodecErrorResponseHandler.h",
@@ -165,22 +165,22 @@ cc_library(
         "HTTPDownstreamSession.h",
         "HTTPErrorPage.h",
         "HTTPSessionAcceptor.h",
-        "SimpleController.h"
+        "SimpleController.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":http_session_codec_factory",
-        "@folly//folly:conv",
-        "@folly//folly/io:iobuf",
-        "@glog",
-        "//proxygen/http:error",
-        "//proxygen/http/codec:codec_factory",
-        "//proxygen/http:http_headers",
         ":http_transaction",
         ":session",
+        "//proxygen/http:error",
+        "//proxygen/http:http_headers",
+        "//proxygen/http/codec:codec_factory",
         "//proxygen/services:http_acceptor",
         "//proxygen/utils:shared_wheel_timer",
+        "@folly//folly:conv",
+        "@folly//folly/io:iobuf",
         "@folly//folly/io/async:async_ssl_socket",
+        "@glog",
     ],
 )
 
@@ -188,50 +188,50 @@ cc_library(
     name = "session",
     srcs = [
         "HTTPSession.cpp",
-        "HTTPSessionBase.cpp"
+        "HTTPSessionBase.cpp",
     ],
     hdrs = [
         "HTTPSession.h",
-        "HTTPSessionBase.h"
+        "HTTPSessionBase.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "//proxygen/http/codec:http1x_codec",
         ":stats",
+        "//proxygen/http:http_header_size",
+        "//proxygen/http:http_utils",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:compress_hpack",
+        "//proxygen/http/codec:http1x_codec",
+        "//proxygen/http/codec:http2_codec",
+        "//proxygen/http/codec:rate_limit_filters",
+        "//proxygen/http/observer:session_observer_container",
+        "//proxygen/http/observer:session_observer_interface",
+        "//proxygen/http/session:http_event",
+        "//proxygen/http/session:http_session_activity_tracker",
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/http/session:transaction_byte_events",
         "//proxygen/http/webtransport:httpwebtransport",
         "//proxygen/http/webtransport:webtransport_session",
         "//proxygen/http/webtransport:wt_util",
+        "//proxygen/utils:shared_wheel_timer",
+        "//proxygen/utils:time_util",
+        "@fizz",
         "@folly//folly:conv",
         "@folly//folly:cpp_attributes",
-        "@folly//folly:random",
-        "@folly//folly/tracing:scoped_trace_section",
-        proxygen_http_codec_codec_common
-        proxygen_http_codec_compress_hpack
-        proxygen_http_codec_http2_codec
-        proxygen_http_codec_rate_limit_filters
-        proxygen_http_http_header_size
-        proxygen_http_http_utils
-        proxygen_http_observer_session_observer_container
-        proxygen_http_observer_session_observer_interface
-        proxygen_http_session_http_event
-        proxygen_http_session_http_session_activity_tracker
-        proxygen_http_session_http_transaction
-        proxygen_http_session_transaction_byte_events
-        proxygen_utils_shared_wheel_timer
-        proxygen_utils_time_util
-        wangle::wangle_acceptor_acceptor_core
-        wangle::wangle_acceptor_managed
-        "@fizz",
-        "@folly//folly/container:f14_hash",
         "@folly//folly:intrusive_list",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io:iobuf",
         "@folly//folly/io/async:async_base",
         "@folly//folly/io/async:async_socket",
         "@folly//folly/io/async:async_ssl_socket",
         "@folly//folly/io/async:async_udp_socket",
         "@folly//folly/io/async:ssl_context",
-        "@folly//folly/io:iobuf",
-        "@folly//folly:optional",
+        "@folly//folly/tracing:scoped_trace_section",
         "@glog",
+        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor:managed",
     ],
 )
 
