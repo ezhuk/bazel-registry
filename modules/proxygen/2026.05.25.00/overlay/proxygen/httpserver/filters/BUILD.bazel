@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["DecompressionFilter.h"],
     include_prefix = "proxygen/httpserver/filters",
     deps = [
-        "//proxygen/httpserver:httpserver_headers",
-        "//proxygen/utils:stream_decompressor",
-        "//proxygen/utils:zstd_stream_decompressor",
+        "//httpserver:httpserver_headers",
+        "//lib/utils:stream_decompressor",
+        "//lib/utils:zstd_stream_decompressor",
     ],
 )

@@ -3,8 +3,8 @@
   "integrity": "sha256-1O4dwjW0nHl/Kq/vQmrZ9MUQ+5abqWbQUse6AyCBi6A=",
   "overlay": {
     "proxygen/external/BUILD.bazel": "sha256-aOjLsvEcVuftXuOkFJ8sCvy5Hv8OHOmnRz42uz3BwKg=",
-    "proxygen/httpserver/filters/BUILD.bazel": "sha256-XkDt27hwlI4RO1hvG42/4q/+Qqfs4lposFRSpPhv//8=",
-    "proxygen/httpserver/BUILD.bazel": "sha256-6TjHEmHWKge/vsx5SSeZliHBq6RUeCs2GXNP4OyIwsw=",
+    "proxygen/httpserver/filters/BUILD.bazel": "sha256-hTI7k+7WKcSGzKkJo4UO3NKrQ/puh7Zmgaz8RY9JofQ=",
+    "proxygen/httpserver/BUILD.bazel": "sha256-lwhtVvdrlSJBhOMA1jtWZYaqnsurn+SRCU73RJrk4Fg=",
     "proxygen/lib/dns/BUILD.bazel": "sha256-vgTWYs1HBo1SzLkn74hm9yMArV1HJLn2sYDB46xgMuo=",
     "proxygen/lib/healthcheck/BUILD.bazel": "sha256-r10G912/JBLLj/kDNN1lKiTghHog0A0GKxVfmWLbSjQ=",
     "proxygen/lib/http/codec/compress/BUILD.bazel": "sha256-DQeawkcHjAc283YleIolpk0CdthGBTCstc3gjoAhOXo=",
@@ -32,7 +32,7 @@
     "proxygen/lib/ssl/BUILD.bazel": "sha256-jfjW6XQx5JGuIXE8OqXPDTyJFuTaj9p8Wh/t+8camHA=",
     "proxygen/lib/transport/BUILD.bazel": "sha256-ocJeZ/cUG0jRAD8KQT+bf73Wf9GgdRecj5k6rcG/sK0=",
     "proxygen/lib/utils/BUILD.bazel": "sha256-Ze+jIBX+a5hoLe4TsNCzqfSinI6ePBZvbfSBp4kPfSM=",
-    "proxygen/BUILD.bazel": "sha256-",
+    "proxygen/BUILD.bazel": "sha256-TGnOCbQ+x9ovUfShMbZQu9TQoizeaPE+U0j6UaNmeLU=",
     "BUILD.bazel": "sha256-1mG1DA7DxdWz6uyJZgbwc91ssDgpB5yo2iLukJkp1JY="
   }
 }

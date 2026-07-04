@@ -2,9 +2,15 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
+alias(
+    name = "httpserver",
+    actual = "//proxygen/httpserver:httpserver",
+)
+
 cc_library(
     name = "proxygen",
     deps = [
-        "//proxygen/lib/dns:dns_module",
+        "//lib/http",
+        "//lib/utils",
     ],
 )
