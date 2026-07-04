@@ -1,0 +1,34 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "client_sink",
+    srcs = ["HTTPTransactionSink.cpp"],
+    hdrs = ["HTTPTransactionSink.h"],
+    include_prefix = "proxygen/lib/http/sink",
+    deps = [
+        ":client_sink_interface",
+        "//proxygen/http/observer:session_observer_container",
+        "//proxygen/http/session:hq_session",
+        "//proxygen/http/session:http_transaction",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "client_sink_interface",
+    hdrs = ["HTTPSink.h"],
+    include_prefix = "proxygen/lib/http/sink",
+    deps = [
+        ":flow_control_info",
+        "//proxygen/http:message",
+        "@folly//folly:cpp_attributes",
+    ],
+)
+
+cc_library(
+    name = "flow_control_info",
+    hdrs = ["FlowControlInfo.h"],
+    include_prefix = "proxygen/lib/http/sink",
+)

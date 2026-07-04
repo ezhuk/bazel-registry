@@ -1,0 +1,142 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cert_reload_session_pool",
+    srcs = ["CertReloadSessionPool.cpp"],
+    hdrs = ["CertReloadSessionPool.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        ":http_connector",
+        ":http_connpool",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "dns_resolver",
+    srcs = ["CoroDNSResolver.cpp"],
+    hdrs = ["CoroDNSResolver.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        "//proxygen/dns:dns_base",
+        "//proxygen/dns:dns_module",
+        "//proxygen/dns:rfc6724",
+        "@folly//folly:network_address",
+        "@folly//folly/coro:baton",
+        "@folly//folly/coro:task",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "http_client_connection_cache",
+    srcs = ["HTTPClientConnectionCache.cpp"],
+    hdrs = ["HTTPClientConnectionCache.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        ":dns_resolver",
+        ":http_client_lib",
+        ":http_connpool",
+        "@fizz",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "http_client_lib",
+    srcs = ["HTTPClient.cpp"],
+    hdrs = ["HTTPClient.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        ":dns_resolver",
+        ":http_connector",
+        "//proxygen/http:message",
+        "//proxygen/http/coro",
+        "//proxygen/http/coro:coro_reader",
+        "//proxygen/http/coro:source",
+        "//proxygen/http/coro/filters:logger",
+        "//proxygen/utils:parse_url",
+        "@folly//folly:network_address",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "http_connector",
+    srcs = ["HTTPCoroConnector.cpp"],
+    hdrs = ["HTTPCoroConnector.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        "//proxygen/http:coro",
+        "//proxygen/http:sampling",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:codec_factory",
+        "//proxygen/http/codec:compress_header_codec",
+        "//proxygen/http/codec:h3_early_data_handler",
+        "//proxygen/http/coro/transport:http_connect_transport",
+        "//proxygen/http/coro/transport/coro:ssl_transport",
+        "//proxygen/http/coro/util:Transport",
+        "//proxygen/http/coro/util:cancellable_baton",
+        "@fizz",
+        "@folly//folly:file_util",
+        "@folly//folly:network_address",
+        "@folly//folly/coro:collect",
+        "@folly//folly/coro:shared_promise",
+        "@folly//folly/coro:sleep",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/io/async:ssl_options",
+        "@folly//folly/logging",
+        "@folly//folly/ssl:ssl_session",
+        "@mvfst//mvfst:client",
+        "@mvfst//mvfst:exception",
+        "@mvfst//mvfst/api:loop_detector_callback",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/common/address/quic:socket_address_bridge",
+        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//mvfst/common/udpsocket:folly_async_udp_socket",
+        "@mvfst//mvfst/fizz/client:handshake",
+        "@mvfst//mvfst/fizz/client:handshake_psk_cache",
+        "@mvfst//mvfst/logging:qlogger",
+        "@mvfst//mvfst/state:stats_callback",
+        "@mvfst//mvfst/state:transport_settings",
+        "@wangle//wangle/ssl:ssl_config",
+        "@wangle//wangle/ssl:ssl_util",
+    ],
+)
+
+cc_library(
+    name = "http_connpool",
+    srcs = ["HTTPCoroSessionPool.cpp"],
+    hdrs = ["HTTPCoroSessionPool.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        ":http_connector",
+        ":http_session_factory",
+        "//proxygen/http:coro",
+        "//proxygen/utils:time_util",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:random",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "http_session_factory",
+    hdrs = ["HTTPSessionFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/client",
+    deps = [
+        ":http_client_lib",
+        "//proxygen/http:coro",
+    ],
+)

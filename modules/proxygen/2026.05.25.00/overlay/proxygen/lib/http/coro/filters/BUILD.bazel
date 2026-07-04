@@ -1,0 +1,173 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "compression_filter",
+    srcs = ["CompressionFilter.cpp"],
+    hdrs = ["CompressionFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+        "//proxygen/utils:compression_filter_utils",
+    ],
+)
+
+cc_library(
+    name = "compression_filter_factory",
+    hdrs = ["CompressionFilterFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":ServerFilterFactory",
+        ":compression_filter",
+        ":visitor_filter",
+    ],
+)
+
+cc_library(
+    name = "decompression_filter",
+    srcs = ["DecompressionFilter.cpp"],
+    hdrs = ["DecompressionFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":mutate_filter",
+        "//proxygen/http/coro:source",
+        "//proxygen/utils:compression_filter_utils",
+        "//proxygen/utils:zstd_stream_decompressor",
+    ],
+)
+
+cc_library(
+    name = "decompression_filter_factory",
+    hdrs = ["DecompressionFilterFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":FilterFactory",
+        ":ServerFilterFactory",
+        ":decompression_filter",
+    ],
+)
+
+cc_library(
+    name = "FilterFactory",
+    hdrs = ["FilterFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+    ],
+)
+
+cc_library(
+    name = "logger",
+    srcs = ["Logger.cpp"],
+    hdrs = ["Logger.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http:priority_functions",
+        "//proxygen/http/coro",
+        "//proxygen/http/coro:source",
+        "//proxygen/http/sampling:sampled",
+        "@folly//folly/coro:collect",
+        "@folly//folly/coro:promise",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "mutate_filter",
+    srcs = ["MutateFilter.cpp"],
+    hdrs = ["MutateFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+    ],
+)
+
+cc_library(
+    name = "rate_limit_filter",
+    srcs = ["RateLimitFilter.cpp"],
+    hdrs = ["RateLimitFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+        "//proxygen/http/utils:time_util",
+        "@folly//folly/coro:sleep",
+    ],
+)
+
+cc_library(
+    name = "redirect_handler",
+    srcs = ["HTTPRedirectHandler.cpp"],
+    hdrs = ["HTTPRedirectHandler.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro",
+        "//proxygen/http/coro:source",
+        "//proxygen/http/coro/client:http_session_factory",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "request_context_filter_factory",
+    srcs = ["RequestContextFilterFactory.cpp"],
+    hdrs = ["RequestContextFilterFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":ServerFilterFactory",
+        "@folly//folly/io/async:request_context",
+    ],
+)
+
+cc_library(
+    name = "ServerFilterFactory",
+    hdrs = ["ServerFilterFactory.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":FilterFactory",
+    ],
+)
+
+cc_library(
+    name = "StatsFilterUtil",
+    srcs = ["StatsFilterUtil.cpp"],
+    hdrs = ["StatsFilterUtil.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        ":visitor_filter",
+        "//proxygen/http/coro:source",
+        "//proxygen/http/stats:HttpServerStats",
+        "@folly//folly:stop_watch",
+    ],
+)
+
+cc_library(
+    name = "status_1xx_filter",
+    srcs = ["Status1xxFilter.cpp"],
+    hdrs = ["Status1xxFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "transform_filter",
+    srcs = ["TransformFilter.cpp"],
+    hdrs = ["TransformFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+    ],
+)
+
+cc_library(
+    name = "visitor_filter",
+    srcs = ["VisitorFilter.cpp"],
+    hdrs = ["VisitorFilter.h"],
+    include_prefix = "proxygen/lib/http/coro/filters",
+    deps = [
+        "//proxygen/http/coro:source",
+    ],
+)

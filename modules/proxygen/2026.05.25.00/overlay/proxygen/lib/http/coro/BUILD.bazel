@@ -1,0 +1,169 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "coro",
+    srcs = [
+        "HTTPBodyEventQueue.cpp",
+        "HTTPByteEventHelpers.cpp",
+        "HTTPCoroSession.cpp",
+    ],
+    hdrs = [
+        "HTTPBodyEventQueue.h",
+        "HTTPByteEventHelpers.h",
+        "HTTPCoroSession.h",
+    ],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":source",
+        "//proxygen/http:priority_functions",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/codec:h3_early_data_handler",
+        "//proxygen/http/codec:hq_codec",
+        "//proxygen/http/codec:http1x_codec",
+        "//proxygen/http/codec:rate_limit_filters",
+        "//proxygen/http/coro:coro_stream_source",
+        "//proxygen/http/coro/util:CoroWtSession",
+        "//proxygen/http/coro/util:DetachableExecutor",
+        "//proxygen/http/coro/util:awaitable_keepalive",
+        "//proxygen/http/coro/util:cancellable_baton",
+        "//proxygen/http/coro/util:window_contiainer",
+        "//proxygen/http/session:quic_protocol_info",
+        "//proxygen/http/session:stats",
+        "//proxygen/http/session:stream_dispatcher",
+        "//proxygen/http/webtransport:httpwebtransport",
+        "//proxygen/utils:util_inl",
+        "@folly//folly:conv",
+        "@folly//folly:utility",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/coro:async_scope",
+        "@folly//folly/coro:task",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/asyncLasync_base",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/api:transport",
+        "@mvfst//mvfst/common:optional",
+        "@mvfst//mvfst/common/address/quic:socket_address_bridge",
+        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//mvfst/priority:http_priority_queue",
+        "@mvfst//mvfst/state/quic:stream_utilities",
+        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "coro_reader",
+    srcs = ["HTTPSourceReader.cpp"],
+    hdrs = ["HTTPSourceReader.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":source",
+        "//proxygen/http/coro/util:timed_baton",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "coro_stream_source",
+    srcs = ["HTTPStreamSource.cpp"],
+    hdrs = ["HTTPStreamSource.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":source",
+        "//proxygen/http/codec:codec_common",
+        "//proxygen/http/coro/util:timed_baton",
+        "//proxygen/http/coro/util:window_contiainer",
+        "//proxygen/http/session:http_state_machine_lib",
+        "@folly//folly/logging",
+    ],
+)
+
+cc_library(
+    name = "filter_factory_handler",
+    srcs = ["HTTPFilterFactoryHandler.cpp"],
+    hdrs = ["HTTPFilterFactoryHandler.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":handler_chain",
+        ":source",
+        "//proxygen/http/coro/filters:FilterFactory",
+    ],
+)
+
+cc_library(
+    name = "handler_chain",
+    srcs = ["HTTPHandlerChain.cpp"],
+    hdrs = ["HTTPHandlerChain.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [":coro"],
+)
+
+cc_library(
+    name = "http_transaction_adaptor_source",
+    srcs = ["HTTPTransactionAdaptorSource.cpp"],
+    hdrs = ["HTTPTransactionAdaptorSource.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":coro_reader",
+        ":coro_stream_source",
+        ":source",
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/utils:conditional_gate",
+    ],
+)
+
+cc_library(
+    name = "source",
+    srcs = [
+        "HTTPError.cpp",
+        "HTTPEvents.cpp",
+        "HTTPSourceFilter.cpp",
+    ],
+    hdrs = [
+        "HTTPError.h",
+        "HTTPEvents.h",
+        "HTTPSourceFilter.h",
+    ],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        "//proxygen/http:error",
+        "//proxygen/http:h3_errors",
+        "//proxygen/http:http_header_size",
+        "//proxygen/http:http_utils",
+        "//proxygen/http:message",
+        "//proxygen/http:webtransport",
+        "//proxygen/http/codec:error_code",
+        "//proxygen/http/coro/util:timed_baton",
+        "//proxygen/utils:parse_url",
+        "//proxygen/utils:weak_ref_counted_ptr",
+        "@folly//folly:conv",
+        "@folly//folly:function",
+        "@folly//folly:optional",
+        "@folly//folly:scope_guard",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+        "@mvfst//mvfst/common:buf_util",
+    ],
+)
+
+cc_library(
+    name = "stream_source_sink",
+    srcs = ["HTTPStreamSourceSink.cpp"],
+    hdrs = ["HTTPStreamSourceSink.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":coro",
+        ":coro_reader",
+        ":coro_stream_source",
+        ":source",
+        "//proxygen/http/session:http_transaction",
+        "//proxygen/http/sink/client:sink_interface",
+        "//proxygen/utils:conditional_gate",
+    ],
+)

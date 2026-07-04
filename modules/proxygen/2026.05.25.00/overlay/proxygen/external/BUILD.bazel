@@ -6,5 +6,9 @@ cc_library(
     name = "http_parser",
     srcs = ["http_parser/http_parser_cpp.cpp"],
     hdrs = ["http_parser/http_parser.h"],
+    copts = [
+        "-DHTTP_PARSER_STRICT_URL=1",
+        "-Wno-implicit-fallthrough",
+    ],
     include_prefix = "proxygen/external",
 )

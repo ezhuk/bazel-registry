@@ -1,0 +1,71 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "decoder",
+    srcs = ["StructuredHeadersDecoder.cpp"],
+    hdrs = ["StructuredHeadersDecoder.h"],
+    include_prefix = "proxygen/lib/http/structuredheaders",
+    deps = [
+        ":structured_headers",
+    ],
+)
+
+cc_library(
+    name = "encoder",
+    srcs = ["StructuredHeadersEncoder.cpp"],
+    hdrs = ["StructuredHeadersEncoder.h"],
+    include_prefix = "proxygen/lib/http/structuredheaders",
+    deps = [
+        ":utils",
+        "@folly//folly:base64",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "structured_fields",
+    srcs = [
+        "StructuredFieldsDecoder.cpp",
+        "StructuredFieldsEncoder.cpp",
+    ],
+    hdrs = [
+        "StructuredFieldsDecoder.h",
+        "StructuredFieldsEncoder.h",
+    ],
+    include_prefix = "proxygen/lib/http/structuredheaders",
+    deps = [
+        "//proxygen/utils:util_inl",
+        "@folly//folly:base64",
+        "@folly//folly:conv",
+    ],
+)
+
+cc_library(
+    name = "structured_headers",
+    srcs = ["StructuredHeadersBuffer.cpp"],
+    hdrs = ["StructuredHeadersBuffer.h"],
+    include_prefix = "proxygen/lib/http/structuredheaders",
+    deps = [
+        ":utils",
+        "@folly//folly:base64",
+        "@folly//folly:conv",
+        "@folly//folly:range",
+        "@folly//folly:try",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "utils",
+    srcs = [
+        "StructuredHeadersConstants.cpp",
+        "StructuredHeadersUtilities.cpp",
+    ],
+    hdrs = [
+        "StructuredHeadersConstants.h",
+        "StructuredHeadersUtilities.h",
+    ],
+    include_prefix = "proxygen/lib/http/structuredheaders",
+)
