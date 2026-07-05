@@ -29,8 +29,8 @@ cc_library(
         ":stream_compressor",
         ":zlib_stream_compressor",
         ":zstd_stream_compressor",
-        "//proxygen/http:headers",
-        "//proxygen/http:message",
+        "//proxygen/lib/http:http_headers",
+        "//proxygen/lib/http:message",
     ],
 )
 

@@ -14,9 +14,9 @@ cc_library(
     hdrs = ["HTTPWebTransport.h"],
     include_prefix = "proxygen/lib/http/webtransport",
     deps = [
-        "//proxygen/http:message",
-        "//proxygen/http/structuredheaders:decoder",
-        "//proxygen/http/structuredheaders:encoder",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/structuredheaders:decoder",
+        "//proxygen/lib/http/structuredheaders:encoder",
         "@folly//folly:expected",
         "@folly//folly:optional",
     ],
@@ -77,7 +77,7 @@ cc_library(
     deps = [
         ":flow_controller",
         ":webtransport",
-        "//proxygen/http/codec:codec_common",
+        "//proxygen/lib/http/codec:codec_common",
         "@glog",
         "@mvfst//mvfst:constants",
     ],
@@ -91,7 +91,7 @@ cc_library(
     deps = [
         ":wt_stream_manager",
         ":wt_util",
-        "//proxygen/http/session:http_transaction",
+        "//proxygen/lib/http/session:http_transaction",
         "@mvfst//mvfst/priority:priority_queue",
     ],
 )
@@ -136,9 +136,9 @@ cc_library(
     deps = [
         ":webtransport_capsule_codec",
         ":wt_stream_manager",
-        "//proxygen/http/codec:codec_common",
-        "//proxygen/http/codec:direction",
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:direction",
         "@folly//folly/logging",
-        "@mvfst//mvfst/codec:types",
+        "@mvfst//mvfst/quic/codec:types",
     ],
 )

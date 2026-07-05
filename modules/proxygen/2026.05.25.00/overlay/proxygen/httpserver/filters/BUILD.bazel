@@ -9,7 +9,7 @@ cc_library(
     include_prefix = "proxygen/httpserver/filters",
     deps = [
         "//httpserver:httpserver_headers",
-        "//lib/utils:stream_decompressor",
-        "//lib/utils:zstd_stream_decompressor",
+        "//proxygen/lib/utils:stream_decompressor",
+        "//proxygen/lib/utils:zstd_stream_decompressor",
     ],
 )

@@ -8,7 +8,7 @@ cc_library(
     include_prefix = "proxygen/lib/transport",
     srcd = ["AsyncUDPSocketFactory.cpp"],
     deps = [
-        "//proxygen/utils:exception",
+        "//proxygen/lib/utils:exception",
         "@folly//folly:expected",
         "@folly//folly:network_address",
         "@folly//folly/io/async:async_udp_socket",
@@ -36,8 +36,8 @@ cc_library(
     srcd = ["H3DatagramAsyncSocket.cpp"],
     deps = [
         ":connect_udp_utils",
-        "//proxygen/http/session:hq_upstream_session",
-        "//proxygen/http/session:http_transaction",
+        "//proxygen/lib/http/session:hq_upstream_session",
+        "//proxygen/lib/http/session:http_transaction",
         "@fizz",
         "@folly//folly:file_util",
         "@folly//folly/io/async:async_socket_exception",

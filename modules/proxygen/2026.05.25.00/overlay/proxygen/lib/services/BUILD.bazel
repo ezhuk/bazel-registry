@@ -7,10 +7,10 @@ cc_library(
     hdrs = ["AcceptorConfiguration.h"],
     include_prefix = "proxygen/lib/services",
     deps = [
-        "//proxygen/http/codec:codec_common",
+        "//proxygen/lib/http/codec:codec_common",
         "@folly//folly:string",
         "@folly//folly/io/async:async_socket",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
         "@zlib",
     ],
 )
@@ -21,10 +21,10 @@ cc_library(
     include_prefix = "proxygen/lib/services",
     deps = [
         ":acceptor_configuration",
-        "//proxygen/utils:shared_wheel_timer",
-        "//proxygen/utils:timeoutset",
+        "//proxygen/lib/utils:shared_wheel_timer",
+        "//proxygen/lib/utils:timeoutset",
         "@folly//folly/io/async:server_socket",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 
@@ -49,11 +49,11 @@ cc_library(
     include_prefix = "proxygen/lib/services",
     deps = [
         ":worker",
-        "//proxygen/utils:acceptor_address",
+        "//proxygen/lib/utils:acceptor_address",
         "@folly//folly/io/async:async_base",
         "@folly//folly/io/async:event_base_manager",
         "@folly//folly/io/async:server_socket",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 

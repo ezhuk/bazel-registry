@@ -8,9 +8,9 @@ cc_library(
     hdrs = ["ExpectContinueWrapperHandler.h"],
     include_prefix = "proxygen/lib/http/coro/server/handlers",
     deps = [
-        "//proxygen/http:http_headers",
-        "//proxygen/http/coro",
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http:http_headers",
+        "//proxygen/lib/http/coro",
+        "//proxygen/lib/http/coro:source",
         "@folly//folly/logging",
     ],
 )

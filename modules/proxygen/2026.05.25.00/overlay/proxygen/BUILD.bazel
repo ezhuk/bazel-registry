@@ -10,7 +10,7 @@ alias(
 cc_library(
     name = "proxygen",
     deps = [
-        "//lib/http",
-        "//lib/utils",
+        "//proxygen/lib/http",
+        "//proxygen/lib/utils",
     ],
 )
