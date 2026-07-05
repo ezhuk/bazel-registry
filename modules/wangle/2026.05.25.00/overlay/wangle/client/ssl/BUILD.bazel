@@ -1,0 +1,87 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ssl",
+    srcs = [
+        "SSLSessionCacheData.cpp",
+        "SSLSessionCacheUtils.cpp",
+        "SSLSessionCallbacks.cpp",
+        "ThreadSafeSSLSessionCache.cpp",
+    ],
+    hdrs = [
+        "SSLSessionCacheData.h",
+        "SSLSessionCacheUtils.h",
+        "SSLSessionCallbacks.h",
+        "ThreadSafeSSLSessionCache.h",
+    ],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        "//wangle/client/persistence",
+        "//wangle/ssl:ssl_util",
+        "@folly//folly:executor",
+        "@folly//folly:fbstring",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:shared_mutex",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_cache_data",
+    srcs = ["SSLSessionCacheData.cpp"],
+    hdrs = ["SSLSessionCacheData.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_cache_utils",
+    srcs = ["SSLSessionCacheUtils.cpp"],
+    hdrs = ["SSLSessionCacheUtils.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_callbacks",
+    srcs = ["SSLSessionCallbacks.cpp"],
+    hdrs = ["SSLSessionCallbacks.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_persistent_cache",
+    srcs = ["SSLSessionPersistentCache.cpp"],
+    hdrs = ["SSLSessionPersistentCache.h"],
+    include_prefix = "wangle/client/ssl",
+    textual_hdrs = ["SSLSessionPersistentCache-inl.h"],
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "threadsafe_cache",
+    srcs = ["ThreadSafeSSLSessionCache.cpp"],
+    hdrs = ["ThreadSafeSSLSessionCache.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl",
+    ],
+)

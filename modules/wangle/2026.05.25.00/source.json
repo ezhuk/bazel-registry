@@ -2,6 +2,16 @@
   "url": "https://github.com/facebook/wangle/releases/download/v2026.05.25.00/wangle-v2026.05.25.00.tar.gz",
   "integrity": "sha256-+Ra2AunhYOrRlzHhRG7UV1sxui/WGDZ1el/zevmJ2/8=",
   "overlay": {
-    "BUILD.bazel": "sha256-3dw5wiPUv9VbMFD7j88Bkesrfmw2pO9jlN8yHeBjrJs="
+    "wangle/acceptor/BUILD.bazel": "sha256-2nZPpBfkI9ZrHVU0QGxYarv/13Nj9mjtpEIhnvsql4g=",
+    "wangle/bootstrap/BUILD.bazel": "sha256-VVA5ZKAQf5FJY9N6c67x74kX0Ts99nHOnRlOrvlxKWc=",
+    "wangle/channel/BUILD.bazel": "sha256-WcrZaLKbtbN9XAv8MuC77Yf56Q5J1GikolX6sJ80OF4=",
+    "wangle/client/persistence/BUILD.bazel": "sha256-+YKaVt+mcM0gRddDXKK0ggwbgZJUmWfqAqtsYftHoDc=",
+    "wangle/client/ssl/BUILD.bazel": "sha256-jHhx2wFxm4LNzRFvW3EfbFbTtVlYHrejhLTMiBSdaP4=",
+    "wangle/codec/BUILD.bazel": "sha256-HoCBehV/bm5zcP5MTiKFDcihEvHFze0QGIkhKZVQaus=",
+    "wangle/service/BUILD.bazel": "sha256-UeaDmswmig9aVThQRt0Uosxcr3PDdOZH4oY/XijmYww=",
+    "wangle/ssl/BUILD.bazel": "sha256-lQQmfFKdDOiVXn51ffq/4VZerBhsArmSkF7vPcXx92Q=",
+    "wangle/util/BUILD.bazel": "sha256-beN2QpiQFQDoP0pp1yVKznBFL4JRbYqIp1+dtL6cyqk=",
+    "wangle/BUILD.bazel": "sha256-hLvfqRXNCxbrSmkmY62PP1aaFO7GfyrH4XIeSRffUHE=",
+    "BUILD.bazel": "sha256-s+eliMLSk209XkZjgecUcb3Ssc1rh2VFTXjpv7/PJL4="
   }
 }

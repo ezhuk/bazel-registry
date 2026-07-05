@@ -1,0 +1,242 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "client_hello_ext_stats",
+    hdrs = ["ClientHelloExtStats.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)
+
+cc_library(
+    name = "fizz_fallback_state",
+    srcs = ["FizzFallbackState.cpp"],
+    hdrs = ["FizzFallbackState.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "password_in_file_factory",
+    srcs = ["PasswordInFileFactory.cpp"],
+    hdrs = ["PasswordInFileFactory.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "server_ssl_context",
+    srcs = ["ServerSSLContext.cpp"],
+    hdrs = ["ServerSSLContext.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "sni_config",
+    hdrs = ["SNIConfig.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)
+
+cc_library(
+    name = "ssl",
+    srcs = [
+        "FizzFallbackState.cpp",
+        "PasswordInFileFactory.cpp",
+        "SSLContextManager.cpp",
+        "SSLSessionCacheManager.cpp",
+        "ServerSSLContext.cpp",
+        "TLSCredProcessor.cpp",
+        "TLSInMemoryTicketProcessor.cpp",
+        "TLSTicketKeyManager.cpp",
+    ],
+    hdrs = [
+        "ClientHelloExtStats.h",
+        "FizzFallbackState.h",
+        "PasswordInFileFactory.h",
+        "SSLCacheOptions.h",
+        "SSLCacheProvider.h",
+        "SSLContextManager.h",
+        "SSLSessionCacheManager.h",
+        "SSLStats.h",
+        "ServerSSLContext.h",
+        "TLSCredProcessor.h",
+        "TLSInMemoryTicketProcessor.h",
+        "TLSTicketKeyManager.h",
+        "TLSTicketKeySeeds.h",
+    ],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":sni_config",
+        ":ssl_config",
+        ":ssl_context_config",
+        ":ssl_util",
+        "//wangle/acceptor:acceptor_core",
+        "//wangle/util:file_poller",
+        "@fizz",
+        "@folly//folly:conv",
+        "@folly//folly:file_util",
+        "@folly//folly:glog",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:scope_guard",
+        "@folly//folly:shared_mutex",
+        "@folly//folly:string",
+        "@folly//folly:synchronized",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/executors:function_scheduler",
+        "@folly//folly/fibers:core_manager",
+        "@folly//folly/hash",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:password_in_file",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ticket_handler",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_cache_options",
+    hdrs = ["SSLCacheOptions.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)
+
+cc_library(
+    name = "ssl_cache_provider",
+    hdrs = ["SSLCacheProvider.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)
+
+cc_library(
+    name = "ssl_config",
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_context_config",
+        "//wangle/acceptor:acceptor_core",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_ssl_socket",
+    ],
+)
+
+cc_library(
+    name = "ssl_context_config",
+    hdrs = ["SSLContextConfig.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        "@folly//folly:optional",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/io/async:ssl_options",
+    ],
+)
+
+cc_library(
+    name = "ssl_context_manager",
+    srcs = ["SSLContextManager.cpp"],
+    hdrs = ["SSLContextManager.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":sni_config",
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_cache_manager",
+    srcs = ["SSLSessionCacheManager.cpp"],
+    hdrs = ["SSLSessionCacheManager.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_stats",
+    hdrs = ["SSLStats.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)
+
+cc_library(
+    name = "ssl_util",
+    srcs = ["SSLUtil.cpp"],
+    hdrs = ["SSLUtil.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        "@folly//folly:conv",
+        "@folly//folly:file_util",
+        "@folly//folly:format",
+        "@folly//folly:memory",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@folly//folly/ssl:password_collector",
+    ],
+)
+
+cc_library(
+    name = "tls_cred_processor",
+    srcs = ["TLSCredProcessor.cpp"],
+    hdrs = ["TLSCredProcessor.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "tls_in_memory_ticket_processor",
+    srcs = ["TLSInMemoryTicketProcessor.cpp"],
+    hdrs = ["TLSInMemoryTicketProcessor.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl",
+    ],
+)
+
+cc_library(
+    name = "tls_ticket_key_manager",
+    srcs = ["TLSTicketKeyManager.cpp"],
+    hdrs = ["TLSTicketKeyManager.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+        ":ssl_stats",
+    ],
+)
+
+cc_library(
+    name = "tls_ticket_key_seeds",
+    hdrs = ["TLSTicketKeySeeds.h"],
+    include_prefix = "wangle/ssl",
+    deps = [
+        ":ssl_config",
+    ],
+)

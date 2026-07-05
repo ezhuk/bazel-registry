@@ -1,0 +1,79 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "file",
+    hdrs = ["FilePersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        ":persistence",
+    ],
+)
+
+cc_library(
+    name = "lru_in_memory_cache",
+    hdrs = ["LRUInMemoryCache.h"],
+    include_prefix = "wangle/client/persistence",
+    textual_hdrs = ["LRUInMemoryCache-inl.h"],
+    deps = [
+        ":persistence",
+    ],
+)
+
+cc_library(
+    name = "lru_persistent_cache",
+    hdrs = ["LRUPersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    textual_hdrs = ["LRUPersistentCache-inl.h"],
+    deps = [
+        ":persistence",
+    ],
+)
+
+cc_library(
+    name = "persistence",
+    srcs = [
+        "FilePersistenceLayer.cpp",
+        "PersistentCacheCommon.cpp",
+    ],
+    hdrs = [
+        "FilePersistenceLayer.h",
+        "PersistentCacheCommon.h",
+    ],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        "@folly//folly:executor",
+        "@folly//folly:file_util",
+        "@folly//folly:likely",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:scope_guard",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:sys_time",
+        "@folly//folly/portability:unistd",
+        "@folly//folly/synchronization:lock",
+        "@folly//folly/synchronization:saturating_semaphore",
+        "@folly//folly/system:thread_name",
+    ],
+)
+
+cc_library(
+    name = "persistent_cache",
+    hdrs = ["PersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        ":persistence",
+    ],
+)
+
+cc_library(
+    name = "persistent_cache_common",
+    srcs = ["PersistentCacheCommon.cpp"],
+    hdrs = ["PersistentCacheCommon.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        ":persistence",
+    ],
+)
