@@ -1,0 +1,96 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "byte_to_message_decoder",
+    hdrs = ["ByteToMessageDecoder.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "codec",
+    srcs = [
+        "LengthFieldBasedFrameDecoder.cpp",
+        "LengthFieldPrepender.cpp",
+        "LineBasedFrameDecoder.cpp",
+    ],
+    hdrs = [
+        "LengthFieldBasedFrameDecoder.h",
+        "LengthFieldPrepender.h",
+        "LineBasedFrameDecoder.h",
+    ],
+    include_prefix = "wangle/codec",
+    deps = [
+        "//wangle/channel",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "codecs",
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "fixed_length_frame_decoder",
+    hdrs = ["FixedLengthFrameDecoder.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "length_field_based_frame_decoder",
+    srcs = ["LengthFieldBasedFrameDecoder.cpp"],
+    hdrs = ["LengthFieldBasedFrameDecoder.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "length_field_prepender",
+    srcs = ["LengthFieldPrepender.cpp"],
+    hdrs = ["LengthFieldPrepender.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "line_based_frame_decoder",
+    srcs = ["LineBasedFrameDecoder.cpp"],
+    hdrs = ["LineBasedFrameDecoder.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "message_to_byte_encoder",
+    hdrs = ["MessageToByteEncoder.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)
+
+cc_library(
+    name = "string_codec",
+    hdrs = ["StringCodec.h"],
+    include_prefix = "wangle/codec",
+    deps = [
+        ":codec",
+    ],
+)

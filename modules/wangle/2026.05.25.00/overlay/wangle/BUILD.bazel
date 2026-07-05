@@ -1,0 +1,19 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+expand_template(
+    name = "wangle_config_h",
+    out = "wangle-config.h",
+    substitutions = {
+        "@WANGLE_LOGGING_BACKEND@": "DISABLED",
+    },
+    template = "wangle-config.h.in",
+)
+
+cc_library(
+    name = "config",
+    hdrs = [":wangle_config_h"],
+    include_prefix = "wangle",
+)

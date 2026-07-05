@@ -1,0 +1,121 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "async_socket_handler",
+    hdrs = ["AsyncSocketHandler.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "channel",
+    srcs = [
+        "FileRegion.cpp",
+        "Pipeline.cpp",
+    ],
+    hdrs = [
+        "FileRegion.h",
+        "Handler.h",
+        "HandlerContext.h",
+        "Pipeline.h",
+    ],
+    include_prefix = "wangle/channel",
+    textual_hdrs = [
+        "Pipeline-inl.h",
+        "HandlerContext-inl.h",
+    ],
+    deps = [
+        "//wangle/acceptor:acceptor_core",
+        "@fmt",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:format",
+        "@folly//folly:memory",
+        "@folly//folly:optional",
+        "@folly//folly:singleton",
+        "@folly//folly:unit",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/futures:core",
+        "@folly//folly/futures:shared_promise",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:async_udp_socket",
+        "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:request_context",
+        "@folly//folly/system:hardware_concurrency",
+    ],
+)
+
+cc_library(
+    name = "event_base_handler",
+    hdrs = ["EventBaseHandler.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "file_region",
+    srcs = ["FileRegion.cpp"],
+    hdrs = ["FileRegion.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "handler",
+    hdrs = ["Handler.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "handler_context",
+    hdrs = ["HandlerContext.h"],
+    include_prefix = "wangle/channel",
+    textual_hdrs = ["HandlerContext-inl.h"],
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "output_buffering_handler",
+    hdrs = ["OutputBufferingHandler.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
+
+cc_library(
+    name = "pipeline",
+    srcs = ["Pipeline.cpp"],
+    hdrs = ["Pipeline.h"],
+    include_prefix = "wangle/channel",
+    textual_hdrs = ["Pipeline-inl.h"],
+    deps = [
+        ":channel",
+        ":handler_context",
+    ],
+)
+
+cc_library(
+    name = "static_pipeline",
+    hdrs = ["StaticPipeline.h"],
+    include_prefix = "wangle/channel",
+    deps = [
+        ":channel",
+    ],
+)
