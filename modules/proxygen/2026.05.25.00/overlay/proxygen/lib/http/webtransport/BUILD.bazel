@@ -30,8 +30,8 @@ cc_library(
     deps = [
         ":webtransportimpl",
         "@folly//folly/logging",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common/address:quic_socket_address_bridge",
     ],
 )
 
@@ -45,9 +45,9 @@ cc_library(
         ":wt_stream_manager",
         ":wt_util",
         "@folly//folly/logging",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
-        "@mvfst//mvfst/priority:http_priority_queue",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common/address:quic_socket_address_bridge",
+        "@mvfst//quic/priority:http_priority_queue",
     ],
 )
 
@@ -63,9 +63,9 @@ cc_library(
         "@folly//folly:optional",
         "@folly//folly/futures:core",
         "@folly//folly/io:iobuf",
-        "@mvfst//mvfst/api:quic_callbacks",
-        "@mvfst//mvfst/api:transport_info",
-        "@mvfst//mvfst/priority:priority_queue",
+        "@mvfst//quic/api:quic_callbacks",
+        "@mvfst//quic/api:transport_info",
+        "@mvfst//quic/priority:priority_queue",
     ],
 )
 
@@ -79,7 +79,7 @@ cc_library(
         ":webtransport",
         "//proxygen/lib/http/codec:codec_common",
         "@glog",
-        "@mvfst//mvfst:constants",
+        "@mvfst//quic:constants",
     ],
 )
 
@@ -92,7 +92,7 @@ cc_library(
         ":wt_stream_manager",
         ":wt_util",
         "//proxygen/lib/http/session:http_transaction",
-        "@mvfst//mvfst/priority:priority_queue",
+        "@mvfst//quic/priority:priority_queue",
     ],
 )
 
@@ -124,7 +124,7 @@ cc_library(
         "@folly//folly/container:f14_hash",
         "@folly//folly/io:iobuf",
         "@folly//folly/logging",
-        "@mvfst//mvfst/priority:http_priority_queue",
+        "@mvfst//quic/priority:http_priority_queue",
     ],
 )
 
@@ -139,6 +139,6 @@ cc_library(
         "//proxygen/lib/http/codec:codec_common",
         "//proxygen/lib/http/codec:direction",
         "@folly//folly/logging",
-        "@mvfst//mvfst/quic/codec:types",
+        "@mvfst//quic/codec:types",
     ],
 )

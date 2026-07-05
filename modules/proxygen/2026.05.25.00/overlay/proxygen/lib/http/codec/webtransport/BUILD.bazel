@@ -23,7 +23,7 @@ cc_library(
         "//proxygen/lib/http/codec:varint_utils",
         "@folly//folly:utility",
         "@folly//folly/io:iobuf",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/folly_utils",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
     ],
 )

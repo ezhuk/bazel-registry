@@ -22,7 +22,7 @@ cc_library(
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":transaction_byte_events",
-        "@mvfst//mvfst/api:transport",
+        "@mvfst//quic/api:transport",
     ],
 )
 
@@ -75,15 +75,15 @@ cc_library(
         "@folly//folly/io/async:async_transport",
         "@folly//folly/io/async:delayed_destruction",
         "@folly//folly/lang:assume",
-        "@mvfst//mvfst:constants",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/common:buf_util",
-        "@mvfst//mvfst/common/events:folly_eventbase",
-        "@mvfst//mvfst/folly_utils",
-        "@mvfst//mvfst/logging:qlogger_constants",
-        "@mvfst//mvfst/priority:http_priority_queue",
-        "@mvfst//mvfst/priority:priority_queue",
+        "@mvfst//quic:constants",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/common:buf_util",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/folly_utils",
+        "@mvfst//quic/logging:qlogger_constants",
+        "@mvfst//quic/priority:http_priority_queue",
+        "@mvfst//quic/priority:priority_queue",
         "@wangle//wangle/acceptor:managed",
     ],
 )
@@ -96,7 +96,7 @@ cc_library(
     deps = [
         ":hq_session",
         "@folly//folly/io/async:async_base",
-        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//quic/common/events:folly_eventbase",
         "@wangle//wangle/acceptor:managed",
     ],
 )
@@ -229,8 +229,8 @@ cc_library(
     hdrs = ["QuicProtocolInfo.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/common:optional",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common:optional",
         "@wangle//wangle/acceptor:acceptor_core",
     ],
 )
@@ -336,7 +336,7 @@ cc_library(
     deps = [
         "//proxygen/lib/http/codec:hq_codec",
         "@folly//folly/io/async:async_base",
-        "@mvfst//mvfst/api:transport",
+        "@mvfst//quic/api:transport",
     ],
 )
 

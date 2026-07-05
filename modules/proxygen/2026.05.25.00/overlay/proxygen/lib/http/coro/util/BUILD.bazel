@@ -38,7 +38,7 @@ cc_library(
         "//proxygen/lib/http/webtransport:wt_util",
         "@folly//folly/io/coro:socket",
         "@folly//folly/logging",
-        "@mvfst//mvfst/priority:http_priority_queue",
+        "@mvfst//quic/priority:http_priority_queue",
     ],
 )
 

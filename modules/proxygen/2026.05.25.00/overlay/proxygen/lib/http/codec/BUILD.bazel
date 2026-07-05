@@ -12,7 +12,7 @@ cc_library(
         "@folly//folly:optional",
         "@folly//folly/io:iobuf",
         "@folly//folly/logging",
-        "@mvfst//mvfst/folly_utils",
+        "@mvfst//quic/folly_utils",
     ],
 )
 
@@ -128,9 +128,9 @@ cc_library(
         ":hq_codec",
         "@folly//folly/io:iobuf",
         "@folly//folly/logging",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/folly_utils",
-        "@mvfst//mvfst/state:early_data_app_params_handler",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+        "@mvfst//quic/state:early_data_app_params_handler",
     ],
 )
 
@@ -172,8 +172,8 @@ cc_library(
         "@folly//folly/io:iobuf",
         "@folly//folly/lang:assume",
         "@folly//folly/tracing:scoped_trace_section",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/folly_utils",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
     ],
 )
 
@@ -187,8 +187,8 @@ cc_library(
         ":direction",
         "//proxygen/lib/http:message",
         "@folly//folly/io:iobuf",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/folly_utils",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
     ],
 )
 
@@ -285,6 +285,6 @@ cc_library(
     include_prefix = "proxygen/lib/http/codec",
     deps = [
         "@folly//folly/io:iobuf",
-        "@mvfst//mvfst/codec:types",
+        "@mvfst//quic/codec:types",
     ],
 )

@@ -72,16 +72,16 @@ cc_library(
         "@fizz",
         "@folly//folly/io:socket_option_map",
         "@folly//folly/logging",
-        "@mvfst//mvfst/api:loop_detector_callback",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/client",
-        "@mvfst//mvfst/common/address:quic_socket_address_bridge",
-        "@mvfst//mvfst/common/events:folly_eventbase",
-        "@mvfst//mvfst/common/udpsocket:folly_async_udp_socket",
-        "@mvfst//mvfst/congestion_control:congestion_controller_factory",
-        "@mvfst//mvfst/fizz/client/handshake",
-        "@mvfst//mvfst/fizz/client/handshake:psk_cache",
-        "@mvfst//mvfst/logging:qlogger",
+        "@mvfst//quic/api:loop_detector_callback",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/client",
+        "@mvfst//quic/common/address:quic_socket_address_bridge",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/common/udpsocket:folly_async_udp_socket",
+        "@mvfst//quic/congestion_control:congestion_controller_factory",
+        "@mvfst//quic/fizz/client/handshake",
+        "@mvfst//quic/fizz/client/handshake:psk_cache",
+        "@mvfst//quic/logging:qlogger",
     ],
 )
 
@@ -266,7 +266,7 @@ cc_library(
     deps = [
         "@folly//folly:synchronized",
         "@folly//folly/container:evicting_cache_map",
-        "@mvfst//mvfst/fizz/client/handshake:psk_cache",
+        "@mvfst//quic/fizz/client/handshake:psk_cache",
     ],
 )
 

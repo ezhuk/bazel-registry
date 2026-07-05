@@ -24,8 +24,8 @@ cc_library(
         "@folly//folly:optional",
         "@folly//folly:string",
         "@folly//folly/io:iobuf",
-        "@mvfst//mvfst:folly_utils",
-        "@mvfst//mvfst/codec:types",
+        "@mvfst//quic:folly_utils",
+        "@mvfst//quic/codec:types",
     ],
 )
 
@@ -42,10 +42,10 @@ cc_library(
         "@folly//folly:file_util",
         "@folly//folly/io/async:async_socket_exception",
         "@folly//folly/io/async:udp_socket",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/client",
-        "@mvfst//mvfst/client/handshake",
-        "@mvfst//mvfst/common/udpsocket:folly_async_udp_socket",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/client",
+        "@mvfst//quic/client/handshake",
+        "@mvfst//quic/common/udpsocket:folly_async_udp_socket",
         "@wangle//wangle:acceptor",
     ],
 )
@@ -72,8 +72,8 @@ cc_library(
         "@folly//folly:conv",
         "@folly//folly:optional",
         "@folly//folly/json:dynamic",
-        "@mvfst//mvfst/client:cached_server_tp_serialization",
-        "@mvfst//mvfst/client/handshake:psk_cache",
+        "@mvfst//quic/client:cached_server_tp_serialization",
+        "@mvfst//quic/client/handshake:psk_cache",
         "@wangle//wangle:client_persistence",
     ],
 )
@@ -84,7 +84,7 @@ cc_library(
     include_prefix = "proxygen/lib/transport",
     srcd = ["PersistentQuicTokenCache.cpp"],
     deps = [
-        "@mvfst//mvfst/fizz/client/handshake:token_cache",
+        "@mvfst//quic/fizz/client/handshake:token_cache",
         "@wangle//wangle:client_persistence",
     ],
 )
