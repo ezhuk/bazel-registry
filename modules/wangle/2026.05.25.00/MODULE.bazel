@@ -3,6 +3,7 @@ module(
     version = "2026.05.25.00",
 )
 
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "boost.thread", version = "1.90.0.bcr.1")
 bazel_dep(name = "fizz", version = "2026.05.25.00")
 bazel_dep(name = "fmt", version = "12.1.0")

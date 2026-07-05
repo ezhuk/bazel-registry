@@ -1,0 +1,248 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accept_observer",
+    hdrs = ["AcceptObserver.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)
+
+cc_library(
+    name = "acceptor",
+    srcs = [
+        "Acceptor.cpp",
+        "AcceptorHandshakeManager.cpp",
+        "EvbHandshakeHelper.cpp",
+        "FizzAcceptorHandshakeHelper.cpp",
+        "FizzConfigUtil.cpp",
+        "LoadShedConfiguration.cpp",
+        "SSLAcceptorHandshakeHelper.cpp",
+        "SocketOptions.cpp",
+        "TLSPlaintextPeekingCallback.cpp",
+    ],
+    hdrs = [
+        "AcceptObserver.h",
+        "Acceptor.h",
+        "AcceptorHandshakeManager.h",
+        "EvbHandshakeHelper.h",
+        "FizzAcceptorHandshakeHelper.h",
+        "FizzConfig.h",
+        "FizzConfigUtil.h",
+        "LoadShedConfiguration.h",
+        "NetworkAddress.h",
+        "PeekingAcceptorHandshakeHelper.h",
+        "SSLAcceptorHandshakeHelper.h",
+        "SecurityProtocolContextManager.h",
+        "ServerSocketConfig.h",
+        "SharedSSLContextManager.h",
+        "SocketOptions.h",
+        "SocketPeeker.h",
+        "TLSPlaintextPeekingCallback.h",
+        "UnencryptedAcceptorHandshakeHelper.h",
+    ],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+        ":managed",
+        "//wangle/ssl",
+        "//wangle/ssl:sni_config",
+        "//wangle/ssl:ssl_cache_provider",
+        "//wangle/ssl:ssl_config",
+        "//wangle/ssl:ssl_context_config",
+        "//wangle/ssl:ssl_util",
+        "@fizz",
+        "@fmt",
+        "@folly//folly:conv",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:glog",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_io_uring_socket",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:async_udp_server_socket",
+        "@folly//folly/io/async:server_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/io/async/fdsock:async_fd_socket",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/portability:sockets",
+        "@folly//folly/portability:unistd",
+    ],
+)
+
+cc_library(
+    name = "acceptor_core",
+    srcs = [
+        "SecureTransportType.cpp",
+        "TransportInfo.cpp",
+    ],
+    hdrs = [
+        "SSLContextSelectionMisc.h",
+        "SecureTransportType.h",
+        "TransportInfo.h",
+    ],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "//wangle/ssl:ssl_util",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "connection_counter",
+    hdrs = ["ConnectionCounter.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)
+
+cc_library(
+    name = "evb_handshake_helper",
+    srcs = ["EvbHandshakeHelper.cpp"],
+    hdrs = ["EvbHandshakeHelper.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "fizz_config",
+    hdrs = ["FizzConfig.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "fizz_config_util",
+    srcs = ["FizzConfigUtil.cpp"],
+    hdrs = ["FizzConfigUtil.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "load_shed_configuration",
+    srcs = ["LoadShedConfiguration.cpp"],
+    hdrs = ["LoadShedConfiguration.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "managed",
+    srcs = [
+        "ConnectionManager.cpp",
+        "ManagedConnection.cpp",
+    ],
+    hdrs = [
+        "ConnectionManager.h",
+        "ManagedConnection.h",
+    ],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly:constexpr_math",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)
+
+cc_library(
+    name = "network_address",
+    hdrs = ["NetworkAddress.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)
+
+cc_library(
+    name = "secure_transport_type",
+    srcs = ["SecureTransportType.cpp"],
+    hdrs = ["SecureTransportType.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)
+
+cc_library(
+    name = "server_socket_config",
+    hdrs = ["ServerSocketConfig.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "shared_ssl_context_manager",
+    hdrs = ["SharedSSLContextManager.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "socket_options",
+    srcs = ["SocketOptions.cpp"],
+    hdrs = ["SocketOptions.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "socket_peeker",
+    hdrs = ["SocketPeeker.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor",
+    ],
+)
+
+cc_library(
+    name = "transport_info",
+    srcs = ["TransportInfo.cpp"],
+    hdrs = ["TransportInfo.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)
+
+cc_library(
+    name = "util",
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":acceptor_core",
+    ],
+)

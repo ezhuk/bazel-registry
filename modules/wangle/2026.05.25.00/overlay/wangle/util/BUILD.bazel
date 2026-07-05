@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "file_poller",
+    srcs = ["FilePoller.cpp"],
+    hdrs = ["FilePoller.h"],
+    include_prefix = "wangle/util",
+    deps = [":util"],
+)
+
+cc_library(
+    name = "multi_file_poller",
+    srcs = ["MultiFilePoller.cpp"],
+    hdrs = ["MultiFilePoller.h"],
+    include_prefix = "wangle/util",
+    deps = [":util"],
+)
+
+cc_library(
+    name = "util",
+    include_prefix = "wangle/util",
+    deps = [
+        "@folly//folly:conv",
+        "@folly//folly:file_util",
+        "@folly//folly:function",
+        "@folly//folly:shared_mutex",
+        "@folly//folly:singleton",
+        "@folly//folly:string",
+        "@folly//folly:thread_local",
+        "@folly//folly/executors:function_scheduler",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:scoped_event_base_thread",
+    ],
+)

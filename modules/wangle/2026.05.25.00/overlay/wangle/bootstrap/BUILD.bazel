@@ -1,0 +1,98 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accept_routing_handler",
+    hdrs = ["AcceptRoutingHandler.h"],
+    include_prefix = "wangle/bootstrap",
+    textual_hdrs = ["AcceptRoutingHandler-inl.h"],
+    deps = [
+        ":server_bootstrap",
+    ],
+)
+
+cc_library(
+    name = "base_client_bootstrap",
+    hdrs = ["BaseClientBootstrap.h"],
+    include_prefix = "wangle/bootstrap",
+    deps = [
+        ":client_bootstrap",
+    ],
+)
+
+cc_library(
+    name = "bootstrap",
+    include_prefix = "wangle/bootstrap",
+    deps = [
+        ":client_bootstrap",
+        ":server_bootstrap",
+    ],
+)
+
+cc_library(
+    name = "client_bootstrap",
+    hdrs = ["ClientBootstrap.h"],
+    include_prefix = "wangle/bootstrap",
+    deps = [
+        "//wangle/channel",
+        "@folly//folly:network_address",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:destructor_check",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/ssl:ssl_session",
+    ],
+)
+
+cc_library(
+    name = "routing_data_handler",
+    hdrs = ["RoutingDataHandler.h"],
+    include_prefix = "wangle/bootstrap",
+    textual_hdrs = ["RoutingDataHandler-inl.h"],
+    deps = [
+        ":client_bootstrap",
+    ],
+)
+
+cc_library(
+    name = "server_bootstrap",
+    srcs = ["ServerBootstrap.cpp"],
+    hdrs = [
+        "ServerBootstrap.h",
+        "ServerSocketFactory.h",
+    ],
+    include_prefix = "wangle/bootstrap",
+    textual_hdrs = ["ServerBootstrap-inl.h"],
+    deps = [
+        ":client_bootstrap",
+        "//wangle/acceptor",
+        "//wangle/acceptor:managed",
+        "//wangle/channel",
+        "//wangle/ssl:ssl_config",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:shared_mutex",
+        "@folly//folly:synchronized",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/executors/thread_factory:named_thread_factory",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:async_udp_server_socket",
+        "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:server_socket",
+        "@folly//folly/synchronization:baton",
+        "@folly//folly/system:hardware_concurrency",
+    ],
+)
+
+cc_library(
+    name = "server_socket_factory",
+    hdrs = ["ServerSocketFactory.h"],
+    include_prefix = "wangle/bootstrap",
+    deps = [
+        ":server_bootstrap",
+    ],
+)
