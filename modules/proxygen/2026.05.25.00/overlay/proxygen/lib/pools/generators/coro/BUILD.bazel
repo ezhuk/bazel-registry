@@ -41,9 +41,9 @@ cc_library(
     hdrs = ["CoroServerListGenerator.h"],
     include_prefix = "proxygen/lib/pools/generators/coro",
     deps = [
-        "//proxygen/pools/generators:member_group_config",
-        "//proxygen/pools/generators:server_config",
-        "//proxygen/pools/generators:server_list_generator",
+        "//proxygen/lib/pools/generators:member_group_config",
+        "//proxygen/lib/pools/generators:server_config",
+        "//proxygen/lib/pools/generators:server_list_generator",
         "@folly//folly/coro:task",
     ],
 )

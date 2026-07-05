@@ -9,9 +9,9 @@ cc_library(
     include_prefix = "proxygen/lib/http/sink",
     deps = [
         ":client_sink_interface",
-        "//proxygen/http/observer:session_observer_container",
-        "//proxygen/http/session:hq_session",
-        "//proxygen/http/session:http_transaction",
+        "//proxygen/lib/http/observer:session_observer_container",
+        "//proxygen/lib/http/session:hq_session",
+        "//proxygen/lib/http/session:http_transaction",
         "@folly//folly/logging",
     ],
 )
@@ -22,7 +22,7 @@ cc_library(
     include_prefix = "proxygen/lib/http/sink",
     deps = [
         ":flow_control_info",
-        "//proxygen/http:message",
+        "//proxygen/lib/http:message",
         "@folly//folly:cpp_attributes",
     ],
 )

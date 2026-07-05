@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["RFC1867.h"],
     include_prefix = "proxygen/lib/http/experimental",
     deps = [
-        "//proxygen/http/codec:http1x_codec",
-        "//proxygen/utils:logging",
+        "//proxygen/lib/http/codec:http1x_codec",
+        "//proxygen/lib/utils:logging",
         "@folly//folly:conv",
     ],
 )

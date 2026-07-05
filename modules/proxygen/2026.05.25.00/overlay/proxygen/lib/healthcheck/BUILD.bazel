@@ -8,7 +8,7 @@ cc_library(
     hdrs = ["ServerHealthCheckerCallback.h"],
     include_prefix = "proxygen/lib/healthcheck",
     deps = [
-        "//proxygen/utils:time_util",
+        "//proxygen/lib/utils:time_util",
         "@folly//folly:network_address",
         "@folly//folly/container:f14_hash",
     ],
@@ -19,7 +19,7 @@ cc_library(
     include_prefix = "proxygen/lib/healthcheck",
     deps = [
         ":callback",
-        "//proxygen/utils:time_util",
+        "//proxygen/lib/utils:time_util",
         "@folly//folly:network_address",
         "@folly//folly/io:socket_option_map",
     ],

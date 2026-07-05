@@ -36,6 +36,6 @@
     "quic/state/BUILD.bazel": "sha256-ZqbwdW1k6CXt6BBCmS8Gc88ZTVqqt54Lo0spN+GeGSI=",
     "quic/xsk/BUILD.bazel": "sha256-2OpqSh1JrfZqEYsdHnE1SS0xw65tRNCk6SM6/0y/eCY=",
     "quic/BUILD.bazel": "sha256-dS65iueLFZ0hrFCKD8W5C8P5JPibz2xjJZFy/8u9p+I=",
-    "BUILD.bazel": "sha256-suLzGFV7qIBsUSiiIhn3LjT/rQyYsdSGVMYI83u6lNQ="
+    "BUILD.bazel": "sha256-d6uUCor/84cEY5M6oQaM2Xy5KUfoebTj1BUDr1+8ZpE="
   }
 }

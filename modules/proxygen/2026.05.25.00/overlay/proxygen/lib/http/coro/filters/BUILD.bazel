@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["CompressionFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
-        "//proxygen/utils:compression_filter_utils",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/utils:compression_filter_utils",
     ],
 )
 
@@ -31,9 +31,9 @@ cc_library(
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
         ":mutate_filter",
-        "//proxygen/http/coro:source",
-        "//proxygen/utils:compression_filter_utils",
-        "//proxygen/utils:zstd_stream_decompressor",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/utils:compression_filter_utils",
+        "//proxygen/lib/utils:zstd_stream_decompressor",
     ],
 )
 
@@ -53,7 +53,7 @@ cc_library(
     hdrs = ["FilterFactory.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
     ],
 )
 
@@ -63,10 +63,10 @@ cc_library(
     hdrs = ["Logger.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http:priority_functions",
-        "//proxygen/http/coro",
-        "//proxygen/http/coro:source",
-        "//proxygen/http/sampling:sampled",
+        "//proxygen/lib/http:priority_functions",
+        "//proxygen/lib/http/coro",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/sampling:sampled",
         "@folly//folly/coro:collect",
         "@folly//folly/coro:promise",
         "@folly//folly/logging",
@@ -79,7 +79,7 @@ cc_library(
     hdrs = ["MutateFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
     ],
 )
 
@@ -89,8 +89,8 @@ cc_library(
     hdrs = ["RateLimitFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
-        "//proxygen/http/utils:time_util",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/utils:time_util",
         "@folly//folly/coro:sleep",
     ],
 )
@@ -101,9 +101,9 @@ cc_library(
     hdrs = ["HTTPRedirectHandler.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro",
-        "//proxygen/http/coro:source",
-        "//proxygen/http/coro/client:http_session_factory",
+        "//proxygen/lib/http/coro",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/coro/client:http_session_factory",
         "@folly//folly/logging",
     ],
 )
@@ -135,8 +135,8 @@ cc_library(
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
         ":visitor_filter",
-        "//proxygen/http/coro:source",
-        "//proxygen/http/stats:HttpServerStats",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/stats:HttpServerStats",
         "@folly//folly:stop_watch",
     ],
 )
@@ -147,7 +147,7 @@ cc_library(
     hdrs = ["Status1xxFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
         "@folly//folly/logging",
     ],
 )
@@ -158,7 +158,7 @@ cc_library(
     hdrs = ["TransformFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
     ],
 )
 
@@ -168,6 +168,6 @@ cc_library(
     hdrs = ["VisitorFilter.h"],
     include_prefix = "proxygen/lib/http/coro/filters",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
     ],
 )

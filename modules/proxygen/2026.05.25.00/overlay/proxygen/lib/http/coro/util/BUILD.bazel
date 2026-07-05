@@ -30,12 +30,12 @@ cc_library(
     hdrs = ["CoroWtSession.h"],
     include_prefix = "proxygen/lib/http/coro/util",
     deps = [
-        "//proxygen/http/codec/webtransport:webtransport_capsule_codec",
-        "//proxygen/http/coro:coro_stream_source",
-        "//proxygen/http/coro:source",
-        "//proxygen/http/coro/util:cancellable_baton",
-        "//proxygen/http/webtransport:wt_stream_manager",
-        "//proxygen/http/webtransport:wt_util",
+        "//proxygen/lib/http/codec/webtransport:webtransport_capsule_codec",
+        "//proxygen/lib/http/coro:coro_stream_source",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/coro/util:cancellable_baton",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "//proxygen/lib/http/webtransport:wt_util",
         "@folly//folly/io/coro:socket",
         "@folly//folly/logging",
         "@mvfst//mvfst/priority:http_priority_queue",
@@ -60,7 +60,7 @@ cc_library(
     hdrs = ["ExecutorSourceFilter.h"],
     include_prefix = "proxygen/lib/http/coro/util",
     deps = [
-        "//proxygen/http/coro:source",
+        "//proxygen/lib/http/coro:source",
     ],
 )
 
@@ -96,7 +96,7 @@ cc_library(
     hdrs = ["WindowContainer.h"],
     include_prefix = "proxygen/lib/http/coro/util",
     deps = [
-        "//proxygen/http:window",
+        "//proxygen/lib/http:window",
         "@folly//folly/logging",
     ],
 )
