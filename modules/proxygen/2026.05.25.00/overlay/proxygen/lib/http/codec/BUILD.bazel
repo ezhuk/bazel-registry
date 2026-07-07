@@ -39,11 +39,14 @@ cc_library(
     hdrs = [
         "CodecProtocol.h",
         "HTTP2Constants.h",
+        "HTTPCodec.h",
         "HTTPCodecFilter.h",
         "HTTPCodecPrinter.h",
         "HTTPParallelCodec.h",
+        "HTTPRequestVerifier.h",
         "HTTPSettings.h",
         "HeaderDecodeInfo.h",
+        "SettingsId.h",
     ],
     include_prefix = "proxygen/lib/http/codec",
     deps = [
@@ -253,7 +256,13 @@ cc_library(
 cc_library(
     name = "rate_limit_filters",
     srcs = ["RateLimitFilter.cpp"],
-    hdrs = ["RateLimitFilter.h"],
+    hdrs = [
+        "ControlMessageRateLimitFilter.h",
+        "DirectErrorsRateLimitFilter.h",
+        "HeadersRateLimitFilter.h",
+        "RateLimitFilter.h",
+        "ResetsRateLimitFilter.h",
+    ],
     include_prefix = "proxygen/lib/http/codec",
     deps = [
         ":codec_common",
@@ -269,9 +278,10 @@ cc_library(
     hdrs = ["CodecUtil.h"],
     include_prefix = "proxygen/lib/http/codec",
     deps = [
-        ":compress_header_codec",
         "//proxygen/lib/http:http_headers",
         "//proxygen/lib/http:message",
+        "//proxygen/lib/http/codec/compress:header",
+        "//proxygen/lib/http/codec/compress:header_codec",
         "//proxygen/lib/utils:util_inl",
         "@folly//folly:range",
         "@folly//folly:string",

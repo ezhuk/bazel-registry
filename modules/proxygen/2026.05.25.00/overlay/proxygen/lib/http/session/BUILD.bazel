@@ -116,7 +116,10 @@ cc_library(
 cc_library(
     name = "http_session_activity_tracker",
     srcs = ["HTTPSessionActivityTracker.cpp"],
-    hdrs = ["HTTPSessionActivityTracker.h"],
+    hdrs = [
+        "HTTPSessionActivityTracker.h",
+        "TransactionByteEvents.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":transaction_byte_events",
@@ -156,14 +159,17 @@ cc_library(
 cc_library(
     name = "http_transaction",
     srcs = ["HTTPTransaction.cpp"],
-    hdrs = ["HTTPTransaction.h"],
+    hdrs = [
+        "HTTPSessionStats.h",
+        "HTTPTransaction.h",
+        "TTLBAStats.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":byte_events",
         ":http2_priority_queue",
         ":http_event",
         ":http_state_machine_lib",
-        ":stats",
         "//proxygen/lib/http:error",
         "//proxygen/lib/http:http_header_size",
         "//proxygen/lib/http:http_headers",
@@ -251,6 +257,7 @@ cc_library(
         "HTTPDownstreamSession.h",
         "HTTPErrorPage.h",
         "HTTPSessionAcceptor.h",
+        "HTTPSessionController.h",
         "SimpleController.h",
     ],
     include_prefix = "proxygen/lib/http/session",
@@ -279,12 +286,13 @@ cc_library(
     hdrs = [
         "HTTPSession.h",
         "HTTPSessionBase.h",
+        "HTTPSessionController.h",
+        "SessionLoopCallback.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":http_event",
         ":http_session_activity_tracker",
-        ":http_transaction",
         ":stats",
         ":transaction_byte_events",
         "//proxygen/lib/http:http_header_size",
@@ -323,9 +331,11 @@ cc_library(
 
 cc_library(
     name = "stats",
-    hdrs = ["HTTPSessionStats.h"],
+    hdrs = [
+        "HTTPSessionStats.h",
+        "TTLBAStats.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
-    deps = [":session"],
 )
 
 cc_library(
@@ -343,7 +353,11 @@ cc_library(
 cc_library(
     name = "transaction_byte_events",
     srcs = ["ByteEventTracker.cpp"],
-    hdrs = ["ByteEventTracker.h"],
+    hdrs = [
+        "AckLatencyEvent.h",
+        "ByteEventTracker.h",
+        "TransactionByteEvents.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":byte_events",

@@ -2,6 +2,44 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
+genrule(
+    name = "http_common_headers_gen",
+    srcs = [
+        "HTTPCommonHeaders.txt",
+        "//proxygen/lib/utils:gen_perfect_hash_table_sh",
+        "//proxygen/lib/utils:perfect_hash_table_template_h",
+        "//proxygen/lib/utils:perfect_hash_table_template_cpp_gperf",
+    ],
+    outs = [
+        "HTTPCommonHeaders.h",
+        "HTTPCommonHeaders.cpp",
+    ],
+    cmd = """
+        set -e
+
+        mkdir -p proxygen/lib/utils
+        mkdir -p $(@D)
+
+        cp $(execpath //proxygen/lib/utils:gen_perfect_hash_table_sh) proxygen/lib/utils/gen_perfect_hash_table.sh
+        cp $(execpath //proxygen/lib/utils:perfect_hash_table_template_h) proxygen/lib/utils/perfect_hash_table_template.h
+        cp $(execpath //proxygen/lib/utils:perfect_hash_table_template_cpp_gperf) proxygen/lib/utils/perfect_hash_table_template.cpp.gperf
+
+        chmod +x proxygen/lib/utils/gen_perfect_hash_table.sh
+
+        HEADERS_LIST=$(execpath HTTPCommonHeaders.txt) \
+        INSTALL_DIR=$(@D) \
+        FBCODE_DIR=. \
+        OUTPUT_DIR=$(@D) \
+        GPERF=$(execpath @gperf//:gperf) \
+        $(execpath gen_HTTPCommonHeaders.sh) \
+        $(execpath HTTPCommonHeaders.txt)
+    """,
+    tools = [
+        "gen_HTTPCommonHeaders.sh",
+        "@gperf",
+    ],
+)
+
 cc_library(
     name = "client",
     srcs = ["HTTPConnector.cpp"],
@@ -120,6 +158,19 @@ cc_library(
 )
 
 cc_library(
+    name = "http_common_headers",
+    srcs = ["HTTPCommonHeaders.cpp"],
+    hdrs = ["HTTPCommonHeaders.h"],
+    include_prefix = "proxygen/lib/http",
+    deps = [
+        ":http_common_headers_gen",
+        "//proxygen/lib/utils:export",
+        "@folly//folly:range",
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
     name = "http_connector_with_fizz",
     srcs = ["HTTPConnectorWithFizz.cpp"],
     hdrs = ["HTTPConnectorWithFizz.h"],
@@ -146,9 +197,9 @@ cc_library(
         "RFC2616.cpp",
     ],
     hdrs = [
-        "HTTPHeaders.cpp",
-        "HTTPMethod.cpp",
-        "RFC2616.cpp",
+        "HTTPHeaders.h",
+        "HTTPMethod.h",
+        "RFC2616.h",
     ],
     include_prefix = "proxygen/lib/http",
     deps = [
@@ -232,7 +283,7 @@ cc_library(
     include_prefix = "proxygen/lib/http",
     deps = [
         ":message",
-        ":structuredheaders_decoder",
+        "//proxygen/lib/http/structuredheaders:decoder",
         "@folly//folly:optional",
         "@folly//folly:range",
     ],

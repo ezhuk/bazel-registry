@@ -114,6 +114,7 @@ cc_library(
         "WtStreamManager.cpp",
     ],
     hdrs = [
+        "StreamPriorityQueue.h",
         "WtEgressContainer.h",
         "WtStreamManager.h",
     ],
@@ -134,10 +135,10 @@ cc_library(
     hdrs = ["WtUtils.h"],
     include_prefix = "proxygen/lib/http/webtransport",
     deps = [
-        ":webtransport_capsule_codec",
         ":wt_stream_manager",
         "//proxygen/lib/http/codec:codec_common",
         "//proxygen/lib/http/codec:direction",
+        "//proxygen/lib/http/codec/webtransport:webtransport_capsule_codec",
         "@folly//folly/logging",
         "@mvfst//quic/codec:types",
     ],
