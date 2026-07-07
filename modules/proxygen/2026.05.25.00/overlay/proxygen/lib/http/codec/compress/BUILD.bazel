@@ -20,8 +20,20 @@ cc_library(
 )
 
 cc_library(
+    name = "header",
+    hdrs = ["Header.h"],
+    include_prefix = "proxygen/lib/http/codec/compress",
+    deps = [
+        "//proxygen/lib/http:http_headers",
+    ],
+)
+
+cc_library(
     name = "header_codec",
-    hdrs = ["HeaderCodec.h"],
+    hdrs = [
+        "HeaderCodec.h",
+        "HeaderPiece.h",
+    ],
     include_prefix = "proxygen/lib/http/codec/compress",
     deps = [
         "//proxygen/lib/http:http_header_size",
@@ -54,6 +66,7 @@ cc_library(
     ],
     hdrs = [
         "HPACKCodec.h",
+        "HPACKConstants.h",
         "HPACKContext.h",
         "HPACKDecodeBuffer.h",
         "HPACKDecoder.h",
@@ -62,6 +75,7 @@ cc_library(
         "HPACKEncoder.h",
         "HPACKEncoderBase.h",
         "HPACKHeader.h",
+        "HPACKStreamingCallback.h",
         "HeaderIndexingStrategy.h",
         "HeaderTable.h",
         "Huffman.h",

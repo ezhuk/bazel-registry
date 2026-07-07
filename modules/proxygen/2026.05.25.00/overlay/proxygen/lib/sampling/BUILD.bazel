@@ -41,6 +41,6 @@ cc_library(
     include_prefix = "proxygen/lib/sampling",
     deps = [
         "@folly//folly/hash",
-        "@mvfst//mvfst/codec:types",
+        "@mvfst//quic/codec:types",
     ],
 )

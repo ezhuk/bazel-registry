@@ -1,4 +1,3 @@
-load("@rules_cc//cc:defs.bzl", "cc_library")
 load("@rules_license//rules:license.bzl", "license")
 
 package(default_applicable_licenses = [":license"])
@@ -7,40 +6,4 @@ license(
     name = "license",
     license_kinds = ["@rules_license//licenses/spdx:MIT"],
     license_text = "LICENSE",
-)
-
-cc_library(
-    name = "mvfst",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//quic:config",
-        "//quic:constants",
-        "//quic:enum",
-        "//quic:exception",
-        "//quic:tls_exception",
-        "//quic/api:stream_async_transport",
-        "//quic/api:transport",
-        "//quic/api:transport_helpers",
-        "//quic/api:transport_info",
-        "//quic/api:transport_lite",
-        "//quic/client",
-        "//quic/codec",
-        "//quic/common",
-        "//quic/congestion_control",
-        "//quic/datagram",
-        "//quic/fizz",
-        "//quic/flowcontrol",
-        "//quic/folly_utils",
-        "//quic/handshake",
-        "//quic/happyeyeballs",
-        "//quic/logging",
-        "//quic/loss",
-        "//quic/observer",
-        "//quic/priority",
-        "//quic/server",
-        "//quic/state",
-        "//quic/xsk:xsk_container",
-        "//quic/xsk:xsk_lib",
-        "//quic/xsk:xsk_sender",
-    ],
 )

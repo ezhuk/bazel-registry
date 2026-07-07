@@ -22,7 +22,7 @@ cc_library(
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":transaction_byte_events",
-        "@mvfst//mvfst/api:transport",
+        "@mvfst//quic/api:transport",
     ],
 )
 
@@ -75,15 +75,15 @@ cc_library(
         "@folly//folly/io/async:async_transport",
         "@folly//folly/io/async:delayed_destruction",
         "@folly//folly/lang:assume",
-        "@mvfst//mvfst:constants",
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/codec:types",
-        "@mvfst//mvfst/common:buf_util",
-        "@mvfst//mvfst/common/events:folly_eventbase",
-        "@mvfst//mvfst/folly_utils",
-        "@mvfst//mvfst/logging:qlogger_constants",
-        "@mvfst//mvfst/priority:http_priority_queue",
-        "@mvfst//mvfst/priority:priority_queue",
+        "@mvfst//quic:constants",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/common:buf_util",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/folly_utils",
+        "@mvfst//quic/logging:qlogger_constants",
+        "@mvfst//quic/priority:http_priority_queue",
+        "@mvfst//quic/priority:priority_queue",
         "@wangle//wangle/acceptor:managed",
     ],
 )
@@ -96,7 +96,7 @@ cc_library(
     deps = [
         ":hq_session",
         "@folly//folly/io/async:async_base",
-        "@mvfst//mvfst/common/events:folly_eventbase",
+        "@mvfst//quic/common/events:folly_eventbase",
         "@wangle//wangle/acceptor:managed",
     ],
 )
@@ -116,7 +116,10 @@ cc_library(
 cc_library(
     name = "http_session_activity_tracker",
     srcs = ["HTTPSessionActivityTracker.cpp"],
-    hdrs = ["HTTPSessionActivityTracker.h"],
+    hdrs = [
+        "HTTPSessionActivityTracker.h",
+        "TransactionByteEvents.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":transaction_byte_events",
@@ -156,14 +159,17 @@ cc_library(
 cc_library(
     name = "http_transaction",
     srcs = ["HTTPTransaction.cpp"],
-    hdrs = ["HTTPTransaction.h"],
+    hdrs = [
+        "HTTPSessionStats.h",
+        "HTTPTransaction.h",
+        "TTLBAStats.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":byte_events",
         ":http2_priority_queue",
         ":http_event",
         ":http_state_machine_lib",
-        ":stats",
         "//proxygen/lib/http:error",
         "//proxygen/lib/http:http_header_size",
         "//proxygen/lib/http:http_headers",
@@ -229,8 +235,8 @@ cc_library(
     hdrs = ["QuicProtocolInfo.h"],
     include_prefix = "proxygen/lib/http/session",
     deps = [
-        "@mvfst//mvfst/api:transport",
-        "@mvfst//mvfst/common:optional",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common:optional",
         "@wangle//wangle/acceptor:acceptor_core",
     ],
 )
@@ -251,6 +257,7 @@ cc_library(
         "HTTPDownstreamSession.h",
         "HTTPErrorPage.h",
         "HTTPSessionAcceptor.h",
+        "HTTPSessionController.h",
         "SimpleController.h",
     ],
     include_prefix = "proxygen/lib/http/session",
@@ -279,12 +286,13 @@ cc_library(
     hdrs = [
         "HTTPSession.h",
         "HTTPSessionBase.h",
+        "HTTPSessionController.h",
+        "SessionLoopCallback.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":http_event",
         ":http_session_activity_tracker",
-        ":http_transaction",
         ":stats",
         ":transaction_byte_events",
         "//proxygen/lib/http:http_header_size",
@@ -323,9 +331,11 @@ cc_library(
 
 cc_library(
     name = "stats",
-    hdrs = ["HTTPSessionStats.h"],
+    hdrs = [
+        "HTTPSessionStats.h",
+        "TTLBAStats.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
-    deps = [":session"],
 )
 
 cc_library(
@@ -336,14 +346,18 @@ cc_library(
     deps = [
         "//proxygen/lib/http/codec:hq_codec",
         "@folly//folly/io/async:async_base",
-        "@mvfst//mvfst/api:transport",
+        "@mvfst//quic/api:transport",
     ],
 )
 
 cc_library(
     name = "transaction_byte_events",
     srcs = ["ByteEventTracker.cpp"],
-    hdrs = ["ByteEventTracker.h"],
+    hdrs = [
+        "AckLatencyEvent.h",
+        "ByteEventTracker.h",
+        "TransactionByteEvents.h",
+    ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
         ":byte_events",
