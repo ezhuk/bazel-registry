@@ -26,6 +26,8 @@ cc_library(
     include_prefix = "proxygen/httpserver",
     deps = [
         ":httpserver_headers",
+        "//proxygen/httpserver/filters:compression_filter",
+        "//proxygen/httpserver/filters:reject_connect_filter",
         "//proxygen/lib/http/codec:codec_common",
         "//proxygen/lib/http/codec:codec_factory",
         "//proxygen/lib/http/codec:http1x_codec",
@@ -50,7 +52,12 @@ cc_library(
 
 cc_library(
     name = "httpserver_headers",
-    hdrs = ["Mocks.h"],
+    hdrs = [
+        "Filters.h",
+        "Mocks.h",
+        "RequestHandlerFactory.h",
+        "ResponseBuilder.h",
+    ],
     include_prefix = "proxygen/httpserver",
     deps = [
         "//proxygen/lib/http/session:http_transaction",
