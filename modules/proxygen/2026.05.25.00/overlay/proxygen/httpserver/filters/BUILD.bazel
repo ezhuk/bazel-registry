@@ -3,13 +3,32 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
+    name = "compression_filter",
+    hdrs = ["CompressionFilter.h"],
+    include_prefix = "proxygen/httpserver/filters",
+    deps = [
+        "//proxygen/httpserver:httpserver_headers",
+        "//proxygen/lib/utils:compression_filter_utils",
+    ],
+)
+
+cc_library(
     name = "decompression_filter",
     srcs = ["DecompressionFilter.cpp"],
     hdrs = ["DecompressionFilter.h"],
     include_prefix = "proxygen/httpserver/filters",
     deps = [
-        "//httpserver:httpserver_headers",
+        "//proxygen/httpserver:httpserver_headers",
         "//proxygen/lib/utils:stream_decompressor",
         "//proxygen/lib/utils:zstd_stream_decompressor",
+    ],
+)
+
+cc_library(
+    name = "reject_connect_filter",
+    hdrs = ["RejectConnectFilter.h"],
+    include_prefix = "proxygen/httpserver/filters",
+    deps = [
+        "//proxygen/httpserver:httpserver_headers",
     ],
 )
