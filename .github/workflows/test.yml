@@ -23,7 +23,6 @@ jobs:
           - libaegis
           - liboqs
           - libsodium
-          - liburing
           - mvfst
           - proxygen
           - wangle
