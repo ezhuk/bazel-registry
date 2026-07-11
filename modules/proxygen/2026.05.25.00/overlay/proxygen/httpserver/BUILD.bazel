@@ -55,6 +55,7 @@ cc_library(
     hdrs = [
         "Filters.h",
         "Mocks.h",
+        "RequestHandler.h",
         "RequestHandlerFactory.h",
         "ResponseBuilder.h",
     ],
