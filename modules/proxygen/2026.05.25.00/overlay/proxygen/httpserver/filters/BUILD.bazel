@@ -25,6 +25,15 @@ cc_library(
 )
 
 cc_library(
+    name = "direct_response_handler",
+    hdrs = ["DirectResponseHandler.h"],
+    include_prefix = "proxygen/httpserver/filters",
+    deps = [
+        "//proxygen/httpserver:httpserver_headers",
+    ],
+)
+
+cc_library(
     name = "reject_connect_filter",
     hdrs = ["RejectConnectFilter.h"],
     include_prefix = "proxygen/httpserver/filters",
