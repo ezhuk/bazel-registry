@@ -228,10 +228,10 @@ cc_library(
     hdrs = ["IOThreadPoolDeadlockDetectorObserver.h"],
     include_prefix = "folly/executors",
     deps = [
+        ":io_thread_pool_executor",
+        ":thread_pool_executor",
         "//folly:singleton",
         "//folly/concurrency:deadlock_detector",
-        "//folly/executors:io_thread_pool_executor",
-        "//folly/executors:thread_pool_executor",
     ],
 )
 
@@ -259,9 +259,9 @@ cc_library(
     hdrs = ["ManualExecutor.h"],
     include_prefix = "folly/executors",
     deps = [
-        "//folly/executors:drivable_executor",
-        "//folly/executors:scheduled_executor",
-        "//folly/executors:sequenced_executor",
+        ":drivable_executor",
+        ":scheduled_executor",
+        ":sequenced_executor",
         "//folly/synchronization:lifo_sem",
     ],
 )
@@ -389,10 +389,10 @@ cc_library(
     hdrs = ["StripedEDFThreadPoolExecutor.h"],
     include_prefix = "folly/executors",
     deps = [
+        ":cpu_thread_pool_executor",
+        ":soft_real_time_executor",
         "//folly/concurrency:cache_locality",
         "//folly/container:intrusive_heap",
-        "//folly/executors:cpu_thread_pool_executor",
-        "//folly/executors:soft_real_time_executor",
         "//folly/synchronization:distributed_mutex",
         "//folly/synchronization:striped_throttled_lifo_sem",
         "//folly/synchronization:throttled_lifo_sem",

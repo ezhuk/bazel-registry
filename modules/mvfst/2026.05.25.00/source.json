@@ -5,7 +5,7 @@
   "overlay": {
     "quic/api/BUILD.bazel": "sha256-8Nf2y1aPpYv2hDAabZd2myjhVQMSXOO5dSjLenHKwHc=",
     "quic/client/connector/BUILD.bazel": "sha256-ZOwQy5iWaErYJ1YeVTt9cXabB4NtX64gWfQWzCPEw4g=",
-    "quic/client/BUILD.bazel": "sha256-ju5dCCwWFXsoz6Psxe6PC6T/z7e9bYkeLh1Yp0gTjiI=",
+    "quic/client/BUILD.bazel": "sha256-icUWHtkknJBsrMjUDJvTAhqQfj/+fZEPNUn+6AOVV90=",
     "quic/codec/BUILD.bazel": "sha256-xqIOWzt98QoCZyQBSeIOFFpXmKWs0v3k4+VDHVUrwxI=",
     "quic/common/events/BUILD.bazel": "sha256-oeivwTkyJPNE5QsGxkTckD5RZpW+WZ/FCJaLVICIJZs=",
     "quic/common/third-party/BUILD.bazel": "sha256-Cwq375Qn/PDO2TgJdKUDwo8D772NU8ZTIS56Z98x3jk=",
@@ -33,7 +33,7 @@
     "quic/server/third-party/BUILD.bazel": "sha256-YnvdfzfP6LmVyUeANn/hxAW+cltwngvfqQy5009TJDU=",
     "quic/server/BUILD.bazel": "sha256-h6a01TsIOVDSyCqMHp0fbNGTA1M9rsqn39AlOVw4Fno=",
     "quic/state/stream/BUILD.bazel": "sha256-NzQXb0AY5tRuaIClUH4RqTr2rjvuzy9kCXcB9mjbXJc=",
-    "quic/state/BUILD.bazel": "sha256-ZqbwdW1k6CXt6BBCmS8Gc88ZTVqqt54Lo0spN+GeGSI=",
+    "quic/state/BUILD.bazel": "sha256-+yZdCW3iBUJsj+mHKiK45v1P+QEBrVO7TBG7k85AJGk=",
     "quic/xsk/BUILD.bazel": "sha256-2OpqSh1JrfZqEYsdHnE1SS0xw65tRNCk6SM6/0y/eCY=",
     "quic/BUILD.bazel": "sha256-dS65iueLFZ0hrFCKD8W5C8P5JPibz2xjJZFy/8u9p+I=",
     "BUILD.bazel": "sha256-1yyOAyXQnDx4SJOXlb1b9ioaYOLG2NCgF02L/UPgTJE="

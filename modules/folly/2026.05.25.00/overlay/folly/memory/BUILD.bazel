@@ -69,8 +69,8 @@ cc_library(
     hdrs = ["JemallocHugePageAllocator.h"],
     include_prefix = "folly/memory",
     deps = [
+        ":malloc",
         "//folly:c_portability",
-        "//folly/memory:malloc",
         "//folly/portability:malloc",
         "//folly/portability:pthread",
         "//folly/portability:string",
@@ -201,10 +201,10 @@ cc_library(
     include_prefix = "folly/memory",
     deps = [
         ":allocator",
+        ":arena",
         "//folly:likely",
         "//folly:synchronized",
         "//folly:thread_local",
-        "//folly/memory:arena",
     ],
 )
 

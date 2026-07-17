@@ -16,6 +16,7 @@ cc_library(
     ],
     include_prefix = "proxygen/lib/http/coro",
     deps = [
+        ":coro_stream_source",
         ":source",
         "//proxygen/lib/http:priority_functions",
         "//proxygen/lib/http/codec:codec_common",
@@ -23,7 +24,6 @@ cc_library(
         "//proxygen/lib/http/codec:hq_codec",
         "//proxygen/lib/http/codec:http1x_codec",
         "//proxygen/lib/http/codec:rate_limit_filters",
-        "//proxygen/lib/http/coro:coro_stream_source",
         "//proxygen/lib/http/coro/util:CoroWtSession",
         "//proxygen/lib/http/coro/util:DetachableExecutor",
         "//proxygen/lib/http/coro/util:awaitable_keepalive",

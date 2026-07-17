@@ -113,11 +113,11 @@ cc_library(
     hdrs = ["AsyncIO.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base_class",
         "//folly:exception",
         "//folly:likely",
         "//folly:small_vector",
         "//folly:string",
-        "//folly/io/async:async_base_class",
         "//folly/portability:unistd",
         "@boost.intrusive",
         "@fmt",
@@ -424,12 +424,12 @@ cc_library(
     ],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base",
         "//folly:file_util",
         "//folly:intrusive_list",
         "//folly:map_util",
         "//folly:string",
         "//folly/container:intrusive_heap",
-        "//folly/io/async:async_base",
     ],
 )
 
@@ -451,13 +451,13 @@ cc_library(
     hdrs = ["EventBasePoller.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":epoll",
+        ":liburing",
         "//folly:file_util",
         "//folly:function",
         "//folly:range",
         "//folly:string",
         "//folly:synchronized",
-        "//folly/io/async:epoll",
-        "//folly/io/async:liburing",
         "//folly/lang:align",
         "//folly/portability:gflags",
         "//folly/synchronization:baton",
@@ -582,10 +582,10 @@ cc_library(
     hdrs = ["IoUringEvent.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base",
+        ":io_uring_backend",
+        ":liburing",
         "//folly:file",
-        "//folly/io/async:async_base",
-        "//folly/io/async:io_uring_backend",
-        "//folly/io/async:liburing",
     ],
 )
 
@@ -595,11 +595,11 @@ cc_library(
     hdrs = ["IoUringEventBaseLocal.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base",
+        ":io_uring_backend",
+        ":io_uring_event",
+        ":liburing",
         "//folly:singleton",
-        "//folly/io/async:async_base",
-        "//folly/io/async:io_uring_backend",
-        "//folly/io/async:io_uring_event",
-        "//folly/io/async:liburing",
     ],
 )
 
@@ -689,14 +689,14 @@ cc_library(
     hdrs = ["MuxIOThreadPoolExecutor.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":epoll_backend",
+        ":event_base_manager",
+        ":event_base_poller",
         "//folly:portability",
         "//folly/concurrency:unbounded_queue",
         "//folly/container:enumerate",
         "//folly/executors:io_thread_pool_executor",
         "//folly/executors:queue_observer",
-        "//folly/io/async:epoll_backend",
-        "//folly/io/async:event_base_manager",
-        "//folly/io/async:event_base_poller",
         "//folly/lang:align",
         "//folly/synchronization:baton",
         "//folly/synchronization:latch",
@@ -785,17 +785,17 @@ cc_library(
     hdrs = ["SimpleAsyncIO.h"],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base",
+        ":async_base_class",
+        ":async_io",
+        ":io_uring",
+        ":liburing",
+        ":scoped_event_base_thread",
         "//folly:string",
         "//folly:synchronized",
         "//folly/coro:baton",
         "//folly/coro:task",
         "//folly/executors:global_executor",
-        "//folly/io/async:async_base",
-        "//folly/io/async:async_base_class",
-        "//folly/io/async:async_io",
-        "//folly/io/async:io_uring",
-        "//folly/io/async:liburing",
-        "//folly/io/async:scoped_event_base_thread",
         "//folly/portability:sockets",
     ],
 )
@@ -865,10 +865,10 @@ cc_library(
     ],
     include_prefix = "folly/io/async",
     deps = [
+        ":async_base",
+        ":delayed_destruction",
+        ":event_util",
         "//folly:file_util",
-        "//folly/io/async:async_base",
-        "//folly/io/async:delayed_destruction",
-        "//folly/io/async:event_util",
     ],
 )
 

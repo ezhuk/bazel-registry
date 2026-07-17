@@ -47,8 +47,8 @@ cc_library(
     hdrs = ["QuicClientAsyncTransport.h"],
     include_prefix = "quic/client",
     deps = [
+        ":client",
         "//quic/api:stream_async_transport",
-        "//quic/client",
         "//quic/common:mvfst_logging",
         "@folly//folly/debugging/symbolizer",
     ],

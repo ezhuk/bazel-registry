@@ -77,11 +77,11 @@ cc_library(
     hdrs = ["json_patch.h"],
     include_prefix = "folly/json",
     deps = [
+        ":dynamic",
         "//folly:expected",
         "//folly:json_pointer",
         "//folly:optional",
         "//folly/container:enumerate",
-        "//folly/json:dynamic",
         "@glog",
     ],
 )
@@ -104,6 +104,7 @@ cc_library(
     hdrs = ["JSONSchema.h"],
     include_prefix = "folly/json",
     deps = [
+        ":dynamic",
         "//folly:c_portability",
         "//folly:conv",
         "//folly:exception_wrapper",
@@ -112,7 +113,6 @@ cc_library(
         "//folly:range",
         "//folly:singleton",
         "//folly:string",
-        "//folly/json:dynamic",
         "//folly/portability:math",
         "@boost.regex",
     ],
@@ -124,9 +124,9 @@ cc_library(
     hdrs = ["JsonTestUtil.h"],
     include_prefix = "folly/json",
     deps = [
+        ":dynamic",
         "//folly:conv",
         "//folly:range",
-        "//folly/json:dynamic",
         "//folly/lang:assume",
     ],
 )

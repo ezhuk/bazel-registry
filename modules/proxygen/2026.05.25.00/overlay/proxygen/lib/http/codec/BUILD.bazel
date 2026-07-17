@@ -158,11 +158,11 @@ cc_library(
     include_prefix = "proxygen/lib/http/codec",
     deps = [
         ":codec_common",
+        ":error_code",
         ":util",
         "//proxygen/lib/http:h3_errors",
         "//proxygen/lib/http:http_utils",
         "//proxygen/lib/http:priority_functions",
-        "//proxygen/lib/http/codec:error_code",
         "//proxygen/lib/http/codec/compress:hpack",
         "//proxygen/lib/http/codec/compress:qpack",
         "//proxygen/lib/utils:logging",

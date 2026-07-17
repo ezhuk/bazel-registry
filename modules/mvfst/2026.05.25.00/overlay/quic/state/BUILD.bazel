@@ -23,9 +23,9 @@ cc_library(
     hdrs = ["QuicAckFrequencyFunctions.h"],
     include_prefix = "quic/state",
     deps = [
+        ":quic_state_machine",
         "//quic/common:mvfst_logging",
         "//quic/common:time_util",
-        "//quic/state:quic_state_machine",
     ],
 )
 
@@ -259,6 +259,7 @@ cc_library(
     hdrs = ["QuicStateFunctions.h"],
     include_prefix = "quic/state",
     deps = [
+        ":connection_oops_fields",
         ":quic_state_machine",
         "//quic:constants",
         "//quic/codec:pktbuilder",
@@ -270,7 +271,6 @@ cc_library(
         "//quic/common:time_util",
         "//quic/logging:qlogger_macros",
         "//quic/logging/oops_logger",
-        "//quic/state:connection_oops_fields",
     ],
 )
 

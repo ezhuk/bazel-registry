@@ -203,7 +203,7 @@ cc_library(
     ],
     include_prefix = "proxygen/lib/http",
     deps = [
-        "//proxygen/lib/http:http_common_headers",
+        ":http_common_headers",
         "//proxygen/lib/utils:export",
         "//proxygen/lib/utils:util_inl",
         "@folly//folly:fbvector",
@@ -244,8 +244,8 @@ cc_library(
     ],
     include_prefix = "proxygen/lib/http",
     deps = [
-        "//proxygen/lib/http:h3_errors",
-        "//proxygen/lib/http:message",
+        ":h3_errors",
+        ":message",
         "//proxygen/lib/http/codec:error_code",
         "//proxygen/lib/utils:exception",
         "@folly//folly:memory",
