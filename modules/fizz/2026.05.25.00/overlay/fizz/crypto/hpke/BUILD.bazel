@@ -8,10 +8,10 @@ cc_library(
     hdrs = ["Context.h"],
     include_prefix = "fizz/crypto/hpke",
     deps = [
+        ":hkdf",
+        ":types",
         ":utils",
         "//fizz/crypto/aead",
-        "//fizz/crypto/hpke:hkdf",
-        "//fizz/crypto/hpke:types",
         "//fizz/protocol:types",
     ],
 )

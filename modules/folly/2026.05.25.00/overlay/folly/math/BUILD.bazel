@@ -7,7 +7,7 @@ cc_library(
     hdrs = ["AccurateSummation.h"],
     include_prefix = "folly/math",
     deps = [
-        "//folly/math:kahan_summation",
+        ":kahan_summation",
     ],
 )
 

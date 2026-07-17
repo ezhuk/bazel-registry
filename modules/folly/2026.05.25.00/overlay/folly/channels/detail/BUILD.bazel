@@ -17,8 +17,8 @@ cc_library(
     hdrs = ["ChannelBridge.h"],
     include_prefix = "folly/channels/detail",
     deps = [
+        ":atomic_queue",
         "//folly:try",
-        "//folly/channels/detail:atomic_queue",
     ],
 )
 

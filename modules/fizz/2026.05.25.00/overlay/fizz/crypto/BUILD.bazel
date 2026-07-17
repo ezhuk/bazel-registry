@@ -26,7 +26,7 @@ cc_library(
     ],
     include_prefix = "fizz/crypto",
     deps = [
-        "//fizz/crypto",
+        ":crypto",
         "//fizz/util:logging",
         "@folly//folly/io:iobuf",
     ],
@@ -38,8 +38,8 @@ cc_library(
     hdrs = ["Hkdf.h"],
     include_prefix = "fizz/crypto",
     deps = [
-        "//fizz/crypto",
-        "//fizz/crypto:hasher",
+        ":crypto",
+        ":hasher",
         "//fizz/util:logging",
         "@folly//folly/io:iobuf",
     ],
@@ -51,8 +51,8 @@ cc_library(
     hdrs = ["KeyDerivation.h"],
     include_prefix = "fizz/crypto",
     deps = [
-        "//fizz/crypto",
-        "//fizz/crypto:hkdf",
+        ":crypto",
+        ":hkdf",
         "//fizz/record",
         "//fizz/util:logging",
     ],

@@ -8,7 +8,7 @@ cc_library(
     hdrs = ["BrotliCertificateCompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@brotli//:brotlienc",
     ],
 )
@@ -19,7 +19,7 @@ cc_library(
     hdrs = ["BrotliCertificateDecompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@brotli//:brotlidec",
     ],
 )
@@ -39,7 +39,7 @@ cc_library(
     hdrs = ["CertDecompressionManager.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "//fizz/util:logging",
     ],
 )
@@ -50,7 +50,7 @@ cc_library(
     hdrs = ["ZlibCertificateCompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@zlib",
     ],
 )
@@ -61,7 +61,7 @@ cc_library(
     hdrs = ["ZlibCertificateDecompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@zlib",
     ],
 )
@@ -72,7 +72,7 @@ cc_library(
     hdrs = ["ZstdCertificateCompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@zstd",
     ],
 )
@@ -83,7 +83,7 @@ cc_library(
     hdrs = ["ZstdCertificateDecompressor.h"],
     include_prefix = "fizz/compression",
     deps = [
-        "//fizz/compression:certificate_compressor",
+        ":certificate_compressor",
         "@zstd",
     ],
 )

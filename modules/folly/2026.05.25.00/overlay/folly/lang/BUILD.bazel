@@ -70,9 +70,9 @@ cc_library(
     hdrs = ["BitsClass.h"],
     include_prefix = "folly/lang",
     deps = [
+        ":bits",
         "//folly:portability",
         "//folly:range",
-        "//folly/lang:bits",
         "@glog",
     ],
 )

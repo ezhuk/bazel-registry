@@ -8,8 +8,8 @@ cc_library(
     hdrs = ["AtomicReadMostlyMainPtr.h"],
     include_prefix = "folly/concurrency/memory",
     deps = [
+        ":read_mostly_shared_ptr",
         "//folly:indestructible",
-        "//folly/concurrency/memory:read_mostly_shared_ptr",
         "//folly/executors:inline_executor",
         "//folly/synchronization:rcu",
     ],
@@ -33,8 +33,8 @@ cc_library(
     copts = ["-fno-omit-frame-pointer"],
     include_prefix = "folly/concurrency/memory",
     deps = [
+        ":tl_ref_count",
         "//folly:function",
-        "//folly/concurrency/memory:tl_ref_count",
     ],
 )
 

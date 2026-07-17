@@ -68,8 +68,8 @@ cc_library(
     copts = ["-fno-omit-frame-pointer"],
     include_prefix = "folly/container",
     deps = [
-        "//folly/container:f14_hash",
-        "//folly/container:heterogeneous_access",
+        ":f14_hash",
+        ":heterogeneous_access",
         "//folly/lang:exception",
         "@boost.intrusive",
         "@boost.iterator",
@@ -416,6 +416,6 @@ cc_library(
     hdrs = ["WeightedEvictingCacheMap.h"],
     include_prefix = "folly/container",
     deps = [
-        "//folly/container:evicting_cache_map",
+        ":evicting_cache_map",
     ],
 )

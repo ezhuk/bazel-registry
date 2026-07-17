@@ -13,8 +13,8 @@ cc_library(
     name = "openssl",
     include_prefix = "folly/io/async/ssl",
     deps = [
-        "//folly/io/async/ssl:openssl_utils",
-        "//folly/io/async/ssl:ssl_errors",
+        ":openssl_utils",
+        ":ssl_errors",
     ],
 )
 
