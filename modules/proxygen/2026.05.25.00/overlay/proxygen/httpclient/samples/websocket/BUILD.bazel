@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "proxygenwsclientlib",
+    srcs = ["WebSocketClient.cpp"],
+    hdrs = ["WebSocketClient.h"],
+    include_prefix = "proxygen/httpclient/samples/websocket",
+    deps = [
+        "//proxygen/lib/http:client",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/session:http_transaction",
+        "//proxygen/lib/http/session:http_upstream_session",
+        "//proxygen/lib/utils:url",
+        "@folly//folly/io/async:async_base",
+    ],
+)

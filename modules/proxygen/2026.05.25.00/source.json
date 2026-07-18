@@ -4,6 +4,7 @@
   "overlay": {
     "proxygen/external/BUILD.bazel": "sha256-aOjLsvEcVuftXuOkFJ8sCvy5Hv8OHOmnRz42uz3BwKg=",
     "proxygen/httpclient/samples/curl/BUILD.bazel": "sha256-4UyTv3LS2qkvCwReMwzbNzA/jSKTBk8DpwiGyK8D5bc=",
+    "proxygen/httpclient/samples/websocket/BUILD.bazel": "sha256-iuh3ksWqfw3FEuY6xvulIYaIW5RCoS+Ohw9DT2IX0+E=",
     "proxygen/httpserver/filters/BUILD.bazel": "sha256-Ny+LL/oy9gT3gNrimb8JBm5wt1/T11HPuXKsNEyNLgM=",
     "proxygen/httpserver/BUILD.bazel": "sha256-8T/vbP+BIBenq8wnKUisuA7f1vHGWggnodlulQwx51M=",
     "proxygen/lib/dns/BUILD.bazel": "sha256-D/HCnK8lw4Na3MEwPUZCAlPCUWwACl6NmK/YLGpvqTk=",
