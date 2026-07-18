@@ -371,6 +371,17 @@ cc_library(
 )
 
 cc_library(
+    name = "url",
+    hdrs = ["URL.h"],
+    include_prefix = "proxygen/lib/utils",
+    deps = [
+        ":parse_url",
+        "@folly//folly:string",
+        "@folly//folly/portability:windows",
+    ],
+)
+
+cc_library(
     name = "util_inl",
     hdrs = ["UtilInl.h"],
     include_prefix = "proxygen/lib/utils",
