@@ -1,0 +1,15 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "AsyncTimeoutSetTest",
+    srcs = ["AsyncTimeoutSetTest.cpp"],
+    deps = [
+        "//proxygen/lib/utils:timeoutset",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_util",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/io/async/test:util",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

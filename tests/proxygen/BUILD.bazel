@@ -5,3 +5,10 @@ cc_binary(
     srcs = ["main.cpp"],
     deps = ["@proxygen//proxygen:httpserver"],
 )
+
+test_suite(
+    name = "tests",
+    tests = [
+        "@proxygen//proxygen/lib/utils/test:AsyncTimeoutSetTest",
+    ],
+)

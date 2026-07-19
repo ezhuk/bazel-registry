@@ -35,6 +35,7 @@
     "proxygen/lib/services/BUILD.bazel": "sha256-1baq5VbNw7l0AmUgl7adnlZwm2/YPugLhC8rAGj3ngk=",
     "proxygen/lib/ssl/BUILD.bazel": "sha256-jfjW6XQx5JGuIXE8OqXPDTyJFuTaj9p8Wh/t+8camHA=",
     "proxygen/lib/transport/BUILD.bazel": "sha256-KyDxVlgATTdMZGIVei9W0Ife49mvNnAoBTMYj/9ndAI=",
+    "proxygen/lib/utils/test/BUILD.bazel": "sha256-1U3Qc7ZszDIBJA0enhv5H6eUZF+wDzsCcfR/5yU2P3Q=",
     "proxygen/lib/utils/BUILD.bazel": "sha256-IinSukH+M291S9uKRhB7WfhyMqCFNAXDeda161eee2U=",
     "proxygen/BUILD.bazel": "sha256-8hK4OOC8eN8LK6f+/BONNoRhJlIdMUBjzvalZKV3iWw=",
     "BUILD.bazel": "sha256-1mG1DA7DxdWz6uyJZgbwc91ssDgpB5yo2iLukJkp1JY="
