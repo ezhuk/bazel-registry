@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "proxygen_hq_devious_baton",
+    srcs = ["DeviousBaton.cpp"],
+    hdrs = ["DeviousBaton.h"],
+    include_prefix = "proxygen/httpserver/samples/hq/devious",
+    deps = [
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http:webtransport",
+        "@folly//folly/io:iobuf",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+    ],
+)
