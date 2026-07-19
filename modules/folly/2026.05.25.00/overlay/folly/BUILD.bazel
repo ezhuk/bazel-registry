@@ -683,7 +683,6 @@ cc_library(
         ":cancellation_token",
         ":chrono",
         ":clock_gettime_wrappers",
-        ":comparison_operator_test_util",
         ":concurrent_b_skip_list",
         ":concurrent_bit_set",
         ":concurrent_lazy",
