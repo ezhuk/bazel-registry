@@ -94,6 +94,12 @@ cc_library(
 )
 
 cc_library(
+    name = "consistent_hash",
+    hdrs = ["ConsistentHash.h"],
+    include_prefix = "proxygen/lib/utils",
+)
+
+cc_library(
     name = "crypt",
     srcs = ["CryptUtil.cpp"],
     hdrs = ["CryptUtil.h"],
@@ -193,7 +199,7 @@ cc_library(
 )
 
 cc_library(
-    name = "prefect_index_map",
+    name = "perfect_index_map",
     hdrs = ["PerfectIndexMap.h"],
     include_prefix = "proxygen/lib/utils",
     deps = [
@@ -210,6 +216,7 @@ cc_library(
     hdrs = ["RendezvousHash.h"],
     include_prefix = "proxygen/lib/utils",
     deps = [
+        ":consistent_hash",
         "@folly//folly/hash",
     ],
 )

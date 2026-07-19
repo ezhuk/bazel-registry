@@ -1,4 +1,15 @@
 load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "mock_time",
+    hdrs = ["MockTime.h"],
+    include_prefix = "proxygen/lib/utils/test",
+    deps = [
+        "//proxygen/lib/utils:time_util",
+        "@glog",
+    ],
+)
 
 cc_test(
     name = "AsyncTimeoutSetTest",
@@ -10,6 +21,67 @@ cc_test(
         "@folly//folly/io/async/test:mocks",
         "@folly//folly/io/async/test:util",
         "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TraceEventTest",
+    srcs = ["TraceEventTest.cpp"],
+    deps = [
+        "//proxygen/lib/utils:exception",
+        "//proxygen/lib/utils:trace",
+        "//proxygen/lib/utils:trace_event_types",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "UtilTests",
+    srcs = [
+        "CompressionFilterUtilsTest.cpp",
+        "ConditionalGateTest.cpp",
+        "CryptUtilTest.cpp",
+        "GenericFilterTest.cpp",
+        "HTTPTimeTest.cpp",
+        "LoggingTests.cpp",
+        "ParseURLTest.cpp",
+        "PerfectIndexMapTest.cpp",
+        "RendezvousHashTest.cpp",
+        "TimeTest.cpp",
+        "UtilTest.cpp",
+        "WeakRefCountedPtrTest.cpp",
+        "ZlibTests.cpp",
+    ],
+    deps = [
+        ":mock_time",
+        "//proxygen/lib/http:http_common_headers",
+        "//proxygen/lib/utils:compression_filter_utils",
+        "//proxygen/lib/utils:conditional_gate",
+        "//proxygen/lib/utils:crypt",
+        "//proxygen/lib/utils:filter_chain",
+        "//proxygen/lib/utils:logging",
+        "//proxygen/lib/utils:parse_url",
+        "//proxygen/lib/utils:perfect_index_map",
+        "//proxygen/lib/utils:rendezvous_hash",
+        "//proxygen/lib/utils:time",
+        "//proxygen/lib/utils:time_util",
+        "//proxygen/lib/utils:util_inl",
+        "//proxygen/lib/utils:weak_ref_counted_ptr",
+        "//proxygen/lib/utils:zlib_stream_compressor",
+        "//proxygen/lib/utils:zlib_stream_decompressor",
+        "@folly//folly:conv",
+        "@folly//folly:format",
+        "@folly//folly:memory",
+        "@folly//folly:random",
+        "@folly//folly:scope_guard",
+        "@folly//folly/container:foreach",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
         "@googletest//:gtest_main",
     ],
 )

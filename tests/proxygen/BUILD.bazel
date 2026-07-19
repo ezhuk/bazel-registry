@@ -10,5 +10,7 @@ test_suite(
     name = "tests",
     tests = [
         "@proxygen//proxygen/lib/utils/test:AsyncTimeoutSetTest",
+        "@proxygen//proxygen/lib/utils/test:TraceEventTest",
+        "@proxygen//proxygen/lib/utils/test:UtilTests",
     ],
 )
