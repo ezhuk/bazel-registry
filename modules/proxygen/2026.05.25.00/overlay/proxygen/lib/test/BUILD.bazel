@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "testtransport",
+    srcs = ["TestAsyncTransport.cpp"],
+    hdrs = ["TestAsyncTransport.h"],
+    include_prefix = "proxygen/lib/test",
+    deps = [
+        "//proxygen/lib/utils:time_util",
+        "@folly//folly:network_address",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async:async_transport",
+    ],
+)
