@@ -9,3 +9,10 @@ cc_binary(
         "@wangle//wangle/channel:pipeline",
     ],
 )
+
+test_suite(
+    name = "tests",
+    tests = [
+        "@wangle//wangle/util/test:FilePollerTest",
+    ],
+)
