@@ -5,3 +5,20 @@ cc_binary(
     srcs = ["main.cpp"],
     deps = ["@proxygen//proxygen:httpserver"],
 )
+
+test_suite(
+    name = "tests",
+    tests = [
+        "@proxygen//proxygen/lib/http/codec/compress/test:HPACKTests",
+        "@proxygen//proxygen/lib/http/codec/test:BinaryCodecTests",
+        "@proxygen//proxygen/lib/http/codec/test:CodecTests",
+        "@proxygen//proxygen/lib/http/codec/test:HQCodecTests",
+        "@proxygen//proxygen/lib/http/codec/test:HQFramerTests",
+        "@proxygen//proxygen/lib/sampling/test:SamplingTest",
+        "@proxygen//proxygen/lib/services/test:AcceptorTest",
+        "@proxygen//proxygen/lib/services/test:RequestWorkerThreadTest",
+        "@proxygen//proxygen/lib/utils/test:AsyncTimeoutSetTest",
+        "@proxygen//proxygen/lib/utils/test:TraceEventTest",
+        "@proxygen//proxygen/lib/utils/test:UtilTests",
+    ],
+)
