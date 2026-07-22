@@ -1,0 +1,58 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "hpacktestutils",
+    srcs = ["TestUtil.cpp"],
+    hdrs = [
+        "HTTPArchive.h",
+        "TestStreamingCallback.h",
+        "TestUtil.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec/compress/test",
+    deps = [
+        "//proxygen/lib/http/codec/compress:hpack",
+        "//proxygen/lib/http/codec/compress:qpack",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "HPACKTests",
+    srcs = [
+        "HPACKBufferTests.cpp",
+        "HPACKCodecTests.cpp",
+        "HPACKContextTests.cpp",
+        "HPACKHeaderTests.cpp",
+        "HTTPArchive.cpp",
+        "HeaderPieceTests.cpp",
+        "HeaderTableTests.cpp",
+        "HuffmanTests.cpp",
+        "LoggingTests.cpp",
+        "QPACKCodecTests.cpp",
+        "QPACKContextTests.cpp",
+        "QPACKHeaderTableTests.cpp",
+        "RFCExamplesTests.cpp",
+    ],
+    deps = [
+        ":hpacktestutils",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/codec/compress:header_codec",
+        "//proxygen/lib/http/codec/compress:hpack",
+        "//proxygen/lib/http/codec/compress:qpack",
+        "@folly//folly:conv",
+        "@folly//folly:expected",
+        "@folly//folly:format",
+        "@folly//folly:function",
+        "@folly//folly:memory",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/json",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
