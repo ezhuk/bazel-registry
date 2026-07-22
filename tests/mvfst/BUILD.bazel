@@ -5,3 +5,10 @@ cc_binary(
     srcs = ["main.cpp"],
     deps = ["@mvfst//quic:constants"],
 )
+
+test_suite(
+    name = "tests",
+    tests = [
+        "@mvfst//quic/api/test:QuicSocketTest",
+    ],
+)
