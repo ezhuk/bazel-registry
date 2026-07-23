@@ -7,3 +7,10 @@ cc_binary(
         "@folly//folly:folly",
     ],
 )
+
+test_suite(
+    name = "tests",
+    tests = [
+        "@folly//folly/algorithm/test:binary_heap_test",
+    ],
+)
