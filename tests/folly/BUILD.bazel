@@ -11,6 +11,16 @@ cc_binary(
 test_suite(
     name = "tests",
     tests = [
+        "@folly//folly/algorithm/simd/detail/test:simd_any_of_test",
+        "@folly//folly/algorithm/simd/detail/test:simd_for_each_test",
+        "@folly//folly/algorithm/simd/detail/test:traits_test",
+        "@folly//folly/algorithm/simd/detail/test:unroll_utils_test",
+        "@folly//folly/algorithm/simd/test:contains_test",
+        "@folly//folly/algorithm/simd/test:find_first_of_test",
+        "@folly//folly/algorithm/simd/test:find_fixed_test",
+        "@folly//folly/algorithm/simd/test:movemask_test",
         "@folly//folly/algorithm/test:binary_heap_test",
+        "@folly//folly/algorithm/test:stable_radix_sort_benchmark",
+        "@folly//folly/algorithm/test:stable_radix_sort_test",
     ],
 )
