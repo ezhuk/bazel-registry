@@ -87,6 +87,7 @@
     "folly/system/arch/BUILD.bazel": "sha256-sVo08u8VLBdME9QnV3d2Jgsl51uH7WXpa6BOi/wPFDA=",
     "folly/system/os/BUILD.bazel": "sha256-FIsBwXfQ96oS4fE23B7c8iaqdboteVjb7CoGRjin40w=",
     "folly/system/BUILD.bazel": "sha256-ICprFk2Q21rYRGVEffAuNAlw6C3UPDYeIDyLkGd1lDw=",
+    "folly/test/BUILD.bazel": "sha256-vEgHWTj3anr+wZ+y8G0tf58q9pUV/McQ3C6LzSSSMjo=",
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4=",
     "folly/BUILD.bazel": "sha256-NuTySweIbtH7EQCfX4bSTZtz/FTLthu32RKzaTy1jm4=",

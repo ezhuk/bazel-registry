@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "test_utils",
+    hdrs = ["TestUtils.h"],
+    include_prefix = "folly/test",
+    deps = [
+        "//folly:conv",
+        "//folly:exception_string",
+        "//folly:range",
+        "//folly:string",
+        "//folly/portability:gtest",
+    ],
+)
