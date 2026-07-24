@@ -37,5 +37,7 @@ test_suite(
         "@folly//folly/channels/test:transform_test",
         "@folly//folly/chrono/test:clock_test",
         "@folly//folly/chrono/test:conv_test",
+        "@folly//folly/codec/test:hex_test",
+        "@folly//folly/codec/test:uuid_test",
     ],
 )
