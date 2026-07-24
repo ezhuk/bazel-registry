@@ -13,6 +13,7 @@
     "folly/channels/detail/BUILD.bazel": "sha256-drsRUOxFk+aX1APdNaBeA88MS7AmhLlqa/jliIv5H+A=",
     "folly/channels/test/BUILD.bazel": "sha256-v+vK9ef9jhcu0cP29k7I+CtGk+mfcmw93W2fqdAQWY8=",
     "folly/channels/BUILD.bazel": "sha256-zWuXPjwO+2hsx1iwcKfhOMilZEPdcurU/1Rh7o0+Uhg=",
+    "folly/chrono/test/BUILD.bazel": "sha256-t0g30gV6mBhdZf3bqMN3dbpnnnvCBqXH6lnNn0rgHGQ=",
     "folly/chrono/BUILD.bazel": "sha256-rJ9PNs9GqXMTixWkysC3WT/sEyeZ0vQZ8Ki8apmWnd4=",
     "folly/cli/BUILD.bazel": "sha256-y/itMi+MFJ5jvBsqhFCnY5jt4iIFWEPH0lkwg/7SUoU=",
     "folly/codec/BUILD.bazel": "sha256-P3vLbTBA/klugMG79PjVqq0weBZXq4oxbos3huhqUjY=",

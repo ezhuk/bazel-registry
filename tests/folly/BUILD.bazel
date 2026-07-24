@@ -35,5 +35,7 @@ test_suite(
         "@folly//folly/channels/test:producer_test",
         "@folly//folly/channels/test:proxy_channel_test",
         "@folly//folly/channels/test:transform_test",
+        "@folly//folly/chrono/test:clock_test",
+        "@folly//folly/chrono/test:conv_test",
     ],
 )
