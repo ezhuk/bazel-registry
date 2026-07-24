@@ -256,13 +256,6 @@ cc_library(
 )
 
 cc_library(
-    name = "comparison_operator_test_util",
-    hdrs = ["test/ComparisonOperatorTestUtil.h"],
-    include_prefix = "folly",
-    deps = ["//folly/portability:gtest"],
-)
-
-cc_library(
     name = "concurrent_b_skip_list",
     hdrs = [
         "ConcurrentBSkipList.h",
@@ -924,13 +917,6 @@ cc_library(
 )
 
 cc_library(
-    name = "json_mock_util",
-    hdrs = ["test/JsonMockUtil.h"],
-    include_prefix = "folly",
-    deps = ["//folly/json:json_mock_util"],
-)
-
-cc_library(
     name = "json_patch",
     hdrs = ["json_patch.h"],
     include_prefix = "folly",
@@ -942,13 +928,6 @@ cc_library(
     hdrs = ["json_pointer.h"],
     include_prefix = "folly",
     deps = ["//folly/json:json_pointer"],
-)
-
-cc_library(
-    name = "json_test_util",
-    hdrs = ["test/JsonTestUtil.h"],
-    include_prefix = "folly",
-    deps = ["//folly/json:json_test_util"],
 )
 
 cc_library(
@@ -1549,31 +1528,6 @@ cc_library(
     hdrs = ["SynchronizedPtr.h"],
     include_prefix = "folly",
     deps = [":synchronized"],
-)
-
-cc_library(
-    name = "test_socket_address_test_helper",
-    srcs = ["test/SocketAddressTestHelper.cpp"],
-    hdrs = ["test/SocketAddressTestHelper.h"],
-    include_prefix = "folly",
-    deps = [
-        "//folly/net:tcpinfo_dispatcher",
-        "//folly/portability:sockets",
-    ],
-)
-
-cc_library(
-    name = "test_test_utils",
-    hdrs = ["test/TestUtils.h"],
-    include_prefix = "folly",
-    deps = [
-        ":conv",
-        ":exception_string",
-        ":fbstring",
-        ":fixed_string",
-        ":range",
-        "//folly/portability:gtest",
-    ],
 )
 
 cc_library(

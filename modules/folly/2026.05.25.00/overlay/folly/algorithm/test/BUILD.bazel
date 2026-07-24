@@ -1,0 +1,34 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "binary_heap_test",
+    srcs = ["BinaryHeapTest.cpp"],
+    deps = [
+        "//folly/algorithm:binary_heap",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "stable_radix_sort_benchmark",
+    srcs = ["StableRadixSortBenchmark.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/algorithm:stable_radix_sort",
+        "//folly/init",
+        "//folly/stats/detail:double_radix_sort",
+        "@boost.sort",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "stable_radix_sort_test",
+    srcs = ["StableRadixSortTest.cpp"],
+    deps = [
+        "//folly/algorithm:stable_radix_sort",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

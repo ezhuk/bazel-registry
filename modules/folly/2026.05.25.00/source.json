@@ -3,8 +3,11 @@
   "integrity": "sha256-D3hiL0k4eAsI6LPDaBnqvO6iv0gtVj4F5l5IBqJOLJA=",
   "overlay": {
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
+    "folly/algorithm/simd/detail/test/BUILD.bazel": "sha256-g4nwnoPXn4EUGNCN29J5q9YpB2HzEh6b5i2NkC6f5jE=",
     "folly/algorithm/simd/detail/BUILD.bazel": "sha256-hElLABihaOT0mEw/szOvsvlX76Al9qm5FFN4J8XxVlM=",
+    "folly/algorithm/simd/test/BUILD.bazel": "sha256-cotf1avnJvI2/z7a/3Km8BewwjOUevzx8KoYDsbZ438=",
     "folly/algorithm/simd/BUILD.bazel": "sha256-MXODeDTMU+JNLJLsPUBPJRrf9mhWRVDG7GK0mZmIWGE=",
+    "folly/algorithm/test/BUILD.bazel": "sha256-bHM59TMhjav8s4EZuJ0yFb+WJv+zbXGr0mG2r2GMdXo=",
     "folly/algorithm/BUILD.bazel": "sha256-dgSSmEY7T1YTp4pCNpJ667ajInJcFOmBhU358+YwvLQ=",
     "folly/channels/detail/BUILD.bazel": "sha256-drsRUOxFk+aX1APdNaBeA88MS7AmhLlqa/jliIv5H+A=",
     "folly/channels/BUILD.bazel": "sha256-zWuXPjwO+2hsx1iwcKfhOMilZEPdcurU/1Rh7o0+Uhg=",
@@ -84,9 +87,10 @@
     "folly/system/arch/BUILD.bazel": "sha256-sVo08u8VLBdME9QnV3d2Jgsl51uH7WXpa6BOi/wPFDA=",
     "folly/system/os/BUILD.bazel": "sha256-FIsBwXfQ96oS4fE23B7c8iaqdboteVjb7CoGRjin40w=",
     "folly/system/BUILD.bazel": "sha256-ICprFk2Q21rYRGVEffAuNAlw6C3UPDYeIDyLkGd1lDw=",
+    "folly/test/BUILD.bazel": "sha256-I/cjA5+IFjhJLPIn83QKQ9EoqUwWen2C2cpQzoq/iTg=",
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4=",
-    "folly/BUILD.bazel": "sha256-NuTySweIbtH7EQCfX4bSTZtz/FTLthu32RKzaTy1jm4=",
+    "folly/BUILD.bazel": "sha256-n3yPYBVfQ0qBrVVBuvq70nAUXvJYZBCeqzTMs026GJ4=",
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k="
   }
 }

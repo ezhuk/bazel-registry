@@ -1,0 +1,48 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "contains_test",
+    srcs = ["ContainsTest.cpp"],
+    deps = [
+        "//folly/algorithm/simd:contains",
+        "//folly/algorithm/simd/detail:simd_contains_impl",
+        "//folly/portability:gtest",
+        "//folly/test:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "find_first_of_test",
+    srcs = ["find_first_of_test.cpp"],
+    deps = [
+        "//folly:string",
+        "//folly/algorithm/simd:find_first_of",
+        "//folly/algorithm/simd:find_first_of_extra",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "find_fixed_test",
+    srcs = ["FindFixedTest.cpp"],
+    deps = [
+        "//folly:portability",
+        "//folly/algorithm/simd:find_fixed",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "movemask_test",
+    srcs = ["MovemaskTest.cpp"],
+    deps = [
+        "//folly:portability",
+        "//folly/algorithm/simd:movemask",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

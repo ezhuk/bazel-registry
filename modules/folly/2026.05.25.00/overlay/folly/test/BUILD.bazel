@@ -1,0 +1,49 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "comparison_operator_test_util",
+    hdrs = ["ComparisonOperatorTestUtil.h"],
+    include_prefix = "folly/test",
+    deps = ["//folly/portability:gtest"],
+)
+
+cc_library(
+    name = "json_mock_util",
+    hdrs = ["JsonMockUtil.h"],
+    include_prefix = "folly/test",
+    deps = ["//folly/json:json_mock_util"],
+)
+
+cc_library(
+    name = "json_test_util",
+    hdrs = ["JsonTestUtil.h"],
+    include_prefix = "folly/test",
+    deps = ["//folly/json:json_test_util"],
+)
+
+cc_library(
+    name = "test_socket_address_test_helper",
+    srcs = ["SocketAddressTestHelper.cpp"],
+    hdrs = ["SocketAddressTestHelper.h"],
+    include_prefix = "folly/test",
+    deps = [
+        "//folly/net:tcpinfo_dispatcher",
+        "//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "test_utils",
+    hdrs = ["TestUtils.h"],
+    include_prefix = "folly/test",
+    deps = [
+        "//folly:conv",
+        "//folly:exception_string",
+        "//folly:fixed_string",
+        "//folly:range",
+        "//folly:string",
+        "//folly/portability:gtest",
+    ],
+)
