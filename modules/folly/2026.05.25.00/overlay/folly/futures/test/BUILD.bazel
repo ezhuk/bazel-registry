@@ -5,14 +5,20 @@ cc_library(
     name = "test_executor",
     srcs = ["TestExecutor.cpp"],
     hdrs = ["TestExecutor.h"],
-    visibility = ["//visibility:public"],
+    include_prefix = "folly/futures/test",
     deps = ["//folly:executor"],
+)
+
+cc_library(
+    name = "then_compile_test_lib",
+    hdrs = ["ThenCompileTest.h"],
+    include_prefix = "folly/futures/test",
 )
 
 cc_library(
     name = "timekeeper_test_lib",
     hdrs = ["TimekeeperTestLib.h"],
-    visibility = ["//visibility:public"],
+    include_prefix = "folly/futures/test",
     deps = [
         "//folly:default_keep_alive_executor",
         "//folly:random",
@@ -315,10 +321,8 @@ cc_test(
 cc_test(
     name = "then_compile_test",
     srcs = ["ThenCompileTest.cpp"],
-    hdrs = [
-        "ThenCompileTest.h",
-    ],
     deps = [
+        ":then_compile_test_lib",
         "//folly/futures:core",
         "//folly/portability:gtest",
         "@googletest//:gtest_main",

@@ -562,7 +562,6 @@ cc_library(
     deps = [
         ":base_promise",
         ":coroutine",
-        ":inline_task",
         ":invoke",
         ":result",
         ":scope_exit",
@@ -578,6 +577,7 @@ cc_library(
         "//folly:scope_guard",
         "//folly:traits",
         "//folly:try",
+        "//folly/coro/detail:inline_task",
         "//folly/coro/detail:malloc",
         "//folly/coro/detail:traits",
         "//folly/futures:core",

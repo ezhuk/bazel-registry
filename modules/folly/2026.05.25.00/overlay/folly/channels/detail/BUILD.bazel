@@ -56,11 +56,11 @@ cc_library(
     hdrs = ["Utility.h"],
     include_prefix = "folly/channels/detail",
     deps = [
-        ":channel",
-        ":rate_limiter",
         "//folly:exception_wrapper",
         "//folly:function",
         "//folly:scope_guard",
+        "//folly/channels:channel",
+        "//folly/channels:rate_limiter",
         "//folly/coro:promise",
         "//folly/coro:task",
         "//folly/executors:sequenced_executor",

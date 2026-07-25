@@ -26,7 +26,6 @@ cc_test(
         "//folly/settings",
         "//folly/settings:command_line_parser",
         "//folly/settings:settings_accessor_proxy",
-        "@googletest//:gmock",
         "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],

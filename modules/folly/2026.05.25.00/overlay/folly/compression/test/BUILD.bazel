@@ -5,6 +5,7 @@ cc_library(
     name = "coding_test_utils",
     srcs = ["CodingTestUtils.cpp"],
     hdrs = ["CodingTestUtils.h"],
+    visibility = ["//visibility:public"],
     deps = [
         "//folly:benchmark",
         "//folly:likely",

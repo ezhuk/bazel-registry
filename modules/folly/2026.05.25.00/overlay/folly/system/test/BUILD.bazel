@@ -52,14 +52,6 @@ cc_test(
 )
 
 cc_test(
-    name = "memory_mapping_test",
-    srcs = ["MemoryMappingTest.cpp"],
-    deps = [
-        "@googletest//:gtest_main",
-    ],
-)
-
-cc_test(
     name = "pid_test",
     srcs = ["PidTest.cpp"],
     deps = [

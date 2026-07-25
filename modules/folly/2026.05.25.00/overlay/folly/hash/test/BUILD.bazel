@@ -16,7 +16,7 @@ cc_test(
         "//folly/hash/detail:checksum_detail",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@b",
+        "@boost.crc",
         "@googletest//:gtest_main",
     ],
 )
