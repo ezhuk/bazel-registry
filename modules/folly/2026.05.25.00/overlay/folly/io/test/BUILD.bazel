@@ -1,0 +1,117 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "fs_util_test",
+    srcs = ["FsUtilTest.cpp"],
+    deps = [
+        "//folly:string",
+        "//folly/io:fs_util",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/testing:test_util",
+        "@fmt",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "iobuf_cb_test",
+    srcs = ["IOBufCBTest.cpp"],
+    deps = [
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "iobuf_cursor_test",
+    srcs = ["IOBufCursorTest.cpp"],
+    deps = [
+        "//folly:format",
+        "//folly:range",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "iobuf_iovec_builder_test",
+    srcs = ["IOBufIovecBuilderTest.cpp"],
+    deps = [
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "iobuf_queue_test",
+    srcs = ["IOBufQueueTest.cpp"],
+    deps = [
+        "//folly:range",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "iobuf_test",
+    srcs = ["IOBufTest.cpp"],
+    deps = [
+        "//folly:range",
+        "//folly/io:iobuf",
+        "//folly/io:typed_io_buf",
+        "//folly/memory:malloc",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "record_io_test",
+    srcs = ["RecordIOTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly:fbstring",
+        "//folly:random",
+        "//folly/io:iobuf",
+        "//folly/io:record_io",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/portability:unistd",
+        "//folly/testing:test_util",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "shutdown_socket_set_test",
+    srcs = ["ShutdownSocketSetTest.cpp"],
+    deps = [
+        "//folly/io:shutdown_socket_set",
+        "//folly/net:net_ops",
+        "//folly/net:network_socket",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "socket_option_value_test",
+    srcs = ["SocketOptionValueTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly/io:socket_option_map",
+        "//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
