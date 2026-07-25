@@ -412,5 +412,9 @@ test_suite(
         "@folly//folly/result/test:value_only_result_test",
         "@folly//folly/settings/test:command_line_parser_test",
         "@folly//folly/settings/test:settings_test",
+        "@folly//folly/ssl/test:openssl_cert_utils_test",
+        "@folly//folly/ssl/test:openssl_hash_test",
+        "@folly//folly/ssl/test:openssl_key_utils_test",
+        "@folly//folly/ssl/test:ssl_session_manager_test",
     ],
 )
