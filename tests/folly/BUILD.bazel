@@ -247,5 +247,6 @@ test_suite(
         "@folly//folly/hash/test:std_compatible_hash_test",
         "@folly//folly/hash/test:traits_test",
         "@folly//folly/hash/test:unique_hash_key_test",
+        "@folly//folly/init/test:phase_test",
     ],
 )
