@@ -381,5 +381,8 @@ test_suite(
         "@folly//folly/portability/test:pthread_test",
         "@folly//folly/portability/test:time_test",
         "@folly//folly/portability/test:unistd_test",
+        "@folly//folly/random/test:hash_test",
+        "@folly//folly/random/test:seed_seq_test",
+        "@folly//folly/random/test:xoshiro256pp_test",
     ],
 )

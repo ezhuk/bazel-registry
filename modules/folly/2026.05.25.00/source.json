@@ -120,6 +120,7 @@
     "folly/poly/BUILD.bazel": "sha256-zZMJT6WVXNhH6DBpiKgnA4+qMW94D4uGPEW2PiF3eiA=",
     "folly/portability/test/BUILD.bazel": "sha256-ZwPDN2P5OEI8Q9FKuggL/reZNFghtJhMeuJJ8mEQjxM=",
     "folly/portability/BUILD.bazel": "sha256-1BogD0gqvn0rx759/um/HxVWya/knVXdLiQ7zeePHZs=",
+    "folly/random/test/BUILD.bazel": "sha256-cUsY05WUTCXpSeFPlWkimHiKFEFKk3/sNJnOvkSozjo=",
     "folly/random/BUILD.bazel": "sha256-IsZlMNc9aWmgP956FlyGwXUjHoUBYu5zLAR0hg44hG8=",
     "folly/result/detail/BUILD.bazel": "sha256-psz0zZIPZExzGHGzStGmE7EmDO45tjBmoX5M46DLLWM=",
     "folly/result/BUILD.bazel": "sha256-MVttOnCIQ1uw7fMXAAZ8d/S13QVFQE53S26Hyfu3ykU=",
