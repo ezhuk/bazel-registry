@@ -355,5 +355,8 @@ test_suite(
         "@folly//folly/logging/test:standard_log_handler_test",
         "@folly//folly/logging/test:sync_level_test",
         "@folly//folly/logging/test:xlog_test",
+        "@folly//folly/math/test:accurate_summation_test",
+        "@folly//folly/math/test:kahan_summation_test",
+        "@folly//folly/math/test:reproducible_accumulator_test",
     ],
 )

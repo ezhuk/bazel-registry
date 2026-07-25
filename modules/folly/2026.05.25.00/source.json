@@ -105,6 +105,7 @@
     "folly/lang/BUILD.bazel": "sha256-nCrWX2nKDlJpPIhR2pwpiUeFpKmyN2hxy+mgS8jrbFE=",
     "folly/logging/test/BUILD.bazel": "sha256-iPF6uH7clTOlzzLqOkDRxWilo35zUOWOE2dN8jJsZg8=",
     "folly/logging/BUILD.bazel": "sha256-yuvTOXM/+MmMp8SuJm1joV6CaGwwg/rHZ7wwnfMUJqw=",
+    "folly/math/test/BUILD.bazel": "sha256-i0O1IlTHuO27mrbUtYZbJmj3wIrrQxKjQL5wjX1S2C8=",
     "folly/math/BUILD.bazel": "sha256-92trDulPf/XOSYOdwtmE5BKrB5QPD8PeMq9Hy5+gifg=",
     "folly/memory/detail/BUILD.bazel": "sha256-gDYen7KoGPFDkjeNRCgpgVVA9UBA/vKoRvdJeB0sJXQ=",
     "folly/memory/BUILD.bazel": "sha256-n72YHgiH7hqVL0G1fTGts7dgUR9Be/1G3Q4SC8bS8Is=",
