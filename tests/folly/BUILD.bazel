@@ -370,5 +370,7 @@ test_suite(
         "@folly//folly/memory/test:shared_from_this_ptr_test",
         "@folly//folly/memory/test:thread_cached_arena_test",
         "@folly//folly/memory/test:uninitialized_memory_hacks_test",
+        "@folly//folly/net/detail/test:socket_file_descriptor_map_test",
+        "@folly//folly/net/test:tcpinfo_test",
     ],
 )
