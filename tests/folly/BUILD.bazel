@@ -138,5 +138,9 @@ test_suite(
         "@folly//folly/coro/test:value_or_error_test",
         "@folly//folly/coro/test:value_or_fatal_test",
         "@folly//folly/coro/test:with_async_stack_test",
+        "@folly//folly/crypto/test:blake2xb_test",
+        "@folly//folly/crypto/test:lt_hash_test",
+        "@folly//folly/crypto/test:lt_hash_test_avx2",
+        "@folly//folly/crypto/test:lt_hash_test_sse2",
     ],
 )
