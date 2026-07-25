@@ -1,0 +1,12 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "double_radix_sort_test",
+    srcs = ["DoubleRadixSortTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/portability:gtest",
+        "//folly/stats/detail:double_radix_sort",
+        "@googletest//:gtest_main",
+    ],
+)

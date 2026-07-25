@@ -1,0 +1,26 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "hex_test",
+    srcs = ["hex_test.cpp"],
+    deps = [
+        "//folly:likely",
+        "//folly/codec:hex",
+        "//folly/lang:keep",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "uuid_test",
+    srcs = ["UuidTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/codec:uuid",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
