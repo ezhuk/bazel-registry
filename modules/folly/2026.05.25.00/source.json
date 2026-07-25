@@ -71,6 +71,7 @@
     "folly/fibers/detail/BUILD.bazel": "sha256-rmZDJaFCgU9nB+68p4Csw8Q2Fb6uqtmJdEky1gZe8DQ=",
     "folly/fibers/test/BUILD.bazel": "sha256-npIYVTorcNDwYErehqW3cerVzpFZylGWLlGs3aIgAko=",
     "folly/fibers/BUILD.bazel": "sha256-4tDTqtTFEvXhzDjGpBeOVlsL4KocPCKpTtNu5KHjX8Q=",
+    "folly/functional/test/BUILD.bazel": "sha256-uXFv0mkgj+3/3cMz+ChSibA+Rww9eyxbb8ssxn4zHiQ=",
     "folly/functional/BUILD.bazel": "sha256-oImDe0y0ZJ7IoVO5OvbpsL8hDk0SLy7FarR6V4PRB9g=",
     "folly/futures/detail/BUILD.bazel": "sha256-7hxiw5Il1fMG8nof3ZOuIpK8jMVC0GxBe2XHVhaEK4Q=",
     "folly/futures/BUILD.bazel": "sha256-neus2eEZiaT/8VkEmp17/OptPhWFXEjS9Iv6gsZlTZc=",

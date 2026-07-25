@@ -185,5 +185,10 @@ test_suite(
         "@folly//folly/fibers/test:batch_semaphore_test",
         "@folly//folly/fibers/test:fibers_test",
         "@folly//folly/fibers/test:semaphore_test",
+        "@folly//folly/functional/test:apply_tuple_test",
+        "@folly//folly/functional/test:invoke_test",
+        "@folly//folly/functional/test:partial_test",
+        "@folly//folly/functional/test:protocol_test",
+        "@folly//folly/functional/test:traits_test",
     ],
 )
