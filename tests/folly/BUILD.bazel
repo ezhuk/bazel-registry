@@ -142,5 +142,6 @@ test_suite(
         "@folly//folly/crypto/test:lt_hash_test",
         "@folly//folly/crypto/test:lt_hash_test_avx2",
         "@folly//folly/crypto/test:lt_hash_test_sse2",
+        "@folly//folly/debugging/exception_tracer/test:exception_counter_test",
     ],
 )

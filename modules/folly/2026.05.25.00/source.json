@@ -43,6 +43,7 @@
     "folly/crypto/detail/BUILD.bazel": "sha256-NdkLu36q68ZSJgtLcTjXitrF57icfQqj7hSZ9t0JuVA=",
     "folly/crypto/test/BUILD.bazel": "sha256-JvKgflh6WM/xBKFeQaW+zPTTHAF//2EbaGNaakQIuDU=",
     "folly/crypto/BUILD.bazel": "sha256-UDoSqyWzhU0wuA6zKAG0ocHUrrP3U+ZhhShe3cY0zJ0=",
+    "folly/debugging/exception_tracer/test/BUILD.bazel": "sha256-hlgOmADnS9/gk6zfawvF5UPiDmkMhsiVzXWMvuEnxgY=",
     "folly/debugging/exception_tracer/BUILD.bazel": "sha256-x3dRLg2jtCMmldYM32Z5gKkNsG+iDLdQegtQQKlTg8E=",
     "folly/debugging/symbolizer/detail/BUILD.bazel": "sha256-BDl98F/g6qZuiZYaAxZK0R/YB5u/UW8ppZGQlzI2Pwc=",
     "folly/debugging/symbolizer/BUILD.bazel": "sha256-hbQHT+iI8Ic5/iAc6kMpiar6gri8EkT67JxSRj4rHyQ=",
