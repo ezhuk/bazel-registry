@@ -1,0 +1,279 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_library(
+    name = "IOThreadPoolExecutorBaseTestLib",
+    hdrs = [
+        "IOThreadPoolExecutorBaseTestLib.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:random",
+        "//folly/container:f14_hash",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/io/async:async_base",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@fmt",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "AsyncTest",
+    srcs = ["AsyncTest.cpp"],
+    deps = [
+        "//folly/executors:async",
+        "//folly/executors:manual_executor",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CodelTest",
+    srcs = ["CodelTest.cpp"],
+    deps = [
+        "//folly/executors:codel",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ExecutorWithPriorityTest",
+    srcs = ["ExecutorWithPriorityTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:executor_with_priority",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "FiberIOExecutorTest",
+    srcs = ["FiberIOExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:fiber_io_executor",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "GlobalCPUExecutorTest",
+    srcs = ["GlobalCPUExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:global_executor",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "GlobalExecutorAssignmentTest",
+    srcs = ["GlobalExecutorAssignmentTest.cpp"],
+    deps = [
+        "//folly:singleton",
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:global_executor",
+        "//folly/executors:inline_executor",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "GlobalExecutorTest",
+    srcs = ["GlobalExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:global_executor",
+        "//folly/executors:io_executor",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/executors:virtual_executor",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/synchronization:saturating_semaphore",
+        "//folly/system:hardware_concurrency",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "GlobalIOExecutorTest",
+    srcs = ["GlobalCPUExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:global_executor",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "IOThreadPoolDeadlockDetectorObserverTest",
+    srcs = ["IOThreadPoolDeadlockDetectorObserverTest.cpp"],
+    deps = [
+        "//folly/concurrency:deadlock_detector",
+        "//folly/executors:io_thread_pool_deadlock_detector_observer",
+        "//folly/executors:io_thread_pool_executor",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "IOThreadPoolExecutorTest",
+    srcs = ["IOThreadPoolExecutorTest.cpp"],
+    deps = [
+        ":IOThreadPoolExecutorBaseTestLib",
+        "//folly/executors:io_thread_pool_executor",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "SequencedExecutorTest",
+    srcs = ["SequencedExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:serial_executor",
+        "//folly/io/async:scoped_event_base_thread",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "SerialExecutorTest",
+    srcs = ["SerialExecutorTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:scope_guard",
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:inline_executor",
+        "//folly/executors:serial_executor",
+        "//folly/io/async:request_context",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "StrandExecutorTest",
+    srcs = ["StrandExecutorTest.cpp"],
+    deps = [
+        "//folly:cancellation_token",
+        "//folly/executors:global_executor",
+        "//folly/executors:manual_executor",
+        "//folly/executors:strand_executor",
+        "//folly/io/async:request_context",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ThreadedExecutorTest",
+    srcs = ["ThreadedExecutorTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly/executors:threaded_executor",
+        "//folly/futures:core",
+        "//folly/gen:base",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TimedDrivableExecutorTest",
+    srcs = ["TimedDrivableExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:timed_drivable_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TimekeeperScheduledExecutorTest",
+    srcs = ["TimekeeperScheduledExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:inline_executor",
+        "//folly/executors:serial_executor",
+        "//folly/executors:threaded_executor",
+        "//folly/executors:timekeeper_scheduled_executor",
+        "//folly/futures:manual_timekeeper",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "executor_test",
+    srcs = ["ExecutorTest.cpp"],
+    deps = [
+        "//folly/executors:inline_executor",
+        "//folly/executors:manual_executor",
+        "//folly/executors:queued_immediate_executor",
+        "//folly/futures:core",
+        "//folly/io/async:request_context",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "function_scheduler_test",
+    srcs = ["FunctionSchedulerTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/executors:function_scheduler",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@boost.thread",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "striped_edf_thread_pool_executor_test",
+    srcs = ["StripedEDFThreadPoolExecutorTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/executors:striped_edf_thread_pool_executor",
+        "//folly/portability:gtest",
+        "//folly/portability:sched",
+        "//folly/portability:unistd",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "threaded_repeating_function_runner_test",
+    srcs = ["ThreadedRepeatingFunctionRunnerTest.cpp"],
+    deps = [
+        "//folly/executors:threaded_repeating_function_runner",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
