@@ -227,5 +227,12 @@ test_suite(
         "@folly//folly/futures/test:while_do_test",
         "@folly//folly/futures/test:will_equal_test",
         "@folly//folly/futures/test:window_test",
+        "@folly//folly/gen/test:base_test",
+        "@folly//folly/gen/test:combine_test",
+        "@folly//folly/gen/test:file_test",
+        "@folly//folly/gen/test:istream_test",
+        "@folly//folly/gen/test:parallel_map_test",
+        "@folly//folly/gen/test:parallel_test",
+        "@folly//folly/gen/test:string_test",
     ],
 )
