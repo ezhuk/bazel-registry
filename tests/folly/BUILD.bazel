@@ -181,5 +181,9 @@ test_suite(
         "@folly//folly/executors/test:striped_edf_thread_pool_executor_test",
         "@folly//folly/executors/test:threaded_repeating_function_runner_test",
         "@folly//folly/external/farmhash/test:farmhash_test",
+        "@folly//folly/fibers/async/test:async_test",
+        "@folly//folly/fibers/test:batch_semaphore_test",
+        "@folly//folly/fibers/test:fibers_test",
+        "@folly//folly/fibers/test:semaphore_test",
     ],
 )
