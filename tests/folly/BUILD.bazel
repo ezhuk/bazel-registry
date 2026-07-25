@@ -180,5 +180,6 @@ test_suite(
         "@folly//folly/executors/test:function_scheduler_test",
         "@folly//folly/executors/test:striped_edf_thread_pool_executor_test",
         "@folly//folly/executors/test:threaded_repeating_function_runner_test",
+        "@folly//folly/external/farmhash/test:farmhash_test",
     ],
 )
