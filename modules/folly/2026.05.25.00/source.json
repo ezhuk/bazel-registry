@@ -103,6 +103,7 @@
     "folly/lang/bind/BUILD.bazel": "sha256-Ir963kvtRwu3Oqy0OGQ27H6vExECYniJrVEpTQKeimI=",
     "folly/lang/test/BUILD.bazel": "sha256-jI9sSVzNd/mDEBMBVVf4u3uW3np2RI5Hx+4HAocnMSo=",
     "folly/lang/BUILD.bazel": "sha256-nCrWX2nKDlJpPIhR2pwpiUeFpKmyN2hxy+mgS8jrbFE=",
+    "folly/logging/test/BUILD.bazel": "sha256-iPF6uH7clTOlzzLqOkDRxWilo35zUOWOE2dN8jJsZg8=",
     "folly/logging/BUILD.bazel": "sha256-yuvTOXM/+MmMp8SuJm1joV6CaGwwg/rHZ7wwnfMUJqw=",
     "folly/math/BUILD.bazel": "sha256-92trDulPf/XOSYOdwtmE5BKrB5QPD8PeMq9Hy5+gifg=",
     "folly/memory/detail/BUILD.bazel": "sha256-gDYen7KoGPFDkjeNRCgpgVVA9UBA/vKoRvdJeB0sJXQ=",
