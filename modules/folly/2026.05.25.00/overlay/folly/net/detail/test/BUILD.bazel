@@ -1,0 +1,16 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "socket_file_descriptor_map_test",
+    srcs = ["SocketFileDescriptorMapTest.cpp"],
+    deps = [
+        "//folly:portability",
+        "//folly/net/detail:socket_file_descriptor_map",
+        "//folly/portability:fcntl",
+        "//folly/portability:gtest",
+        "//folly/portability:sockets",
+        "//folly/portability:unistd",
+        "//folly/portability:windows",
+        "@googletest//:gtest_main",
+    ],
+)

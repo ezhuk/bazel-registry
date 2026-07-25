@@ -1,0 +1,143 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "checksum_test",
+    srcs = ["ChecksumTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:portability",
+        "//folly:random",
+        "//folly/external/fast-crc32:avx512_crc32c_v8s3x4",
+        "//folly/external/fast-crc32:neon_crc32c_v3s4x2e_v2",
+        "//folly/external/fast-crc32:neon_eor3_crc32c_v8s2x4e_s2x1",
+        "//folly/external/fast-crc32:sse_crc32c_v8s3x3",
+        "//folly/hash",
+        "//folly/hash:checksum",
+        "//folly/hash/detail:checksum_detail",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "@boost.crc",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "farm_hash_test",
+    srcs = ["FarmHashTest.cpp"],
+    deps = [
+        "//folly/hash:farm_hash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "fnv_hash_test",
+    srcs = ["FnvHashTest.cpp"],
+    deps = [
+        "//folly/hash:fnv_hash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "hash_test",
+    srcs = ["HashTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly:map_util",
+        "//folly:random",
+        "//folly:range",
+        "//folly/hash",
+        "//folly/lang:cstring_view",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "hsieh_hash_test",
+    srcs = ["HsiehHashTest.cpp"],
+    deps = [
+        "//folly/hash:hsieh_hash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "murmur_hash_test",
+    srcs = ["MurmurHashTest.cpp"],
+    deps = [
+        "//folly/hash:murmur_hash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "rapidhash_test",
+    srcs = ["RapidHashTest.cpp"],
+    deps = [
+        "//folly/hash:rapidhash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "spooky_hash_v1_test",
+    srcs = ["SpookyHashV1Test.cpp"],
+    deps = [
+        "//folly/hash:spooky_hash_v1",
+        "//folly/portability:gtest",
+        "//folly/portability:time",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "spooky_hash_v2_test",
+    srcs = ["SpookyHashV2Test.cpp"],
+    deps = [
+        "//folly/hash:spooky_hash_v2",
+        "//folly/portability:gtest",
+        "//folly/portability:time",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "std_compatible_hash_test",
+    srcs = ["StdCompatibleHashTest.cpp"],
+    deps = [
+        "//folly/hash",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "traits_test",
+    srcs = ["traits_test.cpp"],
+    deps = [
+        "//folly/hash:traits",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "unique_hash_key_test",
+    srcs = ["UniqueHashKeyTest.cpp"],
+    deps = [
+        "//folly/container:f14_hash",
+        "//folly/container:map_util",
+        "//folly/hash:unique_hash_key",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

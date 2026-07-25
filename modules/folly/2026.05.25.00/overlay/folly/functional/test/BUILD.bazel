@@ -1,0 +1,53 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "apply_tuple_test",
+    srcs = ["ApplyTupleTest.cpp"],
+    deps = [
+        "//folly:overload",
+        "//folly/functional:apply_tuple",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "invoke_test",
+    srcs = ["InvokeTest.cpp"],
+    deps = [
+        "//folly/functional:invoke",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "partial_test",
+    srcs = ["PartialTest.cpp"],
+    deps = [
+        "//folly:function",
+        "//folly/functional:partial",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "protocol_test",
+    srcs = ["protocol_test.cpp"],
+    deps = [
+        "//folly/functional:protocol",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "traits_test",
+    srcs = ["traits_test.cpp"],
+    deps = [
+        "//folly/functional:traits",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

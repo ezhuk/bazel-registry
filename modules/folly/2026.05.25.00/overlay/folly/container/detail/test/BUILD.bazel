@@ -1,0 +1,22 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "bool_wrapper_test",
+    srcs = ["BoolWrapperTest.cpp"],
+    deps = [
+        "//folly/container/detail:bool_wrapper",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "f14_detail_test",
+    srcs = ["F14DetailTest.cpp"],
+    deps = [
+        "//folly:traits",
+        "//folly/container/detail:f14_hash_detail",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

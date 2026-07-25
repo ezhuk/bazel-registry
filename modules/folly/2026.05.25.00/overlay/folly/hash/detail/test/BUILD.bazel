@@ -1,0 +1,13 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "random_seed_test",
+    srcs = ["RandomSeedTest.cpp"],
+    deps = [
+        "//folly:portability",
+        "//folly/hash/detail:random_seed",
+        "//folly/portability:gtest",
+        "//folly/test:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)

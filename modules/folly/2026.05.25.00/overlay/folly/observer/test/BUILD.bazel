@@ -1,0 +1,24 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "observer_test",
+    srcs = ["ObserverTest.cpp"],
+    deps = [
+        "//folly:demangle",
+        "//folly:singleton",
+        "//folly/fibers:core_manager",
+        "//folly/fibers:fiber_manager_map",
+        "//folly/observer",
+        "//folly/observer:core_cached_observer",
+        "//folly/observer:hazptr_observer",
+        "//folly/observer:read_mostly_tl_observer",
+        "//folly/observer:simple_observable",
+        "//folly/observer:with_jitter",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/synchronization:asymmetric_thread_fence",
+        "//folly/synchronization:atomic_util",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
