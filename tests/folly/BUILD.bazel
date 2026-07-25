@@ -39,5 +39,13 @@ test_suite(
         "@folly//folly/chrono/test:conv_test",
         "@folly//folly/codec/test:hex_test",
         "@folly//folly/codec/test:uuid_test",
+        "@folly//folly/compression/elias_fano/test:bitvector_test",
+        "@folly//folly/compression/elias_fano/test:eliasfano_test",
+        "@folly//folly/compression/test:compression_test",
+        "@folly//folly/compression/test:compression_context_pool_test",
+        "@folly//folly/compression/test:instructions_test",
+        "@folly//folly/compression/test:large_test",
+        "@folly//folly/compression/test:quotient_multiset_test",
+        "@folly//folly/compression/test:select64_test",
     ],
 )
