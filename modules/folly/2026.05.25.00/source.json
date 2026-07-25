@@ -74,6 +74,7 @@
     "folly/functional/test/BUILD.bazel": "sha256-uXFv0mkgj+3/3cMz+ChSibA+Rww9eyxbb8ssxn4zHiQ=",
     "folly/functional/BUILD.bazel": "sha256-oImDe0y0ZJ7IoVO5OvbpsL8hDk0SLy7FarR6V4PRB9g=",
     "folly/futures/detail/BUILD.bazel": "sha256-7hxiw5Il1fMG8nof3ZOuIpK8jMVC0GxBe2XHVhaEK4Q=",
+    "folly/futures/test/BUILD.bazel": "sha256-7+kPyKZEb+PRuV6ddLNt/7x5x0aozX6FeLLzlfsYpv4=",
     "folly/futures/BUILD.bazel": "sha256-neus2eEZiaT/8VkEmp17/OptPhWFXEjS9Iv6gsZlTZc=",
     "folly/gen/BUILD.bazel": "sha256-RpjseZkEJczjT4pZ1mzMJfYbDwpPiq/iFqPsgiunlM4=",
     "folly/hash/detail/BUILD.bazel": "sha256-cylD8ILH/iwHpqUJVwGBejU9X7fsye/f+Rb3DYGRzGw=",

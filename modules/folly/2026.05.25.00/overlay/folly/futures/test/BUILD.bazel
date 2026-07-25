@@ -1,0 +1,451 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_library(
+    name = "test_executor",
+    srcs = ["TestExecutor.cpp"],
+    hdrs = ["TestExecutor.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//folly:executor"],
+)
+
+cc_library(
+    name = "timekeeper_test_lib",
+    hdrs = ["TimekeeperTestLib.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:default_keep_alive_executor",
+        "//folly:random",
+        "//folly:singleton",
+        "//folly/executors:global_executor",
+        "//folly/executors:manual_executor",
+        "//folly/executors:serial_executor",
+        "//folly/executors:virtual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "barrier_test",
+    srcs = ["BarrierTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/futures:barrier",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "callback_lifetime_test",
+    srcs = ["CallbackLifetimeTest.cpp"],
+    deps = [
+        ":test_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cleanup_test",
+    srcs = ["CleanupTest.cpp"],
+    deps = [
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:manual_executor",
+        "//folly/futures:cleanup",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "collect_test",
+    srcs = ["CollectTest.cpp"],
+    deps = [
+        "//folly:default_keep_alive_executor",
+        "//folly:random",
+        "//folly:small_vector",
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/synchronization/test:barrier",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "context_test",
+    srcs = ["ContextTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "conversion_operator",
+    srcs = ["ConversionOperatorTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "core_test",
+    srcs = ["CoreTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/futures/detail:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ensure_test",
+    srcs = ["EnsureTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "filter_test",
+    srcs = ["FilterTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "future_splitter_test",
+    srcs = ["FutureSplitterTest.cpp"],
+    deps = [
+        "//folly/executors:manual_executor",
+        "//folly/futures:future_splitter",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "future_test",
+    srcs = ["FutureTest.cpp"],
+    deps = [
+        "//folly:executor",
+        "//folly:memory",
+        "//folly:unit",
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/json:dynamic",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "header_compile_test",
+    srcs = ["HeaderCompileTest.cpp"],
+    deps = [
+        "//folly:try",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "heap_timekeeper_test",
+    srcs = ["HeapTimekeeperTest.cpp"],
+    deps = [
+        ":timekeeper_test_lib",
+        "//folly/futures:core",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "interrupt_test",
+    srcs = ["InterruptTest.cpp"],
+    deps = [
+        ":test_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "manual_timekeeper_test",
+    srcs = ["ManualTimekeeperTest.cpp"],
+    deps = [
+        "//folly/futures:manual_timekeeper",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "map_test",
+    srcs = ["MapTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "non_copyable_lambda_test",
+    srcs = ["NonCopyableLambdaTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "poll_test",
+    srcs = ["PollTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "promise_test",
+    srcs = ["PromiseTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "reduce_test",
+    srcs = ["ReduceTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "retrying_test",
+    srcs = ["RetryingTest.cpp"],
+    deps = [
+        ":test_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/portability:sys_resource",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "self_destruct_test",
+    srcs = ["SelfDestructTest.cpp"],
+    deps = [
+        "//folly/executors:inline_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "semi_future_test",
+    srcs = ["SemiFutureTest.cpp"],
+    deps = [
+        "//folly:executor",
+        "//folly:memory",
+        "//folly:unit",
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/io/async:async_base",
+        "//folly/json:dynamic",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "shared_promise_test",
+    srcs = ["SharedPromiseTest.cpp"],
+    deps = [
+        "//folly/futures:shared_promise",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "test_executor_test",
+    srcs = ["TestExecutorTest.cpp"],
+    deps = [
+        ":test_executor",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "then_compile_test",
+    srcs = ["ThenCompileTest.cpp"],
+    hdrs = [
+        "ThenCompileTest.h",
+    ],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "then_test",
+    srcs = ["ThenTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "thread_wheel_timekeeper_test",
+    srcs = ["ThreadWheelTimekeeperTest.cpp"],
+    deps = [
+        ":timekeeper_test_lib",
+        "//folly/futures:core",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "timekeeper_test",
+    srcs = ["TimekeeperTest.cpp"],
+    deps = [
+        "//folly:singleton",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "times_test",
+    srcs = ["TimesTest.cpp"],
+    deps = [
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "unwrap_test",
+    srcs = ["UnwrapTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "via_test",
+    srcs = ["ViaTest.cpp"],
+    deps = [
+        "//folly:mpmc_queue",
+        "//folly/executors:drivable_executor",
+        "//folly/executors:inline_executor",
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "wait_test",
+    srcs = ["WaitTest.cpp"],
+    deps = [
+        ":test_executor",
+        "//folly/executors:inline_executor",
+        "//folly/futures:core",
+        "//folly/io/async:async_base",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "when_test",
+    srcs = ["WhenTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "while_do_test",
+    srcs = ["WhileDoTest.cpp"],
+    deps = [
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "will_equal_test",
+    srcs = ["WillEqualTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "window_test",
+    srcs = ["WindowTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly/executors:manual_executor",
+        "//folly/futures:core",
+        "//folly/portability:gtest",
+        "//folly/synchronization/test:barrier",
+        "@googletest//:gtest_main",
+    ],
+)
