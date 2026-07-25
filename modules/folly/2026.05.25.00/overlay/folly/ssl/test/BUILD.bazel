@@ -1,0 +1,56 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "openssl_cert_utils_test",
+    srcs = ["OpenSSLCertUtilsTest.cpp"],
+    deps = [
+        "//folly:format",
+        "//folly:range",
+        "//folly:string",
+        "//folly/container:enumerate",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/portability:openssl",
+        "//folly/portability:time",
+        "//folly/ssl:openssl_cert_utils",
+        "//folly/ssl:openssl_ptr_types",
+        "//folly/testing:test_util",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "openssl_hash_test",
+    srcs = ["OpenSSLHashTest.cpp"],
+    deps = [
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "//folly/ssl:openssl_hash",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "openssl_key_utils_test",
+    srcs = ["OpenSSLKeyUtilsTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/ssl:openssl_key_utils",
+        "//folly/ssl:password_collector",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ssl_session_manager_test",
+    srcs = ["SSLSessionManagerTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/portability:openssl",
+        "//folly/ssl:openssl_ptr_types",
+        "//folly/ssl:ssl_session_manager",
+        "//folly/ssl/detail:openssl_session",
+        "@googletest//:gtest_main",
+    ],
+)

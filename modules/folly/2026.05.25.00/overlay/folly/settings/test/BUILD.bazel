@@ -1,0 +1,52 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_library(
+    name = "a",
+    srcs = ["a.cpp"],
+    hdrs = ["a.h"],
+    deps = ["//folly/settings"],
+)
+
+cc_library(
+    name = "b",
+    srcs = ["b.cpp"],
+    hdrs = ["b.h"],
+    deps = ["//folly/settings"],
+)
+
+cc_test(
+    name = "command_line_parser_test",
+    srcs = ["CommandLineParserTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly:string",
+        "//folly/container:array",
+        "//folly/logging",
+        "//folly/settings",
+        "//folly/settings:command_line_parser",
+        "//folly/settings:settings_accessor_proxy",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "settings_test",
+    srcs = ["SettingsTest.cpp"],
+    deps = [
+        ":a",
+        ":b",
+        "//folly:format",
+        "//folly:random",
+        "//folly:string",
+        "//folly/observer/detail:observer_manager",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/settings",
+        "//folly/settings:observer",
+        "//folly/synchronization/test:barrier",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)

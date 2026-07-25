@@ -1,0 +1,17 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "test_util_test",
+    srcs = ["TestUtilTest.cpp"],
+    deps = [
+        "//folly:memory",
+        "//folly/portability:fcntl",
+        "//folly/portability:gtest",
+        "//folly/portability:stdlib",
+        "//folly/portability:unistd",
+        "//folly/testing:test_util",
+        "@boost.algorithm",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)

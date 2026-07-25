@@ -1,0 +1,51 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "as_argument_test",
+    srcs = ["AsArgumentTest.cpp"],
+    deps = [
+        "//folly/lang/bind:as_argument",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "bind_test",
+    srcs = ["BindTest.cpp"],
+    deps = [
+        "//folly/lang/bind",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "named_test",
+    srcs = ["NamedTest.cpp"],
+    deps = [
+        "//folly/lang/bind:named",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "named_to_storage_test",
+    srcs = ["NamedToStorageTest.cpp"],
+    deps = [
+        "//folly/lang/bind:named_to_storage",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "to_storage_test",
+    srcs = ["ToStorageTest.cpp"],
+    deps = [
+        "//folly/lang/bind:to_storage",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

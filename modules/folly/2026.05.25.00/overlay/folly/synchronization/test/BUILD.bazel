@@ -1,0 +1,422 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_library(
+    name = "barrier",
+    hdrs = ["Barrier.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "baton_test_helpers",
+    hdrs = ["BatonTestHelpers.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/test:deterministic_schedule",
+    ],
+)
+
+cc_library(
+    name = "flat_combining_examples",
+    hdrs = ["FlatCombiningExamples.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/synchronization:baton",
+        "//folly/synchronization:flat_combining",
+    ],
+)
+
+cc_library(
+    name = "flat_combining_test_helpers",
+    hdrs = ["FlatCombiningTestHelpers.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/synchronization/test:flat_combining_examples",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "semaphore",
+    hdrs = ["Semaphore.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:optional",
+        "//folly:scope_guard",
+        "//folly/lang:exception",
+        "@boost.intrusive",
+    ],
+)
+
+cc_library(
+    name = "thread_cached_epoch_bench_util",
+    hdrs = ["ThreadCachedEpochBench.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/synchronization/detail:rcu-detail",
+    ],
+)
+
+cc_test(
+    name = "atomic_notification_test",
+    srcs = ["AtomicNotificationTest.cpp"],
+    deps = [
+        "//folly:optional",
+        "//folly/portability:gtest",
+        "//folly/synchronization:atomic_notification",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "atomic_ref_test",
+    srcs = ["AtomicRefTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:atomic_ref",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "atomic_struct_test",
+    srcs = ["AtomicStructTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:atomic_struct",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "atomic_util_test",
+    srcs = ["AtomicUtilTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:portability",
+        "//folly:utility",
+        "//folly/portability:gtest",
+        "//folly/synchronization:atomic_ref",
+        "//folly/synchronization:atomic_util",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "barrier_test",
+    srcs = ["BarrierTest.cpp"],
+    deps = [
+        ":barrier",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "baton_test",
+    srcs = ["BatonTest.cpp"],
+    deps = [
+        ":baton_test_helpers",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/test:deterministic_schedule",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "call_once_test",
+    srcs = ["CallOnceTest.cpp"],
+    deps = [
+        "//folly:traits",
+        "//folly/portability:gtest",
+        "//folly/synchronization:call_once",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "delayed_init_test",
+    srcs = ["DelayedInitTest.cpp"],
+    deps = [
+        ":barrier",
+        "//folly/portability:gtest",
+        "//folly/synchronization:delayed_init",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "distributed_mutex_test",
+    srcs = ["DistributedMutexTest.cpp"],
+    deps = [
+        "//folly:map_util",
+        "//folly:synchronized",
+        "//folly/container:array",
+        "//folly/container:foreach",
+        "//folly/lang:customization_point",
+        "//folly/lang:keep",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/synchronization:distributed_mutex",
+        "//folly/system:hardware_concurrency",
+        "//folly/test:deterministic_schedule",
+        "//folly/test:test_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "event_count_test",
+    srcs = ["EventCountTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/portability:gtest",
+        "//folly/synchronization:event_count",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "flat_combining_benchmark",
+    srcs = ["FlatCombiningBenchmark.cpp"],
+    deps = [
+        ":flat_combining_test_helpers",
+        "//folly:benchmark",
+        "//folly/portability:gtest",
+        "//folly/system:hardware_concurrency",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "flat_combining_test",
+    srcs = ["FlatCombiningTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization/test:flat_combining_test_helpers",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "hazptr_tc_test",
+    srcs = ["HazptrTcTest.cpp"],
+    deps = [
+        "//folly/lang:bits",
+        "//folly/portability:gtest",
+        "//folly/synchronization:hazptr",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "hazptr_test",
+    srcs = ["HazptrTest.cpp"],
+    deps = [
+        ":barrier",
+        "//folly:singleton",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/synchronization:hazptr",
+        "//folly/synchronization:hazptr_thread_pool_executor",
+        "//folly/synchronization/example:hazptr_lock_free_lifo",
+        "//folly/synchronization/example:hazptr_swmr_set",
+        "//folly/synchronization/example:hazptr_wide_cas",
+        "//folly/test:deterministic_schedule",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "latch_test",
+    srcs = ["LatchTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:latch",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "lifo_sem_test",
+    srcs = ["LifoSemTests.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/portability:asm",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/synchronization:lifo_sem",
+        "//folly/synchronization:native_semaphore",
+        "//folly/test:deterministic_schedule",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "lock_test",
+    srcs = ["LockTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:lock",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "native_semaphore_test",
+    srcs = ["NativeSemaphoreTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:native_semaphore",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "parking_lot_test",
+    srcs = ["ParkingLotTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/synchronization:parking_lot",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "rcu_test",
+    srcs = ["RcuTest.cpp"],
+    deps = [
+        ":barrier",
+        "//folly:benchmark",
+        "//folly:random",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/synchronization:rcu",
+        "//folly/synchronization:relaxed_atomic",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "relaxed_atomic_test",
+    srcs = ["RelaxedAtomicTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:atomic_util",
+        "//folly/synchronization:relaxed_atomic",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "rw_spin_lock_test",
+    srcs = ["RWSpinLockTest.cpp"],
+    deps = [
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/portability:unistd",
+        "//folly/synchronization:rw_spin_lock",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "saturating_semaphore_test",
+    srcs = ["SaturatingSemaphoreTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:saturating_semaphore",
+        "//folly/test:deterministic_schedule",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "semaphore_test",
+    srcs = ["SemaphoreTest.cpp"],
+    deps = [
+        ":barrier",
+        ":semaphore",
+        "//folly/portability:gtest",
+        "//folly/portability:sys_mman",
+        "//folly/synchronization:latch",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "small_locks_test",
+    srcs = ["SmallLocksTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/portability:asm",
+        "//folly/portability:gflags",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/portability:pthread",
+        "//folly/portability:unistd",
+        "//folly/synchronization:small_locks",
+        "//folly/system:hardware_concurrency",
+        "//folly/test:test_utils",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "striped_throttled_lifo_sem_test",
+    srcs = ["StripedThrottledLifoSemTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:scope_guard",
+        "//folly/portability:gtest",
+        "//folly/synchronization:striped_throttled_lifo_sem",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "thread_annotations_test",
+    srcs = ["ThreadAnnotationsTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:thread_annotations",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "thread_cached_readers_test",
+    srcs = ["ThreadCachedReadersTest.cpp"],
+    deps = [
+        "//folly:thread_local",
+        "//folly/portability:gtest",
+        "//folly/synchronization/detail:rcu-detail",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "throttled_lifo_sem_test",
+    srcs = ["ThrottledLifoSemTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:random",
+        "//folly/portability:gtest",
+        "//folly/synchronization:saturating_semaphore",
+        "//folly/synchronization:throttled_lifo_sem",
+        "@googletest//:gtest_main",
+    ],
+)

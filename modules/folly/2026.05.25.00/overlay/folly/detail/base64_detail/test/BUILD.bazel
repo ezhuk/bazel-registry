@@ -1,0 +1,40 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_library(
+    name = "base64_platform_test",
+    srcs = ["Base64PlatformTest.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/detail/base64_detail:base64_sse4_2_platform",
+        "//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "base64_special_cases_test",
+    srcs = ["Base64SpecialCasesTest.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/detail/base64_detail:base64_api",
+        "//folly/detail/base64_detail:base64_scalar",
+        "//folly/detail/base64_detail:base64_simd",
+        "//folly/detail/base64_detail:base64_sse4_2",
+        "//folly/portability:constexpr",
+        "//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "base64_against_scalar_test",
+    srcs = ["Base64AgainstScalarTest.cpp"],
+    deps = [
+        "//folly/detail/base64_detail:base64_api",
+        "//folly/detail/base64_detail:base64_common",
+        "//folly/detail/base64_detail:base64_scalar",
+        "//folly/detail/base64_detail:base64_sse4_2",
+        "//folly/detail/base64_detail:base64_swar",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
