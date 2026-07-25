@@ -373,5 +373,13 @@ test_suite(
         "@folly//folly/net/detail/test:socket_file_descriptor_map_test",
         "@folly//folly/net/test:tcpinfo_test",
         "@folly//folly/observer/test:observer_test",
+        "@folly//folly/portability/test:constexpr_test",
+        "@folly//folly/portability/test:fcntl_test",
+        "@folly//folly/portability/test:filesystem_test",
+        "@folly//folly/portability/test:libgen_test",
+        "@folly//folly/portability/test:openssl_portability_test",
+        "@folly//folly/portability/test:pthread_test",
+        "@folly//folly/portability/test:time_test",
+        "@folly//folly/portability/test:unistd_test",
     ],
 )
