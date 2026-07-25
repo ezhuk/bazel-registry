@@ -467,5 +467,6 @@ test_suite(
         "@folly//folly/system/test:shell_test",
         "@folly//folly/system/test:thread_id_test",
         "@folly//folly/system/test:thread_name_test",
+        "@folly//folly/testing/test:test_util_test",
     ],
 )
