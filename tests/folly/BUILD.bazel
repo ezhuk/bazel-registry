@@ -410,5 +410,7 @@ test_suite(
         "@folly//folly/result/test:stack_epitaph_test",
         "@folly//folly/result/test:try_test",
         "@folly//folly/result/test:value_only_result_test",
+        "@folly//folly/settings/test:command_line_parser_test",
+        "@folly//folly/settings/test:settings_test",
     ],
 )
