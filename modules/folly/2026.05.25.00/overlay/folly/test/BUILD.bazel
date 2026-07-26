@@ -520,23 +520,6 @@ cc_test(
 )
 
 cc_test(
-    name = "file_lock_test",
-    srcs = ["FileLockTest.cpp"],
-    deps = [
-        "//folly:file",
-        "//folly:string",
-        "//folly:subprocess",
-        "//folly/io:fs_util",
-        "//folly/portability:gflags",
-        "//folly/portability:gtest",
-        "//folly/testing:test_util",
-        "@boost.thread",
-        "@glog",
-        "@googletest//:gtest_main",
-    ],
-)
-
-cc_test(
     name = "file_test",
     srcs = ["FileTest.cpp"],
     deps = [
@@ -985,6 +968,7 @@ cc_test(
     deps = [
         "//folly:padded",
         "//folly/portability:gtest",
+        "@boost.iterator",
         "@glog",
         "@googletest//:gtest_main",
     ],

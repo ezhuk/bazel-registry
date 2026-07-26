@@ -4,12 +4,14 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_library(
     name = "barrier",
     hdrs = ["Barrier.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
 )
 
 cc_library(
     name = "baton_test_helpers",
     hdrs = ["BatonTestHelpers.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly/portability:gtest",
@@ -21,6 +23,7 @@ cc_library(
 cc_library(
     name = "flat_combining_examples",
     hdrs = ["FlatCombiningExamples.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly/synchronization:baton",
@@ -31,6 +34,7 @@ cc_library(
 cc_library(
     name = "flat_combining_test_helpers",
     hdrs = ["FlatCombiningTestHelpers.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:benchmark",
@@ -42,6 +46,7 @@ cc_library(
 cc_library(
     name = "semaphore",
     hdrs = ["Semaphore.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:optional",
@@ -54,6 +59,7 @@ cc_library(
 cc_library(
     name = "thread_cached_epoch_bench_util",
     hdrs = ["ThreadCachedEpochBench.h"],
+    include_prefix = "folly/synchronization/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:benchmark",
