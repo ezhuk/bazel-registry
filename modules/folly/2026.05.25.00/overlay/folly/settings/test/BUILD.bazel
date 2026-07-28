@@ -5,6 +5,7 @@ cc_library(
     name = "a",
     srcs = ["a.cpp"],
     hdrs = ["a.h"],
+    include_prefix = "folly/settings/test",
     deps = ["//folly/settings"],
 )
 
@@ -12,6 +13,7 @@ cc_library(
     name = "b",
     srcs = ["b.cpp"],
     hdrs = ["b.h"],
+    include_prefix = "folly/settings/test",
     deps = ["//folly/settings"],
 )
 

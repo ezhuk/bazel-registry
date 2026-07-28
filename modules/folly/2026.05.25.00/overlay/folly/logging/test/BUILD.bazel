@@ -5,6 +5,7 @@ cc_library(
     name = "config_helpers",
     srcs = ["ConfigHelpers.cpp"],
     hdrs = ["ConfigHelpers.h"],
+    include_prefix = "folly/logging/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:string",
@@ -18,6 +19,7 @@ cc_library(
     name = "test_handler",
     srcs = ["TestLogHandler.cpp"],
     hdrs = ["TestLogHandler.h"],
+    include_prefix = "folly/logging/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:map_util",
@@ -36,6 +38,7 @@ cc_library(
         "XlogHeader1.h",
         "XlogHeader2.h",
     ],
+    include_prefix = "folly/logging/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:range",

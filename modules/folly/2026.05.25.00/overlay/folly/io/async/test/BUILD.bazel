@@ -4,6 +4,7 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_library(
     name = "async_signal_handler_test_lib",
     hdrs = ["AsyncSignalHandlerTestLib.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":util",
@@ -19,6 +20,7 @@ cc_library(
         "AsyncSocketTest.h",
         "AsyncSocketTest2.h",
     ],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":blocking_socket",
@@ -37,6 +39,7 @@ cc_library(
 cc_library(
     name = "async_ssl_socket_test_lib",
     hdrs = ["AsyncSSLSocketTest.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":test_ssl_server",
@@ -63,6 +66,7 @@ cc_library(
 cc_library(
     name = "blocking_socket",
     hdrs = ["BlockingSocket.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:optional",
@@ -76,12 +80,14 @@ cc_library(
 cc_library(
     name = "callback_state_enum",
     hdrs = ["CallbackStateEnum.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
 )
 
 cc_library(
     name = "conn_callback",
     hdrs = ["ConnCallback.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":callback_state_enum",
@@ -92,6 +98,7 @@ cc_library(
 cc_library(
     name = "event_base_test_lib",
     hdrs = ["EventBaseTestLib.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":util",
@@ -113,6 +120,7 @@ cc_library(
 cc_library(
     name = "mock_server_socket",
     hdrs = ["MockAsyncServerSocket.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly/io/async:async_base",
@@ -132,6 +140,7 @@ cc_library(
         "MockAsyncUDPSocket.h",
         "MockTimeoutManager.h",
     ],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:memory",
@@ -148,12 +157,14 @@ cc_library(
 cc_library(
     name = "request_context_helper",
     hdrs = ["RequestContextHelper.h"],
+    include_prefix = "folly/io/async/test",
 )
 
 cc_library(
     name = "scoped_bound_port",
     srcs = ["ScopedBoundPort.cpp"],
     hdrs = ["ScopedBoundPort.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:memory",
@@ -167,6 +178,7 @@ cc_library(
     name = "ssl_util",
     srcs = ["SSLUtil.cpp"],
     hdrs = ["SSLUtil.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = ["//folly/ssl:openssl_ptr_types"],
 )
@@ -175,6 +187,7 @@ cc_library(
     name = "test_ssl_server",
     srcs = ["TestSSLServer.cpp"],
     hdrs = ["TestSSLServer.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         ":callback_state_enum",
@@ -197,6 +210,7 @@ cc_library(
     name = "tfo_util",
     srcs = ["TFOUtil.cpp"],
     hdrs = ["TFOUtil.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = ["//folly/detail:socket_fast_open"],
 )
@@ -213,6 +227,7 @@ cc_library(
         "UndelayedDestruction.h",
         "Util.h",
     ],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:conv",
@@ -236,6 +251,7 @@ cc_library(
     name = "zero_copy_lib",
     srcs = ["ZeroCopy.cpp"],
     hdrs = ["ZeroCopy.h"],
+    include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:exception_wrapper",
