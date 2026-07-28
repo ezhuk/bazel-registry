@@ -5,6 +5,7 @@ cc_library(
     name = "coding_test_utils",
     srcs = ["CodingTestUtils.cpp"],
     hdrs = ["CodingTestUtils.h"],
+    include_prefix = "folly/compression/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:benchmark",

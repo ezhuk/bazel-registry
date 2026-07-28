@@ -6,6 +6,7 @@ cc_library(
     hdrs = [
         "common.h",
     ],
+    include_prefix = "folly/result/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:benchmark",
@@ -22,6 +23,7 @@ cc_library(
     hdrs = [
         "rich_error_codes.h",
     ],
+    include_prefix = "folly/result/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:traits",
@@ -36,6 +38,7 @@ cc_library(
     hdrs = [
         "rich_exception_ptr_check_get.h",
     ],
+    include_prefix = "folly/result/test",
     visibility = ["//visibility:public"],
     deps = [
         ":rich_exception_ptr_common",
@@ -49,6 +52,7 @@ cc_library(
     hdrs = [
         "rich_exception_ptr_common.h",
     ],
+    include_prefix = "folly/result/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly/portability:gtest",

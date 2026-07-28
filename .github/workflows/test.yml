@@ -41,3 +41,8 @@ jobs:
           bazel build //:test \
             --registry=file://${{ github.workspace }} \
             --registry=https://bcr.bazel.build
+          if [[ "${{ matrix.module }}" == "folly" ]]; then
+            bazel test //:tests \
+              --registry=file://${{ github.workspace }} \
+              --registry=https://bcr.bazel.build
+          fi

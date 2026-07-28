@@ -6,6 +6,7 @@ cc_library(
     hdrs = [
         "IOThreadPoolExecutorBaseTestLib.h",
     ],
+    include_prefix = "folly/executors/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:random",
