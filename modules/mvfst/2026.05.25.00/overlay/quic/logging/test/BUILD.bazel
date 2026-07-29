@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "quic/logging/test",
+    deps = [
+        "//quic/logging:qlogger",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "QLoggerTest",
+    srcs = ["QLoggerTest.cpp"],
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr",
+        "//quic/logging:file_qlogger",
+        "//quic/logging:qlogger",
+        "@folly//folly:dynamic",
+        "@folly//folly:file_util",
+        "@folly//folly:random",
+        "@folly//folly/portability:filesystem",
+        "@googletest//:gtest_main",
+    ],
+)

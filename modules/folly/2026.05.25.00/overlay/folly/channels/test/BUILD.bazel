@@ -4,6 +4,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
     name = "channel_test_util",
     hdrs = ["ChannelTestUtil.h"],
+    include_prefix = "folly/channels/test",
     deps = [
         "//folly/channels:consume_channel",
         "//folly/coro:detach_on_cancel",

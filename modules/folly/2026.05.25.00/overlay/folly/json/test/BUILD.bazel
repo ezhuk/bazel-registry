@@ -9,6 +9,7 @@ cc_test(
         "//folly:optional",
         "//folly/json:dynamic",
         "//folly/portability:gtest",
+        "@boost.iterator",
         "@googletest//:gtest_main",
     ],
 )

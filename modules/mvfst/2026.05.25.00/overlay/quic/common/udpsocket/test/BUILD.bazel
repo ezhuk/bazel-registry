@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "QuicAsyncUDPSocketMock",
+    hdrs = ["QuicAsyncUDPSocketMock.h"],
+    include_prefix = "quic/common/udpsocket/test",
+    deps = [
+        "//quic/common/udpsocket:quic_async_udp_socket",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "QuicAsyncUDPSocketTestBase",
+    hdrs = ["QuicAsyncUDPSocketTestBase.h"],
+    include_prefix = "quic/common/udpsocket/test",
+    deps = [
+        ":QuicAsyncUDPSocketMock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "FollyQuicAsyncUDPSocketTest",
+    srcs = ["FollyQuicAsyncUDPSocketTest.cpp"],
+    deps = [
+        ":QuicAsyncUDPSocketTestBase",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "LibevQuicAsyncUDPSocketTest",
+    srcs = ["LibevQuicAsyncUDPSocketTest.cpp"],
+    deps = [
+        ":QuicAsyncUDPSocketTestBase",
+        "//quic/common/udpsocket:libev_async_udp_socket",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
