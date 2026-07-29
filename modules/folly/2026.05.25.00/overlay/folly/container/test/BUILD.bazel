@@ -4,6 +4,7 @@ load("@rules_cc//cc:cc_test.bzl", "cc_test")
 cc_library(
     name = "f14_test_util",
     hdrs = ["F14TestUtil.h"],
+    include_prefix = "folly/container/test",
     deps = ["//folly/container/detail:f14_hash_detail"],
 )
 
@@ -12,6 +13,7 @@ cc_library(
     hdrs = [
         "TrackingTypes.h",
     ],
+    include_prefix = "folly/container/test",
     visibility = ["//visibility:public"],
     deps = [
         "//folly:function",

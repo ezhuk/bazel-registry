@@ -1,0 +1,94 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "AppTokenTest",
+    srcs = ["AppTokenTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/server/state:server",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "DefaultAppTokenValidatorTest",
+    srcs = ["DefaultAppTokenValidatorTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/api/test:mocks",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/server/handshake:default_app_token_validator",
+        "//quic/server/state:server",
+        "//quic/state/test:mocks",
+        "@fizz//fizz/server:resumption_state",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "RetryTokenGeneratorTest",
+    srcs = ["RetryTokenGeneratorTest.cpp"],
+    deps = [
+        "//quic/server/handshake:token_generator",
+        "@folly//folly:random",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ServerHandshakeTest",
+    srcs = ["ServerHandshakeTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/common:mvfst_logging",
+        "//quic/common:string_utils",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/fizz/handshake:fizz_bridge",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/server/handshake:app_token",
+        "//quic/server/handshake:server_handshake",
+        "//quic/state:quic_state_machine",
+        "@fizz//fizz/client/test:mocks",
+        "@fizz//fizz/crypto/test:TestUtil",
+        "@fizz//fizz/protocol/test:mocks",
+        "@fizz//fizz/server/test:mocks",
+        "@folly//folly/io/async:scoped_event_base_thread",
+        "@folly//folly/io/async:ssl_context",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ServerTransportParametersTest",
+    srcs = ["ServerTransportParametersTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/server/handshake:server_extension",
+        "@fizz//fizz/protocol/test:test_util",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "StatelessResetGeneratorTest",
+    srcs = ["StatelessResetGeneratorTest.cpp"],
+    deps = [
+        "//quic/server/handshake:stateless_reset_generator",
+        "@folly//folly:network_address",
+        "@folly//folly:random",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

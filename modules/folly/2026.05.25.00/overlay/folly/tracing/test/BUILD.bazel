@@ -5,6 +5,7 @@ cc_library(
     name = "static_tracepoint_test_module",
     srcs = ["StaticTracepointTestModule.cpp"],
     hdrs = ["StaticTracepointTestModule.h"],
+    include_prefix = "folly/tracing/test",
     deps = ["//folly/tracing:static_tracepoint"],
 )
 
