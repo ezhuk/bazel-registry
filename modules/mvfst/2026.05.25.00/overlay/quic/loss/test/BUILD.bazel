@@ -1,0 +1,27 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "QuicLossFunctionsTest",
+    srcs = ["QuicLossFunctionsTest.cpp"],
+    deps = [
+        "//quic/api:transport_helpers",
+        "//quic/api/test:mocks",
+        "//quic/client:state_and_handshake",
+        "//quic/codec:types",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_utils",
+        "//quic/common/testutil:mock_async_udp_socket",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/logging/test:mocks",
+        "//quic/loss",
+        "//quic/server/state:server",
+        "//quic/state:ack_event",
+        "//quic/state/stream",
+        "//quic/state/test:mocks",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

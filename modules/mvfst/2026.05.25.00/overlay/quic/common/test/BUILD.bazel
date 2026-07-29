@@ -1,0 +1,220 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "test_client_utils",
+    hdrs = ["TestClientUtils.h"],
+    include_prefix = "quic/common/test",
+    deps = [
+        "@fizz//fizz/protocol:certificate_verifier",
+    ],
+)
+
+cc_library(
+    name = "test_packet_builders",
+    srcs = ["TestPacketBuilders.cpp"],
+    hdrs = ["TestPacketBuilders.h"],
+    include_prefix = "quic/common/test",
+    deps = [
+        "//quic/api:quic_batch_writer",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:types",
+        "//quic/state:ack_states",
+        "//quic/state:quic_state_machine",
+        "//quic/state:state_functions",
+    ],
+)
+
+cc_library(
+    name = "test_utils",
+    srcs = ["TestUtils.cpp"],
+    hdrs = ["TestUtils.h"],
+    include_prefix = "quic/common/test",
+    deps = [
+        ":test_packet_builders",
+        "//quic/api:quic_batch_writer",
+        "//quic/api:transport_helpers",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common:mvfst_logging",
+        "//quic/common:string_utils",
+        "//quic/common/testutil:mock_async_udp_socket",
+        "//quic/fizz/client/handshake:psk_cache",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/handshake/test:mocks",
+        "//quic/logging:file_qlogger",
+        "//quic/server/handshake:stateless_reset_generator",
+        "//quic/server/state:server",
+        "//quic/state:ack_event",
+        "//quic/state:ack_states",
+        "//quic/state:loss_state",
+        "//quic/state:outstanding_packet",
+        "//quic/state:quic_state_machine",
+        "//quic/state/stream",
+        "@fizz//fizz/backend:openssl",
+        "@fizz//fizz/client:fizz_client_context",
+        "@fizz//fizz/crypto",
+        "@fizz//fizz/crypto/test:TestUtil",
+        "@fizz//fizz/protocol/clock/test:mock_clock",
+        "@fizz//fizz/protocol/test:mocks",
+        "@fizz//fizz/server:cert_manager",
+        "@fizz//fizz/server:fizz_server_context",
+    ],
+)
+
+cc_test(
+    name = "BufAccessorTest",
+    srcs = ["BufAccessorTest.cpp"],
+    deps = [
+        "//quic/common:buf_accessor",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "BufUtilTest",
+    srcs = ["BufUtilTest.cpp"],
+    deps = [
+        "//quic/common:buf_accessor",
+        "//quic/common:buf_util",
+        "//quic/common:string_utils",
+        "@folly//folly/io:iobuf",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ChainedByteRangeTest",
+    srcs = ["ChainedByteRangeTest.cpp"],
+    deps = [
+        "//quic/common:buf_util",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CircularDequeTest",
+    srcs = ["CircularDequeTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common:circular_deque",
+        "//quic/common:mvfst_logging",
+        "@folly//folly:random",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ContiguousCursorTest",
+    srcs = ["ContiguousCursorTest.cpp"],
+    deps = [
+        "//quic/common:contiguous_cursor",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "IntervalSetTest",
+    srcs = ["IntervalSetTest.cpp"],
+    deps = [
+        "//quic/common:interval_set",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "LinuxKernelVersionTest",
+    srcs = ["LinuxKernelVersionTest.cpp"],
+    deps = [
+        "//quic/common:linux_kernel_version",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicBufferTest",
+    srcs = ["QuicBufferTest.cpp"],
+    deps = [
+        "//quic/common:quic_buffer",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicRangeConversionTest",
+    srcs = ["QuicRangeConversionTest.cpp"],
+    deps = [
+        "//quic/common:quic_buffer",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "SocketUtilTest",
+    srcs = ["SocketUtilTest.cpp"],
+    deps = [
+        "//quic/common:socket_util",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "StringUtilsTest",
+    srcs = ["StringUtilsTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/common:string_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TimeUtilTest",
+    srcs = ["TimeUtilTest.cpp"],
+    deps = [
+        "//quic/common:time_util",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TransportKnobsTest",
+    srcs = ["TransportKnobsTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/common:transport_knobs",
+        "@folly//folly:format",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TransportLooperTest",
+    srcs = ["FunctionLooperTest.cpp"],
+    deps = [
+        "//quic/api:transport_lite",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/events:highres_quic_timer",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "VariantTest",
+    srcs = ["VariantTest.cpp"],
+    deps = [
+        "//quic/common:variant",
+        "@googletest//:gtest_main",
+    ],
+)

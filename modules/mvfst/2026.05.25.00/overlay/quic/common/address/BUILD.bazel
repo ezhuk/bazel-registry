@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "quic_address_util",
+    srcs = ["QuicAddressUtil.cpp"],
+    hdrs = ["QuicAddressUtil.h"],
+    include_prefix = "quic/common/address",
+    deps = [
+        ":quic_socket_address",
+        "@folly//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "quic_socket_address",
+    srcs = ["QuicSocketAddress.cpp"],
+    hdrs = ["QuicSocketAddress.h"],
+    include_prefix = "quic/common/address",
+    deps = [
+        "@fmt",
+        "@folly//folly:network_address",
+        "@folly//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "quic_socket_address_bridge",
+    hdrs = ["QuicSocketAddressBridge.h"],
+    include_prefix = "quic/common/address",
+    deps = [
+        ":quic_socket_address",
+        "@folly//folly:network_address",
+    ],
+)

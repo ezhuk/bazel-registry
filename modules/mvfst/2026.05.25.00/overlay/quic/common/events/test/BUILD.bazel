@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "QuicEventBaseMock",
+    hdrs = ["QuicEventBaseMock.h"],
+    include_prefix = "quic/common/events/test",
+    deps = [
+        "//quic/common/events:eventbase",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "QuicEventBaseTestBase",
+    hdrs = ["QuicEventBaseTestBase.h"],
+    include_prefix = "quic/common/events/test",
+    deps = [
+        "//quic/common/events:eventbase",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "FollyQuicEventBaseTest",
+    srcs = ["FollyQuicEventBaseTest.cpp"],
+    deps = [
+        ":QuicEventBaseTestBase",
+        "//quic/common/events:folly_eventbase",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "LibevQuicEventBaseTest",
+    srcs = ["LibevQuicEventBaseTest.cpp"],
+    deps = [
+        ":QuicEventBaseTestBase",
+        "//quic/common/events:libev_eventbase",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
