@@ -1,0 +1,42 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "FizzCryptoFactoryTest",
+    srcs = ["FizzCryptoFactoryTest.cpp"],
+    deps = [
+        "//quic/common:string_utils",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/handshake/test:mocks",
+        "@fizz//fizz/crypto/aead/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "FizzPacketNumberCipherTest",
+    srcs = ["FizzPacketNumberCipherTest.cpp"],
+    deps = [
+        "//quic/common:string_utils",
+        "//quic/fizz/handshake:fizz_handshake",
+        "@fizz//fizz/record",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "FizzTransportParametersTest",
+    srcs = ["FizzTransportParametersTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/handshake:fizz_handshake",
+        "@fizz//fizz/record/test:extension_tests_base",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
