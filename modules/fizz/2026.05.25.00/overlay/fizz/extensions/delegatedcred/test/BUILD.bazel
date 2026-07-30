@@ -1,0 +1,124 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "delegated_credential_cert_manager_test",
+    srcs = ["DelegatedCredentialCertManagerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/extensions/delegatedcred:delegated_credential_cert_manager",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "delegated_credential_client_cert_manager_test",
+    srcs = ["DelegatedCredentialClientCertManagerTest.cpp"],
+    deps = [
+        "//fizz/extensions/delegatedcred:delegated_credential",
+        "//fizz/extensions/delegatedcred:delegated_credential_client_cert_manager",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "delegated_credential_factory_test",
+    srcs = ["DelegatedCredentialFactoryTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/extensions/delegatedcred:delegated_credential_factory",
+        "//fizz/extensions/delegatedcred:peer_delegated_credential",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "delegated_credential_types_test",
+    srcs = ["DelegatedCredTypesTest.cpp"],
+    deps = [
+        "//fizz/extensions/delegatedcred:delegated_credential",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "delegated_credential_utils_test",
+    srcs = ["DelegatedCredentialUtilsTest.cpp"],
+    deps = [
+        "//fizz/crypto:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/extensions/delegatedcred:delegated_credential_utils",
+        "//fizz/protocol/clock/test:mock_clock",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/extensions/delegatedcred/test",
+    deps = [
+        "//fizz/extensions/delegatedcred:self_delegated_credential",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
+
+cc_test(
+    name = "peer_delegated_credential_test",
+    srcs = ["PeerDelegatedCredentialTest.cpp"],
+    deps = [
+        "//fizz/crypto:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/extensions/delegatedcred:peer_delegated_credential",
+        "//fizz/protocol/clock/test:mock_clock",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "self_delegated_credential_test",
+    srcs = ["SelfDelegatedCredentialTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/extensions/delegatedcred:delegated_credential_utils",
+        "//fizz/extensions/delegatedcred:self_delegated_credential",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "serialization_test",
+    srcs = ["SerializationTest.cpp"],
+    deps = [
+        "//fizz/extensions/delegatedcred:serialization",
+        "@folly//folly:base64",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

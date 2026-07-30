@@ -1,0 +1,112 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "buf_and_padding_policy_test",
+    srcs = ["BufAndPaddingPolicyTest.cpp"],
+    deps = [
+        "//fizz/record:buf_and_padding_policy",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "encrypted_record_test",
+    srcs = ["EncryptedRecordTest.cpp"],
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/record:buf_and_padding_policy",
+        "//fizz/record:encrypted_record_layer",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "extension_tests_base",
+    hdrs = ["ExtensionTestsBase.h"],
+    include_prefix = "fizz/record/test",
+    deps = [
+        "//fizz/record",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "extensions_test",
+    srcs = ["ExtensionsTest.cpp"],
+    deps = [
+        ":extension_tests_base",
+        "//fizz/record",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "handshake_types_test",
+    srcs = ["HandshakeTypesTest.cpp"],
+    deps = [
+        "//fizz/record",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/record/test",
+    deps = [
+        "//fizz/protocol:types",
+        "//fizz/record:encrypted_record_layer",
+        "//fizz/record:plaintext_record_layer",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "plaintext_record_test",
+    srcs = ["PlaintextRecordTest.cpp"],
+    deps = [
+        "//fizz/record:plaintext_record_layer",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "record_test",
+    srcs = ["RecordTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/record:record_layer",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "types_test",
+    srcs = ["TypesTest.cpp"],
+    deps = [
+        "//fizz/record",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

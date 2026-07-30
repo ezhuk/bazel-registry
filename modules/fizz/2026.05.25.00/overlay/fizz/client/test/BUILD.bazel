@@ -1,0 +1,146 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "async_fizz_client_test",
+    srcs = ["AsyncFizzClientTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/client:async_fizz_client",
+        "//fizz/protocol/ech/test:test_util",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async/test:async_socket_test_lib",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cert_manager_test",
+    srcs = ["CertManagerTest.cpp"],
+    deps = [
+        "//fizz/client:cert_manager",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "client_context_test",
+    srcs = ["FizzClientContextTest.cpp"],
+    deps = [
+        "//fizz/client:fizz_client_context",
+        "//fizz/client:protocol",
+        "//fizz/protocol/test:mocks",
+        "//fizz/protocol/test:protocol_test",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "client_protocol_test",
+    srcs = ["ClientProtocolTest.cpp"],
+    deps = [
+        ":mocks",
+        ":utilities",
+        "//fizz/client:fizz_client_context",
+        "//fizz/client:protocol",
+        "//fizz/compression/test:mocks",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/crypto/hpke/test:mocks",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol/clock/test:mock_clock",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/protocol/ech/test:test_util",
+        "//fizz/protocol/test:matchers",
+        "//fizz/protocol/test:protocol_test",
+        "//fizz/protocol/test:test_util",
+        "//fizz/record/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "fizz_client_test",
+    srcs = ["FizzClientTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/client:fizz_client",
+        "//fizz/client:psk_cache",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/client/test",
+    deps = [
+        "//fizz/client:async_fizz_client",
+        "//fizz/client:client_extensions",
+        "//fizz/client:ech_policy",
+        "//fizz/client:psk_cache",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
+
+cc_test(
+    name = "multi_client_extensions_test",
+    srcs = ["MultiClientExtensionsTest.cpp"],
+    deps = [
+        "//fizz/client:multi_client_extensions",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "psk_serialization_test",
+    srcs = ["PskSerializationTest.cpp"],
+    deps = [
+        ":utilities",
+        "//fizz/backend:openssl",
+        "//fizz/client:psk_serialization_utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "synchronized_lru_psk_cache_test",
+    srcs = ["SynchronizedLruPskCacheTest.cpp"],
+    deps = [
+        ":utilities",
+        "//fizz/client:synchronized_lru_psk_cache",
+        "@folly//folly:format",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "utilities",
+    hdrs = ["Utilities.h"],
+    include_prefix = "fizz/client/test",
+    deps = [
+        "//fizz/client:psk_cache",
+        "@folly//folly/portability:gtest",
+    ],
+)
