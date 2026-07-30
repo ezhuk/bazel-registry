@@ -1,0 +1,241 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "aead_cookie_cipher_test",
+    srcs = ["AeadCookieCipherTest.cpp"],
+    deps = [
+        "//fizz/crypto:random",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol/test:test_util",
+        "//fizz/server:aead_token_cipher",
+        "//fizz/server:cookie_types",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "aead_ticket_cipher_test",
+    srcs = ["AeadTicketCipherTest.cpp"],
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/crypto/test:mocks",
+        "//fizz/protocol/clock/test:mock_clock",
+        "//fizz/protocol/test:mocks",
+        "//fizz/server:aead_ticket_cipher",
+        "//fizz/server:cert_manager",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "aead_token_cipher_test",
+    srcs = ["AeadTokenCipherTest.cpp"],
+    deps = [
+        "//fizz/server:aead_token_cipher",
+        "@folly//folly:random",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "async_fizz_server_test",
+    srcs = ["AsyncFizzServerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/extensions/tokenbinding:token_binding",
+        "//fizz/protocol/test:test_util",
+        "//fizz/server:async_fizz_server",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cert_manager_test",
+    srcs = ["CertManagerTest.cpp"],
+    deps = [
+        "//fizz/protocol/test:mocks",
+        "//fizz/server:cert_manager",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cookie_cipher_test",
+    srcs = ["CookieCipherTest.cpp"],
+    deps = [
+        "//fizz/protocol/test:matchers",
+        "//fizz/protocol/test:mocks",
+        "//fizz/protocol/test:test_util",
+        "//fizz/server:cookie_cipher",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "dual_ticket_cipher_test",
+    srcs = ["DualTicketCipherTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/server:dual_ticket_cipher",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "fizz_server_test",
+    srcs = ["FizzServerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/server:fizz_server",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/server/test",
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/crypto/exchange/test:mocks",
+        "//fizz/protocol/test:mocks",
+        "//fizz/record/test:mocks",
+        "//fizz/server:async_fizz_server",
+        "//fizz/server:async_self_cert",
+        "//fizz/server:cookie_cipher",
+        "//fizz/server:protocol",
+        "//fizz/server:replay_cache",
+        "//fizz/server:server_extensions",
+        "//fizz/server:token_cipher",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "multi_server_extensions_test",
+    srcs = ["MultiServerExtensionsTest.cpp"],
+    deps = [
+        "//fizz/server:multi_server_extensions",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "negotiator_test",
+    srcs = ["NegotiatorTest.cpp"],
+    deps = [
+        "//fizz/server:negotiator",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "server_protocol_test",
+    srcs = ["ServerProtocolTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/crypto/exchange/test:mocks",
+        "//fizz/crypto/hpke/test:mocks",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol/clock/test:mock_clock",
+        "//fizz/protocol/ech/test:test_util",
+        "//fizz/protocol/test:mocks",
+        "//fizz/protocol/test:protocol_test",
+        "//fizz/protocol/test:test_util",
+        "//fizz/record",
+        "//fizz/record/test:mocks",
+        "//fizz/server:protocol",
+        "//fizz/util:workarounds",
+        "@folly//folly/executors:manual_executor",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "sliding_bloom_replay_cache_test",
+    srcs = ["SlidingBloomReplayCacheTest.cpp"],
+    deps = [
+        "//fizz/server:sliding_bloom_replay_cache",
+        "@folly//folly:random",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:scoped_event_base_thread",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:baton",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ticket_codec_test",
+    srcs = ["TicketCodecTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol/test:mocks",
+        "//fizz/server:cert_manager",
+        "//fizz/server:ticket_codec",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ticket_policy_test",
+    srcs = ["TicketPolicyTest.cpp"],
+    deps = [
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol/clock/test:mock_clock",
+        "//fizz/server:ticket_policy",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "utils",
+    hdrs = ["Utils.h"],
+    include_prefix = "fizz/server/test",
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:random",
+        "//fizz/protocol:default_certificate_verifier",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol/test:cert_util",
+        "//fizz/server:async_fizz_server",
+        "//fizz/server:cert_manager",
+        "//fizz/server:ticket_types",
+        "@folly//folly/io/async:server_socket",
+    ],
+)
