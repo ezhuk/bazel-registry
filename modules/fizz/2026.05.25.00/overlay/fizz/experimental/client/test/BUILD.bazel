@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "batch_signature_peer_cert_test",
+    srcs = ["BatchSignaturePeerCertTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/experimental/batcher",
+        "//fizz/experimental/client:batch_signature_peer_cert",
+        "//fizz/experimental/server:batch_signature_async_self_cert",
+        "//fizz/protocol/test:mocks",
+        "@folly//folly/executors:manual_executor",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
