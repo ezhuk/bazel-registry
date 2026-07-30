@@ -13,6 +13,20 @@ cc_binary(
 test_suite(
     name = "tests",
     tests = [
-        "@wangle//wangle/util/test:FilePollerTest",
+        "@wangle//wangle:AsyncSocketHandlerTest",
+        "@wangle//wangle:BootstrapTest",
+        "@wangle//wangle:BroadcastHandlerTest",
+        "@wangle//wangle:BroadcastPoolTest",
+        "@wangle//wangle:CodecTest",
+        "@wangle//wangle:ConnectionManagerTest",
+        "@wangle//wangle:FilePollerTest",
+        "@wangle//wangle:LoadShedConfigurationTest",
+        "@wangle//wangle:ObservingHandlerTest",
+        "@wangle//wangle:OutputBufferingHandlerTest",
+        "@wangle//wangle:PeekingAcceptorHandshakeHelperTest",
+        "@wangle//wangle:PipelineTest",
+        "@wangle//wangle:SSLContextManagerTest",
+        "@wangle//wangle:TLSCredProcessorTest",
+        "@wangle//wangle:TLSInMemoryTicketProcessorTest",
     ],
 )
