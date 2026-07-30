@@ -1,5 +1,5 @@
 load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -16,4 +16,178 @@ cc_library(
     name = "config",
     hdrs = [":wangle_config_h"],
     include_prefix = "wangle",
+)
+
+cc_library(
+    name = "test_main",
+    srcs = ["test/TestMain.cpp"],
+    deps = [
+        "@folly//folly/init",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "AsyncSocketHandlerTest",
+    srcs = ["channel/test/AsyncSocketHandlerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "BootstrapTest",
+    srcs = ["bootstrap/test/BootstrapTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "BroadcastHandlerTest",
+    srcs = ["channel/broadcast/test/BroadcastHandlerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "BroadcastPoolTest",
+    srcs = ["channel/broadcast/test/BroadcastPoolTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "CodecTest",
+    srcs = ["codec/test/CodecTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "ConnectionManagerTest",
+    srcs = ["acceptor/test/ConnectionManagerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "FilePollerTest",
+    srcs = ["util/test/FilePollerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "LoadShedConfigurationTest",
+    srcs = ["acceptor/test/LoadShedConfigurationTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "ObservingHandlerTest",
+    srcs = ["channel/broadcast/test/ObservingHandlerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "OutputBufferingHandlerTest",
+    srcs = ["channel/test/OutputBufferingHandlerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "PeekingAcceptorHandshakeHelperTest",
+    srcs = ["acceptor/test/PeekingAcceptorHandshakeHelperTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "PipelineTest",
+    srcs = ["channel/test/PipelineTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "SSLContextManagerTest",
+    srcs = ["ssl/test/SSLContextManagerTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "TLSCredProcessorTest",
+    srcs = ["ssl/test/TLSCredProcessorTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "TLSInMemoryTicketProcessorTest",
+    srcs = ["ssl/test/TLSInMemoryTicketProcessorTest.cpp"],
+    deps = [
+        ":test_main",
+        "//:wangle",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
 )
