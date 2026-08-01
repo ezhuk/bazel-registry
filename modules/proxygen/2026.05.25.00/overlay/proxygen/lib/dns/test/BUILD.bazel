@@ -1,0 +1,57 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "dnstestutils",
+    srcs = ["MockDNSModule.cpp"],
+    hdrs = [
+        "Dummies.h",
+        "MockDNSModule.h",
+        "MockDNSResolver.h",
+        "Mocks.h",
+        "SyncDNSResolverTest.h",
+    ],
+    include_prefix = "proxygen/lib/dns/test",
+    deps = [
+        "//proxygen/lib/dns",
+        "//proxygen/lib/dns:dns_base",
+        "//proxygen/lib/dns:dns_module",
+        "//proxygen/lib/dns:sync_resolver",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "DNSTests",
+    srcs = [
+        "CAresResolverTest.cpp",
+        "CachingDNSResolverTest.cpp",
+        "DNSResolverTest.cpp",
+        "FutureDNSResolverTest.cpp",
+        "Rfc6724Test.cpp",
+        "SyncDNSResolverTest.cpp",
+    ],
+    deps = [
+        ":dnstestutils",
+        "//proxygen/lib/dns",
+        "//proxygen/lib/dns:cares_dns",
+        "//proxygen/lib/dns:dns_base",
+        "//proxygen/lib/dns:future_dns",
+        "//proxygen/lib/dns:rfc6724",
+        "//proxygen/lib/dns:sync_resolver",
+        "//proxygen/lib/utils/test:mock_time",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:sockets",
+        "@folly//folly/portability:unistd",
+        "@googletest//:gtest_main",
+    ],
+)

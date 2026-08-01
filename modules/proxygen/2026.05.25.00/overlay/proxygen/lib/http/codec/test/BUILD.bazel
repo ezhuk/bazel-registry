@@ -1,0 +1,101 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "codectestutils",
+    srcs = ["TestUtils.cpp"],
+    hdrs = [
+        "HQFramerTest.h",
+        "HTTP2FramerTest.h",
+        "HTTPParallelCodecTest.h",
+        "MockHTTPCodec.h",
+        "TestUtils.h",
+    ],
+    include_prefix = "proxygen/lib/http/codec/test",
+    deps = [
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/http/codec/webtransport:webtransport_capsule_codec",
+        "//proxygen/lib/utils:test_utils",
+        "@folly//folly:random",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "BinaryCodecTests",
+    srcs = ["HTTPBinaryCodecTest.cpp"],
+    deps = [
+        ":codectestutils",
+        "//proxygen/lib/http/codec:http_binary_codec",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+    ],
+)
+
+cc_test(
+    name = "CodecTests",
+    srcs = [
+        "CodecUtilTests.cpp",
+        "CrossCodecTest.cpp",
+        "DefaultHTTPCodecFactoryTest.cpp",
+        "FilterTests.cpp",
+        "HTTP1xCodecTest.cpp",
+        "HTTP2CodecTest.cpp",
+        "HTTP2FramerTest.cpp",
+    ],
+    deps = [
+        ":codectestutils",
+        "//proxygen/lib/http:http_header_size",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:codec_factory",
+        "//proxygen/lib/http/codec:debug_filter",
+        "//proxygen/lib/http/codec:http1x_codec",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/http/codec:util",
+        "@folly//folly:base64",
+        "@folly//folly:random",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "HQCodecTests",
+    srcs = [
+        "HQCodecTest.cpp",
+        "HQMultiCodecTest.cpp",
+    ],
+    deps = [
+        ":codectestutils",
+        "//proxygen/lib/http/codec:direction",
+        "//proxygen/lib/http/codec/compress/test:hpacktestutils",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/state:quic_state_machine",
+    ],
+)
+
+cc_test(
+    name = "HQFramerTests",
+    srcs = ["HQFramerTest.cpp"],
+    deps = [
+        ":codectestutils",
+        "//proxygen/lib/http:h3_errors",
+        "//proxygen/lib/http/codec:hq_codec",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+    ],
+)

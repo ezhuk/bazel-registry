@@ -1,0 +1,14 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "EchoHandlerTests",
+    srcs = ["EchoHandlerTest.cpp"],
+    deps = [
+        "//proxygen/httpclient/samples/curl:proxygencurl",
+        "//proxygen/httpserver/samples/echo",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)

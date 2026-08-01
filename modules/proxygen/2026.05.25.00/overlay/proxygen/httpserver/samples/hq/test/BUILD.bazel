@@ -1,0 +1,13 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "HQFizzContextTests",
+    srcs = ["FizzContextTest.cpp"],
+    deps = [
+        "//proxygen/httpserver/samples/hq:proxygen_hq_server",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)

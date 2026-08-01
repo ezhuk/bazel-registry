@@ -1,0 +1,19 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "HTTPServerFilterTests",
+    srcs = ["CompressionFilterTest.cpp"],
+    deps = [
+        "//proxygen/httpserver",
+        "//proxygen/httpserver:mocks",
+        "//proxygen/httpserver/filters:compression_filter",
+        "//proxygen/lib/utils:zlib_stream_compressor",
+        "//proxygen/lib/utils:zstd_stream_decompressor",
+        "@folly//folly:conv",
+        "@folly//folly:scope_guard",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

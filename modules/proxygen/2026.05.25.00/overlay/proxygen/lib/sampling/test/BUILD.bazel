@@ -1,0 +1,11 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "SamplingTest",
+    srcs = ["SamplingTest.cpp"],
+    deps = [
+        "//proxygen/lib/sampling",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
