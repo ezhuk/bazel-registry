@@ -96,3 +96,4 @@ test_suite(
         "@fizz//fizz/util/test:key_log_writer_test",
         "@fizz//fizz/util/test:variant_test",
     ],
+)
