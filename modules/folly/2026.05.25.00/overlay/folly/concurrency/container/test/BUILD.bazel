@@ -7,7 +7,7 @@ cc_test(
         "//folly/concurrency/container:atomic_grow_array",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -18,8 +18,8 @@ cc_test(
         "//folly:benchmark",
         "//folly/concurrency/container:flat_combining_priority_queue",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -30,7 +30,7 @@ cc_test(
         "//folly/concurrency/container:lock_free_ring_buffer",
         "//folly/portability:gtest",
         "//folly/test:deterministic_schedule",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -45,9 +45,9 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/test:deterministic_schedule",
+        "//folly/test/common:test_main",
         "@boost.thread",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -61,7 +61,7 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
+        "//folly/test/common:test_main",
         "@boost.thread",
-        "@googletest//:gtest_main",
     ],
 )

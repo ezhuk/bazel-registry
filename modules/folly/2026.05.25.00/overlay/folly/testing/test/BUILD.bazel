@@ -9,9 +9,9 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:stdlib",
         "//folly/portability:unistd",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@boost.algorithm",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

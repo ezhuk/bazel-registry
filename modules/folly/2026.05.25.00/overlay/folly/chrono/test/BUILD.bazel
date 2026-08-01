@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/chrono:clock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -16,7 +16,7 @@ cc_test(
     deps = [
         "//folly/chrono:conv",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

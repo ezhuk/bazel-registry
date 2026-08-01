@@ -12,7 +12,7 @@ cc_test(
         "//folly/coro:task",
         "//folly/coro:with_cancellation",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -27,7 +27,7 @@ cc_test(
         "//folly/coro:sleep",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -52,7 +52,7 @@ cc_test(
         "//folly/futures:core",
         "//folly/portability:gtest",
         "//folly/portability:pthread",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -67,8 +67,8 @@ cc_test(
         "//folly/coro:collect",
         "//folly/coro:task",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/tracing:async_stack",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -154,7 +154,7 @@ cc_test(
         "//folly/lang:assume",
         "//folly/portability:gtest",
         "//folly/result:coro",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -165,7 +165,7 @@ cc_test(
         "//folly/coro:coroutine",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -180,7 +180,7 @@ cc_test(
         "//folly/coro:value_or_error",
         "//folly/coro/safe:now_task",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -192,7 +192,7 @@ cc_test(
         "//folly:scope_guard",
         "//folly/coro:generator",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -207,8 +207,8 @@ cc_test(
         "//folly/coro:task",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@googletest//:gtest",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -218,7 +218,7 @@ cc_test(
     deps = [
         "//folly/coro:gtest_helpers",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -235,7 +235,7 @@ cc_test(
         "//folly/coro:unbounded_queue",
         "//folly/executors:manual_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -249,7 +249,7 @@ cc_test(
         "//folly/coro:sleep",
         "//folly/coro:task",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -261,7 +261,7 @@ cc_test(
         "//folly/coro:gtest_helpers",
         "//folly/coro:serial_queue_runner",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -275,7 +275,7 @@ cc_test(
         "//folly/coro:shared_promise",
         "//folly/executors:cpu_thread_pool_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -290,7 +290,7 @@ cc_test(
         "//folly/coro:task",
         "//folly/futures:manual_timekeeper",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -306,7 +306,7 @@ cc_test(
         "//folly/debugging/symbolizer",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -322,7 +322,7 @@ cc_test(
         "//folly/executors:cpu_thread_pool_executor",
         "//folly/executors:manual_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -334,7 +334,7 @@ cc_test(
         "//folly/coro:task_wrapper",
         "//folly/coro:timeout",
         "//folly/fibers:semaphore",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -349,7 +349,7 @@ cc_test(
         "//folly/coro:value_or_fatal",
         "//folly/coro:via_if_async",
         "//folly/coro/safe:now_task",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -363,7 +363,7 @@ cc_test(
         "//folly/coro:value_or_fatal",
         "//folly/coro/safe:now_task",
         "//folly/coro/safe:safe_task",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -376,6 +376,6 @@ cc_test(
         "//folly/coro:with_async_stack",
         "//folly/coro/detail:current_async_frame",
         "//folly/coro/safe:now_task",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

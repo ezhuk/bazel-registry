@@ -7,7 +7,7 @@ cc_test(
         "//folly/channels/detail:atomic_queue",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -17,6 +17,6 @@ cc_test(
     deps = [
         "//folly/channels/detail:pointer_variant",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

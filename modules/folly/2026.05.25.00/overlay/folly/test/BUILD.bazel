@@ -141,7 +141,7 @@ cc_test(
         "//folly:memory",
         "//folly:scope_guard",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -152,7 +152,7 @@ cc_test(
         "//folly:memory",
         "//folly/memory:arena",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -163,7 +163,7 @@ cc_test(
         "//folly:range",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -178,7 +178,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:string",
         "//folly/portability:sys_mman",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -193,8 +193,8 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:sys_time",
         "//folly/system:hardware_concurrency",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -206,7 +206,7 @@ cc_test(
         "//folly:utility",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -219,7 +219,7 @@ cc_test(
         "//folly:benchmark",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -229,7 +229,7 @@ cc_test(
     deps = [
         "//folly:base64",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -243,7 +243,7 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -253,7 +253,7 @@ cc_test(
     deps = [
         "//folly:benchmark_util",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -265,7 +265,7 @@ cc_test(
         "//folly:singleton_thread_local",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -278,7 +278,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
         "//folly/synchronization:relaxed_atomic",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -288,7 +288,7 @@ cc_test(
     deps = [
         "//folly:chrono",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -299,7 +299,7 @@ cc_test(
         ":test_utils",
         "//folly:clock_gettime_wrappers",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -310,8 +310,8 @@ cc_test(
         "//folly:concurrent_bit_set",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -321,7 +321,7 @@ cc_test(
     deps = [
         "//folly:concurrent_lazy",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -337,8 +337,8 @@ cc_test(
         "//folly/memory:arena",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -350,7 +350,7 @@ cc_test(
         "//folly/lang:bits",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -360,7 +360,7 @@ cc_test(
     deps = [
         "//folly:constructor_callback_list",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -372,9 +372,9 @@ cc_test(
         "//folly:random",
         "//folly/container:foreach",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -384,7 +384,7 @@ cc_test(
     deps = [
         "//folly:cpu_id",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -395,7 +395,7 @@ cc_test(
         "//folly:demangle",
         "//folly/lang:pretty",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -407,7 +407,7 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/synchronization:atomic_util",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -417,7 +417,7 @@ cc_test(
     deps = [
         "//folly:discriminated_ptr",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -427,7 +427,7 @@ cc_test(
     deps = [
         "//folly/lang:bits",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -438,7 +438,7 @@ cc_test(
         "//folly:exception_string",
         "//folly:portability",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -449,8 +449,8 @@ cc_test(
         "//folly:exception",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -462,7 +462,7 @@ cc_test(
         "//folly:exception_wrapper",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -473,7 +473,7 @@ cc_test(
         "//folly:executor",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -485,7 +485,7 @@ cc_test(
         "//folly:portability",
         "//folly:scope_guard",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -496,8 +496,8 @@ cc_test(
         "//folly:expected",
         "//folly/lang:keep",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -513,9 +513,9 @@ cc_test(
         "//folly:utility",
         "//folly/container:foreach",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.algorithm",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -528,9 +528,9 @@ cc_test(
         "//folly/portability:fcntl",
         "//folly/portability:filesystem",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -546,9 +546,9 @@ cc_test(
         "//folly/detail:file_util_detail",
         "//folly/detail:file_util_vector_detail",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -560,8 +560,8 @@ cc_test(
         "//folly:fingerprint",
         "//folly/detail:slow_fingerprint",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -572,7 +572,7 @@ cc_test(
         "//folly:fixed_string",
         "//folly:range",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -581,8 +581,8 @@ cc_test(
     srcs = ["FmtUtilityTest.cpp"],
     deps = [
         "//folly:fmt_utility",
+        "//folly/test/common:test_main",
         "@googletest//:gtest",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -598,8 +598,8 @@ cc_test(
         "//folly/json:dynamic",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -610,7 +610,7 @@ cc_test(
         "//folly:format",
         "//folly:utility",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -620,7 +620,7 @@ cc_test(
     deps = [
         "//folly:function",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -632,7 +632,7 @@ cc_test(
         "//folly:memory",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -645,8 +645,8 @@ cc_test(
         "//folly/detail:futex",
         "//folly/portability:gtest",
         "//folly/portability:time",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -656,7 +656,7 @@ cc_test(
     deps = [
         "//folly:get_ref_util",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -666,7 +666,7 @@ cc_test(
     deps = [
         "//folly:glog",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -676,7 +676,7 @@ cc_test(
     deps = [
         "//folly:group_varint",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -687,7 +687,7 @@ cc_test(
     deps = [
         "//folly:group_varint",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -698,7 +698,7 @@ cc_test(
         "//folly:indestructible",
         "//folly:memory",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -711,7 +711,7 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/portability:unistd",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -726,8 +726,8 @@ cc_test(
         "//folly/lang:bits",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -739,7 +739,7 @@ cc_test(
         "//folly/detail:iterators",
         "//folly/portability:gtest",
         "//folly/portability:sys_types",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -749,7 +749,7 @@ cc_test(
     deps = [
         "//folly:lazy",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -759,8 +759,8 @@ cc_test(
     deps = [
         "//folly:network_address",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -772,8 +772,8 @@ cc_test(
         "//folly:portability",
         "//folly/functional:invoke",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -784,7 +784,7 @@ cc_test(
         "//folly:maybe_managed_ptr",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -795,7 +795,7 @@ cc_test(
         "//folly:maybe_managed_ptr",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -807,7 +807,7 @@ cc_test(
         "//folly:portability",
         "//folly/portability:gtest",
         "//folly/portability:sys_types",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -818,7 +818,7 @@ cc_test(
         "//folly:memcpy-use",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -830,7 +830,7 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -846,8 +846,8 @@ cc_test(
         "//folly/portability:asm",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -857,7 +857,7 @@ cc_test(
     deps = [
         "//folly:memset",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -867,7 +867,7 @@ cc_test(
     deps = [
         "//folly:move_wrapper",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -879,8 +879,8 @@ cc_test(
         "//folly:mpmc_pipeline",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -898,9 +898,9 @@ cc_test(
         "//folly/portability:sys_time",
         "//folly/portability:unistd",
         "//folly/synchronization/test:barrier",
+        "//folly/test/common:test_main",
         "@boost.intrusive",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -912,7 +912,7 @@ cc_test(
         "//folly:observer_container",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -924,7 +924,7 @@ cc_test(
         "//folly:portability",
         "//folly:scope_guard",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -936,7 +936,7 @@ cc_test(
         "//folly:portability",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -947,8 +947,8 @@ cc_test(
         "//folly:discriminated_ptr",
         "//folly:overload",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.variant",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -958,7 +958,7 @@ cc_test(
     deps = [
         "//folly:packed_sync_ptr",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -968,9 +968,9 @@ cc_test(
     deps = [
         "//folly:padded",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.iterator",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -982,7 +982,7 @@ cc_test(
         "//folly:poly",
         "//folly/poly:basic_interfaces",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -992,7 +992,7 @@ cc_test(
     deps = [
         "//folly:portability",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1002,8 +1002,8 @@ cc_test(
     deps = [
         "//folly:producer_consumer_queue",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1013,8 +1013,8 @@ cc_test(
     deps = [
         "//folly:random",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1030,9 +1030,9 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:sys_mman",
         "//folly/portability:unistd",
+        "//folly/test/common:test_main",
         "@boost.algorithm",
         "@boost.range",
-        "@googletest//:gtest_main",
         "@range-v3",
     ],
 )
@@ -1043,7 +1043,7 @@ cc_test(
     deps = [
         "//folly:replaceable",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1054,8 +1054,8 @@ cc_test(
         "//folly:scope_guard",
         "//folly/lang:keep",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1073,8 +1073,8 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/synchronization:rw_spin_lock",
+        "//folly/test/common:test_main",
         "@boost.thread",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1089,8 +1089,8 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1102,7 +1102,7 @@ cc_test(
         "//folly:benchmark",
         "//folly:singleton",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1116,8 +1116,8 @@ cc_test(
         "//folly/container:array",
         "//folly/portability:gtest",
         "//folly/portability:sockets",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1133,7 +1133,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:unistd",
         "//folly/system:hardware_concurrency",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1147,9 +1147,9 @@ cc_test(
         "//folly/container:array",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.regex",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1162,7 +1162,7 @@ cc_test(
         "//folly:synchronized_ptr",
         "//folly/portability:gtest",
         "//folly/synchronization:rw_spin_lock",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1180,7 +1180,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:distributed_mutex",
         "//folly/synchronization:rw_spin_lock",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1191,7 +1191,7 @@ cc_test(
         ":test_utils",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1206,8 +1206,8 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/system:thread_id",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1217,7 +1217,7 @@ cc_test(
     deps = [
         "//folly:timeout_queue",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1228,7 +1228,7 @@ cc_test(
         "//folly:scope_guard",
         "//folly:traits",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1240,8 +1240,8 @@ cc_test(
         "//folly:try",
         "//folly/lang:exception",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1255,7 +1255,7 @@ cc_test(
         "//folly/lang:keep",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1265,7 +1265,7 @@ cc_test(
     deps = [
         "//folly:unit",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1275,9 +1275,9 @@ cc_test(
     deps = [
         "//folly:uri",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.algorithm",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1289,8 +1289,8 @@ cc_test(
         "//folly:range",
         "//folly:utf8_string",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.algorithm",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -1301,7 +1301,7 @@ cc_test(
         "//folly:utility",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -1313,7 +1313,7 @@ cc_test(
         "//folly:random",
         "//folly:varint",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

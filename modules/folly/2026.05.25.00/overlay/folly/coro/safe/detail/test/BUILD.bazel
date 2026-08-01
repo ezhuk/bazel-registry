@@ -8,7 +8,7 @@ cc_test(
         "//folly/coro:value_or_fatal",
         "//folly/coro/safe/detail:bind_async_closure",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -18,6 +18,6 @@ cc_test(
     deps = [
         "//folly/coro/safe/detail:define_movable_deep_const_lref_copyable",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

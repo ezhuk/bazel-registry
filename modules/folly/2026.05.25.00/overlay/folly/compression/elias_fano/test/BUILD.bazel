@@ -10,7 +10,7 @@ cc_test(
         "//folly/compression/elias_fano:bit_vector_coding",
         "//folly/compression/test:coding_test_utils",
         "//folly/init",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -24,6 +24,6 @@ cc_test(
         "//folly/compression/elias_fano:elias_fano_coding",
         "//folly/compression/test:coding_test_utils",
         "//folly/init",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

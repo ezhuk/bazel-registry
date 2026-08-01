@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/detail:async_trace",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -16,7 +16,7 @@ cc_test(
     deps = [
         "//folly:benchmark",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -26,7 +26,7 @@ cc_test(
     deps = [
         "//folly/detail:typelist",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -36,7 +36,7 @@ cc_test(
     deps = [
         "//folly/detail:file_util_detail",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -49,7 +49,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:unistd",
         "//folly/test:test_utils",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -60,7 +60,7 @@ cc_test(
         "//folly/algorithm/simd/detail:simd_platform",
         "//folly/detail:simple_simd_string_utils",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -74,7 +74,7 @@ cc_test(
         "//folly:small_vector",
         "//folly/detail:split_string_simd",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -85,7 +85,7 @@ cc_test(
         "//folly/detail:static_singleton_manager",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -97,7 +97,7 @@ cc_test(
         "//folly:thread_local",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -107,7 +107,7 @@ cc_test(
     deps = [
         "//folly/detail:traponavx512",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -119,7 +119,7 @@ cc_test(
         "//folly/detail:tuple",
         "//folly/functional:invoke",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -131,6 +131,6 @@ cc_test(
         "//folly:traits",
         "//folly/detail:unique_instance",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

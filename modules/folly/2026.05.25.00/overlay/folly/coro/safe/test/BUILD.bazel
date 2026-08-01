@@ -10,7 +10,7 @@ cc_test(
         "//folly/coro/safe:async_closure",
         "//folly/fibers:semaphore",
         "//folly/init",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -21,7 +21,7 @@ cc_test(
         "//folly/coro/safe:captures",
         "//folly/lang/bind",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -33,7 +33,7 @@ cc_test(
         "//folly/coro:blocking_wait",
         "//folly/coro:gtest_helpers",
         "//folly/coro/safe:now_task",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -47,6 +47,6 @@ cc_test(
         "//folly/fibers:semaphore",
         "//folly/init",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

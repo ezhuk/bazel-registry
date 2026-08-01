@@ -18,8 +18,8 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/test:deterministic_schedule",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -32,10 +32,10 @@ cc_test(
         "//folly/portability:sys_resource",
         "//folly/portability:unistd",
         "//folly/test:test_utils",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@fmt",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -48,7 +48,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:sys_mman",
         "//folly/synchronization:latch",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -61,7 +61,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:sys_mman",
         "//folly/synchronization:latch",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -77,7 +77,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:latch",
         "//folly/test:deterministic_schedule",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -93,7 +93,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:latch",
         "//folly/test:deterministic_schedule",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -110,7 +110,7 @@ cc_test(
         "//folly/portability:config",
         "//folly/portability:gtest",
         "//folly/system:hardware_concurrency",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -123,8 +123,8 @@ cc_test(
         "//folly/concurrency:dynamic_bounded_queue",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -136,7 +136,7 @@ cc_test(
         "//folly/container:enumerate",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -147,7 +147,7 @@ cc_test(
         "//folly:synchronized",
         "//folly/concurrency:process_local_unique_id",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -159,7 +159,7 @@ cc_test(
         "//folly/concurrency:singleton_relaxed_counter",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -169,7 +169,7 @@ cc_test(
     deps = [
         "//folly/concurrency:thread_cached_synchronized",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -184,7 +184,7 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/synchronization/test:barrier",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

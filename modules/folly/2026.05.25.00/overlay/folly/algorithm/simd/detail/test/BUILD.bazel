@@ -9,7 +9,7 @@ cc_test(
         "//folly/algorithm/simd/detail:simd_platform",
         "//folly/container:span",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -19,7 +19,7 @@ cc_test(
     deps = [
         "//folly/algorithm/simd/detail:simd_for_each",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -31,7 +31,7 @@ cc_test(
         "//folly/lang:bits",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -41,6 +41,6 @@ cc_test(
     deps = [
         "//folly/algorithm/simd/detail:unroll_utils",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

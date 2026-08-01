@@ -9,7 +9,7 @@ cc_test(
         "//folly/lang:keep",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -20,7 +20,7 @@ cc_test(
         "//folly:random",
         "//folly/codec:uuid",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )

@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/container/detail:bool_wrapper",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -17,6 +17,6 @@ cc_test(
         "//folly:traits",
         "//folly/container/detail:f14_hash_detail",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

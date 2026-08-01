@@ -8,7 +8,7 @@ cc_test(
         "//folly/crypto:blake2xb",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -21,7 +21,7 @@ cc_test(
         "//folly/crypto:lt_hash",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -35,7 +35,7 @@ cc_test(
         "//folly/crypto:lt_hash_avx2",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -49,6 +49,6 @@ cc_test(
         "//folly/crypto:lt_hash_sse2",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

@@ -29,6 +29,6 @@ cc_test(
         "//folly/debugging/exception_tracer:exception_counter",
         "//folly/debugging/exception_tracer:exception_counter_static_registration",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

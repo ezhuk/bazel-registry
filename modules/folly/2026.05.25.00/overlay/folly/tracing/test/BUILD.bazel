@@ -15,9 +15,9 @@ cc_test(
     deps = [
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/tracing:async_stack",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -36,8 +36,8 @@ cc_test(
         "//folly/portability:filesystem",
         "//folly/portability:gtest",
         "//folly/portability:unistd",
+        "//folly/test/common:test_main",
         "//folly/tracing:static_tracepoint",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )

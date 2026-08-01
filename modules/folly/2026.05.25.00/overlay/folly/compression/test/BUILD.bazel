@@ -27,8 +27,8 @@ cc_test(
         "//folly/compression",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
         "@zstd",
     ],
 )
@@ -40,7 +40,7 @@ cc_test(
         "//folly/compression:compression_context_pool",
         "//folly/compression:compression_context_pool_singletons",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -50,8 +50,8 @@ cc_test(
     deps = [
         "//folly/compression:instructions",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -60,7 +60,7 @@ cc_test(
     srcs = ["LargeTest.cpp"],
     deps = [
         "//folly/compression",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -73,8 +73,8 @@ cc_test(
         "//folly/container:enumerate",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -85,6 +85,6 @@ cc_test(
         "//folly/compression:instructions",
         "//folly/compression:select64",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

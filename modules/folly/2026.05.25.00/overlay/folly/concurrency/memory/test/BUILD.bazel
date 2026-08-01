@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/concurrency/memory:atomic_read_mostly_main_ptr",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -19,7 +19,7 @@ cc_test(
         "//folly/executors:manual_executor",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -29,7 +29,7 @@ cc_test(
     deps = [
         "//folly/concurrency/memory:read_mostly_shared_ptr",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -41,7 +41,7 @@ cc_test(
         "//folly/concurrency/memory:read_mostly_shared_ptr",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -53,6 +53,6 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
         "//folly/synchronization/test:barrier",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
