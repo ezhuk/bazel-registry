@@ -9,6 +9,7 @@ cc_binary(
 test_suite(
     name = "tests",
     tests = [
+        "@proxygen//proxygen/httpserver/filters/tests:HTTPServerFilterTests",
         "@proxygen//proxygen/httpserver/samples/echo/test:EchoHandlerTests",
         "@proxygen//proxygen/httpserver/samples/hq/devious/test:DeviousBatonTests",
         "@proxygen//proxygen/httpserver/samples/hq/test:HQFizzContextTests",
