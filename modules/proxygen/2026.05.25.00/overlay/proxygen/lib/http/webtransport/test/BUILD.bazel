@@ -1,0 +1,52 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "QuicWebTransportTest",
+    srcs = ["QuicWebTransportTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/session/test:mock_quic_socket_driver",
+        "//proxygen/lib/http/webtransport:quicwebtransport",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "WebTransportAPITest",
+    srcs = ["WebTransportAPITest.cpp"],
+    deps = [
+        "//proxygen/lib/http/webtransport",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "WtStreamManagerTest",
+    srcs = ["WtStreamManagerTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "WtUtilsTest",
+    srcs = ["WtUtilsTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
