@@ -1,0 +1,49 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "BaseStatsTest",
+    srcs = ["BaseStatsTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "PeriodicStatsTest",
+    srcs = ["PeriodicStatsTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ResourceDataTest",
+    srcs = ["ResourceDataTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ResourceStatsTest",
+    srcs = ["ResourceStatsTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
