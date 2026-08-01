@@ -1,0 +1,90 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "coding_test_utils",
+    srcs = ["CodingTestUtils.cpp"],
+    hdrs = ["CodingTestUtils.h"],
+    include_prefix = "folly/compression/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:likely",
+        "//folly:optional",
+        "//folly/compression:instructions",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "compression_test",
+    srcs = ["CompressionTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:varint",
+        "//folly/compression",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+        "@zstd",
+    ],
+)
+
+cc_test(
+    name = "compression_context_pool_test",
+    srcs = ["CompressionContextPoolTest.cpp"],
+    deps = [
+        "//folly/compression:compression_context_pool",
+        "//folly/compression:compression_context_pool_singletons",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "instructions_test",
+    srcs = ["InstructionsTest.cpp"],
+    deps = [
+        "//folly/compression:instructions",
+        "//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "large_test",
+    srcs = ["LargeTest.cpp"],
+    deps = [
+        "//folly/compression",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "quotient_multiset_test",
+    srcs = ["QuotientMultiSetTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/compression:quotient_multiset",
+        "//folly/container:enumerate",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "@fmt",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "select64_test",
+    srcs = ["Select64Test.cpp"],
+    deps = [
+        "//folly/compression:instructions",
+        "//folly/compression:select64",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

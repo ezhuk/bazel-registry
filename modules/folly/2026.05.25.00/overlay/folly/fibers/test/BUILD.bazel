@@ -1,0 +1,57 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "batch_semaphore_test",
+    srcs = ["BatchSemaphoreTest.cpp"],
+    deps = [
+        "//folly/fibers:batch_semaphore",
+        "//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "fibers_test",
+    srcs = ["FibersTest.cpp"],
+    deps = [
+        "//folly:conv",
+        "//folly:memory",
+        "//folly:random",
+        "//folly/coro:blocking_wait",
+        "//folly/coro:gtest_helpers",
+        "//folly/coro:timeout",
+        "//folly/coro:with_cancellation",
+        "//folly/executors:cpu_thread_pool_executor",
+        "//folly/fibers:add_tasks",
+        "//folly/fibers:atomic_batch_dispatcher",
+        "//folly/fibers:batch_dispatcher",
+        "//folly/fibers:batch_semaphore",
+        "//folly/fibers:core_manager",
+        "//folly/fibers:event_base_loop_controller",
+        "//folly/fibers:executor_loop_controller",
+        "//folly/fibers:fiber_manager_map",
+        "//folly/fibers:generic_baton",
+        "//folly/fibers:semaphore",
+        "//folly/fibers:simple_loop_controller",
+        "//folly/fibers:timed_mutex",
+        "//folly/fibers:when_n",
+        "//folly/futures:core",
+        "//folly/io/async:scoped_event_base_thread",
+        "//folly/portability:gtest",
+        "//folly/synchronization:lock",
+        "//folly/tracing:async_stack",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "semaphore_test",
+    srcs = ["SemaphoreTest.cpp"],
+    deps = [
+        "//folly/fibers:semaphore",
+        "//folly/portability:gtest",
+        "//folly/synchronization:relaxed_atomic",
+        "//folly/synchronization/detail:sleeper",
+        "@googletest//:gtest_main",
+    ],
+)

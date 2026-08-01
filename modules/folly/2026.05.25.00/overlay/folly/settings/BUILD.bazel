@@ -77,7 +77,7 @@ cc_library(
 cc_library(
     name = "settings_accessor_proxy",
     srcs = ["SettingsAccessorProxy.cpp"],
-    headers = ["SettingsAccessorProxy.h"],
+    hdrs = ["SettingsAccessorProxy.h"],
     include_prefix = "folly/settings",
     deps = [
         ":settings",

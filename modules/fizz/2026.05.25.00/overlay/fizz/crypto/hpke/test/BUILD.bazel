@@ -1,0 +1,58 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "context_test",
+    srcs = ["ContextTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto/aead/test:test_util",
+        "//fizz/crypto/hpke:context",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/record",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "dhkem_test",
+    srcs = ["DHKEMTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/crypto/hpke:dhkem",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/record",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "hpke_test",
+    srcs = ["HpkeTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/backend:libsodium",
+        "//fizz/backend:openssl",
+        "//fizz/crypto/hpke",
+        "//fizz/crypto/hpke:utils",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol:default_factory",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/crypto/hpke/test",
+    deps = [
+        "//fizz/backend:libsodium",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/hpke:context",
+        "@folly//folly/portability:gmock",
+    ],
+)

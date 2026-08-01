@@ -22,7 +22,7 @@ cc_library(
 
 cc_library(
     name = "reproducible_accumulator",
-    headers = ["ReproducibleAccumulator.h"],
+    hdrs = ["ReproducibleAccumulator.h"],
     include_prefix = "folly/math",
     deps = [
         "//folly:constexpr_math",

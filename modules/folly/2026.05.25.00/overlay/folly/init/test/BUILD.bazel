@@ -1,0 +1,13 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "phase_test",
+    srcs = ["PhaseTest.cpp"],
+    deps = [
+        "//folly:singleton",
+        "//folly/init:phase",
+        "//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+    ],
+)
