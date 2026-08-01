@@ -1,0 +1,86 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "mock_quic_socket_driver",
+    hdrs = ["MockQuicSocketDriver.h"],
+    include_prefix = "proxygen/lib/http/session/test",
+    deps = [
+        "@folly//folly/io/async:async_base",
+        "@mvfst//quic/api/test:mocks",
+        "@mvfst//quic/common/events:folly_eventbase",
+    ],
+)
+
+cc_library(
+    name = "sessiontestutils",
+    srcs = ["TestUtils.cpp"],
+    hdrs = glob(["*.h"]),
+    include_prefix = "proxygen/lib/http/session/test",
+    deps = [
+        ":mock_quic_socket_driver",
+        "//proxygen/lib/http",
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/session",
+        "//proxygen/lib/test:testtransport",
+        "@folly//folly:random",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/api/test:mocks",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/folly_utils",
+        "@mvfst//quic/state:quic_state_machine",
+        "@wangle//wangle/acceptor",
+    ],
+)
+
+cc_test(
+    name = "HQSessionTests",
+    srcs = [
+        "HQByteEventTrackerTest.cpp",
+        "HQDownstreamSessionTest.cpp",
+        "HQSessionMocksTest.cpp",
+        "HQSessionTestCommon.cpp",
+        "HQStreamBaseTest.cpp",
+        "HQStreamDispatcherTest.cpp",
+        "HQUpstreamSessionTest.cpp",
+    ],
+    deps = [
+        ":sessiontestutils",
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/test:testtransport",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/state:quic_state_machine",
+    ],
+)
+
+cc_test(
+    name = "SessionTests",
+    srcs = [
+        "ByteEventTrackerTest.cpp",
+        "DownstreamTransactionTest.cpp",
+        "HTTP2PriorityQueueTest.cpp",
+        "HTTPDefaultSessionCodecFactoryTest.cpp",
+        "HTTPDownstreamSessionTest.cpp",
+        "HTTPSessionAcceptorTest.cpp",
+        "HTTPTransactionSMTest.cpp",
+        "HTTPTransactionTest.cpp",
+        "HTTPTransactionWebTransportTest.cpp",
+        "HTTPUpstreamSessionTest.cpp",
+        "MockCodecDownstreamTest.cpp",
+    ],
+    deps = [
+        ":sessiontestutils",
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/test:testtransport",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
