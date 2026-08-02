@@ -41,8 +41,8 @@ jobs:
           bazel build //:test \
             --registry=file://${{ github.workspace }} \
             --registry=https://bcr.bazel.build
-          if [[ "${{ matrix.module }}" == "fizz" || "${{ matrix.module }}" == "folly" || "${{ matrix.module }}" == "mvfst" ]]; then
-            bazel test //:tests \
+          if [[ "${{ matrix.module }}" == "fizz" || "${{ matrix.module }}" == "folly" || "${{ matrix.module }}" == "mvfst" || "${{ matrix.module }}" == "proxygen" || "${{ matrix.module }}" == "wangle" ]]; then
+            bazel test -k //:tests \
               --registry=file://${{ github.workspace }} \
               --registry=https://bcr.bazel.build
           fi
