@@ -7,7 +7,7 @@ cc_test(
         "//folly:range",
         "//folly/portability:gtest",
         "//folly/stats/detail:buffered_stat",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -18,7 +18,7 @@ cc_test(
         "//folly:range",
         "//folly/portability:gtest",
         "//folly/stats:digest_builder",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -28,7 +28,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats:histogram",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -38,7 +38,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats:quantile_estimator",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -49,7 +49,7 @@ cc_test(
         "//folly:range",
         "//folly/portability:gtest",
         "//folly/stats:quantile_histogram",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -59,7 +59,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats/detail:sliding_window",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -69,7 +69,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats:streaming_stats",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -79,7 +79,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats:tdigest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -93,8 +93,8 @@ cc_test(
         "//folly/stats:bucketed_time_series",
         "//folly/stats:multi_level_time_series",
         "//folly/stats/detail:bucket",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -104,6 +104,6 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/stats:timeseries_histogram",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

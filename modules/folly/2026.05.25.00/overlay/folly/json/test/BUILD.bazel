@@ -9,8 +9,8 @@ cc_test(
         "//folly:optional",
         "//folly/json:dynamic",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.iterator",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -22,7 +22,7 @@ cc_test(
         "//folly/json:dynamic",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -33,8 +33,8 @@ cc_test(
         "//folly:optional",
         "//folly/json:dynamic_parser",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -48,8 +48,8 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/test:comparison_operator_test_util",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -60,8 +60,8 @@ cc_test(
         "//folly:dynamic",
         "//folly:file_util",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -71,7 +71,7 @@ cc_test(
     deps = [
         "//folly/json:dynamic",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -84,7 +84,7 @@ cc_test(
         "//folly/json:dynamic",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -95,7 +95,7 @@ cc_test(
         "//folly:json_pointer",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -106,7 +106,7 @@ cc_test(
         "//folly/json:dynamic",
         "//folly/json:json_schema",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -117,7 +117,7 @@ cc_test(
         "//folly:c_portability",
         "//folly/json:dynamic",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -129,7 +129,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/test:json_mock_util",
         "//folly/test:json_test_util",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

@@ -16,8 +16,8 @@ cc_test(
         "//folly/hash/detail:checksum_detail",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@boost.crc",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -27,7 +27,7 @@ cc_test(
     deps = [
         "//folly/hash:farm_hash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -37,7 +37,7 @@ cc_test(
     deps = [
         "//folly/hash:fnv_hash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -52,7 +52,7 @@ cc_test(
         "//folly/hash",
         "//folly/lang:cstring_view",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -62,7 +62,7 @@ cc_test(
     deps = [
         "//folly/hash:hsieh_hash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -72,7 +72,7 @@ cc_test(
     deps = [
         "//folly/hash:murmur_hash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -82,7 +82,7 @@ cc_test(
     deps = [
         "//folly/hash:rapidhash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -93,8 +93,8 @@ cc_test(
         "//folly/hash:spooky_hash_v1",
         "//folly/portability:gtest",
         "//folly/portability:time",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -105,8 +105,8 @@ cc_test(
         "//folly/hash:spooky_hash_v2",
         "//folly/portability:gtest",
         "//folly/portability:time",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -116,7 +116,7 @@ cc_test(
     deps = [
         "//folly/hash",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -126,7 +126,7 @@ cc_test(
     deps = [
         "//folly/hash:traits",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -138,6 +138,6 @@ cc_test(
         "//folly/container:map_util",
         "//folly/hash:unique_hash_key",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

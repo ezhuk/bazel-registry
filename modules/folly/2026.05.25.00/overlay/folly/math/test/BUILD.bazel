@@ -7,7 +7,7 @@ cc_test(
         "//folly/math:accurate_summation",
         "//folly/math:kahan_summation",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -17,7 +17,7 @@ cc_test(
     deps = [
         "//folly/math:kahan_summation",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -28,7 +28,7 @@ cc_test(
         "//folly/math:kahan_summation",
         "//folly/math:reproducible_accumulator",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )

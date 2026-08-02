@@ -8,10 +8,10 @@ cc_test(
         "//folly/io:fs_util",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@fmt",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -21,7 +21,7 @@ cc_test(
     deps = [
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -33,7 +33,7 @@ cc_test(
         "//folly:range",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -43,7 +43,7 @@ cc_test(
     deps = [
         "//folly/io:iobuf",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -54,8 +54,8 @@ cc_test(
         "//folly:range",
         "//folly/io:iobuf",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -68,7 +68,7 @@ cc_test(
         "//folly/io:typed_io_buf",
         "//folly/memory:malloc",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -84,9 +84,9 @@ cc_test(
         "//folly/portability:gflags",
         "//folly/portability:gtest",
         "//folly/portability:unistd",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -99,8 +99,8 @@ cc_test(
         "//folly/net:network_socket",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -111,7 +111,7 @@ cc_test(
         "//folly:conv",
         "//folly/io:socket_option_map",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

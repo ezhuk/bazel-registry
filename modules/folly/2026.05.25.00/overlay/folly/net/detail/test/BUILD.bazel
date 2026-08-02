@@ -11,6 +11,6 @@ cc_test(
         "//folly/portability:sockets",
         "//folly/portability:unistd",
         "//folly/portability:windows",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

@@ -7,7 +7,7 @@ cc_test(
         "//folly:overload",
         "//folly/functional:apply_tuple",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -17,7 +17,7 @@ cc_test(
     deps = [
         "//folly/functional:invoke",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -28,7 +28,7 @@ cc_test(
         "//folly:function",
         "//folly/functional:partial",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -38,7 +38,7 @@ cc_test(
     deps = [
         "//folly/functional:protocol",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -48,6 +48,6 @@ cc_test(
     deps = [
         "//folly/functional:traits",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

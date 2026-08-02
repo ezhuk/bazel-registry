@@ -7,6 +7,6 @@ cc_test(
         "//folly:random",
         "//folly/portability:gtest",
         "//folly/stats/detail:double_radix_sort",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

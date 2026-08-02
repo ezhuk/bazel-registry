@@ -21,9 +21,9 @@ cc_test(
         "//folly/json:dynamic",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -36,8 +36,8 @@ cc_test(
         "//folly/gen:combine",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -51,8 +51,8 @@ cc_test(
         "//folly/gen:base",
         "//folly/gen:file",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -64,7 +64,7 @@ cc_test(
         "//folly/gen:istream",
         "//folly/gen:string",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -77,8 +77,8 @@ cc_test(
         "//folly/gen:parallel_map",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -90,8 +90,8 @@ cc_test(
         "//folly/gen:parallel",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -102,6 +102,6 @@ cc_test(
         "//folly/functional:apply_tuple",
         "//folly/gen:string",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

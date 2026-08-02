@@ -7,7 +7,7 @@ cc_test(
         "//folly:singleton",
         "//folly/init:phase",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

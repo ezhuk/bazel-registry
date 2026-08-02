@@ -8,6 +8,6 @@ cc_test(
         "//folly/hash/detail:random_seed",
         "//folly/portability:gtest",
         "//folly/test:test_utils",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

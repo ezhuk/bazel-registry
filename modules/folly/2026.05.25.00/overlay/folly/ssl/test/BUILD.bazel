@@ -14,9 +14,9 @@ cc_test(
         "//folly/portability:time",
         "//folly/ssl:openssl_cert_utils",
         "//folly/ssl:openssl_ptr_types",
+        "//folly/test/common:test_main",
         "//folly/testing:test_util",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -27,7 +27,7 @@ cc_test(
         "//folly/io:iobuf",
         "//folly/portability:gtest",
         "//folly/ssl:openssl_hash",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -38,7 +38,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/ssl:openssl_key_utils",
         "//folly/ssl:password_collector",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -51,6 +51,6 @@ cc_test(
         "//folly/ssl:openssl_ptr_types",
         "//folly/ssl:ssl_session_manager",
         "//folly/ssl/detail:openssl_session",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

@@ -7,6 +7,6 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/system/arch:x86",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

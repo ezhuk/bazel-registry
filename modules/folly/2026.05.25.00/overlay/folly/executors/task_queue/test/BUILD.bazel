@@ -8,7 +8,7 @@ cc_test(
         "//folly/container:enumerate",
         "//folly/executors/task_queue:priority_lifo_sem_mpmc_queue",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -20,7 +20,7 @@ cc_test(
         "//folly/executors/task_queue:priority_unbounded_blocking_queue",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -31,7 +31,7 @@ cc_test(
         "//folly/executors/task_queue:unbounded_blocking_queue",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -44,6 +44,6 @@ cc_test(
         "//folly/executors/task_queue:striped_priority_unbounded_blocking_queue",
         "//folly/portability:gtest",
         "//folly/system:hardware_concurrency",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
