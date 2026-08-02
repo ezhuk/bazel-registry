@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/lang:align",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -17,7 +17,7 @@ cc_test(
         "//folly/lang:align",
         "//folly/lang:aligned",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -27,7 +27,7 @@ cc_test(
     deps = [
         "//folly/lang:badge",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -38,8 +38,8 @@ cc_test(
         "//folly/lang:bits_class",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -51,8 +51,8 @@ cc_test(
         "//folly/container:span",
         "//folly/lang:bits",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -62,7 +62,7 @@ cc_test(
     deps = [
         "//folly/lang:c_string",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -73,7 +73,7 @@ cc_test(
         "//folly:utility",
         "//folly/lang:cast",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -84,7 +84,7 @@ cc_test(
         "//folly/lang:checked_math",
         "//folly/lang:keep",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -96,8 +96,8 @@ cc_test(
         "//folly:range",
         "//folly/lang:cstring_view",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -111,8 +111,8 @@ cc_test(
         "//folly/lang:keep",
         "//folly/lang:pretty",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -122,7 +122,7 @@ cc_test(
     deps = [
         "//folly/lang:extern",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -132,7 +132,7 @@ cc_test(
     deps = [
         "//folly/lang:hint",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -143,7 +143,7 @@ cc_test(
         "//folly:traits",
         "//folly/lang:must_use_immediately",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -154,7 +154,7 @@ cc_test(
         "//folly/lang:align",
         "//folly/lang:new",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -164,7 +164,7 @@ cc_test(
     deps = [
         "//folly/lang:ordering",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -174,7 +174,7 @@ cc_test(
     deps = [
         "//folly/lang:pretty",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -184,7 +184,7 @@ cc_test(
     deps = [
         "//folly/lang:propagate_const",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -194,7 +194,7 @@ cc_test(
     deps = [
         "//folly/lang:rvalue_reference_wrapper",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -205,7 +205,7 @@ cc_test(
         "//folly/detail:tuple",
         "//folly/lang:safe_alias",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -218,8 +218,8 @@ cc_test(
         "//folly/lang:keep",
         "//folly/lang:safe_assert",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -230,7 +230,7 @@ cc_test(
         "//folly/coro/safe:captures",
         "//folly/lang:safe_closure",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -241,7 +241,7 @@ cc_test(
         "//folly/hash:traits",
         "//folly/lang:strong",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -250,7 +250,7 @@ cc_test(
     srcs = ["SwitchTest.cpp"],
     deps = [
         "//folly/lang:switch",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -261,7 +261,7 @@ cc_test(
         "//folly:traits",
         "//folly/lang:thunk",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -271,7 +271,7 @@ cc_test(
     deps = [
         "//folly/lang:to_ascii",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -281,7 +281,7 @@ cc_test(
     deps = [
         "//folly/lang:type_info",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -291,6 +291,6 @@ cc_test(
     deps = [
         "//folly/lang:vector_traits",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

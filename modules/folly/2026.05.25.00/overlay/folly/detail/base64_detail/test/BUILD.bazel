@@ -35,6 +35,6 @@ cc_test(
         "//folly/detail/base64_detail:base64_sse4_2",
         "//folly/detail/base64_detail:base64_swar",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

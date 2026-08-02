@@ -13,7 +13,7 @@
     "fizz/crypto/exchange/BUILD.bazel": "sha256-HnqmtZqO8begNUkcAAZoyfPoyp/HMR8azUlxE02eEbc=",
     "fizz/crypto/hpke/test/BUILD.bazel": "sha256-MAelj9oFcLRLkMJ09vxeAHoWK2A7orKgpYmcnVCGPSk=",
     "fizz/crypto/hpke/BUILD.bazel": "sha256-bQApe/44SsIdZc+BTkP/koKVem53RO4vgZ8SfL6/Chc=",
-    "fizz/crypto/test/BUILD.bazel": "sha256-AsxH71NkjONEp2mWkLF8eRHs3zWmga7a+6C/+3on8/I=",
+    "fizz/crypto/test/BUILD.bazel": "sha256-tGQ0+G6PixQoZdKkCcooC5YuvK9bSyj86CbUi9vRMeU=",
     "fizz/crypto/BUILD.bazel": "sha256-ZQECkl3LsZhIDZHTGFoQVGDz4CP8PRYkF0EVDwbzQFY=",
     "fizz/experimental/batcher/test/BUILD.bazel": "sha256-8XK15sLho8PWXGB4ieOfL4VIqbPiJZFyi3PwlyXpgeA=",
     "fizz/experimental/batcher/BUILD.bazel": "sha256-UI2tu527stJLN7xjTOaidEj2qqijezOBNHiLHTEzVAM=",

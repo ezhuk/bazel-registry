@@ -19,6 +19,6 @@ cc_test(
         "//folly/synchronization:asymmetric_thread_fence",
         "//folly/synchronization:atomic_util",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

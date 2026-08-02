@@ -8,7 +8,7 @@ cc_test(
         "//folly/algorithm/simd/detail:simd_contains_impl",
         "//folly/portability:gtest",
         "//folly/test:test_utils",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -20,7 +20,7 @@ cc_test(
         "//folly/algorithm/simd:find_first_of",
         "//folly/algorithm/simd:find_first_of_extra",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -31,8 +31,8 @@ cc_test(
         "//folly:portability",
         "//folly/algorithm/simd:find_fixed",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -43,6 +43,6 @@ cc_test(
         "//folly:portability",
         "//folly/algorithm/simd:movemask",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

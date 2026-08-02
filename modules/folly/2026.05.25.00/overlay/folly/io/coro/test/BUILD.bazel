@@ -12,6 +12,6 @@ cc_test(
         "//folly/io/async/test:scoped_bound_port",
         "//folly/io/coro:socket",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

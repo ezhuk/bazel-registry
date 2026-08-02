@@ -20,6 +20,6 @@ cc_test(
         "//folly/io/async:async_base",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

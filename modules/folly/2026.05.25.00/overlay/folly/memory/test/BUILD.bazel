@@ -12,8 +12,8 @@ cc_test(
         "//folly/memory:malloc",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -25,7 +25,7 @@ cc_test(
         "//folly/memory:iobuf_arena_factory",
         "//folly/memory:jemalloc_huge_page_allocator",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -35,7 +35,7 @@ cc_test(
     deps = [
         "//folly/memory:mallctl_helper",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -47,7 +47,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:malloc",
         "//folly/test:test_utils",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -57,7 +57,7 @@ cc_test(
     deps = [
         "//folly/memory:memory_resource",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -67,7 +67,7 @@ cc_test(
     deps = [
         "//folly/memory:not_null",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -79,7 +79,7 @@ cc_test(
         "//folly/functional:invoke",
         "//folly/memory:reentrant_allocator",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -90,7 +90,7 @@ cc_test(
         "//folly/lang:new",
         "//folly/memory:sanitize_address",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -100,7 +100,7 @@ cc_test(
     deps = [
         "//folly/memory:sanitize_leak",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -110,7 +110,7 @@ cc_test(
     deps = [
         "//folly/memory:shared_from_this_ptr",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -124,8 +124,8 @@ cc_test(
         "//folly/lang:align",
         "//folly/memory:thread_cached_arena",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -139,7 +139,7 @@ cc_test(
         "//folly:random",
         "//folly/memory:uninitialized_memory_hacks",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )

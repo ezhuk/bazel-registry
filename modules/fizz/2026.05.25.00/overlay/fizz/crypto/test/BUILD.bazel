@@ -130,6 +130,7 @@ cc_library(
         "@folly//folly/io:iobuf",
         "@folly//folly/ssl:openssl_cert_utils",
         "@folly//folly/ssl:openssl_ptr_types",
+        "@libsodium",
     ],
 )
 

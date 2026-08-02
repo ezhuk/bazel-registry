@@ -7,6 +7,6 @@ cc_test(
         "//folly:string",
         "//folly/json/bser",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

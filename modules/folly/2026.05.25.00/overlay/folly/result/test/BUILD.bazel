@@ -70,7 +70,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/result:coded_rich_error",
         "//folly/result:immortal_rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -82,7 +82,7 @@ cc_test(
         "//folly:benchmark",
         "//folly/result:epitaph",
         "//folly/result:immortal_rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -96,7 +96,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/result:coded_rich_error",
         "//folly/result:epitaph",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -111,7 +111,7 @@ cc_test(
         "//folly/result:errc_rich_error",
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error_code",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -125,7 +125,7 @@ cc_test(
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
         "//folly/result:rich_msg",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -138,7 +138,7 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/result:nestable_coded_rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -149,7 +149,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/result:gtest_helpers",
         "//folly/result:or_unwind_epitaph",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -167,7 +167,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/result:coro",
         "//folly/result:value_only_result",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -181,7 +181,7 @@ cc_test(
         "//folly:portability",
         "//folly/result",
         "//folly/result:try",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -195,7 +195,7 @@ cc_test(
         "//folly:scope_guard",
         "//folly/lang:keep",
         "//folly/result:coro",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -209,7 +209,7 @@ cc_test(
         "//folly/coro/safe:now_task",
         "//folly/result:gtest_helpers",
         "//folly/result:or_unwind_epitaph",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -223,7 +223,7 @@ cc_test(
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
         "//folly/result:rich_error_code",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -239,8 +239,8 @@ cc_test(
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
         "//folly/result:rich_error_code",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -256,7 +256,7 @@ cc_test(
         "//folly/result:rich_error",
         "//folly/result:rich_error_base",
         "//folly/result:rich_error_code",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -270,7 +270,7 @@ cc_test(
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
         "//folly/result:rich_error_base",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -279,7 +279,7 @@ cc_test(
     srcs = ["rich_exception_ptr_constexpr.cpp"],
     deps = [
         ":rich_exception_ptr_common",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -293,7 +293,7 @@ cc_test(
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
         "//folly/result:rich_error_base",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -307,7 +307,7 @@ cc_test(
         "//folly/result:epitaph",
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -320,7 +320,7 @@ cc_test(
         "//folly/result:epitaph",
         "//folly/result:immortal_rich_error",
         "//folly/result:rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -331,7 +331,7 @@ cc_test(
         ":rich_exception_ptr_check_get",
         "//folly/portability:gtest",
         "//folly/result:immortal_rich_error",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -342,7 +342,7 @@ cc_test(
         ":rich_exception_ptr_check_get",
         "//folly:operation_cancelled",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -352,7 +352,7 @@ cc_test(
     deps = [
         ":rich_exception_ptr_check_get",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -362,7 +362,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/result:rich_msg",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -377,7 +377,7 @@ cc_test(
         "//folly/result:coro",
         "//folly/result:epitaph",
         "//folly/result:gtest_helpers",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -387,7 +387,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/result:try",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -397,6 +397,6 @@ cc_test(
     deps = [
         "//folly/result:gtest_helpers",
         "//folly/result:value_only_result",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

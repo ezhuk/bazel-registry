@@ -6,7 +6,7 @@ cc_test(
     deps = [
         "//folly/fibers:batch_semaphore",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -39,8 +39,8 @@ cc_test(
         "//folly/io/async:scoped_event_base_thread",
         "//folly/portability:gtest",
         "//folly/synchronization:lock",
+        "//folly/test/common:test_main",
         "//folly/tracing:async_stack",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -52,6 +52,6 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:relaxed_atomic",
         "//folly/synchronization/detail:sleeper",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

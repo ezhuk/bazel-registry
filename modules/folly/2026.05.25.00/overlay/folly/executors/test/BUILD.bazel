@@ -27,7 +27,7 @@ cc_test(
         "//folly/executors:async",
         "//folly/executors:manual_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -38,7 +38,7 @@ cc_test(
         "//folly/executors:codel",
         "//folly/portability:gflags",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -50,7 +50,7 @@ cc_test(
         "//folly/executors:executor_with_priority",
         "//folly/futures:core",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -61,7 +61,7 @@ cc_test(
         "//folly/executors:fiber_io_executor",
         "//folly/executors:io_thread_pool_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -73,7 +73,7 @@ cc_test(
         "//folly/executors:global_executor",
         "//folly/executors:io_thread_pool_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -87,7 +87,7 @@ cc_test(
         "//folly/executors:inline_executor",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -104,7 +104,7 @@ cc_test(
         "//folly/synchronization:baton",
         "//folly/synchronization:saturating_semaphore",
         "//folly/system:hardware_concurrency",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -116,7 +116,7 @@ cc_test(
         "//folly/executors:global_executor",
         "//folly/executors:io_thread_pool_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -128,9 +128,9 @@ cc_test(
         "//folly/executors:io_thread_pool_deadlock_detector_observer",
         "//folly/executors:io_thread_pool_executor",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -140,7 +140,7 @@ cc_test(
     deps = [
         ":IOThreadPoolExecutorBaseTestLib",
         "//folly/executors:io_thread_pool_executor",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -152,7 +152,7 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/io/async:scoped_event_base_thread",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -168,7 +168,7 @@ cc_test(
         "//folly/io/async:request_context",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -183,7 +183,7 @@ cc_test(
         "//folly/io/async:request_context",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -196,7 +196,7 @@ cc_test(
         "//folly/futures:core",
         "//folly/gen:base",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -208,7 +208,7 @@ cc_test(
         "//folly/futures:core",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -223,7 +223,7 @@ cc_test(
         "//folly/futures:manual_timekeeper",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -238,7 +238,7 @@ cc_test(
         "//folly/io/async:request_context",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -250,9 +250,9 @@ cc_test(
         "//folly/executors:function_scheduler",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
+        "//folly/test/common:test_main",
         "@boost.thread",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -265,7 +265,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:sched",
         "//folly/portability:unistd",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -275,6 +275,6 @@ cc_test(
     deps = [
         "//folly/executors:threaded_repeating_function_runner",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

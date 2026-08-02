@@ -6,20 +6,7 @@ cc_test(
     deps = [
         "//folly/algorithm:binary_heap",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
-    ],
-)
-
-cc_test(
-    name = "stable_radix_sort_benchmark",
-    srcs = ["StableRadixSortBenchmark.cpp"],
-    deps = [
-        "//folly:benchmark",
-        "//folly/algorithm:stable_radix_sort",
-        "//folly/init",
-        "//folly/stats/detail:double_radix_sort",
-        "@boost.sort",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -29,6 +16,6 @@ cc_test(
     deps = [
         "//folly/algorithm:stable_radix_sort",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

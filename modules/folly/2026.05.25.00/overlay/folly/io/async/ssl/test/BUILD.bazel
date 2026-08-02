@@ -9,7 +9,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:openssl",
         "//folly/ssl:openssl_ptr_types",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -20,6 +20,6 @@ cc_test(
         "//folly/io/async/ssl:ssl_errors",
         "//folly/portability:gtest",
         "//folly/portability:openssl",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

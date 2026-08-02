@@ -6,6 +6,6 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/synchronization/detail:inline_function_ref",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

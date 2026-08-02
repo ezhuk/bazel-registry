@@ -24,7 +24,7 @@ cc_test(
         "//folly/channels:channel_processor",
         "//folly/executors:manual_executor",
         "//folly/portability:gmock",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -37,7 +37,7 @@ cc_test(
         "//folly/coro:blocking_wait",
         "//folly/executors:manual_executor",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -52,7 +52,7 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -67,7 +67,7 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -79,7 +79,7 @@ cc_test(
         "//folly/executors:manual_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -94,8 +94,8 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
         "@fmt",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -110,7 +110,7 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -127,7 +127,7 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -140,7 +140,7 @@ cc_test(
         "//folly/executors:manual_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -153,7 +153,7 @@ cc_test(
         "//folly/executors:manual_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -173,6 +173,6 @@ cc_test(
         "//folly/executors:serial_executor",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )

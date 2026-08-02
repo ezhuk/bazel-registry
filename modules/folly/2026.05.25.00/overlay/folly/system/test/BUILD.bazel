@@ -8,8 +8,8 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/system:at_fork",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -19,7 +19,7 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/system:aux_vector",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -34,9 +34,9 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:stdlib",
         "//folly/system:env_util",
+        "//folly/test/common:test_main",
         "@boost.algorithm",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -47,7 +47,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/system:env_util",
         "//folly/system:hardware_concurrency",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -57,8 +57,8 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/system:pid",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -68,8 +68,8 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/system:shell",
+        "//folly/test/common:test_main",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -81,7 +81,7 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/portability:unistd",
         "//folly/system:thread_id",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -93,6 +93,6 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
         "//folly/system:thread_name",
-        "@googletest//:gtest_main",
+        "//folly/test/common:test_main",
     ],
 )
