@@ -150,7 +150,7 @@
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/test/BUILD.bazel": "sha256-JatvcwOOeME7XxkMnBCM5mhhsSAe+MKwMHyrwT/JV14=",
     "folly/tracing/BUILD.bazel": "sha256-+xOGwlZn7fJwUdpzGnN+IbriP3AUJhu4JiEArcPbJb4=",
-    "folly/BUILD.bazel": "sha256-9SNeHLMxXd1SrFj6jVQbFnuWmlTxxrIET6nw6ZzeUk8=",
+    "folly/BUILD.bazel": "sha256-8hq5cYD1i5WF+a2ppD5VWuVqhyfsD2R3GsIdGcIWTes=",
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k="
   }
 }
