@@ -25,12 +25,12 @@ cmake_configure_file(
         "FOLLY_HAVE_INT128_T",
         "FOLLY_HAVE_LIBLZ4",
         "FOLLY_HAVE_LIBLZMA",
-        "FOLLY_HAVE_LIBSNAPPY",
         "FOLLY_HAVE_LIBZ",
         "FOLLY_HAVE_LIBZSTD",
         "FOLLY_HAVE_LIBBZ2",
     ],
     undefines = [
+        "FOLLY_HAVE_LIBSNAPPY",
         "FOLLY_USE_JEMALLOC",
         "FOLLY_HAVE_IFUNC",
         "FOLLY_HAVE_MALLOC_USABLE_SIZE",
