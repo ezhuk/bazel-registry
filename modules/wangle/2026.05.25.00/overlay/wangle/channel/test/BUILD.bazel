@@ -1,0 +1,53 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "mocks",
+    hdrs = [
+        "MockHandler.h",
+        "MockPipeline.h",
+    ],
+    include_prefix = "wangle/channel/test",
+    deps = [
+        "//:wangle",
+        "@folly//folly:move_wrapper",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "AsyncSocketHandlerTest",
+    srcs = ["AsyncSocketHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "OutputBufferingHandlerTest",
+    srcs = ["OutputBufferingHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "PipelineTest",
+    srcs = ["PipelineTest.cpp"],
+    deps = [
+        ":mocks",
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)

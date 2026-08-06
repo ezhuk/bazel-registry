@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "SSLCacheTest",
+    srcs = ["SSLCacheTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "SSLContextManagerTest",
+    srcs = ["SSLContextManagerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "SSLSessionCacheManagerTest",
+    srcs = ["SSLSessionCacheManagerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "TLSCredProcessorTest",
+    srcs = ["TLSCredProcessorTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "TLSInMemoryTicketProcessorTest",
+    srcs = ["TLSInMemoryTicketProcessorTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "TLSTicketKeyManagerTest",
+    srcs = ["TLSTicketKeyManagerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)

@@ -1,0 +1,47 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "wangle/channel/broadcast/test",
+    deps = [
+        "//:wangle",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "BroadcastHandlerTest",
+    srcs = ["BroadcastHandlerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "BroadcastPoolTest",
+    srcs = ["BroadcastPoolTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "ObservingHandlerTest",
+    srcs = ["ObservingHandlerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)

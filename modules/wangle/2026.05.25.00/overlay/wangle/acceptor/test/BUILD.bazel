@@ -1,0 +1,58 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "mocks",
+    hdrs = ["AcceptorHelperMocks.h"],
+    include_prefix = "wangle/acceptor/test",
+    deps = [
+        "//:wangle",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "AcceptorTest",
+    srcs = ["AcceptorTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "ConnectionManagerTest",
+    srcs = ["ConnectionManagerTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "LoadShedConfigurationTest",
+    srcs = ["LoadShedConfigurationTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
+
+cc_test(
+    name = "PeekingAcceptorHandshakeHelperTest",
+    srcs = ["PeekingAcceptorHandshakeHelperTest.cpp"],
+    deps = [
+        "//:wangle",
+        "//wangle/test:test_main",
+        "@folly//folly/test:test_utils",
+        "@googletest//:gmock",
+    ],
+)
