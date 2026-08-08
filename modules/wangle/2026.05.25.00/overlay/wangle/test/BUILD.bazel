@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "test_main",
+    srcs = ["TestMain.cpp"],
+    include_prefix = "wangle/test",
+    deps = [
+        "@folly//folly/init",
+        "@folly//folly/portability:gtest",
+    ],
+)

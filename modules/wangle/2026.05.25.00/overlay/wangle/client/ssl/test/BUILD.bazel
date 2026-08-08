@@ -1,0 +1,81 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "wangle/client/ssl/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/client/ssl:ssl_session_callbacks",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "test_util",
+    srcs = ["TestUtil.cpp"],
+    hdrs = ["TestUtil.h"],
+    include_prefix = "wangle/client/ssl/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "SSLSessionCacheDataTest",
+    srcs = ["SSLSessionCacheDataTest.cpp"],
+    deps = [
+        ":test_util",
+        "//wangle/client/ssl:ssl_session_cache_data",
+        "//wangle/client/ssl:ssl_session_cache_utils",
+        "//wangle/ssl:ssl_util",
+        "//wangle/test:test_main",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)
+
+cc_test(
+    name = "SSLSessionCallbackTest",
+    srcs = ["SSLSessionCallbackTest.cpp"],
+    deps = [
+        "//wangle/client/ssl:ssl_session_callbacks",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "SSLSessionPersistentCacheTest",
+    srcs = ["SSLSessionPersistentCacheTest.cpp"],
+    deps = [
+        ":test_util",
+        "//wangle/client/persistence/test:test_util",
+        "//wangle/client/ssl:ssl_session_persistent_cache",
+        "//wangle/test:test_main",
+        "@fmt",
+        "@folly//folly:format",
+        "@folly//folly:memory",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "ThreadSafeSSLSessionCacheTest",
+    srcs = ["ThreadSafeSSLSessionCacheTest.cpp"],
+    deps = [
+        ":test_util",
+        "//wangle/client/ssl:threadsafe_cache",
+        "//wangle/test:test_main",
+        "@folly//folly:conv",
+        "@folly//folly:memory",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
