@@ -1,6 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
   "features": {
-    "ghcr.io/ezhuk/devcontainer-features/bazel:1": {}
+    "ghcr.io/ezhuk/devcontainer-features/bazel:1": {},
+    "ghcr.io/ezhuk/devcontainer-features/uv:1": {}
   }
 }
