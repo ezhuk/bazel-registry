@@ -4,8 +4,9 @@ cc_library(
     name = "codec_test_utils",
     hdrs = ["CodecTestUtils.h"],
     include_prefix = "wangle/codec/test",
+    visibility = ["//visibility:public"],
     deps = [
-        "//:wangle",
+        "//wangle/channel",
         "@folly//folly:function",
         "@folly//folly/io:iobuf",
     ],
@@ -13,12 +14,14 @@ cc_library(
 
 cc_test(
     name = "CodecTest",
-    srcs = ["codec/test/CodecTest.cpp"],
+    srcs = ["CodecTest.cpp"],
     deps = [
         ":codec_test_utils",
-        "//:wangle",
+        "//wangle/codec:fixed_length_frame_decoder",
+        "//wangle/codec:length_field_based_frame_decoder",
+        "//wangle/codec:length_field_prepender",
+        "//wangle/codec:line_based_frame_decoder",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "@folly//folly/portability:gtest",
     ],
 )
