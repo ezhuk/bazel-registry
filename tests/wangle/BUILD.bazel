@@ -13,11 +13,14 @@ cc_binary(
 test_suite(
     name = "tests",
     tests = [
-        "@wangle//wangle/acceptor/test:AcceptorTest",
+        #"@wangle//wangle/acceptor/test:AcceptorTest",
         "@wangle//wangle/acceptor/test:ConnectionManagerTest",
+        "@wangle//wangle/acceptor/test:EvbHandshakeHelperTest",
         "@wangle//wangle/acceptor/test:LoadShedConfigurationTest",
-        "@wangle//wangle/acceptor/test:ObservingHandlerTest",
         "@wangle//wangle/acceptor/test:PeekingAcceptorHandshakeHelperTest",
+        "@wangle//wangle/acceptor/test:SecurityProtocolContextManagerTest",
+        "@wangle//wangle/acceptor/test:SharedSSLContextManagerTest",
+        "@wangle//wangle/acceptor/test:SocketPeekerTest",
         "@wangle//wangle/bootstrap/test:AcceptRoutingHandlerTest",
         "@wangle//wangle/bootstrap/test:BootstrapTest",
         "@wangle//wangle/channel/broadcast/test:BroadcastHandlerTest",

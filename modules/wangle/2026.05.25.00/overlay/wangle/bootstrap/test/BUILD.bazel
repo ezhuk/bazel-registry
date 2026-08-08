@@ -18,8 +18,8 @@ cc_test(
     srcs = ["AcceptRoutingHandlerTest.cpp"],
     deps = [
         ":mocks",
-        "//wangler/test:test_main",
         "//:wangle",
+        "//wangler/test:test_main",
         "@folly//folly/synchronization:latch",
         "@googletest//:gmock",
     ],
@@ -30,8 +30,8 @@ cc_test(
     srcs = ["BootstrapTest.cpp"],
     deps = [
         ":mocks",
-        "//wangler/test:test_main",
         "//:wangle",
+        "//wangler/test:test_main",
         "@folly//folly/test:test_utils",
         "@googletest//:gmock",
     ],
