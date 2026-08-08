@@ -1,7 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = [
@@ -9,8 +7,10 @@ cc_library(
         "MockPipeline.h",
     ],
     include_prefix = "wangle/channel/test",
+    visibility = ["//visibility:public"],
     deps = [
-        "//:wangle",
+        "//wangle/channel",
+        "//wangle/channel:pipeline",
         "@folly//folly:move_wrapper",
         "@folly//folly/portability:gmock",
     ],
@@ -21,10 +21,21 @@ cc_test(
     srcs = ["AsyncSocketHandlerTest.cpp"],
     deps = [
         ":mocks",
-        "//:wangle",
+        "//wangle/channel:async_socket_handler",
+        "//wangle/channel:pipeline",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "FileRegionTest",
+    srcs = ["FileRegionTest.cpp"],
+    deps = [
+        "//wangle/channel",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async/test:async_socket_test_lib",
+        "@folly//folly/portability:gtest",
     ],
 )
 
@@ -33,10 +44,12 @@ cc_test(
     srcs = ["OutputBufferingHandlerTest.cpp"],
     deps = [
         ":mocks",
-        "//:wangle",
+        "//wangle/channel:output_buffering_handler",
+        "//wangle/channel:static_pipeline",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
     ],
 )
 
@@ -45,9 +58,13 @@ cc_test(
     srcs = ["PipelineTest.cpp"],
     deps = [
         ":mocks",
-        "//:wangle",
+        "//wangle/channel",
+        "//wangle/channel:async_socket_handler",
+        "//wangle/channel:output_buffering_handler",
+        "//wangle/channel:static_pipeline",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "@folly//folly/futures:barrier",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
     ],
 )
