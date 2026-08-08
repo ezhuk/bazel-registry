@@ -4,7 +4,7 @@
   "overlay": {
     "wangle/acceptor/test/BUILD.bazel": "sha256-Wdg0lDO9b053OdXUdGk4fL7VbrQmB/0ztOFIfnSFIfs=",
     "wangle/acceptor/BUILD.bazel": "sha256-2nZPpBfkI9ZrHVU0QGxYarv/13Nj9mjtpEIhnvsql4g=",
-    "wangle/bootstrap/test/BUILD.bazel": "sha256-ZJvHZjxQSTFCZm09zxOKDC4+/FeLjbsMh/Q4AaRqnyk=",
+    "wangle/bootstrap/test/BUILD.bazel": "sha256-jqSEH0JHkU0tyzEDdcN9Lwzk78G44b7FGAVVKNnm/4s=",
     "wangle/bootstrap/BUILD.bazel": "sha256-VVA5ZKAQf5FJY9N6c67x74kX0Ts99nHOnRlOrvlxKWc=",
     "wangle/channel/broadcast/test/BUILD.bazel": "sha256-TTczLktOMlvfViOcHn/KD4ErDvy3m7pYKiyWpkF2Vzc=",
     "wangle/channel/test/BUILD.bazel": "sha256-8N93ZTcCTgtWk7HTJITHIgkVWWhyJUCZK/VI1v5P8WM=",
