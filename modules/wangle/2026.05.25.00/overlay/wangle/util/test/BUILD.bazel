@@ -4,10 +4,16 @@ cc_test(
     name = "FilePollerTest",
     srcs = ["FilePollerTest.cpp"],
     deps = [
-        "//:wangle",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "//wangle/util:file_poller",
+        "@folly//folly:file",
+        "@folly//folly:file_util",
+        "@folly//folly:singleton",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:sysstat",
+        "@folly//folly/synchronization:baton",
+        "@folly//folly/testing:test_util",
+        "@glog",
     ],
 )
 
@@ -15,9 +21,14 @@ cc_test(
     name = "MultiFilePollerTest",
     srcs = ["MultiFilePollerTest.cpp"],
     deps = [
-        "//:wangle",
         "//wangle/test:test_main",
-        "@folly//folly/test:test_utils",
-        "@googletest//:gmock",
+        "//wangle/util:multi_file_poller",
+        "@folly//folly:file_util",
+        "@folly//folly:map_util",
+        "@folly//folly:string",
+        "@folly//folly/futures:core",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:saturating_semaphore",
+        "@folly//folly/testing:test_util",
     ],
 )
