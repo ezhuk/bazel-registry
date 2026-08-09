@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "data",
     hdrs = ["Data.h"],
     include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/record",
     ],
@@ -15,6 +14,7 @@ cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/crypto/aead",
         "@folly//folly/portability:gmock",
@@ -26,6 +26,7 @@ cc_library(
     srcs = ["TestUtil.cpp"],
     hdrs = ["TestUtil.h"],
     include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/crypto/aead:iobuf",
         "@folly//folly:memory",

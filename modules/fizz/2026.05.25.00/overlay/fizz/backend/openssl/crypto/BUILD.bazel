@@ -1,0 +1,44 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "eccurve",
+    hdrs = ["ECCurve.h"],
+    include_prefix = "fizz/backend/openssl/crypto",
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "key_utils",
+    srcs = ["OpenSSLKeyUtils.cpp"],
+    hdrs = [
+        "OpenSSL.h",
+        "OpenSSLKeyUtils.h",
+    ],
+    include_prefix = "fizz/backend/openssl/crypto",
+    deps = [
+        "//fizz/util:status",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "sha",
+    srcs = ["Sha.cpp"],
+    hdrs = ["Sha.h"],
+    include_prefix = "fizz/backend/openssl/crypto",
+    deps = [
+        "//fizz/crypto:hasher",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/ssl:openssl_hash",
+    ],
+)

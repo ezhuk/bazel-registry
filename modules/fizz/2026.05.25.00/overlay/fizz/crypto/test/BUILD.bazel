@@ -1,12 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "hash_test",
     srcs = ["HashTest.cpp"],
     hdrs = ["HashTest.h"],
     include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/crypto",
         "//fizz/crypto:hasher",
@@ -14,6 +13,93 @@ cc_library(
         "@folly//folly:string",
         "@folly//folly/io:iobuf",
         "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "HmacTest",
+    srcs = ["HmacTest.cpp"],
+    hdrs = ["HmacTest.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto",
+        "//fizz/crypto:hasher",
+        "//fizz/protocol:types",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto:hasher",
+        "//fizz/crypto:key_derivation",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "signature",
+    srcs = ["Signature.cpp"],
+    hdrs = ["Signature.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":signature_test_data",
+        "//fizz/protocol:certificate",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "signature_test_data",
+    srcs = ["SignatureTestData.cpp"],
+    hdrs = ["SignatureTestData.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "TestKeys",
+    srcs = ["TestKeys.cpp"],
+    hdrs = ["TestKeys.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto",
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
+    name = "TestUtil",
+    srcs = ["TestUtil.cpp"],
+    hdrs = ["TestUtil.h"],
+    include_prefix = "fizz/crypto/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":TestKeys",
+        "//fizz:config",
+        "//fizz/backend:libaegis",
+        "//fizz/backend:openssl",
+        "//fizz/crypto/aead",
+        "//fizz/protocol:types",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@libsodium",
     ],
 )
 
@@ -26,21 +112,6 @@ cc_test(
         "//fizz/crypto:hkdf",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "HmacTest",
-    srcs = ["HmacTest.cpp"],
-    hdrs = ["HmacTest.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        "//fizz/crypto",
-        "//fizz/crypto:hasher",
-        "//fizz/protocol:types",
-        "@folly//folly:string",
-        "@folly//folly/io:iobuf",
-        "@folly//folly/portability:gtest",
     ],
 )
 
@@ -57,17 +128,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        "//fizz/crypto:hasher",
-        "//fizz/crypto:key_derivation",
-        "@folly//folly/portability:gmock",
-    ],
-)
-
 cc_test(
     name = "random_generator_test",
     srcs = ["RandomGeneratorTest.cpp"],
@@ -76,61 +136,6 @@ cc_test(
         "//fizz/crypto:random",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "signature",
-    srcs = ["Signature.cpp"],
-    hdrs = ["Signature.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        ":signature_test_data",
-        "//fizz/protocol:certificate",
-        "@folly//folly:range",
-        "@folly//folly/io:iobuf",
-        "@folly//folly/portability:gtest",
-    ],
-)
-
-cc_library(
-    name = "signature_test_data",
-    srcs = ["SignatureTestData.cpp"],
-    hdrs = ["SignatureTestData.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        "//fizz/record",
-    ],
-)
-
-cc_library(
-    name = "TestKeys",
-    srcs = ["TestKeys.cpp"],
-    hdrs = ["TestKeys.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        "//fizz/crypto",
-        "@folly//folly:string",
-    ],
-)
-
-cc_library(
-    name = "TestUtil",
-    srcs = ["TestUtil.cpp"],
-    hdrs = ["TestUtil.h"],
-    include_prefix = "fizz/crypto/test",
-    deps = [
-        ":TestKeys",
-        "//fizz:config",
-        "//fizz/backend:libaegis",
-        "//fizz/backend:openssl",
-        "//fizz/crypto/aead",
-        "//fizz/protocol:types",
-        "@folly//folly:string",
-        "@folly//folly/io:iobuf",
-        "@folly//folly/ssl:openssl_cert_utils",
-        "@folly//folly/ssl:openssl_ptr_types",
-        "@libsodium",
     ],
 )
 

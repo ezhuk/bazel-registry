@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "libaegis",
+    srcs = ["AEGISCipher.cpp"],
+    hdrs = ["LibAEGIS.h"],
+    include_prefix = "fizz/backend/libaegis",
+    deps = [
+        "//fizz:config",
+        "//fizz/crypto",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/aead:cryptoutil",
+        "@folly//folly/lang:checked_math",
+        "@libaegis//:aegis",
+    ],
+)

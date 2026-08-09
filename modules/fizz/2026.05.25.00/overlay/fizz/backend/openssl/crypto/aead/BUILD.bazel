@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "evp_cipher",
+    srcs = ["OpenSSLEVPCipher.cpp"],
+    hdrs = ["OpenSSLEVPCipher.h"],
+    include_prefix = "fizz/backend/openssl/crypto/aead",
+    textual_hdrs = ["OpenSSLEVPCipher-inl.h"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/aead:iobuf",
+        "@folly//folly:conv",
+        "@folly//folly:memory",
+        "@folly//folly:range",
+        "@folly//folly:string",
+        "@folly//folly/lang:bits",
+        "@folly//folly/lang:checked_math",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)

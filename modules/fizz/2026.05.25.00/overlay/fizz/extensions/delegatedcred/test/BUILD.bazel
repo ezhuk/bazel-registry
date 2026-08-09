@@ -1,6 +1,15 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/extensions/delegatedcred/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/extensions/delegatedcred:self_delegated_credential",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
 
 cc_test(
     name = "delegated_credential_cert_manager_test",
@@ -68,16 +77,6 @@ cc_test(
         "@folly//folly/ssl:openssl_cert_utils",
         "@folly//folly/ssl:openssl_ptr_types",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/extensions/delegatedcred/test",
-    deps = [
-        "//fizz/extensions/delegatedcred:self_delegated_credential",
-        "@folly//folly/io/async/test:mocks",
     ],
 )
 

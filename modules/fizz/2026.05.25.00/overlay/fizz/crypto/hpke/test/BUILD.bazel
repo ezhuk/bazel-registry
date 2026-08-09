@@ -1,6 +1,17 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/crypto/hpke/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/backend:libsodium",
+        "//fizz/crypto/aead",
+        "//fizz/crypto/hpke:context",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "context_test",
@@ -42,17 +53,5 @@ cc_test(
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol:default_factory",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/crypto/hpke/test",
-    deps = [
-        "//fizz/backend:libsodium",
-        "//fizz/crypto/aead",
-        "//fizz/crypto/hpke:context",
-        "@folly//folly/portability:gmock",
     ],
 )

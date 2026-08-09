@@ -1,24 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
-cc_test(
-    name = "cert_test",
-    srcs = ["CertTest.cpp"],
-    deps = [
-        ":cert_test_types",
-        "//fizz/backend:openssl",
-        "//fizz/crypto/test:TestUtil",
-        "@folly//folly:string",
-        "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
-    ],
-)
-
 cc_library(
     name = "cert_test_types",
     hdrs = ["CertTestTypes.h"],
     include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/backend:openssl",
         "//fizz/crypto/test:TestUtil",
@@ -30,9 +16,83 @@ cc_library(
     name = "cert_util",
     hdrs = ["CertUtil.h"],
     include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/backend:openssl",
         "//fizz/crypto",
+    ],
+)
+
+cc_library(
+    name = "matchers",
+    hdrs = ["Matchers.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/crypto/exchange/test:mocks",
+        "//fizz/crypto/test:mocks",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:handshake_context",
+        "//fizz/protocol:key_scheduler",
+        "//fizz/protocol:types",
+        "//fizz/protocol/ech:decrypter",
+        "//fizz/record/test:mocks",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
+
+cc_library(
+    name = "protocol_test",
+    hdrs = ["ProtocolTest.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":matchers",
+        ":mocks",
+        "//fizz/protocol:actions",
+        "//fizz/record/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "test_util",
+    hdrs = ["TestUtil.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/protocol:params",
+        "//fizz/record",
+    ],
+)
+
+cc_test(
+    name = "cert_test",
+    srcs = ["CertTest.cpp"],
+    deps = [
+        ":cert_test_types",
+        "//fizz/backend:openssl",
+        "//fizz/crypto/test:TestUtil",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
     ],
 )
 
@@ -107,38 +167,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "matchers",
-    hdrs = ["Matchers.h"],
-    include_prefix = "fizz/protocol/test",
-    deps = [
-        "@folly//folly/io:iobuf",
-        "@folly//folly/portability:gmock",
-        "@folly//folly/portability:gtest",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/protocol/test",
-    deps = [
-        "//fizz/crypto/aead/test:mocks",
-        "//fizz/crypto/exchange/test:mocks",
-        "//fizz/crypto/test:mocks",
-        "//fizz/protocol:async_fizz_base",
-        "//fizz/protocol:certificate",
-        "//fizz/protocol:certificate_verifier",
-        "//fizz/protocol:default_factory",
-        "//fizz/protocol:handshake_context",
-        "//fizz/protocol:key_scheduler",
-        "//fizz/protocol:types",
-        "//fizz/protocol/ech:decrypter",
-        "//fizz/record/test:mocks",
-        "@folly//folly/io/async/test:mocks",
-    ],
-)
-
 cc_test(
     name = "multi_backend_factory_test",
     srcs = ["MultiBackendFactoryTest.cpp"],
@@ -146,29 +174,5 @@ cc_test(
         "//fizz/protocol:multi_backend_factory",
         "//fizz/test:handshake_test_lib",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "protocol_test",
-    hdrs = ["ProtocolTest.h"],
-    include_prefix = "fizz/protocol/test",
-    deps = [
-        ":matchers",
-        ":mocks",
-        "//fizz/protocol:actions",
-        "//fizz/record/test:mocks",
-        "@folly//folly/portability:gmock",
-        "@folly//folly/portability:gtest",
-    ],
-)
-
-cc_library(
-    name = "test_util",
-    hdrs = ["TestUtil.h"],
-    include_prefix = "fizz/protocol/test",
-    deps = [
-        "//fizz/protocol:params",
-        "//fizz/record",
     ],
 )

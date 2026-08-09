@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "ECKey",
+    srcs = ["ECKeyExchangeTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto/test:TestKeys",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/util:status",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@googletest//:gtest_main",
+        "@openssl",
+    ],
+)

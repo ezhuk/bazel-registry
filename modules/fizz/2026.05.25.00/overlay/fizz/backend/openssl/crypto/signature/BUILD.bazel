@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "signature",
+    srcs = ["Signature.cpp"],
+    hdrs = ["Signature.h"],
+    include_prefix = "fizz/backend/openssl/crypto/signature",
+    textual_hdrs = ["Signature-inl.h"],
+    deps = [
+        "//fizz/backend/openssl/crypto",
+        "//fizz/backend/openssl/crypto:key_utils",
+        "//fizz/record",
+        "@folly//folly:conv",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)

@@ -1,0 +1,59 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "ed_lib",
+    hdrs = ["EdSignatureTest.h"],
+    include_prefix = "fizz/backend/openssl/crypto/signature/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly:fixed_string",
+    ],
+)
+
+cc_test(
+    name = "ec",
+    srcs = ["ECSignatureTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ed",
+    srcs = ["EdSignatureTest.cpp"],
+    deps = [
+        ":ed_lib",
+        "//fizz/backend:openssl",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/util:logging",
+        "@folly//folly:fixed_string",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "peer_cert_verify",
+    srcs = ["PeerCertVerify.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto/test:signature",
+        "//fizz/crypto/test:signature_test_data",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "rsa_pss",
+    srcs = ["RSAPSSSignatureTest.cpp"],
+    deps = [
+        "//fizz/backend:openssl",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
