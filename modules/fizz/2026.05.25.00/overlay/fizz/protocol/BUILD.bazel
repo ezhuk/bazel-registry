@@ -78,7 +78,7 @@ cc_library(
     include_prefix = "fizz/protocol",
     deps = [
         ":certificate_verifier",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl/certificate:cert_verifier",
     ],
 )
 
@@ -186,10 +186,10 @@ cc_library(
     deps = [
         ":factory",
         "//fizz:config",
-        "//fizz/backend:libaegis",
-        "//fizz/backend:liboqs",
-        "//fizz/backend:libsodium",
-        "//fizz/backend:openssl",
+        "//fizz/backend/libaegis",
+        "//fizz/backend/liboqs",
+        "//fizz/backend/libsodium",
+        "//fizz/backend/openssl",
         "//fizz/crypto:hkdf",
         "//fizz/crypto/exchange:hybrid_key_exchange",
     ],

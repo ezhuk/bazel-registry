@@ -1,11 +1,10 @@
-load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
-
-package(default_visibility = ["//visibility:public"])
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
     name = "mock_clock",
     hdrs = ["Mocks.h"],
     include_prefix = "fizz/protocol/clock/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//fizz/protocol/clock",
         "@folly//folly/portability:gmock",

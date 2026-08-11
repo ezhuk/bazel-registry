@@ -1,6 +1,29 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/client/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/client:async_fizz_client",
+        "//fizz/client:client_extensions",
+        "//fizz/client:ech_policy",
+        "//fizz/client:psk_cache",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
+
+cc_library(
+    name = "utilities",
+    hdrs = ["Utilities.h"],
+    include_prefix = "fizz/client/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/client:psk_cache",
+        "@folly//folly/portability:gtest",
+    ],
+)
 
 cc_test(
     name = "async_fizz_client_test",
@@ -83,19 +106,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/client/test",
-    deps = [
-        "//fizz/client:async_fizz_client",
-        "//fizz/client:client_extensions",
-        "//fizz/client:ech_policy",
-        "//fizz/client:psk_cache",
-        "@folly//folly/io/async/test:mocks",
-    ],
-)
-
 cc_test(
     name = "multi_client_extensions_test",
     srcs = ["MultiClientExtensionsTest.cpp"],
@@ -112,7 +122,7 @@ cc_test(
     srcs = ["PskSerializationTest.cpp"],
     deps = [
         ":utilities",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/client:psk_serialization_utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol/test:mocks",
@@ -132,15 +142,5 @@ cc_test(
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "utilities",
-    hdrs = ["Utilities.h"],
-    include_prefix = "fizz/client/test",
-    deps = [
-        "//fizz/client:psk_cache",
-        "@folly//folly/portability:gtest",
     ],
 )

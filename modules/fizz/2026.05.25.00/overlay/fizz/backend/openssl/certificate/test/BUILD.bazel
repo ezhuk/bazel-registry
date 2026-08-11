@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "test",
+    srcs = ["CertUtilsTest.cpp"],
+    deps = [
+        "//fizz/backend/openssl/certificate:cert_utils",
+        "//fizz/protocol/test:cert_test_types",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

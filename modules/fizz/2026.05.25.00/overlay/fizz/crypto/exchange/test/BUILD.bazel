@@ -1,6 +1,16 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/crypto/exchange/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/exchange:async_key_exchange",
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "HybridExchange",
@@ -11,17 +21,6 @@ cc_test(
         "//fizz/util:status",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/crypto/exchange/test",
-    deps = [
-        "//fizz/crypto/exchange:async_key_exchange",
-        "//fizz/crypto/exchange:key_exchange",
-        "@folly//folly/portability:gmock",
     ],
 )
 

@@ -1,6 +1,43 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/server/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/crypto/exchange/test:mocks",
+        "//fizz/protocol/test:mocks",
+        "//fizz/record/test:mocks",
+        "//fizz/server:async_fizz_server",
+        "//fizz/server:async_self_cert",
+        "//fizz/server:cookie_cipher",
+        "//fizz/server:protocol",
+        "//fizz/server:replay_cache",
+        "//fizz/server:server_extensions",
+        "//fizz/server:token_cipher",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "utils",
+    hdrs = ["Utils.h"],
+    include_prefix = "fizz/server/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/backend:openssl",
+        "//fizz/crypto:random",
+        "//fizz/protocol:default_certificate_verifier",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol/test:cert_util",
+        "//fizz/server:async_fizz_server",
+        "//fizz/server:cert_manager",
+        "//fizz/server:ticket_types",
+        "@folly//folly/io/async:server_socket",
+    ],
+)
 
 cc_test(
     name = "aead_cookie_cipher_test",
@@ -112,26 +149,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/server/test",
-    deps = [
-        "//fizz/crypto/aead/test:mocks",
-        "//fizz/crypto/exchange/test:mocks",
-        "//fizz/protocol/test:mocks",
-        "//fizz/record/test:mocks",
-        "//fizz/server:async_fizz_server",
-        "//fizz/server:async_self_cert",
-        "//fizz/server:cookie_cipher",
-        "//fizz/server:protocol",
-        "//fizz/server:replay_cache",
-        "//fizz/server:server_extensions",
-        "//fizz/server:token_cipher",
-        "@folly//folly/portability:gmock",
-    ],
-)
-
 cc_test(
     name = "multi_server_extensions_test",
     srcs = ["MultiServerExtensionsTest.cpp"],
@@ -220,22 +237,5 @@ cc_test(
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "utils",
-    hdrs = ["Utils.h"],
-    include_prefix = "fizz/server/test",
-    deps = [
-        "//fizz/backend:openssl",
-        "//fizz/crypto:random",
-        "//fizz/protocol:default_certificate_verifier",
-        "//fizz/protocol:default_factory",
-        "//fizz/protocol/test:cert_util",
-        "//fizz/server:async_fizz_server",
-        "//fizz/server:cert_manager",
-        "//fizz/server:ticket_types",
-        "@folly//folly/io/async:server_socket",
     ],
 )

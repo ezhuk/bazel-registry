@@ -1,13 +1,27 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "test_util",
+    srcs = ["TestUtil.cpp"],
+    hdrs = ["TestUtil.h"],
+    include_prefix = "fizz/protocol/ech/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto/exchange:key_exchange",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/protocol/ech:encrypted_client_hello",
+        "//fizz/protocol/ech:encryption",
+        "//fizz/protocol/test:test_util",
+    ],
+)
 
 cc_test(
     name = "decrypter_test",
     srcs = ["DecrypterTest.cpp"],
     deps = [
         ":test_util",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol:default_factory",
         "//fizz/protocol/ech:decrypter",
@@ -35,7 +49,7 @@ cc_test(
     srcs = ["EncryptionTest.cpp"],
     deps = [
         ":test_util",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto",
         "//fizz/crypto/hpke",
         "//fizz/crypto/hpke:utils",
@@ -60,20 +74,5 @@ cc_test(
         "//fizz/protocol/test:mocks",
         "//fizz/protocol/test:test_util",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "test_util",
-    srcs = ["TestUtil.cpp"],
-    hdrs = ["TestUtil.h"],
-    include_prefix = "fizz/protocol/ech/test",
-    deps = [
-        "//fizz/backend:openssl",
-        "//fizz/crypto/exchange:key_exchange",
-        "//fizz/crypto/test:TestUtil",
-        "//fizz/protocol/ech:encrypted_client_hello",
-        "//fizz/protocol/ech:encryption",
-        "//fizz/protocol/test:test_util",
     ],
 )

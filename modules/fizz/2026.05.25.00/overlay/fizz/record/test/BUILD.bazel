@@ -1,6 +1,30 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "extension_tests_base",
+    hdrs = ["ExtensionTestsBase.h"],
+    include_prefix = "fizz/record/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/record",
+        "@folly//folly:string",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/record/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/protocol:types",
+        "//fizz/record:encrypted_record_layer",
+        "//fizz/record:plaintext_record_layer",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "buf_and_padding_policy_test",
@@ -26,18 +50,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "extension_tests_base",
-    hdrs = ["ExtensionTestsBase.h"],
-    include_prefix = "fizz/record/test",
-    deps = [
-        "//fizz/record",
-        "@folly//folly:string",
-        "@folly//folly/portability:gmock",
-        "@folly//folly/portability:gtest",
-    ],
-)
-
 cc_test(
     name = "extensions_test",
     srcs = ["ExtensionsTest.cpp"],
@@ -59,18 +71,6 @@ cc_test(
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/record/test",
-    deps = [
-        "//fizz/protocol:types",
-        "//fizz/record:encrypted_record_layer",
-        "//fizz/record:plaintext_record_layer",
-        "@folly//folly/portability:gmock",
     ],
 )
 

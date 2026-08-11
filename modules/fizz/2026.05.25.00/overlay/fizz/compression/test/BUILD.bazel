@@ -1,6 +1,15 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/compression/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "brotli_certificate_compressor_test",
@@ -25,16 +34,6 @@ cc_test(
         "//fizz/compression:cert_decompression_manager",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
-    ],
-)
-
-cc_library(
-    name = "mocks",
-    hdrs = ["Mocks.h"],
-    include_prefix = "fizz/compression/test",
-    deps = [
-        "//fizz/compression:certificate_compressor",
-        "@folly//folly/portability:gmock",
     ],
 )
 
