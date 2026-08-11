@@ -4,7 +4,7 @@ cc_test(
     name = "hmac_test",
     srcs = ["Hmac.cpp"],
     deps = [
-        "//fizz/backend/openssl",
+        "//fizz/backend/openssl:hasher",
         "//fizz/crypto/test:HmacTest",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
@@ -15,7 +15,7 @@ cc_test(
     name = "key_utils",
     srcs = ["OpenSSLKeyUtilsTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl/crypto:key_utils",
         "//fizz/crypto/test:TestUtil",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",

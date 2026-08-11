@@ -122,7 +122,7 @@ cc_test(
     srcs = ["PskSerializationTest.cpp"],
     deps = [
         ":utilities",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/client:psk_serialization_utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol/test:mocks",

@@ -7,7 +7,7 @@ cc_library(
     hdrs = ["ECCurve.h"],
     include_prefix = "fizz/backend/openssl/crypto",
     deps = [
-        "//fizz/backend/openssl",
+        "//fizz/backend/openssl:properties",
         "//fizz/crypto",
         "@openssl",
     ],

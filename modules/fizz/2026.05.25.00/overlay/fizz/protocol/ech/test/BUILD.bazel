@@ -7,7 +7,7 @@ cc_library(
     include_prefix = "fizz/protocol/ech/test",
     visibility = ["//visibility:public"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/exchange:key_exchange",
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol/ech:encrypted_client_hello",
@@ -21,7 +21,7 @@ cc_test(
     srcs = ["DecrypterTest.cpp"],
     deps = [
         ":test_util",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "//fizz/protocol:default_factory",
         "//fizz/protocol/ech:decrypter",
@@ -49,7 +49,7 @@ cc_test(
     srcs = ["EncryptionTest.cpp"],
     deps = [
         ":test_util",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto",
         "//fizz/crypto/hpke",
         "//fizz/crypto/hpke:utils",

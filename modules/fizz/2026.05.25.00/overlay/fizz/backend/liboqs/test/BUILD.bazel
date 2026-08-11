@@ -4,7 +4,7 @@ cc_test(
     name = "oqs_key_exchange_test",
     srcs = ["OQSKeyExchangeTest.cpp"],
     deps = [
-        "//fizz/backend:liboqs",
+        "//fizz/backend/liboqs",
         "//fizz/util:status",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",

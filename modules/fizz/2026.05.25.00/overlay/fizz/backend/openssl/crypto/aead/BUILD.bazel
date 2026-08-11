@@ -9,8 +9,9 @@ cc_library(
     include_prefix = "fizz/backend/openssl/crypto/aead",
     textual_hdrs = ["OpenSSLEVPCipher-inl.h"],
     deps = [
-        "//fizz/backend/openssl",
+        "//fizz/backend/openssl:properties",
         "//fizz/crypto/aead",
+        "//fizz/crypto/aead:cryptoutil",
         "//fizz/crypto/aead:iobuf",
         "@folly//folly:conv",
         "@folly//folly:memory",

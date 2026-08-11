@@ -1,10 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "ECKey",
+    name = "eckey",
     srcs = ["ECKeyExchangeTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestKeys",
         "//fizz/crypto/test:TestUtil",
         "//fizz/util:status",

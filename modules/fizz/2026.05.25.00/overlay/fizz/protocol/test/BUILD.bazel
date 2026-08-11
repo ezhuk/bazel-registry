@@ -6,7 +6,7 @@ cc_library(
     include_prefix = "fizz/protocol/test",
     visibility = ["//visibility:public"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "@folly//folly/ssl:openssl_ptr_types",
     ],
@@ -18,7 +18,7 @@ cc_library(
     include_prefix = "fizz/protocol/test",
     visibility = ["//visibility:public"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto",
     ],
 )
@@ -88,7 +88,7 @@ cc_test(
     srcs = ["CertTest.cpp"],
     deps = [
         ":cert_test_types",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "@folly//folly:string",
         "@folly//folly/portability:gtest",

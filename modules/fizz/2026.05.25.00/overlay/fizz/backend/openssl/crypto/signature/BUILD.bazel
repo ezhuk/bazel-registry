@@ -9,7 +9,6 @@ cc_library(
     include_prefix = "fizz/backend/openssl/crypto/signature",
     textual_hdrs = ["Signature-inl.h"],
     deps = [
-        "//fizz/backend/openssl/crypto",
         "//fizz/backend/openssl/crypto:key_utils",
         "//fizz/record",
         "@folly//folly:conv",
