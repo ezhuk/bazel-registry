@@ -4,7 +4,7 @@ cc_test(
     name = "batch_signature_peer_cert_test",
     srcs = ["BatchSignaturePeerCertTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl/certificate:cert_utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/experimental/batcher",
         "//fizz/experimental/client:batch_signature_peer_cert",

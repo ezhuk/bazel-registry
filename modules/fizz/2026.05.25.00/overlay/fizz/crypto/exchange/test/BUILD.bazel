@@ -28,7 +28,7 @@ cc_test(
     name = "x25519",
     srcs = ["X25519KeyExchangeTest.cpp"],
     deps = [
-        "//fizz/backend:libsodium",
+        "//fizz/backend/libsodium",
         "//fizz/util:status",
         "@folly//folly:range",
         "@folly//folly:string",

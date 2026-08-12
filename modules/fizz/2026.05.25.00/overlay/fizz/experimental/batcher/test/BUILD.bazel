@@ -4,7 +4,7 @@ cc_test(
     name = "batcher_test",
     srcs = ["BatcherTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl/certificate:cert_utils",
         "//fizz/crypto:utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/experimental/batcher",
