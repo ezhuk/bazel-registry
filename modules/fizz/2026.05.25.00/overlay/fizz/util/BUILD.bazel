@@ -18,7 +18,7 @@ cc_library(
     hdrs = ["FizzUtil.h"],
     include_prefix = "fizz/util",
     deps = [
-        "//fizz/backend:libsodium",
+        "//fizz/backend/libsodium",
         "//fizz/extensions/tokenbinding:token_binding_context",
         "//fizz/protocol:certificate",
         "//fizz/server:fizz_server_context",

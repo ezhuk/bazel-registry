@@ -70,7 +70,7 @@ cc_library(
     include_prefix = "fizz/extensions/delegatedcred",
     deps = [
         ":delegated_credential",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/protocol:certificate",
         "//fizz/protocol/clock",
         "//fizz/util:logging",
@@ -87,7 +87,7 @@ cc_library(
     deps = [
         ":delegated_credential",
         ":delegated_credential_utils",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/protocol/clock:system_clock",
         "@folly//folly/ssl:openssl_cert_utils",
     ],
@@ -101,7 +101,7 @@ cc_library(
     deps = [
         ":delegated_credential",
         ":delegated_credential_utils",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "@folly//folly/ssl:openssl_cert_utils",
     ],
 )

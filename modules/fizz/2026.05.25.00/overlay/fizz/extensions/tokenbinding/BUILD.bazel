@@ -37,7 +37,7 @@ cc_library(
     deps = [
         ":token_binding",
         ":utils",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "@folly//folly/ssl:openssl_ptr_types",
     ],
 )
@@ -71,7 +71,7 @@ cc_library(
     deps = [
         ":token_binding",
         ":utils",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/protocol:default_factory",
         "//fizz/record",
     ],

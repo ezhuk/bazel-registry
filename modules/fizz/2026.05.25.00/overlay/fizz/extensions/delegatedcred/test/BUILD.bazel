@@ -41,7 +41,7 @@ cc_test(
     name = "delegated_credential_factory_test",
     srcs = ["DelegatedCredentialFactoryTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/extensions/delegatedcred:delegated_credential_factory",
@@ -98,7 +98,7 @@ cc_test(
     name = "self_delegated_credential_test",
     srcs = ["SelfDelegatedCredentialTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:utils",
         "//fizz/crypto/test:TestUtil",
         "//fizz/extensions/delegatedcred:delegated_credential_utils",
