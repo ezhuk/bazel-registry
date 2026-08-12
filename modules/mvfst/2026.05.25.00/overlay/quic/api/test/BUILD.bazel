@@ -1,7 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = [
@@ -9,6 +7,7 @@ cc_library(
         "Mocks.h",
     ],
     include_prefix = "quic/api/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic:exception",
         "//quic/api:loop_detector_callback",
@@ -29,6 +28,7 @@ cc_library(
     name = "quic_typed_transport_test_util",
     hdrs = ["QuicTypedTransportTestUtil.h"],
     include_prefix = "quic/api/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/api:transport",
         "//quic/common/test:test_packet_builders",
@@ -42,6 +42,7 @@ cc_library(
     name = "test_quic_transport",
     hdrs = ["TestQuicTransport.h"],
     include_prefix = "quic/api/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/api:transport",
         "//quic/api:transport_helpers",

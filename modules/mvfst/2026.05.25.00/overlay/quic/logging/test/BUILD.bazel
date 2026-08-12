@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/logging/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/logging:qlogger",
         "@folly//folly/portability:gmock",

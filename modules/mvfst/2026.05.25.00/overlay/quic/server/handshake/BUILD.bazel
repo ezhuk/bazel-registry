@@ -83,7 +83,7 @@ cc_library(
     include_prefix = "quic/server/handshake",
     deps = [
         "//quic/codec:types",
-        "@fizz//fizz/backend:openssl",
+        "@fizz//fizz/backend/openssl",
         "@fizz//fizz/crypto",
         "@fizz//fizz/crypto:hkdf",
         "@fizz//fizz/util:status",

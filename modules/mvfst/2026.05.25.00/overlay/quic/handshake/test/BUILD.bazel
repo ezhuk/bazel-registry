@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/handshake/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic:exception",
         "//quic/codec:packet_number_cipher",

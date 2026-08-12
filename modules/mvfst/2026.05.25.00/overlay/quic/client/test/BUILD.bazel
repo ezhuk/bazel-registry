@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/client/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/client",
         "//quic/client:cached_server_tp",
@@ -23,6 +22,7 @@ cc_library(
     name = "QuicClientTransportMock",
     hdrs = ["QuicClientTransportMock.h"],
     include_prefix = "quic/client/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/client",
         "@folly//folly/portability:gmock",
