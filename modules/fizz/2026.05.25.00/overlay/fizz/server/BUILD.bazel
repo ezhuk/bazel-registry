@@ -34,7 +34,7 @@ cc_library(
     include_prefix = "fizz/server",
     deps = [
         ":token_cipher",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:hkdf",
         "//fizz/crypto:random",
         "//fizz/crypto:utils",
@@ -109,7 +109,7 @@ cc_library(
     include_prefix = "fizz/server",
     deps = [
         ":aead_cookie_cipher",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:hkdf",
         "//fizz/protocol:types",
     ],
@@ -327,7 +327,7 @@ cc_library(
     deps = [
         ":aead_ticket_cipher",
         ":ticket_codec",
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:hkdf",
         "//fizz/protocol:types",
     ],

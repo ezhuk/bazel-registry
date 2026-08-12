@@ -4,7 +4,7 @@ cc_test(
     name = "exported_authenticator_test",
     srcs = ["ExportedAuthenticatorTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "//fizz/extensions/exportedauth:exported_authenticator",
         "//fizz/protocol:default_factory",

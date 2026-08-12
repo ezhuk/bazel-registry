@@ -11,7 +11,7 @@ cc_library(
     ],
     include_prefix = "fizz/extensions/exportedauth",
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:hasher",
         "//fizz/crypto:utils",
         "//fizz/protocol",

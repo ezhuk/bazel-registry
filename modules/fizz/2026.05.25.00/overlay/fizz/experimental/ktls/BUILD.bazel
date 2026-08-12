@@ -19,7 +19,7 @@ cc_library(
     ],
     include_prefix = "fizz/experimental/ktls",
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/client:state",
         "//fizz/crypto/aead",
         "//fizz/experimental/util:cert_extraction",

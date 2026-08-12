@@ -27,7 +27,7 @@ cc_library(
     include_prefix = "fizz/server/test",
     visibility = ["//visibility:public"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto:random",
         "//fizz/protocol:default_certificate_verifier",
         "//fizz/protocol:default_factory",

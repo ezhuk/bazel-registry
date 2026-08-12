@@ -9,8 +9,8 @@ cc_library(
     include_prefix = "fizz/test",
     visibility = ["//visibility:public"],
     deps = [
-        "//fizz/backend:libsodium",
-        "//fizz/backend:openssl",
+        "//fizz/backend/libsodium",
+        "//fizz/backend/openssl",
         "//fizz/client:async_fizz_client",
         "//fizz/client/test:mocks",
         "//fizz/compression:zlib_certificate_compressor",
@@ -55,8 +55,8 @@ cc_test(
     srcs = ["HandshakeTest.cpp"],
     deps = [
         ":handshake_test_lib",
-        "//fizz/backend:libsodium",
-        "//fizz/backend:openssl",
+        "//fizz/backend/libsodium",
+        "//fizz/backend/openssl",
         "//fizz/client:async_fizz_client",
         "//fizz/client/test:mocks",
         "//fizz/compression:zlib_certificate_compressor",

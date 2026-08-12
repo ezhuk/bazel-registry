@@ -16,7 +16,7 @@ cc_test(
     name = "merkle_tree_test",
     srcs = ["MerkleTreeTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/test:TestUtil",
         "//fizz/experimental/crypto:merkle_tree",
         "@folly//folly/portability:gtest",

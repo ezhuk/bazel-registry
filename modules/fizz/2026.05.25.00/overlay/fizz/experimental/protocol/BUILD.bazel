@@ -18,7 +18,7 @@ cc_library(
     hdrs = ["BatchSignatureTypes.h"],
     include_prefix = "fizz/experimental/protocol",
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/record",
     ],
 )

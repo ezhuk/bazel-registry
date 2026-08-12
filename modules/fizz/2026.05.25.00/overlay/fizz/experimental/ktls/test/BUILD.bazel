@@ -4,7 +4,7 @@ cc_test(
     name = "async_fizz_base_ktls_test",
     srcs = ["AsyncFizzBaseKTLSTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/client:async_fizz_client",
         "//fizz/client:synchronized_lru_psk_cache",
         "//fizz/crypto/test:TestUtil",
@@ -29,7 +29,7 @@ cc_test(
     name = "async_ktls_rx_socket_test",
     srcs = ["AsyncKTLSRxSocketTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/experimental/ktls",
         "//fizz/record:encrypted_record_layer",
         "@folly//folly/io/async:async_socket",
@@ -44,7 +44,7 @@ cc_test(
     name = "async_ktls_socket_test",
     srcs = ["AsyncKTLSSocketTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/experimental/ktls",
         "//fizz/record:encrypted_record_layer",
         "@folly//folly/io/async:async_socket",
@@ -59,7 +59,7 @@ cc_test(
     name = "ktls_test",
     srcs = ["KTLSTest.cpp"],
     deps = [
-        "//fizz/backend:openssl",
+        "//fizz/backend/openssl",
         "//fizz/crypto/aead",
         "//fizz/experimental/ktls",
         "@folly//folly/test:test_utils",
