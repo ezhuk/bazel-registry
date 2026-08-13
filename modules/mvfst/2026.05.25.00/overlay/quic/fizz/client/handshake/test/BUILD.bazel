@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mock_psk_cache",
     hdrs = ["MockQuicPskCache.h"],
     include_prefix = "quic/fizz/client/handshake/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/common:optional",
         "//quic/fizz/client/handshake:psk_cache",
@@ -25,7 +24,7 @@ cc_test(
         "//quic/fizz/handshake:fizz_handshake",
         "//quic/state:early_data_app_params_handler",
         "//quic/state:quic_state_machine",
-        "@fizz//fizz/backend:openssl",
+        "@fizz//fizz/backend/openssl",
         "@fizz//fizz/client/test:mocks",
         "@fizz//fizz/crypto/test:TestUtil",
         "@fizz//fizz/protocol/clock/test:mock_clock",

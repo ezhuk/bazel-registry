@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "quic_client_transport_test_util",
     hdrs = ["QuicClientTransportTestUtil.h"],
     include_prefix = "quic/fizz/client/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/api:transport",
         "//quic/api/test:mocks",

@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/codec/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/codec:pktbuilder",
         "//quic/common/test:test_utils",

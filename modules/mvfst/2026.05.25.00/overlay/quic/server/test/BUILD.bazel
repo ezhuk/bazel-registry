@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/server/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/common/udpsocket:folly_async_udp_socket",
         "//quic/server",
@@ -18,6 +17,7 @@ cc_library(
     name = "quic_server_transport_test_util",
     hdrs = ["QuicServerTransportTestUtil.h"],
     include_prefix = "quic/server/test",
+    visibility = ["//visibility:public"],
     deps = [
         ":mocks",
         "//quic/api:transport_helpers",

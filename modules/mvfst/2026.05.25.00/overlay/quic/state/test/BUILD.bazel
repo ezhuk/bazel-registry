@@ -1,12 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "ack_event_test_util",
     srcs = ["AckEventTestUtil.cpp"],
     hdrs = ["AckEventTestUtil.h"],
     include_prefix = "quic/state/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/state:ack_event",
         "@googletest//:gtest",
@@ -20,6 +19,7 @@ cc_library(
         "Mocks.h",
     ],
     include_prefix = "quic/state/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic:constants",
         "//quic:exception",

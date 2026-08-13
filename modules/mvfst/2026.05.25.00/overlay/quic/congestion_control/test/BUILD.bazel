@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "mocks",
     hdrs = ["Mocks.h"],
     include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/congestion_control:bbr",
         "@folly//folly/portability:gmock",
@@ -17,6 +16,7 @@ cc_library(
     srcs = ["Utils.cpp"],
     hdrs = ["Utils.h"],
     include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/congestion_control:congestion_control_functions",
         "//quic/congestion_control:congestion_controller",
@@ -28,6 +28,7 @@ cc_library(
     name = "TestingCubic",
     hdrs = ["TestingCubic.h"],
     include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
     deps = ["//quic/congestion_control:cubic"],
 )
 

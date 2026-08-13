@@ -1,11 +1,10 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "test_client_utils",
     hdrs = ["TestClientUtils.h"],
     include_prefix = "quic/common/test",
+    visibility = ["//visibility:public"],
     deps = [
         "@fizz//fizz/protocol:certificate_verifier",
     ],
@@ -16,6 +15,7 @@ cc_library(
     srcs = ["TestPacketBuilders.cpp"],
     hdrs = ["TestPacketBuilders.h"],
     include_prefix = "quic/common/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//quic/api:quic_batch_writer",
         "//quic/codec:pktbuilder",
@@ -31,6 +31,7 @@ cc_library(
     srcs = ["TestUtils.cpp"],
     hdrs = ["TestUtils.h"],
     include_prefix = "quic/common/test",
+    visibility = ["//visibility:public"],
     deps = [
         ":test_packet_builders",
         "//quic/api:quic_batch_writer",
@@ -55,7 +56,7 @@ cc_library(
         "//quic/state:outstanding_packet",
         "//quic/state:quic_state_machine",
         "//quic/state/stream",
-        "@fizz//fizz/backend:openssl",
+        "@fizz//fizz/backend/openssl",
         "@fizz//fizz/client:fizz_client_context",
         "@fizz//fizz/crypto",
         "@fizz//fizz/crypto/test:TestUtil",

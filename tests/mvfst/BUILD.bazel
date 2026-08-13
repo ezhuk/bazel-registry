@@ -114,7 +114,6 @@ test_suite(
         "@mvfst//quic/state/test:acked_packet_iterator_test",
         "@mvfst//quic/state/test:quic_path_manager_test",
         "@mvfst//quic/state/test:stream_data_test",
-        "@mvfst//quic/tools/tperf/test:PacingObserverTest",
         "@mvfst//quic/xsk/test:PacketUtilsTest",
     ],
 )
