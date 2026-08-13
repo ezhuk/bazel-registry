@@ -47,6 +47,7 @@
     "quic/observer/BUILD.bazel": "sha256-EFU0pSGeAwZ4wq8M9uk0x3p+6pmpZdU9Mh+/xyXj1GE=",
     "quic/priority/test/BUILD.bazel": "sha256-IufawxzCuSBSaVBbqrAwxhVRG4rSFtbWP+njJ6uZJU0=",
     "quic/priority/BUILD.bazel": "sha256-Kt4o5aL0cjbpWpDiyg1PNGFKxmkPJvMx0nGNeU3lvlM=",
+    "quic/samples/echo/BUILD.bazel": "sha256-hF5lA2hGiX/0EJ1x7Dn9uy0BBsGQGGNyVRPXLO3fjLQ=",
     "quic/server/async_tran/test/BUILD.bazel": "sha256-jMwpeJSwcLw/KZZz3bYWZJGwXqQGhr6BJ0YigIiESak=",
     "quic/server/async_tran/BUILD.bazel": "sha256-zeBZHn5uIGiCffEcPy5chFiMk3+gb45s3JOcO9xARQc=",
     "quic/server/handshake/test/BUILD.bazel": "sha256-acf9LRsHFWuO2phUnf2ECd63ZVlHRxyzAhk19U46Peo=",
