@@ -23,7 +23,6 @@ cmake_configure_file(
         "FOLLY_HAVE_WEAK_SYMBOLS",
         "FOLLY_HAVE_LINUX_VDSO",
         "FOLLY_HAVE_INT128_T",
-        "FOLLY_HAVE_LIBLZ4",
         "FOLLY_HAVE_LIBLZMA",
         "FOLLY_HAVE_LIBZ",
         "FOLLY_HAVE_LIBZSTD",
@@ -31,6 +30,7 @@ cmake_configure_file(
     ],
     undefines = [
         "FOLLY_HAVE_LIBSNAPPY",
+        "FOLLY_HAVE_LIBLZ4",
         "FOLLY_USE_JEMALLOC",
         "FOLLY_HAVE_IFUNC",
         "FOLLY_HAVE_MALLOC_USABLE_SIZE",
