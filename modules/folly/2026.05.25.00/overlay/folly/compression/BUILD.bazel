@@ -16,11 +16,6 @@ cc_library(
         "Zstd.h",
     ],
     include_prefix = "folly/compression",
-    local_defines = [
-        "LZ4_STATIC_LINKING_ONLY",
-        "LZ4_HC_STATIC_LINKING_ONLY",
-        "LZ4F_STATIC_LINKING_ONLY",
-    ],
     deps = [
         ":compression_context_pool_singletons",
         "//folly:conv",
@@ -38,8 +33,6 @@ cc_library(
         "//folly/portability:windows",
         "@bzip2//:bz2",
         "@glog",
-        "@lz4",
-        "@snappy",
         "@xz//:lzma",
         "@zlib",
         "@zstd",
