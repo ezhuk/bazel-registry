@@ -29,7 +29,7 @@ cc_library(
         "HandlerContext-inl.h",
     ],
     deps = [
-        "//wangle/acceptor:acceptor_core",
+        "//wangle/acceptor",
         "@fmt",
         "@folly//folly:exception_wrapper",
         "@folly//folly:format",

@@ -8,7 +8,9 @@ cc_library(
     include_prefix = "wangle/bootstrap",
     textual_hdrs = ["AcceptRoutingHandler-inl.h"],
     deps = [
+        ":routing_data_handler",
         ":server_bootstrap",
+        "//wangle/channel",
     ],
 )
 
@@ -17,7 +19,13 @@ cc_library(
     hdrs = ["BaseClientBootstrap.h"],
     include_prefix = "wangle/bootstrap",
     deps = [
-        ":client_bootstrap",
+        "//wangle/channel",
+        "@folly//folly:network_address",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/ssl:ssl_session",
     ],
 )
 
@@ -35,11 +43,9 @@ cc_library(
     hdrs = ["ClientBootstrap.h"],
     include_prefix = "wangle/bootstrap",
     deps = [
+        ":base_client_bootstrap",
         "//wangle/channel",
-        "@folly//folly:network_address",
         "@folly//folly/executors:io_thread_pool_executor",
-        "@folly//folly/futures:core",
-        "@folly//folly/io:socket_option_map",
         "@folly//folly/io/async:async_socket",
         "@folly//folly/io/async:async_ssl_socket",
         "@folly//folly/io/async:destructor_check",
@@ -54,7 +60,7 @@ cc_library(
     include_prefix = "wangle/bootstrap",
     textual_hdrs = ["RoutingDataHandler-inl.h"],
     deps = [
-        ":client_bootstrap",
+        "//wangle/channel:async_socket_handler",
     ],
 )
 
@@ -68,21 +74,19 @@ cc_library(
     include_prefix = "wangle/bootstrap",
     textual_hdrs = ["ServerBootstrap-inl.h"],
     deps = [
-        ":client_bootstrap",
+        ":server_socket_factory",
         "//wangle/acceptor",
         "//wangle/acceptor:managed",
         "//wangle/channel",
-        "//wangle/ssl:ssl_config",
+        "//wangle/ssl:ssl_stats",
         "@folly//folly:exception_wrapper",
         "@folly//folly:shared_mutex",
         "@folly//folly:synchronized",
         "@folly//folly/executors:io_thread_pool_executor",
         "@folly//folly/executors/thread_factory:named_thread_factory",
         "@folly//folly/io/async:async_transport",
-        "@folly//folly/io/async:async_udp_server_socket",
         "@folly//folly/io/async:delayed_destruction",
         "@folly//folly/io/async:event_base_manager",
-        "@folly//folly/io/async:server_socket",
         "@folly//folly/synchronization:baton",
         "@folly//folly/system:hardware_concurrency",
     ],
@@ -93,6 +97,9 @@ cc_library(
     hdrs = ["ServerSocketFactory.h"],
     include_prefix = "wangle/bootstrap",
     deps = [
-        ":server_bootstrap",
+        "//wangle/acceptor",
+        "@folly//folly/io/async:async_udp_server_socket",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:server_socket",
     ],
 )

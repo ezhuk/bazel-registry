@@ -15,7 +15,10 @@ cc_library(
     srcs = ["MultiFilePoller.cpp"],
     hdrs = ["MultiFilePoller.h"],
     include_prefix = "wangle/util",
-    deps = [":util"],
+    deps = [
+        ":file_poller",
+        ":util",
+    ],
 )
 
 cc_library(

@@ -10,7 +10,7 @@ cc_test(
         "@folly//folly:file_util",
         "@folly//folly:singleton",
         "@folly//folly/portability:gtest",
-        "@folly//folly/portability:sysstat",
+        "@folly//folly/portability:sys_stat",
         "@folly//folly/synchronization:baton",
         "@folly//folly/testing:test_util",
         "@glog",

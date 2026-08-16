@@ -19,7 +19,7 @@ cc_test(
         "//wangle/acceptor",
         "//wangle/acceptor:accept_observer",
         "//wangle/test:test_main",
-        "@fizz//fizz/backend:openssl",
+        "@fizz//fizz/backend/openssl",
         "@fizz//fizz/crypto/test:TestUtil",
         "@fizz//fizz/protocol/test:cert_util",
         "@fizz//fizz/protocol/test:mocks",
@@ -53,7 +53,7 @@ cc_test(
     srcs = ["EvbHandshakeHelperTest.cpp"],
     deps = [
         ":mocks",
-        "//wangle/acceptor:evb_handshake_helper",
+        "//wangle/acceptor",
         "//wangle/test:test_main",
         "@folly//folly/futures:barrier",
         "@folly//folly/io/async:scoped_event_base_thread",
@@ -116,7 +116,7 @@ cc_test(
     name = "SocketPeekerTest",
     srcs = ["SocketPeekerTest.cpp"],
     deps = [
-        "//wangle/acceptor",
+        "//wangle/acceptor:socket_peeker",
         "//wangle/test:test_main",
         "@folly//folly/io/async/test:mocks",
         "@folly//folly/portability:gmock",
