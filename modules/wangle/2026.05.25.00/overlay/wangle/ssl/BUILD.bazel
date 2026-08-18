@@ -83,7 +83,7 @@ cc_library(
         ":ssl_config",
         ":ssl_context_config",
         ":ssl_util",
-        "//wangle/acceptor:acceptor_core",
+        "//wangle/acceptor:ssl_context_selection",
         "//wangle/util:file_poller",
         "@fizz",
         "@folly//folly:conv",
@@ -136,7 +136,6 @@ cc_library(
     include_prefix = "wangle/ssl",
     deps = [
         ":ssl_context_config",
-        "//wangle/acceptor:acceptor_core",
         "@folly//folly/futures:core",
         "@folly//folly/io/async:async_ssl_socket",
     ],
@@ -229,6 +228,7 @@ cc_library(
     deps = [
         ":ssl_config",
         ":ssl_stats",
+        ":tls_ticket_key_seeds",
     ],
 )
 
