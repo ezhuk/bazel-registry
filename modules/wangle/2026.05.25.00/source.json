@@ -15,7 +15,7 @@
     "wangle/client/ssl/test/BUILD.bazel": "sha256-mcYRBzMcbRQo9mP08km3sQJJjDwpZVSWMs6PeB+CYQc=",
     "wangle/client/ssl/BUILD.bazel": "sha256-uOm7Xm8kDalZFM5iqzsBeM6XV8zX46WGAvfyZRRbvfI=",
     "wangle/codec/test/BUILD.bazel": "sha256-8LkJMN59VCey8Zpx95By3WhlTVSG4Roa9UfwNYq+w1M=",
-    "wangle/codec/BUILD.bazel": "sha256-HoCBehV/bm5zcP5MTiKFDcihEvHFze0QGIkhKZVQaus=",
+    "wangle/codec/BUILD.bazel": "sha256-sQXzqQ/nQ8vqXVN/hdk6ifG2jdriwy+x1/n1JQaq1gI=",
     "wangle/service/test/BUILD.bazel": "sha256-l60tKlRH9VTwGKTMM7cQm9r0DcFJ20mGDVJOaARTP7I=",
     "wangle/service/BUILD.bazel": "sha256-UeaDmswmig9aVThQRt0Uosxcr3PDdOZH4oY/XijmYww=",
     "wangle/ssl/test/BUILD.bazel": "sha256-hClVAiq44O9jk33cMjn4d1BkMDFW7Zu2DMRAEtBX9Ww=",

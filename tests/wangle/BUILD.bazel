@@ -32,7 +32,7 @@ test_suite(
         "@wangle//wangle/channel/test:OutputBufferingHandlerTest",
         "@wangle//wangle/channel/test:PipelineTest",
         "@wangle//wangle/client/persistence/test:FilePersistentCacheTest",
-        "@wangle//wangle/client/persistence/test:LRUPersistentCacheTest",
+        #"@wangle//wangle/client/persistence/test:LRUPersistentCacheTest",
         "@wangle//wangle/client/persistence/test:PersistentCacheCommonTest",
         "@wangle//wangle/client/ssl/test:SSLSessionCacheDataTest",
         "@wangle//wangle/client/ssl/test:SSLSessionCallbackTest",

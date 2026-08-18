@@ -19,6 +19,7 @@ cc_library(
         "LineBasedFrameDecoder.cpp",
     ],
     hdrs = [
+        "ByteToMessageDecoder.h",
         "LengthFieldBasedFrameDecoder.h",
         "LengthFieldPrepender.h",
         "LineBasedFrameDecoder.h",
