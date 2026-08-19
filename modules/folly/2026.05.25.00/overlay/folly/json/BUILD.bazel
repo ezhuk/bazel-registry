@@ -38,6 +38,7 @@ cc_library(
         "//folly/lang:bits",
         "//folly/lang:exception",
         "//folly/portability:constexpr",
+        "@boost.iterator",
         "@fmt",
         "@glog",
     ],
