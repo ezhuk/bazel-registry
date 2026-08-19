@@ -98,7 +98,7 @@
     "folly/json/bser/test/BUILD.bazel": "sha256-EMfb4aHTEeiZw2McmpSLPX3LoE/28NpAtNjd6wJptx4=",
     "folly/json/bser/BUILD.bazel": "sha256-K8BZzy1m+lQ7wXmCrfR0mIxRQDPShYIsArrbpJs5xXQ=",
     "folly/json/test/BUILD.bazel": "sha256-rGM43wYIrrPEGC9ahaxytHzUJ0n54Ry0kH6ucITyf18=",
-    "folly/json/BUILD.bazel": "sha256-VjT1M+KbPObFG9bSErpYgwPiUpW0BqnPbMmcDb9KJbQ=",
+    "folly/json/BUILD.bazel": "sha256-zzcnevRwM27tPWIEL1/x5eQQmVfQR48iOsmFa5y7zJA=",
     "folly/lang/bind/test/BUILD.bazel": "sha256-MXYznRAzlFERmIdC90FI4W9auwtelIQaGBilM2ipntk=",
     "folly/lang/bind/BUILD.bazel": "sha256-Ir963kvtRwu3Oqy0OGQ27H6vExECYniJrVEpTQKeimI=",
     "folly/lang/test/BUILD.bazel": "sha256-e7qB+OBIhxoLiOq4wEd9Zh//B4yHYmKL+a2JChzH5KA=",

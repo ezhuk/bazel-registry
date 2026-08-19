@@ -9,6 +9,7 @@ cc_library(
         ":ssl_session_cache_data",
         ":ssl_session_cache_utils",
         ":ssl_session_callbacks",
+        ":ssl_session_persistent_cache",
         ":threadsafe_cache",
     ],
 )
@@ -57,7 +58,6 @@ cc_library(
 
 cc_library(
     name = "ssl_session_persistent_cache",
-    srcs = ["SSLSessionPersistentCache.cpp"],
     hdrs = ["SSLSessionPersistentCache.h"],
     include_prefix = "wangle/client/ssl",
     textual_hdrs = ["SSLSessionPersistentCache-inl.h"],
@@ -83,7 +83,7 @@ cc_library(
     hdrs = ["ThreadSafeSSLSessionCache.h"],
     include_prefix = "wangle/client/ssl",
     deps = [
-        "//wangle/client/ssl",
+        ":ssl_session_callbacks",
         "@folly//folly:shared_mutex",
         "@folly//folly/ssl:openssl_ptr_types",
     ],
