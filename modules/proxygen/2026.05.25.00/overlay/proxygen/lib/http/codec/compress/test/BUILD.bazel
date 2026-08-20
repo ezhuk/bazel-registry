@@ -10,6 +10,7 @@ cc_library(
         "TestUtil.h",
     ],
     include_prefix = "proxygen/lib/http/codec/compress/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//proxygen/lib/http/codec/compress:hpack",
         "//proxygen/lib/http/codec/compress:qpack",
@@ -49,7 +50,6 @@ cc_test(
         "@folly//folly:memory",
         "@folly//folly:range",
         "@folly//folly/io:iobuf",
-        "@folly//folly/json",
         "@folly//folly/json:dynamic",
         "@folly//folly/portability:gtest",
         "@glog",

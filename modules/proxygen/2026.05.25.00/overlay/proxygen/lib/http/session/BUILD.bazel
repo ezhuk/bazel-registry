@@ -197,7 +197,7 @@ cc_library(
         "@folly//folly/lang:assume",
         "@folly//folly/tracing:scoped_trace_section",
         "@glog",
-        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor",
     ],
 )
 
@@ -237,7 +237,7 @@ cc_library(
     deps = [
         "@mvfst//quic/api:transport",
         "@mvfst//quic/common:optional",
-        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor",
     ],
 )
 
@@ -324,7 +324,7 @@ cc_library(
         "@folly//folly/io/async:ssl_context",
         "@folly//folly/tracing:scoped_trace_section",
         "@glog",
-        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor",
         "@wangle//wangle/acceptor:managed",
     ],
 )

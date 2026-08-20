@@ -10,7 +10,7 @@ cc_library(
     deps = [
         ":dns_base",
         "//proxygen/lib/utils:time_util",
-        "@c-ares//:cares",
+        "@c-ares//:ares",
         "@folly//folly:conv",
         "@folly//folly:expected",
         "@folly//folly:network_address",
