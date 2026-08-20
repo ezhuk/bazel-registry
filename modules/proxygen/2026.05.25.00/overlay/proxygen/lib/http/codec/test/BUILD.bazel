@@ -20,6 +20,7 @@ cc_library(
         "@folly//folly:random",
         "@folly//folly/futures:core",
         "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
     ],
 )
@@ -30,6 +31,7 @@ cc_test(
     deps = [
         ":codectestutils",
         "//proxygen/lib/http/codec:http_binary_codec",
+        "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
         "@googletest//:gtest_main",
         "@mvfst//quic/codec:types",
@@ -76,6 +78,7 @@ cc_test(
     deps = [
         ":codectestutils",
         "//proxygen/lib/http/codec:direction",
+        "//proxygen/lib/http/codec:hq_codec",
         "//proxygen/lib/http/codec/compress/test:hpacktestutils",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",

@@ -5,6 +5,7 @@ cc_library(
     name = "mock_time",
     hdrs = ["MockTime.h"],
     include_prefix = "proxygen/lib/utils/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//proxygen/lib/utils:time_util",
         "@glog",
