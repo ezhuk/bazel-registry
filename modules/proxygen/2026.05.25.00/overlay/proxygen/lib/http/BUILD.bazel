@@ -128,7 +128,7 @@ cc_library(
     include_prefix = "proxygen/lib/http",
     deps = [
         ":client",
-        ":session_server",
+        "//proxygen/lib/http/session:server",
         "@folly//folly:conv",
         "@folly//folly:fbstring",
         "@folly//folly:fbvector",
@@ -226,7 +226,7 @@ cc_library(
     include_prefix = "proxygen/lib/http",
     deps = [
         "//proxygen/lib/http/session:http_transaction",
-        "//proxygen/lib/http/sink/client:sink_interface",
+        "//proxygen/lib/http/sink:client_sink_interface",
         "@folly//folly:memory",
         "@folly//folly/io/async:destructor_check",
     ],

@@ -17,6 +17,7 @@ cc_library(
     srcs = ["TestUtils.cpp"],
     hdrs = glob(["*.h"]),
     include_prefix = "proxygen/lib/http/session/test",
+    visibility = ["//visibility:public"],
     deps = [
         ":mock_quic_socket_driver",
         "//proxygen/lib/http",

@@ -12,6 +12,7 @@ cc_library(
         "TestUtils.h",
     ],
     include_prefix = "proxygen/lib/http/codec/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//proxygen/lib/http/codec:codec_common",
         "//proxygen/lib/http/codec:http2_codec",
