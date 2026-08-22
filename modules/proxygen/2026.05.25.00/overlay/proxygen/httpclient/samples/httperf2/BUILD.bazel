@@ -1,0 +1,42 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "libhttperf2",
+    srcs = [
+        "Client.cpp",
+        "HTTPerf2.cpp",
+    ],
+    hdrs = [
+        "Client.h",
+        "HTTPerf2.h",
+        "HTTPerfStats.h",
+    ],
+    include_prefix = "proxygen/httpclient/samples/httperf2",
+    deps = [
+        "//proxygen/httpserver/samples/hq:proxygen_hq_insecure_verifier",
+        "//proxygen/httpserver/samples/hq:proxygen_hq_logger_helper",
+        "//proxygen/lib/http:hq_connector",
+        "//proxygen/lib/http:http_connector_with_fizz",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/session:http_upstream_session",
+        "//proxygen/lib/utils:time_util",
+        "@boost.conversion",
+        "@fizz//fizz/backend/openssl/certificate:cert_utils",
+        "@fizz//fizz/client:psk_cache",
+        "@fizz/fizz/util:status",
+        "@folly//folly:file_util",
+        "@folly//folly:network_address",
+        "@folly//folly:random",
+        "@folly//folly:string",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:ssl_session",
+        "@mvfst//quic:constants",
+    ],
+)
