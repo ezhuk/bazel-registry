@@ -12,7 +12,7 @@ test_suite(
         "@fizz//fizz/backend/liboqs/test:oqs_key_exchange_test",
         "@fizz//fizz/backend/openssl/certificate/test:test",
         "@fizz//fizz/backend/openssl/crypto/aead/test:evpciphers",
-        "@fizz//fizz/backend/openssl/crypto/exchange/test:ECKey",
+        "@fizz//fizz/backend/openssl/crypto/exchange/test:eckey",
         "@fizz//fizz/backend/openssl/crypto/signature/test:ec",
         "@fizz//fizz/backend/openssl/crypto/signature/test:ed",
         "@fizz//fizz/backend/openssl/crypto/signature/test:peer_cert_verify",
