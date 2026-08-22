@@ -5,9 +5,11 @@ cc_test(
     srcs = ["DeviousBatonTests.cpp"],
     deps = [
         "//proxygen/httpserver/samples/hq/devious:proxygen_hq_devious_baton",
+        "//proxygen/lib/http/webtransport/test:mocks",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly:move_wrapper",
+        "@folly//folly/futures:core",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
     ],
 )

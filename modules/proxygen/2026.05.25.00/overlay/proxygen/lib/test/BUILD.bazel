@@ -3,6 +3,17 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
+    name = "testmain",
+    srcs = ["TestMain.cpp"],
+    include_prefix = "proxygen/lib/test",
+    deps = [
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:gtest",
+        "@glog",
+    ],
+)
+
+cc_library(
     name = "testtransport",
     srcs = ["TestAsyncTransport.cpp"],
     hdrs = ["TestAsyncTransport.h"],

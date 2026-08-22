@@ -58,6 +58,7 @@ cc_library(
         "RequestHandler.h",
         "RequestHandlerFactory.h",
         "ResponseBuilder.h",
+        "HTTPTransactionHandlerAdaptor.h",
     ],
     include_prefix = "proxygen/httpserver",
     deps = [

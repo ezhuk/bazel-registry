@@ -5,9 +5,7 @@ cc_test(
     srcs = ["FizzContextTest.cpp"],
     deps = [
         "//proxygen/httpserver/samples/hq:proxygen_hq_server",
-        "@folly//folly/portability:gmock",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
     ],
 )
