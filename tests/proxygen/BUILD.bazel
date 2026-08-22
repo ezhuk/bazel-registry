@@ -13,6 +13,7 @@ test_suite(
         #"@proxygen//proxygen/httpserver/samples/echo/test:EchoHandlerTests",
         #"@proxygen//proxygen/httpserver/samples/hq/devious/test:DeviousBatonTests",
         #"@proxygen//proxygen/httpserver/samples/hq/test:HQFizzContextTests",
+        "@proxygen//proxygen/httpserver/tests:HTTPServerTests",
         #"@proxygen//proxygen/lib/dns/test:DNSTests",
         "@proxygen//proxygen/lib/http/codec/compress/test:HPACKTests",
         "@proxygen//proxygen/lib/http/codec/test:BinaryCodecTests",

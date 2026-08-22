@@ -1,5 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "mock_quic_socket_driver",
@@ -9,6 +8,20 @@ cc_library(
         "@folly//folly/io/async:async_base",
         "@mvfst//quic/api/test:mocks",
         "@mvfst//quic/common/events:folly_eventbase",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["HTTPTransactionMocks.h"],
+    include_prefix = "proxygen/lib/http/session/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/session:http_transaction",
+        "//proxygen/lib/transport/test:mocks",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
     ],
 )
 
