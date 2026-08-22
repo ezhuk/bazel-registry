@@ -4,11 +4,10 @@ cc_test(
     name = "EchoHandlerTests",
     srcs = ["EchoHandlerTest.cpp"],
     deps = [
-        "//proxygen/httpclient/samples/curl:proxygencurl",
+        "//proxygen/httpserver:mocks",
         "//proxygen/httpserver/samples/echo",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
     ],
 )

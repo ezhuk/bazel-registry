@@ -15,6 +15,11 @@ cc_library(
     include_prefix = "proxygen/httpserver/samples/echo",
     deps = [
         "//proxygen/httpserver",
+        "//proxygen/httpserver:httpserver_headers",
+        "@folly//folly:memory",
         "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:unistd",
+        "@folly//folly/system:hardware_concurrency",
     ],
 )

@@ -1,4 +1,16 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "proxygen/lib/http/webtransport/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/webtransport",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "QuicWebTransportTest",
