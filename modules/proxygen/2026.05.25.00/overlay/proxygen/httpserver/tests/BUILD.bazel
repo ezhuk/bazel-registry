@@ -1,0 +1,35 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+
+cc_test(
+    name = "HTTPServerTests",
+    srcs = [
+        "HTTPServerTest.cpp",
+        "RequestHandlerAdaptorTest.cpp",
+    ],
+    deps = [
+        "//proxygen/httpclient/samples/curl:proxygencurl",
+        "//proxygen/httpserver",
+        "//proxygen/httpserver:mocks",
+        "//proxygen/httpserver:scoped_httpserver",
+        "//proxygen/lib/http:client",
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/session/test:mocks",
+        "//proxygen/lib/test:test_main",
+        "//proxygen/lib/utils:test_utils",
+        "@folly//folly:file_util",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/io/async:server_socket",
+        "@folly//folly/logging",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@folly//folly/system:hardware_concurrency",
+        "@folly//folly/testing:test_util",
+        "@wangle//wangle/acceptor",
+        "@wangle//wangle/acceptor:server_socket_config",
+        "@wangle//wangle/client/ssl:ssl_session_callbacks",
+    ],
+)

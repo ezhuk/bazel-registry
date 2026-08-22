@@ -1,4 +1,16 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["MockAsyncTransportCertificate.h"],
+    include_prefix = "proxygen/lib/transport/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly/io/async:async_transport_certificate",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/portability:gmock",
+    ],
+)
 
 cc_test(
     name = "TransportTests",
