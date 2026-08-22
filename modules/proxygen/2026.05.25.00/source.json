@@ -5,6 +5,7 @@
     "proxygen/external/BUILD.bazel": "sha256-aOjLsvEcVuftXuOkFJ8sCvy5Hv8OHOmnRz42uz3BwKg=",
     "proxygen/httpclient/samples/curl/BUILD.bazel": "sha256-4UyTv3LS2qkvCwReMwzbNzA/jSKTBk8DpwiGyK8D5bc=",
     "proxygen/httpclient/samples/H3Datagram/BUILD.bazel": "sha256-KuT9fW9IwyY2ih+NFBWeaYOkTGyJPXaLK9XWDHN/RMU=",
+    "proxygen/httpclient/samples/httperf2/BUILD.bazel": "sha256-0aqLM426nJWZ2WPDaMibkf+YqAbMXh9LFgzEmPf+CAM=",
     "proxygen/httpserver/samples/echo/BUILD.bazel": "sha256-9Fyw2uELkL9M/GF3mZngbGPYY+NjNLTMMgyxie20sPo=",
     "proxygen/httpserver/samples/echo/test/BUILD.bazel": "sha256-GOwj9cspTpxkb3nT1HOi26tvfx70OWZ3RXetMwO5cFE=",
     "proxygen/httpclient/samples/websocket/BUILD.bazel": "sha256-iuh3ksWqfw3FEuY6xvulIYaIW5RCoS+Ohw9DT2IX0+E=",
