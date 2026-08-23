@@ -1,5 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "dnstestutils",
@@ -9,7 +8,6 @@ cc_library(
         "MockDNSModule.h",
         "MockDNSResolver.h",
         "Mocks.h",
-        "SyncDNSResolverTest.h",
     ],
     include_prefix = "proxygen/lib/dns/test",
     deps = [
@@ -33,7 +31,6 @@ cc_test(
         "DNSResolverTest.cpp",
         "FutureDNSResolverTest.cpp",
         "Rfc6724Test.cpp",
-        "SyncDNSResolverTest.cpp",
     ],
     deps = [
         ":dnstestutils",
@@ -43,6 +40,7 @@ cc_test(
         "//proxygen/lib/dns:future_dns",
         "//proxygen/lib/dns:rfc6724",
         "//proxygen/lib/dns:sync_resolver",
+        "//proxygen/lib/test:testmain",
         "//proxygen/lib/utils/test:mock_time",
         "@folly//folly:memory",
         "@folly//folly:network_address",
@@ -52,6 +50,5 @@ cc_test(
         "@folly//folly/portability:gtest",
         "@folly//folly/portability:sockets",
         "@folly//folly/portability:unistd",
-        "@googletest//:gtest_main",
     ],
 )
