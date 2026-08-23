@@ -91,9 +91,9 @@ cc_library(
     hdrs = [
         "FizzContext.h",
         "H1QDownstreamSession.h",
+        "H1QUpstreamSession.h",
         "HQParams.h",
         "HQServer.h",
-        H1QUpstreamSession.h,
     ],
     include_prefix = "proxygen/httpserver/samples/hq",
     deps = [
@@ -107,7 +107,6 @@ cc_library(
         "//proxygen/lib/http/session:server",
         "@fizz//fizz/backend/openssl/certificate:cert_utils",
         "@fizz//fizz/client:fizz_client_context",
-        "@fizz//fizz/client:fizz_server_context",
         "@fizz//fizz/compression:zlib_certificate_decompressor",
         "@fizz//fizz/compression:zstd_certificate_decompressor",
         "@fizz//fizz/server:aead_ticket_cipher",

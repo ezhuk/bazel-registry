@@ -1,4 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
     name = "HTTPServerTests",
@@ -14,7 +14,7 @@ cc_test(
         "//proxygen/lib/http:client",
         "//proxygen/lib/http/codec/test:codectestutils",
         "//proxygen/lib/http/session/test:mocks",
-        "//proxygen/lib/test:test_main",
+        "//proxygen/lib/test:testmain",
         "//proxygen/lib/utils:test_utils",
         "@folly//folly:file_util",
         "@folly//folly/executors:io_thread_pool_executor",

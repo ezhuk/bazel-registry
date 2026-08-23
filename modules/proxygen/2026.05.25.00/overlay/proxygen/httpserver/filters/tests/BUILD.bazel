@@ -1,4 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
     name = "HTTPServerFilterTests",
@@ -7,7 +7,7 @@ cc_test(
         "//proxygen/httpserver",
         "//proxygen/httpserver:mocks",
         "//proxygen/httpserver/filters:compression_filter",
-        "//proxygen/lib/test:test_main",
+        "//proxygen/lib/test:testmain",
         "//proxygen/lib/utils:zlib_stream_compressor",
         "//proxygen/lib/utils:zstd_stream_decompressor",
         "@folly//folly:conv",
