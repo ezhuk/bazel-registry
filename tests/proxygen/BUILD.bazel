@@ -20,6 +20,7 @@ test_suite(
         "@proxygen//proxygen/lib/http/codec/test:CodecTests",
         "@proxygen//proxygen/lib/http/codec/test:HQCodecTests",
         "@proxygen//proxygen/lib/http/codec/test:HQFramerTests",
+        "@proxygen//proxygen/lib/http/codec/webtransport/test:WebTransportTests",
         "@proxygen//proxygen/lib/http/connpool/test:ConnpoolTests",
         "@proxygen//proxygen/lib/http/session/test:HQSessionTests",
         "@proxygen//proxygen/lib/http/session/test:SessionTests",

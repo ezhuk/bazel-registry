@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "WebTransportTests",
+    srcs = [
+        "WebTransportCapsuleCodecTest.cpp",
+        "WebTransportFramerTest.cpp",
+    ],
+    deps = [
+        "//proxygen/lib/http/codec:capsule_codec",
+        "//proxygen/lib/http/codec/webtransport:webtransport_capsule_codec",
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/folly_utils",
+    ],
+)

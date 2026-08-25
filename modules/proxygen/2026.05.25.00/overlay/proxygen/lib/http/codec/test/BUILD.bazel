@@ -1,5 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "codectestutils",
@@ -32,9 +31,9 @@ cc_test(
     deps = [
         ":codectestutils",
         "//proxygen/lib/http/codec:http_binary_codec",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
         "@mvfst//quic/codec:types",
         "@mvfst//quic/folly_utils",
     ],
@@ -61,12 +60,12 @@ cc_test(
         "//proxygen/lib/http/codec:http1x_codec",
         "//proxygen/lib/http/codec:http2_codec",
         "//proxygen/lib/http/codec:util",
+        "//proxygen/lib/test:testmain",
         "@folly//folly:base64",
         "@folly//folly:random",
         "@folly//folly:string",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
     ],
 )
 
@@ -81,9 +80,9 @@ cc_test(
         "//proxygen/lib/http/codec:direction",
         "//proxygen/lib/http/codec:hq_codec",
         "//proxygen/lib/http/codec/compress/test:hpacktestutils",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
         "@mvfst//quic/codec:types",
         "@mvfst//quic/state:quic_state_machine",
     ],
@@ -96,9 +95,9 @@ cc_test(
         ":codectestutils",
         "//proxygen/lib/http:h3_errors",
         "//proxygen/lib/http/codec:hq_codec",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/io:iobuf",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
         "@mvfst//quic/codec:types",
         "@mvfst//quic/folly_utils",
     ],
