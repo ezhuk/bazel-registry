@@ -24,15 +24,24 @@ cc_library(
 )
 
 cc_library(
+    name = "endpoint",
+    hdrs = ["Endpoint.h"],
+    include_prefix = "proxygen/lib/http/connpool",
+    deps = [
+        "@folly//folly:network_address",
+    ],
+)
+
+cc_library(
     name = "session_holder",
     srcs = ["SessionHolder.cpp"],
     hdrs = ["SessionHolder.h"],
     include_prefix = "proxygen/lib/http/connpool",
     deps = [
-        "//proxygen/http:error",
-        "//proxygen/http/session",
+        ":endpoint",
+        "//proxygen/lib/http:error",
+        "//proxygen/lib/http/session",
         "@folly//folly:intrusive_list",
-        "@folly//folly:network_address",
         "@folly//folly:random",
         "@folly//folly/io/async:async_socket",
     ],
