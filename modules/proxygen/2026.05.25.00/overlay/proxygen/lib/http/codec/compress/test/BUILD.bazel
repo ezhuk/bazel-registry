@@ -1,5 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "hpacktestutils",
@@ -43,6 +42,7 @@ cc_test(
         "//proxygen/lib/http/codec/compress:header_codec",
         "//proxygen/lib/http/codec/compress:hpack",
         "//proxygen/lib/http/codec/compress:qpack",
+        "//proxygen/lib/test:testmain",
         "@folly//folly:conv",
         "@folly//folly:expected",
         "@folly//folly:format",
@@ -53,6 +53,5 @@ cc_test(
         "@folly//folly/json:dynamic",
         "@folly//folly/portability:gtest",
         "@glog",
-        "@googletest//:gtest_main",
     ],
 )
