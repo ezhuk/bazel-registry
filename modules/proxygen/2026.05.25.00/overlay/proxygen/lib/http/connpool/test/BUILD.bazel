@@ -1,14 +1,33 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "session_pool_fixture",
+    hdrs = ["SessionPoolTestFixture.h"],
+    include_prefix = "proxygen/lib/http/connpool/test",
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/connpool:session_holder",
+        "//proxygen/lib/http/session:http_upstream_session",
+        "//proxygen/lib/test:testtransport",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
 
 cc_test(
     name = "ConnpoolTests",
     srcs = ["SessionPoolTest.cpp"],
     deps = [
+        ":session_pool_fixture",
         "//proxygen/lib/http/connpool",
-        "//proxygen/lib/test:testtransport",
-        "@folly//folly/portability:gmock",
-        "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
+        "//proxygen/lib/http/connpool:session_holder",
+        "//proxygen/lib/http/session/test:mocks",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/synchronization:baton",
+        "@wangle//wangle/acceptor:managed",
     ],
 )
