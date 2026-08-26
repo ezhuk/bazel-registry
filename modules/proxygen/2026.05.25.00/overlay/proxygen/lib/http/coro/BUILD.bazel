@@ -95,11 +95,35 @@ cc_library(
 )
 
 cc_library(
+    name = "fixed_source",
+    hdrs = ["HTTPFixedSource.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":http_source",
+        "@folly//folly/logging",
+        "//proxygen/lib/utils:url",
+    ],
+)
+
+cc_library(
     name = "handler_chain",
     srcs = ["HTTPHandlerChain.cpp"],
     hdrs = ["HTTPHandlerChain.h"],
     include_prefix = "proxygen/lib/http/coro",
     deps = [":coro"],
+)
+
+cc_library(
+    name = "http_source",
+    hdrs = ["HTTPSource.h"],
+    include_prefix = "proxygen/lib/http/coro",
+    deps = [
+        ":source",
+        "@folly//folly:function",
+        "@folly//folly:scope_guard",
+        "@folly//folly/coro:task",
+        "@folly//folly/logging",
+    ],
 )
 
 cc_library(

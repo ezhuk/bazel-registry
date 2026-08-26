@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mock_http_client",
+    hdrs = ["MockHTTPClient.h"],
+    include_prefix = "proxygen/lib/http/coro/client/test",
+    deps = [
+        "//proxygen/lib/http/coro/client:http_client_lib",
+    ],
+)
+
+cc_library(
+    name = "tests_common",
+    srcs = ["HTTPClientTestsCommon.cpp"],
+    hdrs = ["HTTPClientTestsCommon.h"],
+    include_prefix = "proxygen/lib/http/coro/client/test",
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/coro",
+        "//proxygen/lib/http/coro:fixed_source",
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/coro/client:http_client_lib",
+        "//proxygen/lib/http/coro/server:scoped_coro_httpserver",
+        "//proxygen/lib/utils:test_utils",
+        "@folly//folly/coro:baton",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "CoroDNSResolverTests",
+    srcs = ["CoroDNSResolverTests.cpp"],
+    deps = [
+        "//proxygen/lib/dns:dns_base",
+        "//proxygen/lib/dns/test:dnstestutils",
+        "//proxygen/lib/http/coro/client:dns_resolver",
+        "@folly//folly/coro:blocking_wait",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "HTTPClientTests",
+    srcs = ["HTTPClientTests.cpp"],
+    deps = [
+        "//proxygen/lib/http/coro:source",
+        "//proxygen/lib/http/coro/client:cert_reload_session_pool",
+        "//proxygen/lib/http/coro/client:http_client_connection_cache",
+        "//proxygen/lib/http/coro/client:http_connector",
+        "//proxygen/lib/http/coro/client:http_connpool",
+        "//proxygen/lib/http/coro/client/test:tests_common",
+        "//proxygen/lib/http/coro/util/test:test_helpers",
+        "@folly//folly:network_address",
+        "@folly//folly/coro:async_scope",
+        "@folly//folly/coro:collect",
+        "@folly//folly/coro:timeout",
+        "@folly//folly/coro:via_if_async",
+        "@folly//folly/logging",
+        "@mvfst//quic/api/test:mocks",
+        "@mvfst//quic/client",
+        "@mvfst//quic/state/test:mocks",
+        "@wangle//wangle/ssl/test:mocks",
+    ],
+)

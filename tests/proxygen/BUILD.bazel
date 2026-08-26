@@ -22,6 +22,8 @@ test_suite(
         "@proxygen//proxygen/lib/http/codec/test:HQFramerTests",
         "@proxygen//proxygen/lib/http/codec/webtransport/test:WebTransportTests",
         "@proxygen//proxygen/lib/http/connpool/test:ConnpoolTests",
+        "@proxygen//proxygen/lib/http/coro/client/test:CoroDNSResolverTests",
+        "@proxygen//proxygen/lib/http/coro/client/test:HTTPClientTests",
         "@proxygen//proxygen/lib/http/coro/util/test:AwaitableKeepAliveTest",
         "@proxygen//proxygen/lib/http/coro/util/test:CancellableBatonTest",
         "@proxygen//proxygen/lib/http/coro/util/test:DetachableExecutorTest",
