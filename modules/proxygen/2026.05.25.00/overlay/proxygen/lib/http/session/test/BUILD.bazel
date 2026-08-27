@@ -5,9 +5,12 @@ cc_library(
     hdrs = ["MockQuicSocketDriver.h"],
     include_prefix = "proxygen/lib/http/session/test",
     deps = [
+        "//proxygen/lib/transport/test:mocks",
+        "@folly//folly:format",
         "@folly//folly/io/async:async_base",
         "@mvfst//quic/api/test:mocks",
         "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/priority:http_priority_queue",
     ],
 )
 
@@ -64,13 +67,27 @@ cc_test(
     ],
     deps = [
         ":sessiontestutils",
+        "//proxygen/lib/http/codec:hq_codec",
+        "//proxygen/lib/http/codec:http1x_codec",
         "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/session:hq_byte_event_tracker",
+        "//proxygen/lib/http/session:hq_downstream_session",
+        "//proxygen/lib/http/session:hq_session",
+        "//proxygen/lib/test:testmain",
         "//proxygen/lib/test:testtransport",
+        "@folly//folly:expected",
+        "@folly//folly:random",
+        "@folly//folly:string",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:event_base_manager",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
+        "@mvfst//quic/api/test:mocks",
         "@mvfst//quic/codec:types",
+        "@mvfst//quic/priority:http_priority_queue",
         "@mvfst//quic/state:quic_state_machine",
+        "@wangle//wangle/acceptor:managed",
     ],
 )
 
@@ -92,9 +109,9 @@ cc_test(
     deps = [
         ":sessiontestutils",
         "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/test:testmain",
         "//proxygen/lib/test:testtransport",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
     ],
 )
