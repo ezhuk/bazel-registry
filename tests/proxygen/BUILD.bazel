@@ -28,6 +28,7 @@ test_suite(
         "@proxygen//proxygen/lib/http/coro/util/test:CancellableBatonTest",
         "@proxygen//proxygen/lib/http/coro/util/test:DetachableExecutorTest",
         "@proxygen//proxygen/lib/http/coro/util/test:TimedBatonTest",
+        "@proxygen//proxygen/lib/http/experimental/test:RFC1867Test",
         "@proxygen//proxygen/lib/http/session/test:HQSessionTests",
         "@proxygen//proxygen/lib/http/session/test:SessionTests",
         "@proxygen//proxygen/lib/http/structuredheaders/test:StructuredHeadersTests",
