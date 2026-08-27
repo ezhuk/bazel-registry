@@ -1,4 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "mocks",
@@ -13,15 +13,38 @@ cc_library(
 )
 
 cc_test(
+    name = "FlowControllerTest",
+    srcs = ["FlowControllerTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/webtransport:flow_controller",
+        "//proxygen/lib/test:testmain",
+    ],
+)
+
+cc_test(
     name = "QuicWebTransportTest",
     srcs = ["QuicWebTransportTest.cpp"],
     deps = [
+        ":mocks",
         "//proxygen/lib/http/session/test:mock_quic_socket_driver",
         "//proxygen/lib/http/webtransport:quicwebtransport",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
+        "@mvfst//quic/priority:http_priority_queue",
+    ],
+)
+
+cc_test(
+    name = "QuicWtSessionTest",
+    srcs = ["QuicWtSessionTest.cpp"],
+    deps = [
+        ":mocks",
+        "//proxygen/lib/http/session/test:mock_quic_socket_driver",
+        "//proxygen/lib/http/webtransport:quic_wt_session",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
     ],
 )
 
@@ -29,11 +52,11 @@ cc_test(
     name = "WebTransportAPITest",
     srcs = ["WebTransportAPITest.cpp"],
     deps = [
+        ":mocks",
         "//proxygen/lib/http/webtransport",
-        "@folly//folly/portability:gmock",
-        "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly:singleton",
+        "@folly//folly/io/async:async_base",
     ],
 )
 
@@ -43,10 +66,10 @@ cc_test(
     deps = [
         "//proxygen/lib/http/codec/test:codectestutils",
         "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
+        "@mvfst//quic/priority:http_priority_queue",
     ],
 )
 
@@ -56,9 +79,8 @@ cc_test(
     deps = [
         "//proxygen/lib/http/codec/webtransport:webtransport_framer",
         "//proxygen/lib/http/webtransport:wt_util",
-        "@folly//folly/portability:gmock",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/io:iobuf",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
     ],
 )
