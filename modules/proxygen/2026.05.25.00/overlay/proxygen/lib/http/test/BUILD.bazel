@@ -1,4 +1,4 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
     name = "LibHTTPTests",
@@ -12,10 +12,21 @@ cc_test(
         "WindowTest.cpp",
     ],
     deps = [
-        "//proxygen/lib/http",
-        "@folly//folly/portability:gmock",
+        "//proxygen/lib/http:http_common_headers",
+        "//proxygen/lib/http:http_connector_with_fizz",
+        "//proxygen/lib/http:http_headers",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http:priority_functions",
+        "//proxygen/lib/http:proxy_status",
+        "//proxygen/lib/http:window",
+        "//proxygen/lib/http/session:http_upstream_session",
+        "//proxygen/lib/http/structuredheaders:decoder",
+        "//proxygen/lib/test:testmain",
+        "//proxygen/lib/utils:test_utils",
+        "@fizz//fizz/protocol/test:cert_util",
+        "@fizz//fizz/server:async_fizz_server",
+        "@fizz//fizz/server/test:mocks",
+        "@fizz//fizz/server/test:utils",
         "@folly//folly/portability:gtest",
-        "@glog",
-        "@googletest//:gtest_main",
     ],
 )
