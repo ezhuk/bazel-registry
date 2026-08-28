@@ -51,7 +51,7 @@
     "proxygen/lib/http/BUILD.bazel": "sha256-SzJ8eQuK5K1MfxPzNIZ9RLbQ24dmEIV5D+QhbIpAtGA=",
     "proxygen/lib/pools/generators/coro/BUILD.bazel": "sha256-VcV5jtDu5gcsLJp1e7YGssThnu46webiq0lrKlfIdIQ=",
     "proxygen/lib/pools/generators/BUILD.bazel": "sha256-EIjWTatwh3BJ0hUainhSPKZMx9EYbv/2tQ0iU1dtZyY=",
-    "proxygen/lib/sampling/test/BUILD.bazel": "sha256-JUnMQitaAucnFK18rs3ql59uxmbE97DT0DbKOBHx9nk=",
+    "proxygen/lib/sampling/test/BUILD.bazel": "sha256-lWWZ9SGpKjPtuFulCGAMaSi10hTCaw6Z3GKqSqjfnSY=",
     "proxygen/lib/sampling/BUILD.bazel": "sha256-LyQGf4tfgFPSbCB+0eiW0tqIzegH+I9gubndQtL/Zrs=",
     "proxygen/lib/services/test/BUILD.bazel": "sha256-0ugoQGWGAIdms1PJVjOdSsLj8bYVUgkPJcN98gFGcM8=",
     "proxygen/lib/services/BUILD.bazel": "sha256-1baq5VbNw7l0AmUgl7adnlZwm2/YPugLhC8rAGj3ngk=",
