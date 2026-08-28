@@ -1,13 +1,13 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
     name = "AcceptorTest",
     srcs = ["AcceptorTest.cpp"],
     deps = [
+        "//proxygen/lib/test:testmain",
         "@folly//folly/io/async:async_base",
         "@folly//folly/portability:gtest",
         "@glog",
-        "@googletest//:gtest_main",
         "@wangle//wangle/acceptor",
     ],
 )
@@ -17,8 +17,8 @@ cc_test(
     srcs = ["RequestWorkerThreadTest.cpp"],
     deps = [
         "//proxygen/lib/services:service",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/executors:io_thread_pool_executor",
         "@folly//folly/portability:gtest",
-        "@googletest//:gtest_main",
     ],
 )
