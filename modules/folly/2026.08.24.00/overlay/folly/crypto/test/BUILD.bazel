@@ -1,0 +1,54 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "blake2xb_test",
+    srcs = ["Blake2xbTest.cpp"],
+    deps = [
+        "//folly:string",
+        "//folly/crypto:blake2xb",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "lt_hash_test",
+    srcs = ["LtHashTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:string",
+        "//folly/crypto:lt_hash",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "lt_hash_test_avx2",
+    srcs = ["LtHashTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:string",
+        "//folly/crypto:lt_hash",
+        "//folly/crypto:lt_hash_avx2",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "lt_hash_test_sse2",
+    srcs = ["LtHashTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly:string",
+        "//folly/crypto:lt_hash",
+        "//folly/crypto:lt_hash_sse2",
+        "//folly/io:iobuf",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)

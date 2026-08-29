@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "hex",
+    hdrs = ["hex.h"],
+    include_prefix = "folly/codec",
+    deps = [
+        "//folly/lang:align",
+        "//folly/lang:assume",
+    ],
+)
+
+cc_library(
+    name = "uuid",
+    hdrs = ["Uuid.h"],
+    include_prefix = "folly/codec",
+    deps = [
+        "//folly:portability",
+        "//folly/memory:uninitialized_memory_hacks",
+    ],
+)

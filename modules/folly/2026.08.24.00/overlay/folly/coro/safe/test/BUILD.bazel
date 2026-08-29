@@ -1,0 +1,52 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "async_closure_test",
+    srcs = ["AsyncClosureTest.cpp"],
+    deps = [
+        "//folly/coro:gtest_helpers",
+        "//folly/coro:timeout",
+        "//folly/coro:value_or_fatal",
+        "//folly/coro/safe:async_closure",
+        "//folly/fibers:semaphore",
+        "//folly/init",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "captures_test",
+    srcs = ["CapturesTest.cpp"],
+    deps = [
+        "//folly/coro/safe:captures",
+        "//folly/lang/bind",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "now_task_test",
+    srcs = ["NowTaskTest.cpp"],
+    deps = [
+        "//folly/coro:async_generator",
+        "//folly/coro:blocking_wait",
+        "//folly/coro:gtest_helpers",
+        "//folly/coro/safe:now_task",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "safe_task_test",
+    srcs = ["SafeTaskTest.cpp"],
+    deps = [
+        "//folly/coro:gtest_helpers",
+        "//folly/coro:timeout",
+        "//folly/coro/safe:safe_task",
+        "//folly/fibers:semaphore",
+        "//folly/init",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
