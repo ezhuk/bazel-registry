@@ -1,0 +1,51 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "omit_frame_pointer_func",
+    srcs = ["OmitFramePointerFunc.cpp"],
+    hdrs = ["OmitFramePointerFunc.h"],
+    copts = [
+        "-fomit-frame-pointer",
+        "-g",
+    ],
+    include_prefix = "folly/debugging/symbolizer/test",
+    deps = [
+        "//folly:c_portability",
+        "//folly/lang:hint",
+    ],
+)
+
+cc_test(
+    name = "omit_frame_pointer_test",
+    srcs = ["OmitFramePointerTest.cpp"],
+    deps = [
+        ":omit_frame_pointer_func",
+        "//folly/debugging/symbolizer",
+        "//folly/debugging/symbolizer:stack_trace",
+        "//folly/lang:hint",
+        "//folly/portability:gtest",
+        "//folly/test:test_utils",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "signal_handler_windows_test",
+    srcs = ["SignalHandlerWindowsTest.cpp"],
+    deps = [
+        "//folly:c_portability",
+        "//folly/debugging/symbolizer",
+        "//folly/portability:gtest",
+        "//folly/portability:windows",
+    ],
+)
+
+cc_test(
+    name = "symbol_cache_test",
+    srcs = ["SymbolCacheTest.cpp"],
+    deps = [
+        "//folly/debugging/symbolizer:symbol_cache",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)

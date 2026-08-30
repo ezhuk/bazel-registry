@@ -1,0 +1,106 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "base_test",
+    srcs = ["BaseTest.cpp"],
+    deps = [
+        "//folly:fbvector",
+        "//folly:map_util",
+        "//folly:memory",
+        "//folly:string",
+        "//folly/gen:base",
+        "//folly/json:dynamic",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "//folly/testing:test_util",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "combine_test",
+    srcs = ["CombineTest.cpp"],
+    deps = [
+        "//folly:fbvector",
+        "//folly/gen:base",
+        "//folly/gen:combine",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "file_test",
+    srcs = ["FileTest.cpp"],
+    deps = [
+        "//folly:file",
+        "//folly:range",
+        "//folly/container:array",
+        "//folly/gen:base",
+        "//folly/gen:file",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "istream_test",
+    srcs = ["IStreamTest.cpp"],
+    deps = [
+        "//folly/gen:base",
+        "//folly/gen:istream",
+        "//folly/gen:string",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "parallel_map_test",
+    srcs = ["ParallelMapTest.cpp"],
+    deps = [
+        "//folly:memory",
+        "//folly/gen:base",
+        "//folly/gen:parallel_map",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "parallel_test",
+    srcs = ["ParallelTest.cpp"],
+    deps = [
+        "//folly/gen:base",
+        "//folly/gen:parallel",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "string_test",
+    srcs = ["StringTest.cpp"],
+    deps = [
+        "//folly/functional:apply_tuple",
+        "//folly/gen:string",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_library(
+    name = "util",
+    hdrs = ["Bench.h"],
+    include_prefix = "folly/gen/test",
+    visibility = ["//visibility:public"],
+    deps = ["//folly:benchmark"],
+)

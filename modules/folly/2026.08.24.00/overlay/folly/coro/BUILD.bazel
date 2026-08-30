@@ -1,0 +1,744 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accumulate",
+    hdrs = ["Accumulate.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Accumulate-inl.h"],
+    deps = [
+        ":async_generator",
+        ":coroutine",
+        ":task",
+    ],
+)
+
+cc_library(
+    name = "async_generator",
+    hdrs = ["AsyncGenerator.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":auto_cleanup_fwd",
+        ":base_promise",
+        ":coroutine",
+        ":invoke",
+        ":result",
+        ":scope_exit",
+        ":via_if_async",
+        ":with_async_stack",
+        ":with_cancellation",
+        "//folly:cancellation_token",
+        "//folly:exception_wrapper",
+        "//folly:traits",
+        "//folly:try",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:manual_lifetime",
+        "//folly/lang:safe_alias_fwd",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "async_pipe",
+    hdrs = ["AsyncPipe.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":async_generator",
+        ":coroutine",
+        ":invoke",
+        ":small_unbounded_queue",
+        ":via_if_async",
+        "//folly:try",
+        "//folly/fibers:semaphore",
+    ],
+)
+
+cc_library(
+    name = "async_scope",
+    hdrs = ["AsyncScope.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":current_executor",
+        ":task",
+        "//folly:cancellation_token",
+        "//folly:exception_wrapper",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
+        "//folly/futures:core",
+        "//folly/portability:source_location",
+        "//folly/synchronization:relaxed_atomic",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "async_stack",
+    hdrs = ["AsyncStack.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":with_async_stack",
+        "//folly:executor",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "auto_cleanup",
+    hdrs = ["AutoCleanup.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":auto_cleanup_fwd",
+        ":collect",
+        ":task",
+    ],
+)
+
+cc_library(
+    name = "auto_cleanup_fwd",
+    hdrs = ["AutoCleanup-fwd.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":cleanup",
+        ":coroutine",
+    ],
+)
+
+cc_library(
+    name = "base_promise",
+    hdrs = ["BasePromise.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":current_executor",
+        ":error",
+        ":nothrow",
+        ":value_or_error",
+        "//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "baton",
+    srcs = ["Baton.cpp"],
+    hdrs = ["Baton.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        "//folly:try",
+        "//folly/synchronization:atomic_util",
+    ],
+)
+
+cc_library(
+    name = "blocking_wait",
+    hdrs = ["BlockingWait.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":task",
+        ":traits",
+        ":via_if_async",
+        ":with_async_stack",
+        "//folly:try",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:traits",
+        "//folly/executors:manual_executor",
+        "//folly/executors:sequenced_executor",
+        "//folly/fibers:core",
+        "//folly/lang:must_use_immediately",
+        "//folly/synchronization:baton",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "bounded_queue",
+    hdrs = ["BoundedQueue.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":task",
+        "//folly:mpmc_queue",
+        "//folly:producer_consumer_queue",
+        "//folly/fibers:semaphore",
+    ],
+)
+
+cc_library(
+    name = "cleanup",
+    hdrs = ["Cleanup.h"],
+    include_prefix = "folly/coro",
+    deps = ["//folly/functional:invoke"],
+)
+
+cc_library(
+    name = "collect",
+    hdrs = ["Collect.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Collect-inl.h"],
+    deps = [
+        ":async_generator",
+        ":async_pipe",
+        ":async_scope",
+        ":coroutine",
+        ":mutex",
+        ":task",
+        ":via_if_async",
+        "//folly:cancellation_token",
+        "//folly:exception_wrapper",
+        "//folly:try",
+        "//folly:unit",
+        "//folly/container:access",
+        "//folly/container:iterator",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
+        "//folly/coro/detail:current_async_frame",
+        "//folly/coro/detail:helpers",
+        "//folly/coro/detail:pick_task_wrapper",
+        "//folly/coro/detail:traits",
+        "//folly/coro/safe:now_task",
+        "//folly/coro/safe:safe_task",
+    ],
+)
+
+cc_library(
+    name = "concat",
+    hdrs = ["Concat.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Concat-inl.h"],
+    deps = [
+        ":async_generator",
+        ":coroutine",
+    ],
+)
+
+cc_library(
+    name = "coroutine",
+    hdrs = ["Coroutine.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        "//folly:portability",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "current_executor",
+    hdrs = ["CurrentExecutor.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":via_if_async",
+        ":with_async_stack",
+        "//folly:executor",
+        "//folly/io/async:request_context",
+    ],
+)
+
+cc_library(
+    name = "detach_on_cancel",
+    hdrs = ["DetachOnCancel.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":coroutine",
+        ":invoke",
+        ":task",
+        ":traits",
+        "//folly/coro/detail:helpers",
+    ],
+)
+
+cc_library(
+    name = "error",
+    hdrs = ["Error.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        "//folly:exception_wrapper",
+        "//folly:operation_cancelled",
+    ],
+)
+
+cc_library(
+    name = "filter",
+    hdrs = ["Filter.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Filter-inl.h"],
+    deps = [
+        ":async_generator",
+        ":coroutine",
+    ],
+)
+
+cc_library(
+    name = "future_util",
+    hdrs = ["FutureUtil.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":coroutine",
+        ":current_executor",
+        ":invoke",
+        ":task",
+        ":traits",
+        "//folly:cancellation_token",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "generator",
+    hdrs = ["Generator.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":invoke",
+        "//folly/lang:exception",
+    ],
+)
+
+cc_library(
+    name = "gmock_helpers",
+    hdrs = ["GmockHelpers.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":blocking_wait",
+        ":coroutine",
+        ":gtest_helpers",
+        ":result",
+        ":task",
+        "//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "gtest_helpers",
+    hdrs = ["GtestHelpers.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":blocking_wait",
+        ":coroutine",
+        ":task",
+        "//folly/debugging/exception_tracer:smart_exception_stack_trace_hooks",
+        "//folly/debugging/exception_tracer:smart_exception_tracer",
+        "//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "invoke",
+    hdrs = ["Invoke.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        "//folly/functional:invoke",
+        "//folly/lang:customization_point",
+    ],
+)
+
+cc_library(
+    name = "merge",
+    hdrs = ["Merge.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Merge-inl.h"],
+    deps = [
+        ":async_generator",
+        ":baton",
+        ":coroutine",
+        ":mutex",
+        ":task",
+        ":via_if_async",
+        ":with_cancellation",
+        "//folly:cancellation_token",
+        "//folly:executor",
+        "//folly:scope_guard",
+        "//folly/coro/detail:barrier",
+        "//folly/coro/detail:barrier_task",
+        "//folly/coro/detail:current_async_frame",
+        "//folly/coro/detail:helpers",
+    ],
+)
+
+cc_library(
+    name = "mutex",
+    srcs = ["Mutex.cpp"],
+    hdrs = ["Mutex.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":via_if_async",
+        "//folly:executor",
+    ],
+)
+
+cc_library(
+    name = "nothrow",
+    hdrs = ["Nothrow.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":via_if_async",
+        "//folly:exception_wrapper",
+        "//folly:portability",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "promise",
+    hdrs = ["Promise.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":coroutine",
+        "//folly:cancellation_token",
+        "//folly:try",
+        "//folly/futures:core",
+        "//folly/lang:safe_alias_fwd",
+        "//folly/synchronization:relaxed_atomic",
+    ],
+)
+
+cc_library(
+    name = "result",
+    hdrs = ["Result.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":error",
+        "//folly:try",
+        "//folly/result:try",
+        "//folly/result:value_only_result",
+    ],
+)
+
+cc_library(
+    name = "retry",
+    hdrs = ["Retry.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":result",
+        ":sleep",
+        ":task",
+        ":traits",
+        "//folly:cancellation_token",
+        "//folly:constexpr_math",
+        "//folly:exception_wrapper",
+        "//folly:random",
+        "//folly:try",
+    ],
+)
+
+cc_library(
+    name = "rust_adaptors",
+    hdrs = ["RustAdaptors.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":async_generator",
+        ":task",
+        "//folly:cancellation_token",
+        "//folly:executor",
+        "//folly:optional",
+        "//folly/futures:core",
+        "//folly/synchronization:baton",
+    ],
+)
+
+cc_library(
+    name = "scope_exit",
+    hdrs = ["ScopeExit.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":traits",
+        ":via_if_async",
+        "//folly:exception_wrapper",
+        "//folly:executor",
+        "//folly:scope_guard",
+        "//folly/functional:invoke",
+        "//folly/lang:assume",
+        "//folly/lang:customization_point",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "serial_queue_runner",
+    srcs = ["SerialQueueRunner.cpp"],
+    hdrs = ["SerialQueueRunner.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":task",
+        "//folly:exception_wrapper",
+    ],
+)
+
+cc_library(
+    name = "shared_lock",
+    hdrs = ["SharedLock.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":task",
+        "//folly:portability",
+        "//folly/synchronization:lock",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "shared_mutex",
+    srcs = ["SharedMutex.cpp"],
+    hdrs = ["SharedMutex.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":shared_lock",
+        ":via_if_async",
+        "//folly:executor",
+        "//folly:spin_lock",
+        "//folly:synchronized",
+    ],
+)
+
+cc_library(
+    name = "shared_promise",
+    hdrs = ["SharedPromise.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":promise",
+        "//folly:likely",
+        "//folly:small_vector",
+        "//folly:synchronized",
+        "//folly:utility",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "sleep",
+    hdrs = ["Sleep.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Sleep-inl.h"],
+    deps = [
+        ":coroutine",
+        ":future_util",
+        ":task",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "small_unbounded_queue",
+    hdrs = ["SmallUnboundedQueue.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":coroutine",
+        ":mutex",
+        ":task",
+        "//folly/channels/detail:atomic_queue",
+    ],
+)
+
+cc_library(
+    name = "synchronized",
+    hdrs = ["Synchronized.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":shared_lock",
+        ":shared_mutex",
+        ":task",
+        ":traits",
+        "//folly:utility",
+    ],
+)
+
+cc_library(
+    name = "task",
+    hdrs = ["Task.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":base_promise",
+        ":coroutine",
+        ":invoke",
+        ":result",
+        ":scope_exit",
+        ":traits",
+        ":via_if_async",
+        ":with_async_stack",
+        ":with_cancellation",
+        "//folly:cancellation_token",
+        "//folly:default_keep_alive_executor",
+        "//folly:executor",
+        "//folly:glog",
+        "//folly:portability",
+        "//folly:scope_guard",
+        "//folly:traits",
+        "//folly:try",
+        "//folly/coro/detail:inline_task",
+        "//folly/coro/detail:malloc",
+        "//folly/coro/detail:traits",
+        "//folly/futures:core",
+        "//folly/io/async:request_context",
+        "//folly/lang:assume",
+        "//folly/lang:must_use_immediately",
+        "//folly/lang:safe_alias_fwd",
+        "//folly/result",
+        "//folly/result:try",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "task_wrapper",
+    hdrs = ["TaskWrapper.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":task",
+        "//folly/lang:must_use_immediately",
+    ],
+)
+
+cc_library(
+    name = "timed_wait",
+    hdrs = ["TimedWait.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":baton",
+        ":coroutine",
+        ":invoke",
+        ":task",
+        ":traits",
+        "//folly:optional",
+        "//folly/coro/detail:helpers",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "timeout",
+    hdrs = ["Timeout.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Timeout-inl.h"],
+    deps = [
+        ":baton",
+        ":coroutine",
+        ":task",
+        ":traits",
+        ":with_cancellation",
+        "//folly:cancellation_token",
+        "//folly/coro/detail:pick_task_wrapper",
+        "//folly/coro/safe:now_task",
+        "//folly/coro/safe:safe_task",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["Traits.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "transform",
+    hdrs = ["Transform.h"],
+    include_prefix = "folly/coro",
+    textual_hdrs = ["Transform-inl.h"],
+    deps = [
+        ":async_generator",
+        ":coroutine",
+        "//folly:traits",
+    ],
+)
+
+cc_library(
+    name = "unbounded_queue",
+    hdrs = ["UnboundedQueue.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":task",
+        "//folly/concurrency:unbounded_queue",
+        "//folly/fibers:semaphore",
+    ],
+)
+
+cc_library(
+    name = "value_or_error",
+    hdrs = ["ValueOrError.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":via_if_async",
+        "//folly/result:try",
+    ],
+)
+
+cc_library(
+    name = "value_or_fatal",
+    hdrs = ["ValueOrFatal.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":task_wrapper",
+        ":via_if_async",
+        "//folly:unit",
+        "//folly/lang:assume",
+        "//folly/result",
+        "//folly/result:try",
+        "//folly/result:value_only_result",
+    ],
+)
+
+cc_library(
+    name = "via_if_async",
+    hdrs = ["ViaIfAsync.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":traits",
+        ":with_async_stack",
+        ":with_cancellation",
+        "//folly:executor",
+        "//folly:traits",
+        "//folly/coro/detail:malloc",
+        "//folly/io/async:request_context",
+        "//folly/lang:customization_point",
+        "//folly/lang:must_use_immediately",
+        "//folly/lang:safe_alias_fwd",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "with_async_stack",
+    hdrs = ["WithAsyncStack.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        ":traits",
+        "//folly/functional:invoke",
+        "//folly/lang:assume",
+        "//folly/lang:customization_point",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
+    name = "with_cancellation",
+    hdrs = ["WithCancellation.h"],
+    include_prefix = "folly/coro",
+    deps = [
+        ":coroutine",
+        "//folly:cancellation_token",
+        "//folly/lang:customization_point",
+        "//folly/lang:must_use_immediately",
+    ],
+)
