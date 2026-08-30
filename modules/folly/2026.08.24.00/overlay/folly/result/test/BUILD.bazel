@@ -1,0 +1,393 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "coded_rich_error_test",
+    srcs = ["coded_rich_error_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:coded_rich_error",
+        "//folly/result:immortal_rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_library(
+    name = "common",
+    hdrs = ["common.h"],
+    include_prefix = "folly/result/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:unit",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result",
+        "//folly/result:rich_error_base",
+    ],
+)
+
+cc_test(
+    name = "epitaph_bench",
+    srcs = ["epitaph_bench.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly/result:epitaph",
+        "//folly/result:immortal_rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "epitaph_test",
+    srcs = ["epitaph_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:coded_rich_error",
+        "//folly/result:epitaph",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "errc_rich_error_test",
+    srcs = ["errc_rich_error_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:errc_rich_error",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error_code",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "immortal_rich_error_test",
+    srcs = ["immortal_rich_error_test.cpp"],
+    deps = [
+        ":common",
+        "//folly/portability:gtest",
+        "//folly/result:epitaph",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/result:rich_msg",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "nestable_coded_rich_error_test",
+    srcs = ["nestable_coded_rich_error_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:nestable_coded_rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "or_unwind_epitaph_test",
+    srcs = ["or_unwind_epitaph_test.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/result:gtest_helpers",
+        "//folly/result:or_unwind_epitaph",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "or_unwind_test",
+    srcs = ["or_unwind_test.cpp"],
+    deps = [
+        "//folly:utility",
+        "//folly/coro:async_generator",
+        "//folly/coro:blocking_wait",
+        "//folly/coro:value_or_error",
+        "//folly/coro/safe:now_task",
+        "//folly/lang:must_use_immediately",
+        "//folly/lang:rvalue_reference_wrapper",
+        "//folly/portability:gtest",
+        "//folly/result:coro",
+        "//folly/result:value_only_result",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "result_bench",
+    srcs = ["result_bench.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly:exception_wrapper",
+        "//folly:portability",
+        "//folly/result",
+        "//folly/result:try",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "result_coro_bench",
+    srcs = ["result_coro_bench.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly:portability",
+        "//folly:scope_guard",
+        "//folly/lang:keep",
+        "//folly/result:coro",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "result_test",
+    srcs = ["result_test.cpp"],
+    deps = [
+        ":common",
+        "//folly/coro:gtest_helpers",
+        "//folly/coro:traits",
+        "//folly/coro/safe:now_task",
+        "//folly/result:gtest_helpers",
+        "//folly/result:or_unwind_epitaph",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_error_code_bench",
+    srcs = ["rich_error_code_bench.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly:benchmark",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_code",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_error_code_test",
+    srcs = ["rich_error_code_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/portability:gtest",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_code",
+        "//folly/test/common:test_main",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "rich_error_codes",
+    hdrs = ["rich_error_codes.h"],
+    include_prefix = "folly/result/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:traits",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_code",
+        "@fmt",
+    ],
+)
+
+cc_test(
+    name = "rich_error_test",
+    srcs = ["rich_error_test.cpp"],
+    deps = [
+        ":common",
+        ":rich_error_codes",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:epitaph",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_base",
+        "//folly/result:rich_error_code",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_bench",
+    srcs = ["rich_exception_ptr_bench.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly:exception_wrapper",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_base",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_library(
+    name = "rich_exception_ptr_check_get",
+    hdrs = ["rich_exception_ptr_check_get.h"],
+    include_prefix = "folly/result/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rich_exception_ptr_common",
+        "//folly/result:epitaph",
+        "//folly/result:rich_error",
+    ],
+)
+
+cc_library(
+    name = "rich_exception_ptr_common",
+    hdrs = ["rich_exception_ptr_common.h"],
+    include_prefix = "folly/result/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/result:rich_error_base",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_constexpr_test",
+    srcs = ["rich_exception_ptr_constexpr.cpp"],
+    deps = [
+        ":rich_exception_ptr_common",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_fmt_bench",
+    srcs = ["rich_exception_ptr_fmt_bench.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly/result:epitaph",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/result:rich_error_base",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_fmt_test",
+    srcs = ["rich_exception_ptr_fmt_test.cpp"],
+    deps = [
+        ":common",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:epitaph",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_fundamentals_test",
+    srcs = ["rich_exception_ptr_fundamentals_test.cpp"],
+    deps = [
+        ":rich_exception_ptr_common",
+        "//folly/portability:gtest",
+        "//folly/result:epitaph",
+        "//folly/result:immortal_rich_error",
+        "//folly/result:rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_immortal_test",
+    srcs = ["rich_exception_ptr_immortal_test.cpp"],
+    deps = [
+        ":rich_exception_ptr_check_get",
+        "//folly/portability:gtest",
+        "//folly/result:immortal_rich_error",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_misc_test",
+    srcs = ["rich_exception_ptr_misc_test.cpp"],
+    deps = [
+        ":rich_exception_ptr_check_get",
+        "//folly:operation_cancelled",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_exception_ptr_owned_test",
+    srcs = ["rich_exception_ptr_owned_test.cpp"],
+    deps = [
+        ":rich_exception_ptr_check_get",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rich_msg_test",
+    srcs = ["rich_msg_test.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/result:rich_msg",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "stack_epitaph_test",
+    srcs = ["stack_epitaph_test.cpp"],
+    deps = [
+        ":common",
+        "//folly:benchmark",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/result:coro",
+        "//folly/result:epitaph",
+        "//folly/result:gtest_helpers",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "try_test",
+    srcs = ["try_test.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/result:try",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "value_only_result_test",
+    srcs = ["value_only_result_test.cpp"],
+    deps = [
+        "//folly/result:gtest_helpers",
+        "//folly/result:value_only_result",
+        "//folly/test/common:test_main",
+    ],
+)

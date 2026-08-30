@@ -1,0 +1,296 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "align_test",
+    srcs = ["AlignTest.cpp"],
+    deps = [
+        "//folly/lang:align",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "aligned_test",
+    srcs = ["AlignedTest.cpp"],
+    deps = [
+        "//folly/lang:align",
+        "//folly/lang:aligned",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "badge_test",
+    srcs = ["BadgeTest.cpp"],
+    deps = [
+        "//folly/lang:badge",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "bits_class_test",
+    srcs = ["BitsClassTest.cpp"],
+    deps = [
+        "//folly/lang:bits_class",
+        "//folly/portability:gflags",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "bits_test",
+    srcs = ["BitsTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/container:span",
+        "//folly/lang:bits",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@fmt",
+    ],
+)
+
+cc_test(
+    name = "c_string_test",
+    srcs = ["CStringTest.cpp"],
+    deps = [
+        "//folly/lang:c_string",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "cast_test",
+    srcs = ["CastTest.cpp"],
+    deps = [
+        "//folly:utility",
+        "//folly/lang:cast",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "checked_math_test",
+    srcs = ["CheckedMathTest.cpp"],
+    deps = [
+        "//folly/lang:checked_math",
+        "//folly/lang:keep",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "cstring_view_test",
+    srcs = ["cstring_view_test.cpp"],
+    deps = [
+        "//folly:fbstring",
+        "//folly:range",
+        "//folly/lang:cstring_view",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@fmt",
+    ],
+)
+
+cc_test(
+    name = "exception_test",
+    srcs = ["ExceptionTest.cpp"],
+    deps = [
+        "//folly:portability",
+        "//folly/lang:align",
+        "//folly/lang:exception",
+        "//folly/lang:keep",
+        "//folly/lang:pretty",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@fmt",
+    ],
+)
+
+cc_test(
+    name = "extern_test",
+    srcs = ["ExternTest.cpp"],
+    deps = [
+        "//folly/lang:extern",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "hint_test",
+    srcs = ["HintTest.cpp"],
+    deps = [
+        "//folly/lang:hint",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "must_use_immediately_test",
+    srcs = ["MustUseImmediatelyTest.cpp"],
+    deps = [
+        "//folly:traits",
+        "//folly/lang:must_use_immediately",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "new_test",
+    srcs = ["NewTest.cpp"],
+    deps = [
+        "//folly/lang:align",
+        "//folly/lang:new",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "ordering_test",
+    srcs = ["OrderingTest.cpp"],
+    deps = [
+        "//folly/lang:ordering",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "pretty_test",
+    srcs = ["PrettyTest.cpp"],
+    deps = [
+        "//folly/lang:pretty",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "propagate_const_test",
+    srcs = ["PropagateConstTest.cpp"],
+    deps = [
+        "//folly/lang:propagate_const",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "rvalue_reference_wrapper_test",
+    srcs = ["RValueReferenceWrapperTest.cpp"],
+    deps = [
+        "//folly/lang:rvalue_reference_wrapper",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "safe_alias_test",
+    srcs = ["SafeAliasTest.cpp"],
+    deps = [
+        "//folly/detail:tuple",
+        "//folly/lang:safe_alias",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "safe_assert_test",
+    srcs = ["SafeAssertTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:conv",
+        "//folly/lang:keep",
+        "//folly/lang:safe_assert",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "safe_closure_test",
+    srcs = ["SafeClosureTest.cpp"],
+    deps = [
+        "//folly/coro/safe:captures",
+        "//folly/lang:safe_closure",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "strong_test",
+    srcs = ["StrongTest.cpp"],
+    deps = [
+        "//folly/hash:traits",
+        "//folly/lang:strong",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "switch_test",
+    srcs = ["SwitchTest.cpp"],
+    deps = [
+        "//folly/lang:switch",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "thunk_test",
+    srcs = ["ThunkTest.cpp"],
+    deps = [
+        "//folly:traits",
+        "//folly/lang:thunk",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "to_ascii_test",
+    srcs = ["ToAsciiTest.cpp"],
+    deps = [
+        "//folly/lang:to_ascii",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "type_info_test",
+    srcs = ["TypeInfoTest.cpp"],
+    deps = [
+        "//folly/lang:type_info",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "vector_traits_test",
+    srcs = ["VectorTraitsTest.cpp"],
+    deps = [
+        "//folly/lang:vector_traits",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)

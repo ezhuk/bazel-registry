@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "atomic_batch_dispatcher",
+    srcs = ["AtomicBatchDispatcher.cpp"],
+    hdrs = ["AtomicBatchDispatcher.h"],
+    include_prefix = "folly/fibers/detail",
+    deps = ["@fmt"],
+)

@@ -1,0 +1,42 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "async_stack_test",
+    srcs = ["AsyncStackTest.cpp"],
+    deps = [
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "static_tracepoint_test",
+    srcs = ["StaticTracepointTest.cpp"],
+    deps = [
+        ":static_tracepoint_test_module",
+        "//folly:conv",
+        "//folly:format",
+        "//folly:random",
+        "//folly:string",
+        "//folly:subprocess",
+        "//folly/debugging/symbolizer/detail:debug",
+        "//folly/lang:bits",
+        "//folly/portability:filesystem",
+        "//folly/portability:gtest",
+        "//folly/portability:unistd",
+        "//folly/test/common:test_main",
+        "//folly/tracing:static_tracepoint",
+        "@fmt",
+    ],
+)
+
+cc_library(
+    name = "static_tracepoint_test_module",
+    srcs = ["StaticTracepointTestModule.cpp"],
+    hdrs = ["StaticTracepointTestModule.h"],
+    include_prefix = "folly/tracing/test",
+    deps = ["//folly/tracing:static_tracepoint"],
+)
