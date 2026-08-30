@@ -1,6 +1,6 @@
 {
   "url": "https://github.com/facebook/folly/releases/download/v2026.08.24.00/folly-v2026.08.24.00.tar.gz",
-  "integrity": "sha256-2YCYjUdN6XcJTnew84PeD/flpptqB+/Nhymd6t5ajI0=",
+  "integrity": "sha256-2YCyjUdN6XcJTnew84PeD/flpptqB+/Nhymd6t5ajI0=",
   "overlay": {
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
     "folly/algorithm/simd/detail/test/BUILD.bazel": "sha256-ArU3GiogWTbuOhIxidbH9OccGbyxNpUZmizUa9IG+C0=",
@@ -51,7 +51,7 @@
     "folly/detail/base64_detail/test/BUILD.bazel": "sha256-laj/8EGdBi6HhCU4cQVm6TBI0d8qwWo4A6xLxigHJCM=",
     "folly/detail/base64_detail/BUILD.bazel": "sha256-qvGP4hvmfL/xBmPNUQ9dg1OybeR1klPYyU5bZBOAx8E=",
     "folly/detail/test/BUILD.bazel": "sha256-2TxBVc/gXbzWXELn3ZAwSTGe0W3h5mGWRr/JqvXtJnU=",
-    "folly/detail/BUILD.bazel": "sha256-mBd0QkV8iFECo+47Rg2qqHgd0Va+LGkcQszCChvqoco=",
+    "folly/detail/BUILD.bazel": "sha256-VNCwLAtGlqFi/kQUjmu7jjB9vGRfiqpfz2Q27RsOu20=",
     "folly/executors/task_queue/test/BUILD.bazel": "sha256-n6i9yLZDpIymO1u4vIieoqRTZdN5WDf4aIDJsJmmT40=",
     "folly/executors/task_queue/BUILD.bazel": "sha256-OF+5D2dJ4rZq2+AYsHus18O6CuRkpg1T5hoNKCSpuD4=",
     "folly/executors/thread_factory/BUILD.bazel": "sha256-2TM6D8wQ6LfnLdqrf8anOIdRPQR/UdHM+v5JOZrAS30=",
@@ -146,7 +146,7 @@
     "folly/system/test/BUILD.bazel": "sha256-yC4beyoeD1/5DeQNzpylkKXzs3MtFsXMjbSeWXA1wvQ=",
     "folly/system/BUILD.bazel": "sha256-ayu0kfHDh2WKVHUzvHH5/aCSIbbqrLZCyV7II4XdSa4=",
     "folly/test/common/BUILD.bazel": "sha256-Fp+7OQRUUk+YNKx1765LeceNSABPmg63QFSAvatcaLk=",
-    "folly/test/BUILD.bazel": "sha256-X52bWy3JwLtpGGimaqFJFJGo99Yiwnhb9qwhGcyczAg=",
+    "folly/test/BUILD.bazel": "sha256-nSxzska9e1q2XDsttoFxiU00SAVXgbK1B2Dr/eqZWAA=",
     "folly/testing/test/BUILD.bazel": "sha256-5gRW9M8u+mJ4w1p2MdJUOHeIIog656eNiH/93B8+wEg=",
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/test/BUILD.bazel": "sha256-Do3y9PneM/dtsO4V5UW/GVC9TqO4mz4XcmO7OACMsmI=",

@@ -97,7 +97,6 @@ cc_library(
     copts = ["-fno-omit-frame-pointer"],
     include_prefix = "folly/detail",
     deps = [
-        "//folly:random",
         "//folly:scope_guard",
         "//folly/hash",
         "//folly/portability:sys_syscall",
@@ -149,6 +148,7 @@ cc_library(
         ":futex",
         "//folly:glog",
         "//folly:portability",
+        "//folly:random",
         "//folly:scope_guard",
         "//folly/concurrency:cache_locality",
         "//folly/hash",
