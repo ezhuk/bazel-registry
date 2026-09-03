@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "X25519",
+    srcs = ["X25519.cpp"],
+    hdrs = ["X25519.h"],
+    include_prefix = "fizz/backend/libsodium/crypto/exchange",
+    deps = [
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly:conv",
+        "@folly//folly:optional",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@libsodium",
+    ],
+)
