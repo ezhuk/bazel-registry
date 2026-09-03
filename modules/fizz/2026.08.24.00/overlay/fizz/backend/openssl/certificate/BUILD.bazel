@@ -1,0 +1,47 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cert_utils",
+    srcs = ["CertUtils.cpp"],
+    hdrs = [
+        "CertUtils.h",
+        "OpenSSLPeerCertImpl.h",
+        "OpenSSLSelfCertImpl.h",
+        "X509ChainWithPkey.h",
+    ],
+    include_prefix = "fizz/backend/openssl/certificate",
+    textual_hdrs = [
+        "CertUtils-inl.h",
+        "OpenSSLPeerCertImpl-inl.h",
+        "OpenSSLSelfCertImpl-inl.h",
+    ],
+    deps = [
+        "//fizz:config",
+        "//fizz/backend/openssl/crypto/signature",
+        "//fizz/compression:certificate_compressor",
+        "//fizz/protocol:certificate",
+        "//fizz/record",
+        "//fizz/util:logging",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "cert_verifier",
+    srcs = ["OpenSSLCertificateVerifier.cpp"],
+    hdrs = ["OpenSSLCertificateVerifier.h"],
+    include_prefix = "fizz/backend/openssl/certificate",
+    deps = [
+        ":cert_utils",
+        "//fizz/protocol:certificate_verifier",
+        "@folly//folly:file_util",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@folly//folly/synchronization:call_once",
+    ],
+)
