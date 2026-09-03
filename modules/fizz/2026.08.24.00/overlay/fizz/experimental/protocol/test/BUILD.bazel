@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "batch_signature_types_test",
+    srcs = ["BatchSignatureTypesTest.cpp"],
+    deps = [
+        "//fizz/experimental/protocol:batch_signature_types",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

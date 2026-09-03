@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "data",
+    hdrs = ["Data.h"],
+    include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
+    deps = ["//fizz/record"],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/aead",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "test_util",
+    srcs = ["TestUtil.cpp"],
+    hdrs = ["TestUtil.h"],
+    include_prefix = "fizz/crypto/aead/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/aead:iobuf",
+        "@folly//folly:memory",
+        "@folly//folly:string",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_test(
+    name = "util_test",
+    srcs = ["IOBufUtilTest.cpp"],
+    deps = [
+        "//fizz/crypto/aead:iobuf",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

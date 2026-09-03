@@ -1,0 +1,20 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "liboqs",
+    srcs = ["OQSKeyExchange.cpp"],
+    hdrs = [
+        "LibOQS.h",
+        "OQSKeyExchange.h",
+    ],
+    include_prefix = "fizz/backend/liboqs",
+    deps = [
+        "//fizz:config",
+        "//fizz/crypto",
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly:memory",
+        "@liboqs//:oqs",
+    ],
+)

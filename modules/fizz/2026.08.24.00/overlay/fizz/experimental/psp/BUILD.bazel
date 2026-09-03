@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "psp",
+    srcs = [
+        "KernelPSP.cpp",
+        "PSP.cpp",
+    ],
+    hdrs = ["PSP.h"],
+    include_prefix = "fizz/experimental/psp",
+    deps = [
+        "//fizz/util:logging",
+        "@fmt",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:executor",
+        "@folly//folly:unit",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_transport",
+    ],
+)

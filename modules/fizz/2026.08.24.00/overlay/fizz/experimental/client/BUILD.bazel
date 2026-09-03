@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "batch_signature_peer_cert",
+    srcs = ["BatchSignaturePeerCert.cpp"],
+    hdrs = ["BatchSignaturePeerCert.h"],
+    include_prefix = "fizz/experimental/client",
+    deps = [
+        "//fizz/experimental/crypto:batch_signature",
+        "//fizz/experimental/protocol:batch_signature_types",
+        "//fizz/protocol:certificate",
+    ],
+)

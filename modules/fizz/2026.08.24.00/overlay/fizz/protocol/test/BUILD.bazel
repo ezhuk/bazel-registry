@@ -1,0 +1,180 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "cert_test_types",
+    hdrs = ["CertTestTypes.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto/test:TestUtil",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)
+
+cc_library(
+    name = "cert_util",
+    hdrs = ["CertUtil.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto",
+    ],
+)
+
+cc_library(
+    name = "matchers",
+    hdrs = ["Matchers.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/crypto/aead/test:mocks",
+        "//fizz/crypto/exchange/test:mocks",
+        "//fizz/crypto/test:mocks",
+        "//fizz/protocol:async_fizz_base",
+        "//fizz/protocol:certificate",
+        "//fizz/protocol:certificate_verifier",
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:handshake_context",
+        "//fizz/protocol:key_scheduler",
+        "//fizz/protocol:types",
+        "//fizz/protocol/ech:decrypter",
+        "//fizz/record/test:mocks",
+        "@folly//folly/io/async/test:mocks",
+    ],
+)
+
+cc_library(
+    name = "protocol_test",
+    hdrs = ["ProtocolTest.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":matchers",
+        ":mocks",
+        "//fizz/protocol:actions",
+        "//fizz/record/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "test_util",
+    hdrs = ["TestUtil.h"],
+    include_prefix = "fizz/protocol/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/protocol:params",
+        "//fizz/record",
+    ],
+)
+
+cc_test(
+    name = "cert_test",
+    srcs = ["CertTest.cpp"],
+    deps = [
+        ":cert_test_types",
+        "//fizz/backend/openssl",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/util:logging",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "certificate_verifier_test",
+    srcs = ["CertificateVerifierTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/protocol:certificate_verifier",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "exporter_test",
+    srcs = ["ExporterTest.cpp"],
+    deps = [
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:exporter",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "fizz_base_test",
+    srcs = ["FizzBaseTest.cpp"],
+    deps = [
+        "//fizz/protocol:fizz_base",
+        "//fizz/util:variant",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "handshake_context_test",
+    srcs = ["HandshakeContextTest.cpp"],
+    deps = [
+        "//fizz/protocol:default_factory",
+        "//fizz/protocol:handshake_context",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "key_derivation",
+    srcs = ["KeySchedulerTest.cpp"],
+    deps = [
+        "//fizz/crypto/test:mocks",
+        "//fizz/protocol:key_scheduler",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "key_scheduler_test_vectors",
+    srcs = ["KeySchedulerTestVectors.cpp"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto:key_derivation",
+        "//fizz/protocol:key_scheduler",
+        "@folly//folly:string",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "multi_backend_factory_test",
+    srcs = ["MultiBackendFactoryTest.cpp"],
+    deps = [
+        "//fizz/protocol:multi_backend_factory",
+        "//fizz/test:handshake_test_lib",
+        "@googletest//:gtest_main",
+    ],
+)
