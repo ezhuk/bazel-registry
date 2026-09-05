@@ -1,0 +1,381 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "byte_events",
+    srcs = ["ByteEvents.cpp"],
+    hdrs = ["ByteEvents.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/utils:time_util",
+        "@folly//folly:conv",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:portability",
+    ],
+)
+
+cc_library(
+    name = "hq_byte_event_tracker",
+    srcs = ["HQByteEventTracker.cpp"],
+    hdrs = ["HQByteEventTracker.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":transaction_byte_events",
+        "@mvfst//quic/api:transport",
+    ],
+)
+
+cc_library(
+    name = "hq_downstream_session",
+    srcs = ["HQDownstreamSession.cpp"],
+    hdrs = ["HQDownstreamSession.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [":hq_session"],
+)
+
+cc_library(
+    name = "hq_session",
+    srcs = [
+        "HQSession.cpp",
+        "HQStreamBase.cpp",
+    ],
+    hdrs = [
+        "HQSession.h",
+        "HQStreamBase.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":hq_byte_event_tracker",
+        ":http_transaction",
+        ":quic_protocol_info",
+        ":session",
+        ":stats",
+        ":stream_dispatcher",
+        ":webtransport_filter",
+        "//proxygen/lib/http:http_utils",
+        "//proxygen/lib/http:priority_functions",
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:h3_early_data_handler",
+        "//proxygen/lib/http/codec:hq_codec",
+        "//proxygen/lib/http/codec:http1x_codec",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/webtransport:httpwebtransport",
+        "//proxygen/lib/http/webtransport:wt_hq_session",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "//proxygen/lib/utils:conditional_gate",
+        "@folly//folly:cpp_attributes",
+        "@folly//folly:optional",
+        "@folly//folly:scope_guard",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/lang:assume",
+        "@mvfst//quic:constants",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/common:buf_util",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/folly_utils",
+        "@mvfst//quic/logging:qlogger_constants",
+        "@mvfst//quic/priority:http_priority_queue",
+        "@mvfst//quic/priority:priority_queue",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "hq_upstream_session",
+    srcs = ["HQUpstreamSession.cpp"],
+    hdrs = ["HQUpstreamSession.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":hq_session",
+        "@folly//folly/io/async:async_base",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "http_event",
+    srcs = ["HTTPEvent.cpp"],
+    hdrs = ["HTTPEvent.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/http:http_utils",
+        "//proxygen/lib/http/codec:codec_common",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "http_session_activity_tracker",
+    srcs = ["HTTPSessionActivityTracker.cpp"],
+    hdrs = [
+        "HTTPSessionActivityTracker.h",
+        "TransactionByteEvents.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":transaction_byte_events",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "http_session_codec_factory",
+    srcs = ["HTTPDefaultSessionCodecFactory.cpp"],
+    hdrs = ["HTTPDefaultSessionCodecFactory.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:codec_factory",
+        "//proxygen/lib/services:acceptor_configuration",
+    ],
+)
+
+cc_library(
+    name = "http_state_machine_lib",
+    srcs = [
+        "HTTPTransactionEgressSM.cpp",
+        "HTTPTransactionIngressSM.cpp",
+    ],
+    hdrs = [
+        "HTTPTransactionEgressSM.h",
+        "HTTPTransactionIngressSM.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/utils:state_machine",
+        "@folly//folly:indestructible",
+    ],
+)
+
+cc_library(
+    name = "http_transaction",
+    srcs = ["HTTPTransaction.cpp"],
+    hdrs = [
+        "HTTPSessionStats.h",
+        "HTTPTransaction.h",
+        "TTLBAStats.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":byte_events",
+        ":http2_priority_queue",
+        ":http_event",
+        ":http_state_machine_lib",
+        "//proxygen/lib/http:error",
+        "//proxygen/lib/http:http_header_size",
+        "//proxygen/lib/http:http_headers",
+        "//proxygen/lib/http:http_utils",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http:window",
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/observer:http_transaction_observer_container",
+        "//proxygen/lib/http/observer:http_transaction_observer_interface",
+        "//proxygen/lib/http/sink:flow_control_info",
+        "//proxygen/lib/http/webtransport",
+        "//proxygen/lib/http/webtransport:httpwebtransport",
+        "//proxygen/lib/http/webtransport:webtransportimpl",
+        "//proxygen/lib/utils:shared_wheel_timer",
+        "//proxygen/lib/utils:time_util",
+        "//proxygen/lib/utils:trace",
+        "@folly//folly:conv",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async:delayed_destruction",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/lang:assume",
+        "@folly//folly/tracing:scoped_trace_section",
+        "@glog",
+        "@wangle//wangle/acceptor",
+    ],
+)
+
+cc_library(
+    name = "http_upstream_session",
+    srcs = ["HTTPUpstreamSession.cpp"],
+    hdrs = ["HTTPUpstreamSession.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":session",
+        ":stats",
+        "//proxygen/lib/http/codec/compress:header_codec",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "http2_priority_queue",
+    srcs = ["HTTP2PriorityQueue.cpp"],
+    hdrs = ["HTTP2PriorityQueue.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/utils:shared_wheel_timer",
+        "@folly//folly:intrusive_list",
+        "@folly//folly/io/async:async_base",
+    ],
+)
+
+cc_library(
+    name = "quic_protocol_info",
+    hdrs = ["QuicProtocolInfo.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common:optional",
+        "@wangle//wangle/acceptor",
+    ],
+)
+
+cc_library(
+    name = "server",
+    srcs = [
+        "CodecErrorResponseHandler.cpp",
+        "HTTPDirectResponseHandler.cpp",
+        "HTTPDownstreamSession.cpp",
+        "HTTPErrorPage.cpp",
+        "HTTPSessionAcceptor.cpp",
+        "SimpleController.cpp",
+    ],
+    hdrs = [
+        "CodecErrorResponseHandler.h",
+        "HTTPDirectResponseHandler.h",
+        "HTTPDownstreamSession.h",
+        "HTTPErrorPage.h",
+        "HTTPSessionAcceptor.h",
+        "HTTPSessionController.h",
+        "SimpleController.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":http_session_codec_factory",
+        ":http_transaction",
+        ":session",
+        "//proxygen/lib/http:error",
+        "//proxygen/lib/http:http_headers",
+        "//proxygen/lib/http/codec:codec_factory",
+        "//proxygen/lib/services:http_acceptor",
+        "//proxygen/lib/utils:shared_wheel_timer",
+        "@folly//folly:conv",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "session",
+    srcs = [
+        "HTTPSession.cpp",
+        "HTTPSessionBase.cpp",
+    ],
+    hdrs = [
+        "HTTPSession.h",
+        "HTTPSessionBase.h",
+        "HTTPSessionController.h",
+        "SessionLoopCallback.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":http_event",
+        ":http_session_activity_tracker",
+        ":stats",
+        ":transaction_byte_events",
+        "//proxygen/lib/http:http_header_size",
+        "//proxygen/lib/http:http_utils",
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/codec:http1x_codec",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/http/codec:rate_limit_filters",
+        "//proxygen/lib/http/codec/compress:hpack",
+        "//proxygen/lib/http/observer:session_observer_container",
+        "//proxygen/lib/http/observer:session_observer_interface",
+        "//proxygen/lib/http/webtransport:httpwebtransport",
+        "//proxygen/lib/http/webtransport:webtransport_session",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "//proxygen/lib/utils:shared_wheel_timer",
+        "//proxygen/lib/utils:time_util",
+        "@fizz",
+        "@folly//folly:conv",
+        "@folly//folly:cpp_attributes",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:optional",
+        "@folly//folly:random",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:async_udp_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/tracing:scoped_trace_section",
+        "@glog",
+        "@wangle//wangle/acceptor",
+        "@wangle//wangle/acceptor:managed",
+    ],
+)
+
+cc_library(
+    name = "stats",
+    hdrs = [
+        "HTTPSessionStats.h",
+        "TTLBAStats.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+)
+
+cc_library(
+    name = "stream_dispatcher",
+    srcs = ["HQStreamDispatcher.cpp"],
+    hdrs = ["HQStreamDispatcher.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        "//proxygen/lib/http/codec:hq_codec",
+        "@folly//folly/io/async:async_base",
+        "@mvfst//quic/api:transport",
+    ],
+)
+
+cc_library(
+    name = "transaction_byte_events",
+    srcs = ["ByteEventTracker.cpp"],
+    hdrs = [
+        "AckLatencyEvent.h",
+        "ByteEventTracker.h",
+        "TransactionByteEvents.h",
+    ],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":byte_events",
+        ":http_transaction",
+        "//proxygen/lib/utils:time_util",
+    ],
+)
+
+cc_library(
+    name = "webtransport_filter",
+    hdrs = ["WebTransportFilter.h"],
+    include_prefix = "proxygen/lib/http/session",
+    deps = [
+        ":http_transaction",
+        "//proxygen/lib/http:http_message_filters",
+        "//proxygen/lib/http/codec:hq_codec",
+        "//proxygen/lib/http/codec/webtransport:webtransport_capsule_codec",
+        "//proxygen/lib/http/webtransport",
+        "@folly//folly/logging",
+    ],
+)

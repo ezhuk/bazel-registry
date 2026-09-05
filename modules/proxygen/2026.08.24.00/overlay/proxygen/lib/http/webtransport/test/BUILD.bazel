@@ -1,0 +1,86 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "proxygen/lib/http/webtransport/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proxygen/lib/http/codec:codec_common",
+        "//proxygen/lib/http/webtransport",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "FlowControllerTest",
+    srcs = ["FlowControllerTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/webtransport:flow_controller",
+        "//proxygen/lib/test:testmain",
+    ],
+)
+
+cc_test(
+    name = "QuicWebTransportTest",
+    srcs = ["QuicWebTransportTest.cpp"],
+    deps = [
+        ":mocks",
+        "//proxygen/lib/http/session/test:mock_quic_socket_driver",
+        "//proxygen/lib/http/webtransport:quicwebtransport",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/priority:http_priority_queue",
+    ],
+)
+
+cc_test(
+    name = "QuicWtSessionTest",
+    srcs = ["QuicWtSessionTest.cpp"],
+    deps = [
+        ":mocks",
+        "//proxygen/lib/http/session/test:mock_quic_socket_driver",
+        "//proxygen/lib/http/webtransport:quic_wt_session",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "WebTransportAPITest",
+    srcs = ["WebTransportAPITest.cpp"],
+    deps = [
+        ":mocks",
+        "//proxygen/lib/http/webtransport",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly:singleton",
+        "@folly//folly/io/async:async_base",
+    ],
+)
+
+cc_test(
+    name = "WtStreamManagerTest",
+    srcs = ["WtStreamManagerTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/priority:http_priority_queue",
+    ],
+)
+
+cc_test(
+    name = "WtUtilsTest",
+    srcs = ["WtUtilsTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+    ],
+)

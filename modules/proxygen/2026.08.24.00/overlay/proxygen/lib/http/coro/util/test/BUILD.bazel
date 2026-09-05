@@ -1,0 +1,56 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "test_helpers",
+    hdrs = ["TestHelpers.h"],
+    include_prefix = "proxygen/lib/http/coro/util/test",
+    deps = [
+        "@folly//folly/coro:gtest_helpers",
+    ],
+)
+
+cc_test(
+    name = "AwaitableKeepAliveTest",
+    srcs = ["AwaitableKeepAliveTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/coro/util:awaitable_keepalive",
+        "//proxygen/lib/http/coro/util:refcount",
+        "@folly//folly/coro:gmock_helpers",
+        "@folly//folly/coro:gtest_helpers",
+        "@folly//folly/io/async:scoped_event_base_thread",
+    ],
+)
+
+cc_test(
+    name = "CancellableBatonTest",
+    srcs = ["CancellableBatonTest.cpp"],
+    deps = [
+        ":test_helpers",
+        "//proxygen/lib/http/coro/util:cancellable_baton",
+        "@folly//folly/coro:blocking_wait",
+        "@folly//folly/coro:sleep",
+        "@folly//folly/futures:core",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "DetachableExecutorTest",
+    srcs = ["DetachableExecutorTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/coro/util:DetachableExecutor",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "TimedBatonTest",
+    srcs = ["TimedBatonTest.cpp"],
+    deps = [
+        ":test_helpers",
+        "//proxygen/lib/http/coro/util:timed_baton",
+        "@folly//folly/coro:blocking_wait",
+        "@folly//folly/io/async:scoped_event_base_thread",
+        "@folly//folly/portability:gtest",
+    ],
+)
