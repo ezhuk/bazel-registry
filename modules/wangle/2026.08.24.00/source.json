@@ -1,0 +1,29 @@
+{
+  "url": "https://github.com/facebook/wangle/releases/download/v2026.08.24.00/wangle-v2026.08.24.00.tar.gz",
+  "integrity": "sha256-HimvccYsffMBmSzwjagWlR1PkHX1jszoNpLZ8qTraBA=",
+  "overlay": {
+    "wangle/acceptor/test/BUILD.bazel": "sha256-sQ7cusft8cJNtzoDHm2xscB6PDNr03Pb95YNp4OMUTs=",
+    "wangle/acceptor/BUILD.bazel": "sha256-FPBkrDHWfNPmOgfrxYMOWGDTzXawFR28QWSqAnh58pU=",
+    "wangle/bootstrap/test/BUILD.bazel": "sha256-xEAgcqww96oo6zFtJ+Di27UqLwzpDcOzAMKfGYoDVqc=",
+    "wangle/bootstrap/BUILD.bazel": "sha256-3ggYpgUlG6ek2w2lyC5JDM3i3JLM8YulLgXB9qSPGIk=",
+    "wangle/channel/broadcast/test/BUILD.bazel": "sha256-jICJA2L+pY8fdvgPAmGiXagS3h37Y/N41Q4IiJpMRgU=",
+    "wangle/channel/broadcast/BUILD.bazel": "sha256-N6Vo0QaQ5p82PR7xQ7Mq6+Vfu4V1rhT/Uc+s/fG/gAc=",
+    "wangle/channel/test/BUILD.bazel": "sha256-VyzJ1vSrEcE6BqWYJPPdRhnkExgoUieAkXHDBq6aeek=",
+    "wangle/channel/BUILD.bazel": "sha256-eo0GlOw1BZXwenbZ0p/dDZHCbET5qwx1L/eHgbVJtpc=",
+    "wangle/client/persistence/test/BUILD.bazel": "sha256-fpbBEADgG1RT0+vzjgjjoq+hIn5ycTTn7A9j909Dsuk=",
+    "wangle/client/persistence/BUILD.bazel": "sha256-I5SRDdp0Y8WXQFvF3Ya8cdRLgqRXBSTKvY4yuk9JQ08=",
+    "wangle/client/ssl/test/BUILD.bazel": "sha256-/DDGCFWUJAQ9kGtobBG8DCLKSpByLKDKKX+fP6qvCgs=",
+    "wangle/client/ssl/BUILD.bazel": "sha256-cNPgPzgPq9XJKPY53z8OY4Byva41K8xSfAfZLRSnE3E=",
+    "wangle/codec/test/BUILD.bazel": "sha256-8LkJMN59VCey8Zpx95By3WhlTVSG4Roa9UfwNYq+w1M=",
+    "wangle/codec/BUILD.bazel": "sha256-sQXzqQ/nQ8vqXVN/hdk6ifG2jdriwy+x1/n1JQaq1gI=",
+    "wangle/service/test/BUILD.bazel": "sha256-l60tKlRH9VTwGKTMM7cQm9r0DcFJ20mGDVJOaARTP7I=",
+    "wangle/service/BUILD.bazel": "sha256-ccZF8vURD4EKiFdSjK0LjD+GkdKhUATNPbO7jYf7DUg=",
+    "wangle/ssl/test/BUILD.bazel": "sha256-wRJ0IAXkpNsbqIuRkCJb8MT5jgNCCYLiP848Rk5OaTg=",
+    "wangle/ssl/BUILD.bazel": "sha256-M+lO7vCJ9o04cC5wYjYPw1N3hJ+AfLUrhSZELo7mIGE=",
+    "wangle/test/BUILD.bazel": "sha256-iCZew3jlvwVTfaiK8HSZXJzOOOGnKGFRs1YuEUOgLUs=",
+    "wangle/util/test/BUILD.bazel": "sha256-UKFq23lqQOb6xnPV657ql9srW8YT3ek6Q4blnKvrq30=",
+    "wangle/util/BUILD.bazel": "sha256-iVvUDjK72Cvvjtq4VyNipr/7k9i/iFoB/J4SwH2wKAw=",
+    "wangle/BUILD.bazel": "sha256-VJehiHhjtGH77p/wZpfyUT9gTPEsOdIAW2Ne0nnCvng=",
+    "BUILD.bazel": "sha256-s+eliMLSk209XkZjgecUcb3Ssc1rh2VFTXjpv7/PJL4="
+  }
+}

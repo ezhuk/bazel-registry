@@ -1,0 +1,229 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accept_observer",
+    hdrs = ["AcceptObserver.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly/io/async:async_transport",
+    ],
+)
+
+cc_library(
+    name = "acceptor",
+    srcs = [
+        "Acceptor.cpp",
+        "AcceptorHandshakeManager.cpp",
+        "EvbHandshakeHelper.cpp",
+        "FizzAcceptorHandshakeHelper.cpp",
+        "SSLAcceptorHandshakeHelper.cpp",
+        "TLSPlaintextPeekingCallback.cpp",
+    ],
+    hdrs = [
+        "Acceptor.h",
+        "AcceptorHandshakeManager.h",
+        "EvbHandshakeHelper.h",
+        "FizzAcceptorHandshakeHelper.h",
+        "PeekingAcceptorHandshakeHelper.h",
+        "SSLAcceptorHandshakeHelper.h",
+        "SecurityProtocolContextManager.h",
+        "SharedSSLContextManager.h",
+        "TLSPlaintextPeekingCallback.h",
+        "UnencryptedAcceptorHandshakeHelper.h",
+    ],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":accept_observer",
+        ":fizz_config_util",
+        ":load_shed_configuration",
+        ":managed",
+        ":secure_transport_type",
+        ":server_socket_config",
+        ":socket_peeker",
+        ":transport_info",
+        "//wangle/ssl:ssl_cache_provider",
+        "//wangle/ssl:ssl_context_manager",
+        "//wangle/ssl:ssl_stats",
+        "//wangle/ssl:tls_ticket_key_seeds",
+        "//wangle/util:logging",
+        "@fizz//fizz/extensions/tokenbinding:token_binding_context",
+        "@fizz//fizz/extensions/tokenbinding:token_binding_server_extension",
+        "@fizz//fizz/record",
+        "@fizz//fizz/server:async_fizz_server",
+        "@fizz//fizz/server:cert_manager",
+        "@fizz//fizz/server:protocol",
+        "@fizz//fizz/server:ticket_cipher",
+        "@fizz//fizz/server:ticket_codec",
+        "@fizz//fizz/server:ticket_types",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:async_udp_server_socket",
+        "@folly//folly/io/async:server_socket",
+        "@folly//folly/io/async/fdsock:async_fd_socket",
+        "@wangle//wangle/ssl:client_hello_ext_stats",
+        "@wangle//wangle/ssl:fizz_fallback_state",
+    ],
+)
+
+cc_library(
+    name = "connection_counter",
+    hdrs = ["ConnectionCounter.h"],
+    include_prefix = "wangle/acceptor",
+)
+
+cc_library(
+    name = "fizz_config",
+    hdrs = ["FizzConfig.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@fizz//fizz/extensions/tokenbinding:token_binding",
+        "@fizz//fizz/protocol:async_fizz_base",
+        "@fizz//fizz/record",
+    ],
+)
+
+cc_library(
+    name = "fizz_config_util",
+    srcs = ["FizzConfigUtil.cpp"],
+    hdrs = ["FizzConfigUtil.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":server_socket_config",
+        "//wangle/ssl:password_in_file_factory",
+        "@fizz//fizz/backend/openssl/certificate:cert_utils",
+        "@fizz//fizz/protocol:default_certificate_verifier",
+        "@fizz//fizz/server:cert_manager",
+        "@fizz//fizz/server:fizz_server_context",
+        "@fizz//fizz/server:ticket_types",
+        "@fizz//fizz/util:fizz_util",
+        "@fmt",
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
+    name = "load_shed_configuration",
+    srcs = ["LoadShedConfiguration.cpp"],
+    hdrs = ["LoadShedConfiguration.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":network_address",
+        "@folly//folly:conv",
+        "@folly//folly:network_address",
+        "@folly//folly:range",
+        "@folly//folly/portability:openssl",
+    ],
+)
+
+cc_library(
+    name = "managed",
+    srcs = [
+        "ConnectionManager.cpp",
+        "ManagedConnection.cpp",
+    ],
+    hdrs = [
+        "ConnectionManager.h",
+        "ManagedConnection.h",
+    ],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly:constexpr_math",
+        "@folly//folly:intrusive_list",
+        "@folly//folly:memory",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)
+
+cc_library(
+    name = "network_address",
+    hdrs = ["NetworkAddress.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly:network_address",
+    ],
+)
+
+cc_library(
+    name = "secure_transport_type",
+    srcs = ["SecureTransportType.cpp"],
+    hdrs = ["SecureTransportType.h"],
+    include_prefix = "wangle/acceptor",
+)
+
+cc_library(
+    name = "server_socket_config",
+    hdrs = ["ServerSocketConfig.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":fizz_config",
+        ":socket_options",
+        "//wangle/ssl:sni_config",
+        "//wangle/ssl:ssl_cache_options",
+        "//wangle/ssl:ssl_context_config",
+        "//wangle/ssl:ssl_util",
+        "//wangle/ssl:tls_ticket_key_seeds",
+        "@folly//folly:network_address",
+        "@folly//folly:random",
+        "@folly//folly:string",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:ssl_context",
+    ],
+)
+
+cc_library(
+    name = "socket_options",
+    srcs = ["SocketOptions.cpp"],
+    hdrs = ["SocketOptions.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "socket_peeker",
+    hdrs = ["SocketPeeker.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_io_uring_socket",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/io/async:async_transport",
+    ],
+)
+
+cc_library(
+    name = "ssl_context_selection",
+    hdrs = ["SSLContextSelectionMisc.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        "@folly//folly:string",
+    ],
+)
+
+cc_library(
+    name = "transport_info",
+    srcs = ["TransportInfo.cpp"],
+    hdrs = ["TransportInfo.h"],
+    include_prefix = "wangle/acceptor",
+    deps = [
+        ":secure_transport_type",
+        "//wangle/ssl:ssl_util",
+        "@folly//folly:network_address",
+        "@folly//folly:optional",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/portability:sockets",
+    ],
+)
