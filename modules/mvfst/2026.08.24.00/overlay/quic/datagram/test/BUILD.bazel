@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "DatagramFlowManagerTest",
+    srcs = ["DatagramFlowManagerTest.cpp"],
+    deps = [
+        "//quic/datagram:datagram_flow_manager",
+        "//quic/priority:http_priority_queue",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

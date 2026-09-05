@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "StreamStateFunctionsTest",
+    srcs = ["StreamStateFunctionsTest.cpp"],
+    deps = [
+        "//quic/common/test:test_utils",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/logging:file_qlogger",
+        "//quic/server/state:server",
+        "//quic/state:stream_functions",
+        "//quic/state/stream",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "StreamStateMachineTest",
+    srcs = ["StreamStateMachineTest.cpp"],
+    deps = [
+        "//quic/api:transport_helpers",
+        "//quic/codec:types",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/state/stream",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

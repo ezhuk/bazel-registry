@@ -1,0 +1,34 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "http_priority_queue_test",
+    srcs = ["HTTPPriorityQueueTest.cpp"],
+    deps = [
+        "//quic/priority:http_priority_queue",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "priority_queue_test",
+    srcs = ["PriorityQueueTest.cpp"],
+    deps = [
+        "//quic/priority:priority_queue",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "round_robin_test",
+    srcs = ["RoundRobinTests.cpp"],
+    deps = [
+        "//quic/priority:round_robin",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
