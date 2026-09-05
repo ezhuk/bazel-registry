@@ -1,0 +1,70 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = [
+        "MockHandler.h",
+        "MockPipeline.h",
+    ],
+    include_prefix = "wangle/channel/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/channel",
+        "//wangle/channel:pipeline",
+        "@folly//folly:move_wrapper",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "AsyncSocketHandlerTest",
+    srcs = ["AsyncSocketHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/channel:async_socket_handler",
+        "//wangle/channel:pipeline",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "FileRegionTest",
+    srcs = ["FileRegionTest.cpp"],
+    deps = [
+        "//wangle/channel",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async/test:async_socket_test_lib",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "OutputBufferingHandlerTest",
+    srcs = ["OutputBufferingHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/channel:output_buffering_handler",
+        "//wangle/channel:static_pipeline",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async:async_socket",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "PipelineTest",
+    srcs = ["PipelineTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/channel",
+        "//wangle/channel:async_socket_handler",
+        "//wangle/channel:output_buffering_handler",
+        "//wangle/channel:static_pipeline",
+        "//wangle/test:test_main",
+        "@folly//folly/futures:barrier",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)

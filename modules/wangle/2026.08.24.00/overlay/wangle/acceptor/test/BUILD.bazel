@@ -1,0 +1,124 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["AcceptorHelperMocks.h"],
+    include_prefix = "wangle/acceptor/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/acceptor",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "AcceptorTest",
+    srcs = ["AcceptorTest.cpp"],
+    deps = [
+        "//wangle/acceptor",
+        "//wangle/acceptor:accept_observer",
+        "//wangle/test:test_main",
+        "@fizz//fizz/backend/openssl",
+        "@fizz//fizz/crypto/test:TestUtil",
+        "@fizz//fizz/protocol/test:cert_util",
+        "@fizz//fizz/protocol/test:mocks",
+        "@fizz//fizz/server:cert_manager",
+        "@folly//folly:file_util",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async/test:async_ssl_socket_test_lib",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "ConnectionManagerTest",
+    srcs = ["ConnectionManagerTest.cpp"],
+    deps = [
+        "//wangle/acceptor:managed",
+        "//wangle/test:test_main",
+        "@folly//folly:network_address",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:unistd",
+    ],
+)
+
+cc_test(
+    name = "EvbHandshakeHelperTest",
+    srcs = ["EvbHandshakeHelperTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/acceptor",
+        "//wangle/test:test_main",
+        "@folly//folly/futures:barrier",
+        "@folly//folly/io/async:scoped_event_base_thread",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:baton",
+    ],
+)
+
+cc_test(
+    name = "LoadShedConfigurationTest",
+    srcs = ["LoadShedConfigurationTest.cpp"],
+    deps = [
+        "//wangle/acceptor:load_shed_configuration",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "PeekingAcceptorHandshakeHelperTest",
+    srcs = ["PeekingAcceptorHandshakeHelperTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/acceptor",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "SecurityProtocolContextManagerTest",
+    srcs = ["SecurityProtocolContextManagerTest.cpp"],
+    deps = [
+        "//wangle/acceptor",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "SharedSSLContextManagerTest",
+    srcs = ["SharedSSLContextManagerTest.cpp"],
+    deps = [
+        "//wangle/acceptor",
+        "//wangle/test:test_main",
+        "@folly//folly:file_util",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "SocketPeekerTest",
+    srcs = ["SocketPeekerTest.cpp"],
+    deps = [
+        "//wangle/acceptor:socket_peeker",
+        "//wangle/test:test_main",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)

@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "wangle/client/persistence/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/client/persistence:persistent_cache",
+        "@folly//folly:optional",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "test_util",
+    srcs = ["TestUtil.cpp"],
+    hdrs = ["TestUtil.h"],
+    include_prefix = "wangle/client/persistence/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/client/persistence:file",
+        "@folly//folly:memory",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:unistd",
+        "@folly//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "FilePersistentCacheTest",
+    srcs = ["FilePersistentCacheTest.cpp"],
+    deps = [
+        ":test_util",
+        "//wangle/client/persistence:file",
+        "//wangle/test:test_main",
+        "@folly//folly/executors:manual_executor",
+        "@folly//folly/futures:barrier",
+        "@folly//folly/portability:unistd",
+    ],
+)
+
+cc_test(
+    name = "LRUPersistentCacheTest",
+    srcs = ["LRUPersistentCacheTest.cpp"],
+    deps = [
+        "//wangle/client/persistence:lru_persistent_cache",
+        "//wangle/test:test_main",
+        "@folly//folly:memory",
+        "@folly//folly/executors:manual_executor",
+        "@folly//folly/futures:core",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:baton",
+    ],
+)
+
+cc_test(
+    name = "PersistentCacheCommonTest",
+    srcs = ["PersistentCacheCommonTest.cpp"],
+    deps = [
+        "//wangle/client/persistence:persistent_cache_common",
+        "//wangle/test:test_main",
+        "@folly//folly/executors:manual_executor",
+        "@folly//folly/portability:gtest",
+    ],
+)

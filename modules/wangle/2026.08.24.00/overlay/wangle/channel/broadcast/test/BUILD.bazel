@@ -1,0 +1,64 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "wangle/channel/broadcast/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/channel/broadcast:broadcast_handler",
+        "//wangle/channel/broadcast:broadcast_pool",
+        "//wangle/channel/broadcast:observing_handler",
+        "//wangle/codec:byte_to_message_decoder",
+        "//wangle/codec:message_to_byte_encoder",
+        "@folly//folly:move_wrapper",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "BroadcastHandlerTest",
+    srcs = ["BroadcastHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/channel/test:mocks",
+        "//wangle/test:test_main",
+    ],
+)
+
+cc_test(
+    name = "BroadcastPoolTest",
+    srcs = ["BroadcastPoolTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/bootstrap:server_bootstrap",
+        "//wangle/channel",
+        "//wangle/channel/broadcast:broadcast_pool",
+        "//wangle/test:test_main",
+    ],
+)
+
+cc_test(
+    name = "ObservingClientPipelineTest",
+    srcs = ["ObservingClientPipelineTest.cpp"],
+    deps = [
+        "//wangle/bootstrap:client_bootstrap",
+        "//wangle/bootstrap:server_bootstrap",
+        "//wangle/channel",
+        "//wangle/channel/broadcast:observing_handler",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "ObservingHandlerTest",
+    srcs = ["ObservingHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/channel/test:mocks",
+        "//wangle/codec:message_to_byte_encoder",
+        "//wangle/test:test_main",
+    ],
+)

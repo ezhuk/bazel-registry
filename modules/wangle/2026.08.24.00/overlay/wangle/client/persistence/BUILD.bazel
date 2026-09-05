@@ -1,0 +1,83 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "file",
+    hdrs = ["FilePersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        ":lru_persistent_cache",
+        ":persistence",
+        "@folly//folly:file_util",
+        "@folly//folly:memory",
+        "@folly//folly:scope_guard",
+        "@folly//folly/json:dynamic",
+    ],
+)
+
+cc_library(
+    name = "lru_in_memory_cache",
+    hdrs = ["LRUInMemoryCache.h"],
+    include_prefix = "wangle/client/persistence",
+    textual_hdrs = ["LRUInMemoryCache-inl.h"],
+    deps = [
+        ":persistent_cache_common",
+        "@folly//folly:likely",
+        "@folly//folly:optional",
+        "@folly//folly/container:evicting_cache_map",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/synchronization:lock",
+    ],
+)
+
+cc_library(
+    name = "lru_persistent_cache",
+    hdrs = ["LRUPersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    textual_hdrs = ["LRUPersistentCache-inl.h"],
+    deps = [
+        ":lru_in_memory_cache",
+        ":persistent_cache",
+        ":persistent_cache_common",
+        "@folly//folly:executor",
+        "@folly//folly:file_util",
+        "@folly//folly:scope_guard",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:sys_time",
+        "@folly//folly/synchronization:lock",
+        "@folly//folly/synchronization:saturating_semaphore",
+        "@folly//folly/system:thread_name",
+    ],
+)
+
+cc_library(
+    name = "persistence",
+    srcs = ["FilePersistenceLayer.cpp"],
+    hdrs = ["FilePersistenceLayer.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        ":lru_persistent_cache",
+        "@folly//folly:file_util",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:unistd",
+    ],
+)
+
+cc_library(
+    name = "persistent_cache",
+    hdrs = ["PersistentCache.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = ["@folly//folly:optional"],
+)
+
+cc_library(
+    name = "persistent_cache_common",
+    srcs = ["PersistentCacheCommon.cpp"],
+    hdrs = ["PersistentCacheCommon.h"],
+    include_prefix = "wangle/client/persistence",
+    deps = [
+        "@folly//folly:executor",
+        "@folly//folly:optional",
+    ],
+)
