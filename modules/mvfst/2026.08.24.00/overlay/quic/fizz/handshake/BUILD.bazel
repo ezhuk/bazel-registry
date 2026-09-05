@@ -1,0 +1,52 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "fizz_bridge",
+    srcs = ["FizzBridge.cpp"],
+    hdrs = ["FizzBridge.h"],
+    include_prefix = "quic/fizz/handshake",
+    deps = [
+        "//quic:constants",
+        "//quic/handshake:aead",
+        "@fizz//fizz/crypto/aead",
+        "@fizz//fizz/protocol:types",
+    ],
+)
+
+cc_library(
+    name = "fizz_handshake",
+    srcs = [
+        "FizzCryptoFactory.cpp",
+        "FizzOpenSSLPacketNumberCipher.cpp",
+        "FizzRetryIntegrityTagGenerator.cpp",
+        "QuicFizzFactory.cpp",
+    ],
+    hdrs = [
+        "FizzCryptoFactory.h",
+        "FizzOpenSSLPacketNumberCipher.h",
+        "FizzPacketNumberCipher.h",
+        "FizzRetryIntegrityTagGenerator.h",
+        "FizzTransportParameters.h",
+        "QuicFizzFactory.h",
+    ],
+    include_prefix = "quic/fizz/handshake",
+    deps = [
+        ":fizz_bridge",
+        "//quic/codec:packet_number_cipher",
+        "//quic/common:buf_util",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/folly_utils",
+        "//quic/handshake",
+        "//quic/handshake:retry_integrity_tag_generator",
+        "//quic/handshake:transport_parameters",
+        "@fizz//fizz/crypto",
+        "@fizz//fizz/crypto:utils",
+        "@fizz//fizz/crypto/aead",
+        "@fizz//fizz/protocol:default_factory",
+        "@fizz//fizz/record",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)

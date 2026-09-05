@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "flow_control",
+    srcs = ["QuicFlowController.cpp"],
+    hdrs = ["QuicFlowController.h"],
+    include_prefix = "quic/flowcontrol",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/codec:types",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "@fmt",
+    ],
+)

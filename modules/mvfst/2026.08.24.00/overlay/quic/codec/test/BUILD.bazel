@@ -1,0 +1,203 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "DecodeTests",
+    srcs = ["DecodeTest.cpp"],
+    deps = [
+        "//quic/codec",
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common/test:test_utils",
+        "@folly//folly:random",
+        "@folly//folly/container:array",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "DefaultConnectionIdAlgoTest",
+    srcs = ["DefaultConnectionIdAlgoTest.cpp"],
+    deps = [
+        "//quic/codec:types",
+        "@folly//folly:random",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "EcnTruncationTest",
+    srcs = ["EcnTruncationTest.cpp"],
+    deps = [
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:ecn_l4s_tracker",
+        "//quic/state:ack_event",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "quic/codec/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//quic/codec:pktbuilder",
+        "//quic/common/test:test_utils",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "PacketNumberTest",
+    srcs = ["PacketNumberTest.cpp"],
+    deps = [
+        "//quic/codec:packet_number",
+        "//quic/codec:types",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicConnectionIdTest",
+    srcs = ["QuicConnectionIdTest.cpp"],
+    deps = [
+        "//quic/codec:types",
+        "//quic/common:contiguous_cursor",
+        "//quic/common:string_utils",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicHeaderCodec",
+    srcs = ["QuicHeaderCodecTest.cpp"],
+    deps = [
+        "//quic:exception",
+        "//quic/codec:header_codec",
+        "//quic/common:optional",
+        "//quic/common/test:test_utils",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicIntegerTest",
+    srcs = ["QuicIntegerTest.cpp"],
+    deps = [
+        "//quic:exception",
+        "//quic/codec:types",
+        "//quic/common:contiguous_cursor",
+        "//quic/common:mvfst_logging",
+        "//quic/common:string_utils",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicPacketBuilderTest",
+    srcs = ["QuicPacketBuilderTest.cpp"],
+    deps = [
+        ":mocks",
+        "//quic/codec",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:types",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/handshake:fizz_handshake",
+        "@folly//folly:random",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicPacketRebuilderTest",
+    srcs = ["QuicPacketRebuilderTest.cpp"],
+    deps = [
+        ":mocks",
+        "//quic/codec",
+        "//quic/codec:pktbuilder",
+        "//quic/codec:pktrebuilder",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/server/state:server",
+        "//quic/state:quic_state_machine",
+        "//quic/state/stream",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicReadCodecTests",
+    srcs = ["QuicReadCodecTest.cpp"],
+    deps = [
+        "//quic:exception",
+        "//quic/codec",
+        "//quic/codec:pktbuilder",
+        "//quic/common:string_utils",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/handshake:fizz_handshake",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicWriteCodecTests",
+    srcs = ["QuicWriteCodecTest.cpp"],
+    copts = ["-ftemplate-backtrace-limit=0"],
+    deps = [
+        ":mocks",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/codec",
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common:circular_deque",
+        "//quic/common/test:test_utils",
+        "//quic/state:transport_settings",
+        "@folly//folly:random",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "server_connection_id_params_test",
+    srcs = ["ServerConnectionIdParamsTest.cpp"],
+    deps = [
+        "//quic/codec:types",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "TypesTests",
+    srcs = ["TypesTest.cpp"],
+    deps = [
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common/test:test_utils",
+        "@folly//folly/container:array",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

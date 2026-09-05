@@ -1,0 +1,264 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "BandwidthTest",
+    srcs = ["BandwidthTest.cpp"],
+    deps = [
+        "//quic/congestion_control:bandwidth",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "Bbr2GainValidationTest",
+    srcs = ["Bbr2GainValidationTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bandwidth",
+        "//quic/congestion_control:bbr2",
+        "//quic/state:transport_settings_functions",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "Bbr2ModularSpuriousLossTest",
+    srcs = ["Bbr2ModularSpuriousLossTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control/modular:bbr2_probe_bw",
+        "//quic/congestion_control/modular:bbr2_probe_rtt",
+        "//quic/congestion_control/modular:bbr2_startup",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "Bbr2Test",
+    srcs = ["Bbr2Test.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr2",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "BbrBandwidthSamplerTest",
+    srcs = ["BbrBandwidthSamplerTest.cpp"],
+    deps = [
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr_bandwidth_sampler",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "BbrRttSamplerTest",
+    srcs = ["BbrRttSamplerTest.cpp"],
+    deps = [
+        "//quic/congestion_control:bbr_rtt_sampler",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "BbrTest",
+    srcs = ["BbrTest.cpp"],
+    deps = [
+        ":mocks",
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr",
+        "//quic/congestion_control:bbr_bandwidth_sampler",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CongestionControlFunctionsTest",
+    srcs = ["CongestionControlFunctionsTest.cpp"],
+    deps = [
+        "//quic:constants",
+        "//quic/congestion_control:congestion_control_functions",
+        "//quic/state:quic_state_machine",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CopaTest",
+    srcs = ["CopaTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:copa",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CubicStateTest",
+    srcs = ["CubicStateTest.cpp"],
+    deps = [
+        ":TestingCubic",
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "CubicTest",
+    srcs = [
+        "CubicHystartTest.cpp",
+        "CubicRecoveryTest.cpp",
+        "CubicSteadyTest.cpp",
+        "CubicTest.cpp",
+    ],
+    deps = [
+        ":TestingCubic",
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:cubic",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "EcnL4sTrackerTest",
+    srcs = ["EcnL4sTrackerTest.cpp"],
+    deps = [
+        "//quic/api/test:api_mocks",
+        "//quic/api/test:mocks",
+        "//quic/congestion_control:ecn_l4s_tracker",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//quic/congestion_control:bbr",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "NewRenoTest",
+    srcs = ["NewRenoTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:newreno",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "PacerTest",
+    srcs = ["PacerTest.cpp"],
+    deps = [
+        "//quic/congestion_control:pacer",
+        "//quic/logging/test:mocks",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "SimulatedTBFTest",
+    srcs = ["SimulatedTBFTest.cpp"],
+    deps = [
+        "//quic:exception",
+        "//quic/congestion_control:simulated_tbf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "StaticCwndCongestionControllerTest",
+    srcs = ["StaticCwndCongestionControllerTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr",
+        "//quic/congestion_control:static_cwnd_congestion_controller",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_library(
+    name = "test_utils",
+    srcs = ["Utils.cpp"],
+    hdrs = ["Utils.h"],
+    include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//quic/congestion_control:congestion_control_functions",
+        "//quic/congestion_control:congestion_controller",
+        "//quic/state:quic_state_machine",
+    ],
+)
+
+cc_library(
+    name = "TestingCubic",
+    hdrs = ["TestingCubic.h"],
+    include_prefix = "quic/congestion_control/test",
+    visibility = ["//visibility:public"],
+    deps = ["//quic/congestion_control:cubic"],
+)
+
+cc_test(
+    name = "ThrottlingSignalProviderTest",
+    srcs = ["ThrottlingSignalProviderTest.cpp"],
+    deps = [
+        ":test_utils",
+        "//quic/api:transport_helpers",
+        "//quic/common/test:test_utils",
+        "//quic/congestion_control:bbr",
+        "//quic/congestion_control:bbr_bandwidth_sampler",
+        "//quic/congestion_control:simulated_tbf",
+        "//quic/congestion_control:throttling_signal_provider",
+        "//quic/state/test:mocks",
+        "@googletest//:gtest_main",
+    ],
+)
