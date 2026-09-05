@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "TestCoroTransport",
+    srcs = ["TestCoroTransport.cpp"],
+    hdrs = ["TestCoroTransport.h"],
+    include_prefix = "proxygen/lib/http/coro/transport/test",
+    deps = [
+        "//proxygen/lib/http/coro/util:cancellable_baton",
+        "@folly//folly",
+        "@folly//folly/io/coro:socket",
+        "@folly//folly/portability:gmock",
+    ],
+)

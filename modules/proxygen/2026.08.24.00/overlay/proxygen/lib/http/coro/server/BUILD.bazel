@@ -1,0 +1,60 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "coro_acceptor",
+    srcs = ["HTTPCoroAcceptor.cpp"],
+    hdrs = ["HTTPCoroAcceptor.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        "//proxygen/lib/http:error",
+        "//proxygen/lib/http/codec:compress_header_codec",
+        "//proxygen/lib/http/coro",
+        "//proxygen/lib/http/session:http_session_codec_factory",
+        "//proxygen/lib/services:acceptor_configuration",
+        "@folly//folly/logging",
+        "@mvfst//quic/api:transport",
+        "@mvfst//quic/common/address:quic_socket_address_bridge",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "coro_httpserver",
+    srcs = ["HTTPServer.cpp"],
+    hdrs = ["HTTPServer.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        ":coro_acceptor",
+        "//proxygen/lib/http:sampling",
+        "//proxygen/lib/http/codec:h3_early_data_handler",
+        "//proxygen/lib/http/coro/filter:factory_handler",
+        "//proxygen/lib/http/coro/filters:ServerFilterFactory",
+        "//proxygen/lib/utils:time_util",
+        "@folly//folly/container:f14_hash",
+        "@folly//folly/executors:io_thread_pool_executor",
+        "@folly//folly/fibers:batch_semaphore",
+        "@folly//folly/io/async:async_signal_handler",
+        "@folly//folly/io/async:event_base_manager",
+        "@folly//folly/logging",
+        "@folly//folly/system:hardware_concurrency",
+        "@mvfst//quic:config",
+        "@mvfst//quic:server",
+        "@mvfst//quic/common/events:folly_eventbase",
+        "@mvfst//quic/congestion_control:server_congestion_controller_factory",
+        "@mvfst//quic/logging:file_qlogger",
+        "@mvfst//quic/server/quic:handshake_socket_holder",
+        "@wangle//wangle:acceptor",
+    ],
+)
+
+cc_library(
+    name = "scoped_coro_httpserver",
+    hdrs = ["ScopedHTTPServer.h"],
+    include_prefix = "proxygen/lib/http/coro/server",
+    deps = [
+        ":coro_httpserver",
+    ],
+)
