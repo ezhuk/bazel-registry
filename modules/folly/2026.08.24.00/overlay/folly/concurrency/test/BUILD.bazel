@@ -3,6 +3,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 cc_library(
     name = "atomic_shared_ptr_counted",
     hdrs = ["AtomicSharedPtrCounted.h"],
+    include_prefix = "folly/concurrency/test",
     deps = ["@glog"],
 )
 

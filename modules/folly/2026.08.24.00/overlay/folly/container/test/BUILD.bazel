@@ -1,5 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
+cc_library(
+    name = "fbvector_helper",
+    hdrs = ["FBVectorTests.cpp.h"],
+    include_prefix = "folly/container/test",
+)
+
 cc_test(
     name = "access_test",
     srcs = ["AccessTest.cpp"],
@@ -212,11 +218,9 @@ cc_library(
 
 cc_test(
     name = "fbvector_test",
-    srcs = [
-        "FBVectorTest.cpp",
-        "FBVectorTests.cpp.h",
-    ],
+    srcs = ["FBVectorTest.cpp"],
     deps = [
+        ":fbvector_helper",
         "//folly:fbstring",
         "//folly:fbvector",
         "//folly:random",
@@ -394,6 +398,7 @@ cc_test(
         "//folly:sorted_vector_types",
         "//folly:traits",
         "//folly/container:iterator",
+        "//folly/memory:uninitialized_memory_hacks",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
         "@boost.algorithm",
