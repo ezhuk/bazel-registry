@@ -1,4 +1,70 @@
-load("@rules_cc//cc:cc_test.bzl", "cc_library", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "barrier",
+    hdrs = ["Barrier.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "baton_test_helpers",
+    hdrs = ["BatonTestHelpers.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/test:deterministic_schedule",
+    ],
+)
+
+cc_library(
+    name = "flat_combining_examples",
+    hdrs = ["FlatCombiningExamples.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/synchronization:baton",
+        "//folly/synchronization:flat_combining",
+    ],
+)
+
+cc_library(
+    name = "flat_combining_test_helpers",
+    hdrs = ["FlatCombiningTestHelpers.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/synchronization/test:flat_combining_examples",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "semaphore",
+    hdrs = ["Semaphore.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:optional",
+        "//folly:scope_guard",
+        "//folly/lang:exception",
+        "@boost.intrusive",
+    ],
+)
+
+cc_library(
+    name = "thread_cached_epoch_bench_util",
+    hdrs = ["ThreadCachedEpochBench.h"],
+    include_prefix = "folly/synchronization/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/synchronization/detail:rcu-detail",
+    ],
+)
 
 cc_test(
     name = "atomic_notification_test",
@@ -45,13 +111,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "barrier",
-    hdrs = ["Barrier.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-)
-
 cc_test(
     name = "barrier_test",
     srcs = ["BarrierTest.cpp"],
@@ -71,18 +130,6 @@ cc_test(
         "//folly/synchronization:baton",
         "//folly/test:deterministic_schedule",
         "//folly/test/common:test_main",
-    ],
-)
-
-cc_library(
-    name = "baton_test_helpers",
-    hdrs = ["BatonTestHelpers.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//folly/portability:gtest",
-        "//folly/synchronization:baton",
-        "//folly/test:deterministic_schedule",
     ],
 )
 
@@ -153,17 +200,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "flat_combining_examples",
-    hdrs = ["FlatCombiningExamples.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//folly/synchronization:baton",
-        "//folly/synchronization:flat_combining",
-    ],
-)
-
 cc_test(
     name = "flat_combining_test",
     srcs = ["FlatCombiningTest.cpp"],
@@ -171,18 +207,6 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization/test:flat_combining_test_helpers",
         "//folly/test/common:test_main",
-        "@glog",
-    ],
-)
-
-cc_library(
-    name = "flat_combining_test_helpers",
-    hdrs = ["FlatCombiningTestHelpers.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//folly:benchmark",
-        "//folly/synchronization/test:flat_combining_examples",
         "@glog",
     ],
 )
@@ -323,19 +347,6 @@ cc_test(
     ],
 )
 
-cc_library(
-    name = "semaphore",
-    hdrs = ["Semaphore.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//folly:optional",
-        "//folly:scope_guard",
-        "//folly/lang:exception",
-        "@boost.intrusive",
-    ],
-)
-
 cc_test(
     name = "semaphore_test",
     srcs = ["SemaphoreTest.cpp"],
@@ -388,17 +399,6 @@ cc_test(
         "//folly/portability:gtest",
         "//folly/synchronization:thread_annotations",
         "//folly/test/common:test_main",
-    ],
-)
-
-cc_library(
-    name = "thread_cached_epoch_bench_util",
-    hdrs = ["ThreadCachedEpochBench.h"],
-    include_prefix = "folly/synchronization/test",
-    visibility = ["//visibility:public"],
-    deps = [
-        "//folly:benchmark",
-        "//folly/synchronization/detail:rcu-detail",
     ],
 )
 

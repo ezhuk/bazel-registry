@@ -10,6 +10,7 @@ cc_library(
     deps = [
         ":openssl_ptr_types",
         "//folly:file_util",
+        "//folly:network_address",
         "//folly:optional",
         "//folly:scope_guard",
         "//folly:string",
@@ -53,6 +54,7 @@ cc_library(
     include_prefix = "folly/ssl",
     deps = [
         "//folly:memory",
+        "//folly:network_address",
         "//folly/portability:openssl",
         "@glog",
     ],
