@@ -91,7 +91,7 @@
     "folly/io/async/ssl/test/BUILD.bazel": "sha256-rzBf/mr+UGZDYLBrv+SY/XMf3OOLTZYnUYZhQKCnJrM=",
     "folly/io/async/ssl/BUILD.bazel": "sha256-k2vddw8n5j8bBjNVdrui/VNm377kpw/jxarAztjGKik=",
     "folly/io/async/test/BUILD.bazel": "sha256-3hZiVfX6JOhymYut79KCh4wGHQwjZC0rT2MdHvjdi84=",
-    "folly/io/async/BUILD.bazel": "sha256-tg4neSjrfgGYxLVY7oDEzxls0N3W4gPp33pzVfU8TkE=",
+    "folly/io/async/BUILD.bazel": "sha256-JBYbG01Xmix9L/R8981vPpLle8xnUhEoSzmKcX5ESxQ=",
     "folly/io/coro/test/BUILD.bazel": "sha256-VaDT0EGXdTrFUDXMhy9jsqsT1lPYx1+u5PDpHvYlIhQ=",
     "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
     "folly/io/test/BUILD.bazel": "sha256-GwysEUhfRgXDCYLIcYULtQGIG0mp/tXCO+9H9itPzZQ=",
