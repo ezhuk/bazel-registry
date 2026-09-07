@@ -54,6 +54,7 @@ cc_test(
     deps = [
         ":mocks",
         "//proxygen/lib/http/webtransport",
+        "//proxygen/lib/http/webtransport:quicwebtransport",
         "//proxygen/lib/test:testmain",
         "@folly//folly:singleton",
         "@folly//folly/io/async:async_base",

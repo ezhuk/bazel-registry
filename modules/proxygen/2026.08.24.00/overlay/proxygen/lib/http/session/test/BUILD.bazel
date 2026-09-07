@@ -4,6 +4,7 @@ cc_library(
     name = "mock_quic_socket_driver",
     hdrs = ["MockQuicSocketDriver.h"],
     include_prefix = "proxygen/lib/http/session/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//proxygen/lib/transport/test:mocks",
         "@folly//folly:format",

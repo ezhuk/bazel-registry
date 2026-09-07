@@ -78,6 +78,7 @@ cc_library(
         "@mvfst//quic/common/udpsocket:folly_async_udp_socket",
         "@mvfst//quic/congestion_control:congestion_controller_factory",
         "@mvfst//quic/fizz/client/handshake:fizz_client_handshake",
+        "@wangle//wangle/client/persistence:file",
     ],
 )
 

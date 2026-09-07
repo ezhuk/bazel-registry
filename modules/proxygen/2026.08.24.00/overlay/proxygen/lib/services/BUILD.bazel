@@ -45,6 +45,7 @@ cc_library(
         "RequestWorkerThread.h",
         "RequestWorkerThreadNoExecutor.h",
         "Service.h",
+        "ServiceWorker.h",
     ],
     include_prefix = "proxygen/lib/services",
     deps = [
@@ -54,6 +55,7 @@ cc_library(
         "@folly//folly/io/async:event_base_manager",
         "@folly//folly/io/async:server_socket",
         "@wangle//wangle/acceptor",
+        "@wangle//wangle/acceptor:connection_counter",
     ],
 )
 

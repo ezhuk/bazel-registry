@@ -1,4 +1,10 @@
-load("@rules_cc//cc:defs.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "test_utils",
+    hdrs = ["HTTPServerTestUtils.h"],
+    include_prefix = "proxygen/httpserver/tests",
+)
 
 cc_test(
     name = "HTTPServerTests",
@@ -7,8 +13,8 @@ cc_test(
         "HTTPServerTestUtils.cpp",
         "RequestHandlerAdaptorTest.cpp",
     ],
-    hdrs = ["HTTPServerTestUtils.h"],
     deps = [
+        ":test_utils",
         "//proxygen/httpclient/samples/curl:proxygencurl",
         "//proxygen/httpserver",
         "//proxygen/httpserver:mocks",
