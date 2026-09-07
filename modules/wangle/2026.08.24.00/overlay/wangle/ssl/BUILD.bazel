@@ -170,6 +170,7 @@ cc_library(
     hdrs = ["SSLUtil.h"],
     include_prefix = "wangle/ssl",
     deps = [
+        "//wangle/util:logging",
         "@folly//folly:conv",
         "@folly//folly:file_util",
         "@folly//folly:format",

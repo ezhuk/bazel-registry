@@ -8,6 +8,7 @@ cc_library(
         "MockDNSModule.h",
         "MockDNSResolver.h",
         "Mocks.h",
+        "SyncDNSResolverTest.h",
     ],
     include_prefix = "proxygen/lib/dns/test",
     deps = [
@@ -31,6 +32,7 @@ cc_test(
         "DNSResolverTest.cpp",
         "FutureDNSResolverTest.cpp",
         "Rfc6724Test.cpp",
+        "SyncDNSResolverTest.cpp",
     ],
     deps = [
         ":dnstestutils",

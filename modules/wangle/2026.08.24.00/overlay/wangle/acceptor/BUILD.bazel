@@ -114,6 +114,7 @@ cc_library(
     include_prefix = "wangle/acceptor",
     deps = [
         ":network_address",
+        "//wangle/util:logging",
         "@folly//folly:conv",
         "@folly//folly:network_address",
         "@folly//folly:range",
@@ -133,6 +134,7 @@ cc_library(
     ],
     include_prefix = "wangle/acceptor",
     deps = [
+        "//wangle/util:logging",
         "@folly//folly:constexpr_math",
         "@folly//folly:intrusive_list",
         "@folly//folly:memory",
@@ -185,6 +187,7 @@ cc_library(
     hdrs = ["SocketOptions.h"],
     include_prefix = "wangle/acceptor",
     deps = [
+        "//wangle/util:logging",
         "@folly//folly/io:socket_option_map",
         "@folly//folly/io/async:async_socket",
         "@folly//folly/portability:sockets",
@@ -220,6 +223,7 @@ cc_library(
     deps = [
         ":secure_transport_type",
         "//wangle/ssl:ssl_util",
+        "//wangle/util:logging",
         "@folly//folly:network_address",
         "@folly//folly:optional",
         "@folly//folly:string",

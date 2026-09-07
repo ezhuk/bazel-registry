@@ -1,6 +1,16 @@
+load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
+
+expand_template(
+    name = "logging_config_h",
+    out = "quic-logging-config.h",
+    substitutions = {
+        "@MVFST_LOGGING_BACKEND@": "GLOG",
+    },
+    template = "quic-logging-config.h.in",
+)
 
 cc_library(
     name = "config",
@@ -59,7 +69,7 @@ cc_library(
 
 cc_library(
     name = "logging_config",
-    hdrs = ["quic-logging-config.h"],
+    hdrs = [":logging_config_h"],
     include_prefix = "quic",
 )
 

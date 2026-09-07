@@ -31,6 +31,7 @@ cc_library(
         "StructuredFieldsEncoder.cpp",
     ],
     hdrs = [
+        "StructuredFields.h",
         "StructuredFieldsDecoder.h",
         "StructuredFieldsEncoder.h",
     ],

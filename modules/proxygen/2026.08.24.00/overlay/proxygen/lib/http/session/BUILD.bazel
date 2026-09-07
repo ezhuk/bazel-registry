@@ -43,6 +43,7 @@ cc_library(
     hdrs = [
         "HQSession.h",
         "HQStreamBase.h",
+        "ServerPushLifecycle.h",
     ],
     include_prefix = "proxygen/lib/http/session",
     deps = [
@@ -152,6 +153,7 @@ cc_library(
     include_prefix = "proxygen/lib/http/session",
     deps = [
         "//proxygen/lib/utils:state_machine",
+        "@folly//folly:cpp_attributes",
         "@folly//folly:indestructible",
     ],
 )

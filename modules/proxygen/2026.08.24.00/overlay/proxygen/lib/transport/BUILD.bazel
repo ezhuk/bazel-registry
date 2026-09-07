@@ -75,7 +75,7 @@ cc_library(
         "@folly//folly:optional",
         "@folly//folly/json:dynamic",
         "@mvfst//quic/client:cached_server_tp_serialization",
-        "@mvfst//quic/client/handshake:psk_cache",
+        "@mvfst//quic/fizz/client/handshake:psk_cache",
         "@wangle//wangle/client/persistence",
     ],
 )

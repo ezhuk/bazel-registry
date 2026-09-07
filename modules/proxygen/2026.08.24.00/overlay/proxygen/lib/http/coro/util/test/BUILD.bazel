@@ -15,6 +15,7 @@ cc_test(
     deps = [
         "//proxygen/lib/http/coro/util:awaitable_keepalive",
         "//proxygen/lib/http/coro/util:refcount",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/coro:gmock_helpers",
         "@folly//folly/coro:gtest_helpers",
         "@folly//folly/io/async:scoped_event_base_thread",
@@ -27,6 +28,7 @@ cc_test(
     deps = [
         ":test_helpers",
         "//proxygen/lib/http/coro/util:cancellable_baton",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/coro:blocking_wait",
         "@folly//folly/coro:sleep",
         "@folly//folly/futures:core",
@@ -39,6 +41,7 @@ cc_test(
     srcs = ["DetachableExecutorTest.cpp"],
     deps = [
         "//proxygen/lib/http/coro/util:DetachableExecutor",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/portability:gtest",
     ],
 )
@@ -49,6 +52,7 @@ cc_test(
     deps = [
         ":test_helpers",
         "//proxygen/lib/http/coro/util:timed_baton",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/coro:blocking_wait",
         "@folly//folly/io/async:scoped_event_base_thread",
         "@folly//folly/portability:gtest",
