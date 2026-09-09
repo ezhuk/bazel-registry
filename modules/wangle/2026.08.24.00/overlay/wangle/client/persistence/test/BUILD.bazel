@@ -34,6 +34,7 @@ cc_test(
         ":test_util",
         "//wangle/client/persistence:file",
         "//wangle/test:test_main",
+        "//wangle/util:logging",
         "@folly//folly/executors:manual_executor",
         "@folly//folly/futures:barrier",
         "@folly//folly/portability:unistd",
@@ -46,6 +47,7 @@ cc_test(
     deps = [
         "//wangle/client/persistence:lru_persistent_cache",
         "//wangle/test:test_main",
+        "//wangle/util:logging",
         "@folly//folly:memory",
         "@folly//folly/executors:manual_executor",
         "@folly//folly/futures:core",

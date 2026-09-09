@@ -207,6 +207,7 @@ cc_library(
     deps = [
         ":ssl_config",
         ":ssl_stats",
+        ":ssl_util",
         ":tls_ticket_key_seeds",
     ],
 )

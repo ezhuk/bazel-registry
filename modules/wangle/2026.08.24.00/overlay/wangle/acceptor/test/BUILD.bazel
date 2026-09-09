@@ -117,6 +117,7 @@ cc_test(
     deps = [
         "//wangle/acceptor:socket_peeker",
         "//wangle/test:test_main",
+        "//wangle/util:logging",
         "@folly//folly/io/async/test:mocks",
         "@folly//folly/portability:gmock",
         "@folly//folly/portability:gtest",

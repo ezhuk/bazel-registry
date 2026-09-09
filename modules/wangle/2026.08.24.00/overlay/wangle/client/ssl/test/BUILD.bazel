@@ -18,6 +18,7 @@ cc_library(
     include_prefix = "wangle/client/ssl/test",
     visibility = ["//visibility:public"],
     deps = [
+        "//wangle/util:logging",
         "@folly//folly/ssl:openssl_ptr_types",
     ],
 )
