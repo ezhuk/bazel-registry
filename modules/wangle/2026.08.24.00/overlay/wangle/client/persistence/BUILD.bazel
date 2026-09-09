@@ -58,6 +58,7 @@ cc_library(
     include_prefix = "wangle/client/persistence",
     deps = [
         ":lru_persistent_cache",
+        "//wangle/util:logging",
         "@folly//folly:file_util",
         "@folly//folly/json:dynamic",
         "@folly//folly/portability:unistd",
