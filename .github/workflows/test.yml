@@ -15,6 +15,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
         module:
           - double-conversion

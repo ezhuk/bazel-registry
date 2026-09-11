@@ -25,6 +25,7 @@ cc_test(
     name = "IoBufQuicBatchTest",
     srcs = ["IoBufQuicBatchTest.cpp"],
     deps = [
+        "//quic/api:quic_batch_writer",
         "//quic/api:transport_helpers",
         "//quic/client:state_and_handshake",
         "//quic/common/events:folly_eventbase",
@@ -143,6 +144,7 @@ cc_test(
     deps = [
         ":mocks",
         "//quic:constants",
+        "//quic/api:quic_batch_writer",
         "//quic/api:transport",
         "//quic/codec:types",
         "//quic/common/events:folly_eventbase",
