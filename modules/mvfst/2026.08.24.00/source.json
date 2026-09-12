@@ -3,8 +3,8 @@
   "integrity": "sha256-E5msbkTHdqZ3bmvHnKcyzTEGsejNFT/DJYT/aeJ5LPE=",
   "strip_prefix": "mvfst-2026.08.24.00",
   "overlay": {
-    "quic/api/test/BUILD.bazel": "sha256-poHUqGIXwFUDwB83kpksvXnfUkUA6Zjs9xq4I+76YGA=",
-    "quic/api/BUILD.bazel": "sha256-VwLp0H7EfOjZUmB5dMAr5OWOm4OUg6PWsQKq6mvEXnI=",
+    "quic/api/test/BUILD.bazel": "sha256-zRn+4b1Zr1fVkwX4Jau8diSnHT9/1Mwm6UcpM9sllvU=",
+    "quic/api/BUILD.bazel": "sha256-dXPhAJA5MObaZQuuPlXggXjG/5LzuZAIp4HHzZJfLRA=",
     "quic/client/connector/BUILD.bazel": "sha256-ZOwQy5iWaErYJ1YeVTt9cXabB4NtX64gWfQWzCPEw4g=",
     "quic/client/test/BUILD.bazel": "sha256-Ilrre9Ip1LNDDqvUql3en7PyOCUGMXP2+El8QyqtTyY=",
     "quic/client/BUILD.bazel": "sha256-zO+LxLUBe9wrAs7XpzvJVFtDyKlFtGrWDXT2ox0J/SA=",

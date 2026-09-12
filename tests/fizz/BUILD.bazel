@@ -74,7 +74,6 @@ test_suite(
         "@fizz//fizz/protocol/ech/test:encryption_test",
         "@fizz//fizz/protocol/ech/test:grease_ech_test",
         "@fizz//fizz/protocol/test:cert_test",
-        "@fizz//fizz/protocol/test:cert_verifier",
         "@fizz//fizz/protocol/test:certificate_verifier_test",
         "@fizz//fizz/protocol/test:exporter_test",
         "@fizz//fizz/protocol/test:fizz_base_test",
