@@ -10,7 +10,9 @@ test_suite(
     name = "tests",
     tests = [
         "@fizz//fizz/backend/liboqs/test:oqs_key_exchange_test",
-        "@fizz//fizz/backend/openssl/certificate/test:test",
+        "@fizz//fizz/backend/openssl/certificate/test:cert_test",
+        "@fizz//fizz/backend/openssl/certificate/test:cert_utils_test",
+        "@fizz//fizz/backend/openssl/certificate/test:openssl_certificate_verifier_test",
         "@fizz//fizz/backend/openssl/crypto/aead/test:evpciphers",
         "@fizz//fizz/backend/openssl/crypto/exchange/test:eckey",
         "@fizz//fizz/backend/openssl/crypto/signature/test:ec",
