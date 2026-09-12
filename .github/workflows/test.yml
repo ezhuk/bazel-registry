@@ -43,7 +43,7 @@ jobs:
             --registry=file://${{ github.workspace }} \
             --registry=https://bcr.bazel.build
           if [[ "${{ matrix.module }}" == "fizz" || "${{ matrix.module }}" == "folly" || "${{ matrix.module }}" == "mvfst" || "${{ matrix.module }}" == "proxygen" || "${{ matrix.module }}" == "wangle" ]]; then
-            bazel test -k //:tests \
+            bazel test //:tests \
               --registry=file://${{ github.workspace }} \
               --registry=https://bcr.bazel.build
           fi
