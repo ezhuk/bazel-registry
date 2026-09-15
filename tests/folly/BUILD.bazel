@@ -45,7 +45,6 @@ test_suite(
         "@folly//folly/concurrency/container/test:lock_free_ring_buffer_test",
         "@folly//folly/concurrency/container/test:relaxed_concurrent_priority_queue_test",
         "@folly//folly/concurrency/container/test:single_writer_fixed_hash_map_test",
-        "@folly//folly/concurrency/memory/test:atomic_read_mostly_main_ptr_test",
         "@folly//folly/concurrency/memory/test:primary_ptr_test",
         "@folly//folly/concurrency/memory/test:read_mostly_shared_ptr_test",
         "@folly//folly/concurrency/memory/test:ref_count_test",
