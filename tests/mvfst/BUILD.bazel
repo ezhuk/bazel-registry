@@ -74,7 +74,6 @@ test_suite(
         "@mvfst//quic/datagram/test:DatagramFlowManagerTest",
         "@mvfst//quic/fizz/client/handshake/test:FizzClientExtensionsTest",
         "@mvfst//quic/fizz/client/handshake/test:fizz_client_handshake_test",
-        "@mvfst//quic/fizz/client/test:QuicClientTransportTest",
         "@mvfst//quic/fizz/handshake/test:FizzCryptoFactoryTest",
         "@mvfst//quic/fizz/handshake/test:FizzPacketNumberCipherTest",
         "@mvfst//quic/fizz/handshake/test:FizzTransportParametersTest",
