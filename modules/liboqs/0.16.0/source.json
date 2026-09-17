@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/open-quantum-safe/liboqs/archive/refs/tags/0.16.0.tar.gz",
+  "integrity": "sha256-Fi1bUQUY7l8oX4L6HxZAKohRdugYvxsaTDyRyaLwHq4=",
+  "strip_prefix": "liboqs-0.16.0",
+  "overlay": {
+    "BUILD.bazel": "sha256-i196LJPyesayh0ysfTV5jOP7OQ4ir84qMZ6IiFXfg5o="
+  }
+}

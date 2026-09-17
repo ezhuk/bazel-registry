@@ -4,7 +4,8 @@
     "github:open-quantum-safe/liboqs"
   ],
   "versions": [
-    "0.15.0"
+    "0.15.0",
+    "0.16.0"
   ],
   "yanked_versions": {}
 }
