@@ -50,7 +50,7 @@ cc_library(
         "@mvfst//quic/common/events:folly_eventbase",
         "@mvfst//quic/priority:http_priority_queue",
         "@mvfst//quic/state/quic:stream_utilities",
-        "@wangle//wangle/acceptor:acceptor_core",
+        "@wangle//wangle/acceptor",
         "@wangle//wangle/acceptor:managed",
     ],
 )
@@ -100,8 +100,8 @@ cc_library(
     include_prefix = "proxygen/lib/http/coro",
     deps = [
         ":http_source",
-        "@folly//folly/logging",
         "//proxygen/lib/utils:url",
+        "@folly//folly/logging",
     ],
 )
 

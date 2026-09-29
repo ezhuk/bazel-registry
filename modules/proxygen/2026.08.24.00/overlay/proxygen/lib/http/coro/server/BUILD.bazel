@@ -17,7 +17,7 @@ cc_library(
         "@mvfst//quic/api:transport",
         "@mvfst//quic/common/address:quic_socket_address_bridge",
         "@mvfst//quic/common/events:folly_eventbase",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 
@@ -30,7 +30,7 @@ cc_library(
         ":coro_acceptor",
         "//proxygen/lib/http:sampling",
         "//proxygen/lib/http/codec:h3_early_data_handler",
-        "//proxygen/lib/http/coro/filter:factory_handler",
+        "//proxygen/lib/http/coro/filter_factory_handler",
         "//proxygen/lib/http/coro/filters:ServerFilterFactory",
         "//proxygen/lib/utils:time_util",
         "@folly//folly/container:f14_hash",
@@ -46,7 +46,7 @@ cc_library(
         "@mvfst//quic/congestion_control:server_congestion_controller_factory",
         "@mvfst//quic/logging:file_qlogger",
         "@mvfst//quic/server/quic:handshake_socket_holder",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 
