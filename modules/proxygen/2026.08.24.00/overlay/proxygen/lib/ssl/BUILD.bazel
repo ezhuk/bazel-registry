@@ -10,7 +10,7 @@ cc_library(
     deps = [
         "@fizz",
         "@folly//folly:exception_wrapper",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 
