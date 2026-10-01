@@ -11,6 +11,7 @@ cc_library(
         "SyncDNSResolverTest.h",
     ],
     include_prefix = "proxygen/lib/dns/test",
+    visibility = ["//visibility:public"],
     deps = [
         "//proxygen/lib/dns",
         "//proxygen/lib/dns:dns_base",

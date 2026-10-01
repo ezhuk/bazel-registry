@@ -4,6 +4,7 @@ cc_library(
     name = "test_helpers",
     hdrs = ["TestHelpers.h"],
     include_prefix = "proxygen/lib/http/coro/util/test",
+    visibility = ["//visibility:public"],
     deps = [
         "@folly//folly/coro:gtest_helpers",
     ],

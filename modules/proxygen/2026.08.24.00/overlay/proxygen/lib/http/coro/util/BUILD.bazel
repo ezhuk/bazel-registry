@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 cc_library(
     name = "awaitable_keepalive",
-    hdrs = ["AwaitableKeepalive.h"],
+    hdrs = ["AwaitableKeepAlive.h"],
     include_prefix = "proxygen/lib/http/coro/util",
     deps = [
         ":cancellable_baton",
