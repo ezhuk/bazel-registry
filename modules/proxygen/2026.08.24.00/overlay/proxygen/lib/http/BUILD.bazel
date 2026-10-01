@@ -117,7 +117,7 @@ cc_library(
         "@mvfst//quic/common/events:folly_eventbase",
         "@mvfst//quic/common/udpsocket:folly_async_udp_socket",
         "@mvfst//quic/congestion_control:congestion_controller_factory",
-        "@mvfst//quic/fizz/client/handshake",
+        "@mvfst//quic/fizz/client/handshake:fizz_client_handshake",
         "@mvfst//quic/fizz/client/handshake:psk_cache",
         "@mvfst//quic/logging:qlogger",
     ],
@@ -153,7 +153,7 @@ cc_library(
     name = "http_common",
     include_prefix = "proxygen/lib/http",
     deps = [
-        "//proxygen/http/session",
+        "//proxygen/lib/http/session",
     ],
 )
 
@@ -296,7 +296,7 @@ cc_library(
     include_prefix = "proxygen/lib/http",
     deps = [
         ":status_type",
-        ":structuredheaders_encoder",
+        "//proxygen/lib/http/structuredheaders:encoder",
         "@folly//folly:range",
         "@glog",
     ],

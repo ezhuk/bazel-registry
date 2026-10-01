@@ -4,7 +4,8 @@
     "github:aegis-aead/libaegis"
   ],
   "versions": [
-    "0.10.1"
+    "0.10.1",
+    "0.10.4"
   ],
   "yanked_versions": {}
 }

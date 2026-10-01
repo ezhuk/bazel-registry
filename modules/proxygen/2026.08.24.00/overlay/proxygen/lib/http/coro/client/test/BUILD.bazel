@@ -35,6 +35,7 @@ cc_test(
         "//proxygen/lib/dns:dns_base",
         "//proxygen/lib/dns/test:dnstestutils",
         "//proxygen/lib/http/coro/client:dns_resolver",
+        "//proxygen/lib/test:testmain",
         "@folly//folly/coro:blocking_wait",
         "@folly//folly/io/async:async_base",
         "@folly//folly/io/async:event_base_manager",
@@ -53,6 +54,7 @@ cc_test(
         "//proxygen/lib/http/coro/client:http_connpool",
         "//proxygen/lib/http/coro/client/test:tests_common",
         "//proxygen/lib/http/coro/util/test:test_helpers",
+        "//proxygen/lib/test:testmain",
         "@fizz//fizz/protocol/test:cert_util",
         "@folly//folly:file_util",
         "@folly//folly:network_address",
@@ -78,6 +80,7 @@ cc_test(
     srcs = ["ProxygenCertVerifierTest.cpp"],
     deps = [
         "//proxygen/lib/http/coro/client:proxygen_cert_verifier",
+        "//proxygen/lib/test:testmain",
         "@fizz//fizz/backend/openssl/certificate:cert_verifier",
         "@fizz//fizz/protocol/test:cert_util",
         "@folly//folly/portability:gmock",

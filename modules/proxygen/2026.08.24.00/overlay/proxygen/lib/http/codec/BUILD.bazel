@@ -151,6 +151,7 @@ cc_library(
         "HQControlCodec.h",
         "HQFramedCodec.h",
         "HQFramer.h",
+        "HQMultiCodec.h",
         "HQStreamCodec.h",
         "HQUnidirectionalCodec.h",
         "HQUtils.h",

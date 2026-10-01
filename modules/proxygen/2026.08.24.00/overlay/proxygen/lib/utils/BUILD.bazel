@@ -265,7 +265,7 @@ cc_library(
         "@folly//folly/portability:sys_resource",
         "@folly//folly/portability:time",
         "@glog",
-        "@wangle//wangle:acceptor",
+        "@wangle//wangle/acceptor",
     ],
 )
 
