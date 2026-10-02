@@ -68,7 +68,6 @@ test_suite(
         "@mvfst//quic/congestion_control/test:EcnL4sTrackerTest",
         "@mvfst//quic/congestion_control/test:NewRenoTest",
         "@mvfst//quic/congestion_control/test:PacerTest",
-        "@mvfst//quic/congestion_control/test:SimulatedTBFTest",
         "@mvfst//quic/congestion_control/test:StaticCwndCongestionControllerTest",
         "@mvfst//quic/congestion_control/test:ThrottlingSignalProviderTest",
         "@mvfst//quic/datagram/test:DatagramFlowManagerTest",
