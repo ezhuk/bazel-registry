@@ -46,6 +46,8 @@ cc_library(
         "HTTPRequestVerifier.h",
         "HTTPSettings.h",
         "HeaderDecodeInfo.h",
+        "QPACKDecoderCodec.h",
+        "QPACKEncoderCodec.h",
         "SettingsId.h",
     ],
     include_prefix = "proxygen/lib/http/codec",
