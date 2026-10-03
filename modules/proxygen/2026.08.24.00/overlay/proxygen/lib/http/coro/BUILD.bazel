@@ -13,6 +13,7 @@ cc_library(
         "HTTPBodyEventQueue.h",
         "HTTPByteEventHelpers.h",
         "HTTPCoroSession.h",
+        "HTTPFixedSource.h",
     ],
     include_prefix = "proxygen/lib/http/coro",
     deps = [
@@ -28,11 +29,13 @@ cc_library(
         "//proxygen/lib/http/coro/util:DetachableExecutor",
         "//proxygen/lib/http/coro/util:awaitable_keepalive",
         "//proxygen/lib/http/coro/util:cancellable_baton",
+        "//proxygen/lib/http/coro/util:refcount",
         "//proxygen/lib/http/coro/util:window_container",
         "//proxygen/lib/http/session:quic_protocol_info",
         "//proxygen/lib/http/session:stats",
         "//proxygen/lib/http/session:stream_dispatcher",
         "//proxygen/lib/http/webtransport:httpwebtransport",
+        "//proxygen/lib/utils:url",
         "//proxygen/lib/utils:util_inl",
         "@folly//folly:conv",
         "@folly//folly:utility",
@@ -85,7 +88,10 @@ cc_library(
 cc_library(
     name = "filter_factory_handler",
     srcs = ["HTTPFilterFactoryHandler.cpp"],
-    hdrs = ["HTTPFilterFactoryHandler.h"],
+    hdrs = [
+        "HTTPFilterFactoryHandler.h",
+        "HTTPSourceFilterChain.h",
+    ],
     include_prefix = "proxygen/lib/http/coro",
     deps = [
         ":handler_chain",
@@ -148,9 +154,12 @@ cc_library(
         "HTTPSourceFilter.cpp",
     ],
     hdrs = [
+        "HTTPByteEvents.h",
         "HTTPError.h",
         "HTTPEvents.h",
+        "HTTPSource.h",
         "HTTPSourceFilter.h",
+        "HTTPSourceHolder.h",
     ],
     include_prefix = "proxygen/lib/http/coro",
     deps = [
