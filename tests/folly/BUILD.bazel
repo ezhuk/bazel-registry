@@ -445,7 +445,6 @@ test_suite(
         "@folly//folly/test:function_test",
         "@folly//folly/test:futex_test",
         "@folly//folly/test:get_ref_util_test",
-        "@folly//folly/test:glog_test",
         "@folly//folly/test:group_varint_test",
         "@folly//folly/test:group_varint_test_ssse3",
         "@folly//folly/test:indestructible_test",
