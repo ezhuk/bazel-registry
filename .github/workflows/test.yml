@@ -18,7 +18,6 @@ jobs:
       max-parallel: 1
       matrix:
         module:
-          - double-conversion
           - fizz
           - folly
           - libaegis
