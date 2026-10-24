@@ -71,7 +71,7 @@
     "folly/fibers/async/BUILD.bazel": "sha256-Sk/UU/3SRP88L9ofk1Pb/On491S+awvJetuZp7mUdUo=",
     "folly/fibers/detail/BUILD.bazel": "sha256-rmZDJaFCgU9nB+68p4Csw8Q2Fb6uqtmJdEky1gZe8DQ=",
     "folly/fibers/test/BUILD.bazel": "sha256-+ur9n/l+80m5JByHTxhdkQwfmjw5XyHq+My4Gwo1bNw=",
-    "folly/fibers/BUILD.bazel": "sha256-YjMXSGQzJ+IeeGswJr43/Iox5mcR9LF2ekupG7G+jPI=",
+    "folly/fibers/BUILD.bazel": "sha256-eCx5RV/DwU+1isIn1gg8Qq7YQNn8976tgNmSqRJzty8=",
     "folly/functional/test/BUILD.bazel": "sha256-eNVU5d2ObgvqgzqWf611V+ofS8qo+5miVbDHdqy03/Y=",
     "folly/functional/BUILD.bazel": "sha256-pSZMFjvxdCCDpjvaWpOo5RbsjtsCvsJcNxEAf0o3xxY=",
     "folly/futures/detail/BUILD.bazel": "sha256-7hxiw5Il1fMG8nof3ZOuIpK8jMVC0GxBe2XHVhaEK4Q=",
@@ -91,7 +91,7 @@
     "folly/io/async/ssl/test/BUILD.bazel": "sha256-rzBf/mr+UGZDYLBrv+SY/XMf3OOLTZYnUYZhQKCnJrM=",
     "folly/io/async/ssl/BUILD.bazel": "sha256-k2vddw8n5j8bBjNVdrui/VNm377kpw/jxarAztjGKik=",
     "folly/io/async/test/BUILD.bazel": "sha256-3hZiVfX6JOhymYut79KCh4wGHQwjZC0rT2MdHvjdi84=",
-    "folly/io/async/BUILD.bazel": "sha256-JBYbG01Xmix9L/R8981vPpLle8xnUhEoSzmKcX5ESxQ=",
+    "folly/io/async/BUILD.bazel": "sha256-bYIsgdxRiGQVPbstw1IbypobVy8IIhPgZykbFlHdI6Y=",
     "folly/io/coro/test/BUILD.bazel": "sha256-VaDT0EGXdTrFUDXMhy9jsqsT1lPYx1+u5PDpHvYlIhQ=",
     "folly/io/coro/BUILD.bazel": "sha256-jNF7bN0KMz31n1rB4oe8o2sSVE2ckZW9JU4r/aoVIcI=",
     "folly/io/test/BUILD.bazel": "sha256-GwysEUhfRgXDCYLIcYULtQGIG0mp/tXCO+9H9itPzZQ=",
@@ -151,7 +151,7 @@
     "folly/testing/BUILD.bazel": "sha256-13Bi89Fe3CJkfPl7SrXxAjWK74YQg8lq9o1irb3i0Es=",
     "folly/tracing/test/BUILD.bazel": "sha256-6s+FnQQLbRnq97ljxb9YCJqOMvz81QI/UQCXzoi02VI=",
     "folly/tracing/BUILD.bazel": "sha256-Mp+fUTDzgSj4xKVHWKvxfm/H5cMxhE4hNx8Gbdh+zhU=",
-    "folly/BUILD.bazel": "sha256-UsuhvMUdfW0X1p9Z6uEU70cX65pmOub74CkUdEbDRcE=",
+    "folly/BUILD.bazel": "sha256-KavUS/vxmOUBpn2IgL8pQoqh8/or+jOKJ0JREhfWHLA=",
     "BUILD.bazel": "sha256-BzN+saZ2j07J+BGF1Wvf9C90pGlNyhwN6h3QLiHDf2k="
   }
 }
