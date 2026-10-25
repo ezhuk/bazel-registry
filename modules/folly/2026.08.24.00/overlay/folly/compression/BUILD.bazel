@@ -15,6 +15,9 @@ cc_library(
         "Zlib.h",
         "Zstd.h",
     ],
+    copts = [
+        "-Iexternal/snappy+",
+    ],
     include_prefix = "folly/compression",
     deps = [
         ":compression_context_pool_singletons",
@@ -33,6 +36,10 @@ cc_library(
         "//folly/portability:windows",
         "@bzip2//:bz2",
         "@glog",
+        "@lz4",
+        "@lz4//:lz4_frame",
+        "@lz4//:lz4_hc",
+        "@snappy",
         "@xz//:lzma",
         "@zlib",
         "@zstd",
