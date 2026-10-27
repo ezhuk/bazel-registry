@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "bitvector_test",
+    srcs = ["BitVectorCodingTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:portability",
+        "//folly/compression:select64",
+        "//folly/compression/elias_fano:bit_vector_coding",
+        "//folly/compression/test:coding_test_utils",
+        "//folly/init",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "eliasfano_test",
+    srcs = ["EliasFanoCodingTest.cpp"],
+    deps = [
+        "//folly:benchmark",
+        "//folly:random",
+        "//folly/compression:select64",
+        "//folly/compression/elias_fano:elias_fano_coding",
+        "//folly/compression/test:coding_test_utils",
+        "//folly/init",
+        "//folly/test/common:test_main",
+    ],
+)

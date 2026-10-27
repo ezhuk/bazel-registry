@@ -1,0 +1,47 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "accurate_summation",
+    hdrs = ["AccurateSummation.h"],
+    include_prefix = "folly/math",
+    deps = [":kahan_summation"],
+)
+
+cc_library(
+    name = "division",
+    hdrs = ["Division.h"],
+    include_prefix = "folly/math",
+    deps = [
+        "//folly:portability",
+        "//folly:traits",
+        "//folly/lang:assume",
+    ],
+)
+
+cc_library(
+    name = "float_control",
+    hdrs = ["FloatControl.h"],
+    include_prefix = "folly/math",
+)
+
+cc_library(
+    name = "kahan_summation",
+    hdrs = ["KahanSummation.h"],
+    include_prefix = "folly/math",
+    deps = [
+        ":float_control",
+        "//folly/lang:hint",
+    ],
+)
+
+cc_library(
+    name = "reproducible_accumulator",
+    hdrs = ["ReproducibleAccumulator.h"],
+    include_prefix = "folly/math",
+    deps = [
+        "//folly:constexpr_math",
+        "@fmt",
+    ],
+)

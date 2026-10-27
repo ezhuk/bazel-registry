@@ -1,0 +1,118 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "checksum",
+    srcs = ["Checksum.cpp"],
+    hdrs = ["Checksum.h"],
+    copts = ["-fno-omit-frame-pointer"],
+    include_prefix = "folly/hash",
+    deps = [
+        "//folly:cpu_id",
+        "//folly/detail:traponavx512",
+        "//folly/external/fast-crc32:avx512_crc32c_v8s3x4",
+        "//folly/external/fast-crc32:neon_crc32c_v3s4x2e_v2",
+        "//folly/external/fast-crc32:neon_eor3_crc32_v8s2x4e_s1x2",
+        "//folly/external/fast-crc32:neon_eor3_crc32c_v8s2x4e_s2x1",
+        "//folly/external/fast-crc32:sse_crc32c_v8s3x3",
+        "//folly/hash/detail:checksum_detail",
+    ],
+)
+
+cc_library(
+    name = "farm_hash",
+    hdrs = ["FarmHash.h"],
+    include_prefix = "folly/hash",
+    deps = ["//folly/external/farmhash"],
+)
+
+cc_library(
+    name = "fnv_hash",
+    hdrs = ["FnvHash.h"],
+    include_prefix = "folly/hash",
+)
+
+cc_library(
+    name = "hash",
+    hdrs = ["Hash.h"],
+    include_prefix = "folly/hash",
+    deps = [
+        ":fnv_hash",
+        ":hsieh_hash",
+        ":murmur_hash",
+        ":spooky_hash_v1",
+        ":spooky_hash_v2",
+        "//folly:c_portability",
+        "//folly:portability",
+        "//folly:traits",
+        "//folly:utility",
+        "//folly/lang:bits",
+        "//folly/lang:cstring_view",
+    ],
+)
+
+cc_library(
+    name = "hsieh_hash",
+    hdrs = ["HsiehHash.h"],
+    include_prefix = "folly/hash",
+    deps = ["//folly/lang:bits"],
+)
+
+cc_library(
+    name = "murmur_hash",
+    hdrs = ["MurmurHash.h"],
+    include_prefix = "folly/hash",
+    deps = [
+        "//folly:c_portability",
+        "//folly/lang:bits",
+        "//folly/portability:constexpr",
+    ],
+)
+
+cc_library(
+    name = "rapidhash",
+    hdrs = ["rapidhash.h"],
+    include_prefix = "folly/hash",
+    deps = ["//folly/external/rapidhash"],
+)
+
+cc_library(
+    name = "spooky_hash_v1",
+    srcs = ["SpookyHashV1.cpp"],
+    hdrs = ["SpookyHashV1.h"],
+    include_prefix = "folly/hash",
+)
+
+cc_library(
+    name = "spooky_hash_v2",
+    srcs = ["SpookyHashV2.cpp"],
+    hdrs = ["SpookyHashV2.h"],
+    include_prefix = "folly/hash",
+    deps = [
+        "//folly:c_portability",
+        "//folly:portability",
+        "//folly/lang:c_string",
+    ],
+)
+
+cc_library(
+    name = "traits",
+    hdrs = ["traits.h"],
+    include_prefix = "folly/hash",
+    deps = ["//folly:traits"],
+)
+
+cc_library(
+    name = "unique_hash_key",
+    srcs = ["UniqueHashKey.cpp"],
+    hdrs = ["UniqueHashKey.h"],
+    include_prefix = "folly/hash",
+    deps = [
+        "//folly/container:span",
+        "//folly/portability:openssl",
+        "//folly/portability:unistd",
+        "@blake3",
+        "@xxhash",
+    ],
+)

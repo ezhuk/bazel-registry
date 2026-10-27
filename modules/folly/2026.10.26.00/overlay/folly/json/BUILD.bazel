@@ -1,0 +1,133 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "dynamic",
+    srcs = [
+        "dynamic.cpp",
+        "json.cpp",
+    ],
+    hdrs = [
+        "DynamicConverter.h",
+        "dynamic.h",
+        "json.h",
+    ],
+    include_prefix = "folly/json",
+    textual_hdrs = ["dynamic-inl.h"],
+    deps = [
+        "//folly:c_portability",
+        "//folly:conv",
+        "//folly:expected",
+        "//folly:format",
+        "//folly:function",
+        "//folly:json_pointer",
+        "//folly:likely",
+        "//folly:optional",
+        "//folly:portability",
+        "//folly:range",
+        "//folly:traits",
+        "//folly:unicode",
+        "//folly:utility",
+        "//folly/container:access",
+        "//folly/container:enumerate",
+        "//folly/container:f14_hash",
+        "//folly/detail:iterators",
+        "//folly/hash",
+        "//folly/lang:assume",
+        "//folly/lang:bits",
+        "//folly/lang:exception",
+        "//folly/portability:constexpr",
+        "@boost.iterator",
+        "@fmt",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "dynamic_parser",
+    srcs = ["DynamicParser.cpp"],
+    hdrs = ["DynamicParser.h"],
+    include_prefix = "folly/json",
+    textual_hdrs = ["DynamicParser-inl.h"],
+    deps = [
+        ":dynamic",
+        "//folly:c_portability",
+        "//folly:conv",
+        "//folly:json",
+        "//folly:optional",
+        "//folly:scope_guard",
+        "//folly:traits",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "json_mock_util",
+    hdrs = ["JsonMockUtil.h"],
+    include_prefix = "folly/json",
+    deps = [
+        ":json_test_util",
+        "//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "json_patch",
+    srcs = ["json_patch.cpp"],
+    hdrs = ["json_patch.h"],
+    include_prefix = "folly/json",
+    deps = [
+        ":dynamic",
+        "//folly:expected",
+        "//folly:json_pointer",
+        "//folly:optional",
+        "//folly/container:enumerate",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "json_pointer",
+    srcs = ["json_pointer.cpp"],
+    hdrs = ["json_pointer.h"],
+    include_prefix = "folly/json",
+    deps = [
+        "//folly:expected",
+        "//folly:range",
+        "//folly:string",
+    ],
+)
+
+cc_library(
+    name = "json_schema",
+    srcs = ["JSONSchema.cpp"],
+    hdrs = ["JSONSchema.h"],
+    include_prefix = "folly/json",
+    deps = [
+        ":dynamic",
+        "//folly:c_portability",
+        "//folly:conv",
+        "//folly:exception_wrapper",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:range",
+        "//folly:singleton",
+        "//folly:string",
+        "//folly/portability:math",
+        "@boost.regex",
+    ],
+)
+
+cc_library(
+    name = "json_test_util",
+    srcs = ["JsonTestUtil.cpp"],
+    hdrs = ["JsonTestUtil.h"],
+    include_prefix = "folly/json",
+    deps = [
+        ":dynamic",
+        "//folly:conv",
+        "//folly:range",
+        "//folly/lang:assume",
+    ],
+)
