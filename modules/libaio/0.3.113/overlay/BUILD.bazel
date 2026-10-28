@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
+
+package(default_applicable_licenses = [":license"])
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:LGPL-2.1-or-later"],
+    license_text = "COPYING",
+)
+
+cc_library(
+    name = "aio",
+    srcs = glob(
+        ["src/*.c"],
+        exclude = ["src/struct_offsets.c"],
+    ),
+    hdrs = ["src/libaio.h"],
+    includes = ["src"],
+    linkstatic = True,
+    textual_hdrs = glob(
+        ["src/*.h"],
+        exclude = ["src/libaio.h"],
+    ),
+    visibility = ["//visibility:public"],
+)
