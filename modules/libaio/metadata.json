@@ -1,0 +1,10 @@
+{
+  "homepage": "https://codeberg.org/jmoyer/libaio",
+  "repository": [
+    "https://codeberg.org/jmoyer/libaio"
+  ],
+  "versions": [
+    "0.3.113"
+  ],
+  "yanked_versions": {}
+}
