@@ -1,0 +1,8 @@
+{
+  "url": "https://codeberg.org/jmoyer/libaio/releases/download/libaio-0.3.113/libaio-0.3.113.tar.gz",
+  "integrity": "sha256-LETRxf0NQ3Uih8muHrnAI/BO+EjqjUqvpG6a7bZ4IAs=",
+  "strip_prefix": "libaio-0.3.113",
+  "overlay": {
+    "BUILD.bazel": "sha256-FY/mgnqF2w+kyp9W8s08e42Bt5d+m+wazVWKDJRa6qg="
+  }
+}

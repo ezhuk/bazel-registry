@@ -21,6 +21,7 @@ jobs:
           - fizz
           - folly
           - libaegis
+          - libaio
           - liboqs
           - libsodium
           - mvfst

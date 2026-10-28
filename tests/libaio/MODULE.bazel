@@ -1,0 +1,4 @@
+module(name = "test_libaio")
+
+bazel_dep(name = "libaio", version = "0.3.113")
+bazel_dep(name = "rules_cc", version = "0.2.27")
