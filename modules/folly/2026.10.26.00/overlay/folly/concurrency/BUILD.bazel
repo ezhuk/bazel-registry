@@ -123,6 +123,7 @@ cc_library(
     include_prefix = "folly/concurrency",
     deps = [
         "//folly:likely",
+        "//folly:traits",
         "//folly/synchronization:relaxed_atomic",
     ],
 )

@@ -67,6 +67,7 @@ cc_library(
     include_prefix = "folly/synchronization",
     textual_hdrs = ["AtomicUtil-inl.h"],
     deps = [
+        ":atomic_traits",
         "//folly:constexpr_math",
         "//folly:likely",
         "//folly:portability",
@@ -201,6 +202,7 @@ cc_library(
         "//folly/concurrency:cache_locality",
         "//folly/concurrency/container:atomic_grow_array",
         "//folly/container:f14_hash",
+        "//folly/container:small_vector",
         "//folly/detail:static_singleton_manager",
         "//folly/lang:align",
         "//folly/lang:bits",

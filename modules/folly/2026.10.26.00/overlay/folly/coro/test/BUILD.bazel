@@ -65,7 +65,9 @@ cc_test(
         "//folly/coro:baton",
         "//folly/coro:blocking_wait",
         "//folly/coro:collect",
+        "//folly/coro:gtest_helpers",
         "//folly/coro:task",
+        "//folly/coro:with_metadata",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
         "//folly/tracing:async_stack",
@@ -208,6 +210,7 @@ cc_test(
         "//folly:portability",
         "//folly:scope_guard",
         "//folly/coro:generator",
+        "//folly/coro/detail:malloc",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
     ],
@@ -394,5 +397,19 @@ cc_test(
         "//folly/coro/detail:current_async_frame",
         "//folly/coro/safe:now_task",
         "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "with_metadata_test",
+    srcs = ["WithMetadataTest.cpp"],
+    deps = [
+        "//folly/coro:gtest_helpers",
+        "//folly/coro:task",
+        "//folly/coro:with_metadata",
+        "//folly/coro/detail:detail_current_async_frame",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+        "//folly/tracing:async_stack",
     ],
 )

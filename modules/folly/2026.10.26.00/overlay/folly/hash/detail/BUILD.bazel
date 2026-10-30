@@ -14,6 +14,7 @@ cc_library(
     deps = [
         "//folly:bits",
         "//folly:cpp_attributes",
+        "//folly:cpu_id",
         "//folly:portability",
         "//folly/external/nvidia/hash:checksum",
         "//folly/external/nvidia/hash/detail:crc32c_detail",

@@ -746,10 +746,11 @@ cc_library(
 cc_library(
     name = "with_metadata",
     hdrs = ["WithMetadata.h"],
+    include_prefix = "folly/coro",
     deps = [
-        ":detail_current_async_frame",
         ":task",
         ":traits",
+        "//folly/coro/detail:current_async_frame",
         "//folly/coro/detail:pick_task_wrapper",
         "//folly/coro/safe:now_task",
         "//folly/coro/safe:safe_task",

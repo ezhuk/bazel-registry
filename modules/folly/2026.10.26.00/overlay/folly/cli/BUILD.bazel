@@ -9,7 +9,6 @@ cc_library(
     include_prefix = "folly/cli",
     deps = [
         "//folly:file_util",
-        "//folly/container:span",
         "//folly/lang:cstring_view",
         "@fmt",
     ],

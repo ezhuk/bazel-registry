@@ -604,6 +604,7 @@ cc_library(
         ":liburing",
         "//folly:conv",
         "//folly:string",
+        "//folly/concurrency/memory:tl_ref_count",
         "//folly/io:iobuf",
         "//folly/lang:align",
         "//folly/portability:sys_mman",
@@ -706,6 +707,7 @@ cc_library(
     deps = [
         ":liburing",
         "//folly:conv",
+        "//folly:glog",
         "//folly:string",
         "//folly/container:dynamic_ring_queue",
         "//folly/io:iobuf",

@@ -14,13 +14,13 @@ cc_test(
     ],
 )
 
-cc_library(
+cc_test(
     name = "base64_platform_test",
     srcs = ["Base64PlatformTest.cpp"],
-    visibility = ["//visibility:public"],
     deps = [
         "//folly/detail/base64_detail:base64_sse4_2_platform",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
     ],
 )
 

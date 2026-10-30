@@ -52,6 +52,20 @@ cc_test(
 )
 
 cc_test(
+    name = "memory_mapping_test",
+    srcs = ["MemoryMappingTest.cpp"],
+    deps = [
+        "//folly:file_util",
+        "//folly:random",
+        "//folly/portability:gtest",
+        "//folly/portability:sys_mman",
+        "//folly/system:memory_mapping",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
     name = "pid_test",
     srcs = ["PidTest.cpp"],
     deps = [

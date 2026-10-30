@@ -44,7 +44,6 @@ cc_library(
         "//folly:likely",
         "//folly:range",
         "//folly:scope_guard",
-        "//folly/container:span",
         "//folly/lang:c_string",
         "//folly/lang:cstring_view",
         "//folly/lang:safe_assert",

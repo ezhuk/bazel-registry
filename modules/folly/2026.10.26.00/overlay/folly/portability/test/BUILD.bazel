@@ -63,6 +63,31 @@ cc_test(
 )
 
 cc_test(
+    name = "sys_file_test",
+    srcs = ["SysFileTest.cpp"],
+    deps = [
+        "//folly:file",
+        "//folly:portability",
+        "//folly:scope_guard",
+        "//folly/portability:fcntl",
+        "//folly/portability:sys_file",
+        "//folly/portability:unistd",
+        "//folly/portability:windows",
+        "//folly/test/common:test_main",
+        "//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "sys_mman_test",
+    srcs = ["SysMmanTest.cpp"],
+    deps = [
+        "//folly/portability:sys_mman",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "time_test",
     srcs = ["TimeTest.cpp"],
     deps = [

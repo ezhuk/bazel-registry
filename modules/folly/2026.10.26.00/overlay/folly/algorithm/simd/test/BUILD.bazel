@@ -30,6 +30,7 @@ cc_test(
     deps = [
         "//folly:portability",
         "//folly/algorithm/simd:find_fixed",
+        "//folly/lang:cast",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
         "@fmt",

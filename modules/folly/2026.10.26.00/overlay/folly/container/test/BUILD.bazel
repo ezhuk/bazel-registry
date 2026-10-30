@@ -273,6 +273,7 @@ cc_test(
         "//folly:small_vector",
         "//folly:utility",
         "//folly/container:heap_vector_types",
+        "//folly/container:range_traits",
         "//folly/memory:malloc",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
@@ -335,6 +336,7 @@ cc_test(
         "//folly:map_util",
         "//folly:sorted_vector_types",
         "//folly:traits",
+        "//folly/container:range_traits",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
     ],
@@ -369,7 +371,6 @@ cc_test(
         "//folly/container:f14_hash",
         "//folly/container:regex_match_cache",
         "//folly/container:sorted_vector_types",
-        "//folly/container:span",
         "//folly/lang:keep",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
@@ -415,17 +416,6 @@ cc_test(
         "//folly:sorted_vector_types",
         "//folly:utility",
         "//folly/memory:malloc",
-        "//folly/portability:gmock",
-        "//folly/portability:gtest",
-        "//folly/test/common:test_main",
-    ],
-)
-
-cc_test(
-    name = "span_test",
-    srcs = ["span_test.cpp"],
-    deps = [
-        "//folly/container:span",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",

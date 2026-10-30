@@ -224,8 +224,6 @@
     "https://bcr.bazel.build/modules/jsoncpp/1.9.5/MODULE.bazel": "31271aedc59e815656f5736f282bb7509a97c7ecb43e927ac1a37966e0578075",
     "https://bcr.bazel.build/modules/jsoncpp/1.9.6/MODULE.bazel": "2f8d20d3b7d54143213c4dfc3d98225c42de7d666011528dc8fe91591e2e17b0",
     "https://bcr.bazel.build/modules/jsoncpp/1.9.6/source.json": "a04756d367a2126c3541682864ecec52f92cdee80a35735a3cb249ce015ca000",
-    "https://bcr.bazel.build/modules/libaio/0.3.113.bcr.1/MODULE.bazel": "60f6de43553eb1df5e2425fafd37be9d0b68827924e323b1ae82c7c0282565ca",
-    "https://bcr.bazel.build/modules/libaio/0.3.113.bcr.1/source.json": "585de5b3cb612a044a485b59d883b3cf06a48eb41cb4f25c6016c6a810b7e06b",
     "https://bcr.bazel.build/modules/libevent/2.1.12-stable.bcr.0/MODULE.bazel": "c49e5bcb520c9b07bcc17309fc867ad1d04f8fce7830a2f7cb9742516453aa62",
     "https://bcr.bazel.build/modules/libevent/2.1.12-stable.bcr.0/source.json": "4bc7f5c204797a040002309c1bd2facb264486102854499e52a0d53ef5d01283",
     "https://bcr.bazel.build/modules/libpfm/4.11.0/MODULE.bazel": "45061ff025b301940f1e30d2c16bea596c25b176c8b6b3087e92615adbd52902",

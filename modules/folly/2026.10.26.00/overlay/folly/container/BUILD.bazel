@@ -337,6 +337,7 @@ cc_library(
     copts = ["-fno-omit-frame-pointer"],
     include_prefix = "folly/container",
     deps = [
+        ":range_traits",
         "//folly:scope_guard",
         "//folly:small_vector",
         "//folly:traits",
@@ -344,22 +345,6 @@ cc_library(
         "//folly/lang:access",
         "//folly/lang:exception",
         "//folly/memory:memory_resource",
-    ],
-)
-
-cc_library(
-    name = "span",
-    hdrs = ["span.h"],
-    include_prefix = "folly/container",
-    deps = [
-        ":access",
-        ":iterator",
-        "//folly:cpp_attributes",
-        "//folly:portability",
-        "//folly:traits",
-        "//folly:utility",
-        "//folly/functional:invoke",
-        "//folly/portability:constexpr",
     ],
 )
 

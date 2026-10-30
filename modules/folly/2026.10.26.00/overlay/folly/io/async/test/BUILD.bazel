@@ -1,5 +1,90 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
+cc_library(
+    name = "async_base_test_lib",
+    srcs = ["AsyncBaseTestLib.cpp"],
+    hdrs = ["AsyncBaseTestLib.h"],
+    include_prefix = "folly/io/async/test",
+    deps = [
+        "//folly:scope_guard",
+        "//folly:string",
+        "//folly/io:fs_util",
+        "//folly/io/async:async_base_class",
+        "//folly/io/async/test:io_test_temp_file_util_lib",
+        "//folly/portability:gtest",
+        "//folly/portability:sockets",
+        "//folly/portability:unistd",
+        "//folly/test:test_utils",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "io_test_temp_file_util_lib",
+    srcs = ["IoTestTempFileUtil.cpp"],
+    hdrs = ["IoTestTempFileUtil.h"],
+    include_prefix = "folly/io/async/test",
+    deps = [
+        "//folly:file_util",
+        "//folly:string",
+        "//folly/io:fs_util",
+        "//folly/testing:test_util",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "io_uring_test_util",
+    srcs = ["IoUringTestUtil.cpp"],
+    hdrs = ["IoUringTestUtil.h"],
+    include_prefix = "folly/io/async/test",
+    deps = [
+        ":async_socket_test_lib",
+        "//folly/io:iobuf",
+        "//folly/io/async:async_base",
+        "//folly/io/async:async_socket",
+        "//folly/io/async:async_transport",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_setup_retry",
+        "//folly/portability:gtest",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "async_io_test",
+    srcs = ["AsyncIOTest.cpp"],
+    deps = [
+        ":async_base_test_lib",
+        "//folly/io/async:async_io",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "async_io_uring_socket_test",
+    srcs = ["AsyncIoUringSocketTest.cpp"],
+    deps = [
+        ":async_socket_test_lib",
+        "//folly:file_util",
+        "//folly:subprocess",
+        "//folly/executors:global_executor",
+        "//folly/futures:core",
+        "//folly/io/async:async_base",
+        "//folly/io/async:async_io_uring_socket",
+        "//folly/io/async:async_socket",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_event",
+        "//folly/io/async:server_socket",
+        "//folly/portability:gtest",
+        "//folly/portability:sockets",
+        "//folly/portability:unistd",
+        "//folly/system:shell",
+        "//folly/test:socket_address_test_helper",
+        "//folly/test/common:test_main",
+    ],
+)
+
 cc_test(
     name = "async_pipe_test",
     srcs = ["AsyncPipeTest.cpp"],
@@ -52,6 +137,17 @@ cc_test(
 )
 
 cc_test(
+    name = "async_socket_provided_buffer_test",
+    srcs = ["AsyncSocketProvidedBufferTest.cpp"],
+    deps = [
+        ":io_uring_test_util",
+        "//folly/io/async:async_socket",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "async_socket_test",
     srcs = [
         "AsyncSocketTest.cpp",
@@ -62,6 +158,7 @@ cc_test(
         ":blocking_socket",
         ":callback_state_enum",
         ":conn_callback",
+        ":io_uring_test_util",
         ":mocks",
         ":tfo_util",
         ":util",
@@ -286,6 +383,18 @@ cc_library(
 )
 
 cc_test(
+    name = "decorated_async_transport_wrapper_test",
+    srcs = ["DecoratedAsyncTransportWrapperTest.cpp"],
+    deps = [
+        "//folly/io/async:async_socket",
+        "//folly/io/async:async_transport",
+        "//folly/io/async:decorated_async_transport_wrapper",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "delayed_destruction_base_test",
     srcs = ["DelayedDestructionBaseTest.cpp"],
     deps = [
@@ -313,6 +422,17 @@ cc_test(
         "//folly:memory",
         "//folly/io/async:destructor_check",
         "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "epoll_backend_test",
+    srcs = ["EpollBackendTest.cpp"],
+    deps = [
+        "//folly/io/async:epoll_backend",
+        "//folly/io/async/test:async_signal_handler_test_lib",
+        "//folly/io/async/test:event_base_test_lib",
         "//folly/test/common:test_main",
     ],
 )
@@ -390,6 +510,30 @@ cc_test(
 )
 
 cc_test(
+    name = "hhwheel_timer_high_res_test",
+    srcs = ["HHWheelTimerHighResTest.cpp"],
+    deps = [
+        "//folly/io/async:async_base",
+        "//folly/io/async:timerfd",
+        "//folly/io/async/test:util",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "hhwheel_timer_slow_test",
+    srcs = ["HHWheelTimerSlowTests.cpp"],
+    deps = [
+        ":util",
+        "//folly:random",
+        "//folly/io/async:async_base",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "hhwheel_timer_test",
     srcs = ["HHWheelTimerTest.cpp"],
     deps = [
@@ -402,10 +546,118 @@ cc_test(
 )
 
 cc_test(
+    name = "io_uring_backend_setup_test",
+    srcs = ["IoUringBackendSetupTest.cpp"],
+    deps = [
+        "//folly/io/async:async_base",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_buffer_pool_sharing",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_backend_test",
+    srcs = ["IoUringBackendTest.cpp"],
+    deps = [
+        "//folly:file_util",
+        "//folly:function",
+        "//folly:string",
+        "//folly/init",
+        "//folly/io/async:async_base",
+        "//folly/io/async:async_udp_server_socket",
+        "//folly/io/async:async_udp_socket",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_provided_buffer_ring",
+        "//folly/io/async/test:async_signal_handler_test_lib",
+        "//folly/io/async/test:event_base_test_lib",
+        "//folly/io/async/test:io_test_temp_file_util_lib",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_dynamic_provided_buffer_ring_max_capacity_test",
+    srcs = ["IoUringDynamicProvidedBufferRingMaxCapacityTest.cpp"],
+    deps = [
+        "//folly/io/async:io_uring_dynamic_provided_buffer_ring",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "io_uring_dynamic_provided_buffer_ring_test",
     srcs = ["IoUringDynamicProvidedBufferRingTest.cpp"],
     deps = [
         "//folly/io/async:io_uring_dynamic_provided_buffer_ring",
+        "//folly/io/async:io_uring_setup_retry",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_event_base_local_test",
+    srcs = ["IoUringEventBaseLocalTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_event_base_local",
+        "//folly/io/async:io_uring_setup_retry",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_event_test",
+    srcs = ["IoUringEventTest.cpp"],
+    deps = [
+        "//folly/futures:core",
+        "//folly/io/async:async_base",
+        "//folly/io/async:io_uring_backend",
+        "//folly/io/async:io_uring_event",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_provided_buffer_ring_max_capacity_test",
+    srcs = ["IoUringProvidedBufferRingMaxCapacityTest.cpp"],
+    deps = [
+        "//folly/io/async:io_uring_provided_buffer_ring",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_provided_buffer_ring_test",
+    srcs = ["IoUringProvidedBufferRingTest.cpp"],
+    deps = [
+        "//folly/io/async:io_uring_provided_buffer_ring",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_test",
+    srcs = ["IoUringTest.cpp"],
+    deps = [
+        ":async_base_test_lib",
+        "//folly/init",
+        "//folly/io/async:io_uring",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "io_uring_zero_copy_buffer_pool_test",
+    srcs = ["IoUringZeroCopyBufferPoolTest.cpp"],
+    deps = [
+        "//folly/io/async:io_uring_zero_copy_buffer_pool",
+        "//folly/portability:unistd",
         "//folly/test/common:test_main",
     ],
 )
@@ -455,6 +707,17 @@ cc_test(
         "//folly/io/async:scoped_event_base_thread",
         "//folly/portability:gtest",
         "//folly/synchronization:baton",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "poll_loop_hooks_test",
+    srcs = ["PollLoopHooksTest.cpp"],
+    deps = [
+        "//folly/io/async:async_base",
+        "//folly/io/async:epoll_backend",
+        "//folly/portability:gtest",
         "//folly/test/common:test_main",
     ],
 )
@@ -514,6 +777,26 @@ cc_test(
 )
 
 cc_test(
+    name = "simple_async_io_test",
+    srcs = ["SimpleAsyncIOTest.cpp"],
+    deps = [
+        "//folly:file",
+        "//folly:random",
+        "//folly/coro:blocking_wait",
+        "//folly/coro:collect",
+        "//folly/executors:inline_executor",
+        "//folly/io:iobuf",
+        "//folly/io/async:async_base",
+        "//folly/io/async:scoped_event_base_thread",
+        "//folly/io/async:simple_async_io",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
     name = "ssl_options_test",
     srcs = ["SSLOptionsTest.cpp"],
     deps = [
@@ -533,6 +816,17 @@ cc_library(
     include_prefix = "folly/io/async/test",
     visibility = ["//visibility:public"],
     deps = ["//folly/ssl:openssl_ptr_types"],
+)
+
+cc_test(
+    name = "terminate_cancellation_token_test",
+    srcs = ["TerminateCancellationTokenTest.cpp"],
+    deps = [
+        "//folly/io/async:terminate_cancellation_token",
+        "//folly/portability:gtest",
+        "//folly/synchronization:baton",
+        "//folly/test/common:test_main",
+    ],
 )
 
 cc_library(
@@ -576,6 +870,17 @@ cc_test(
         "//folly/portability:unistd",
         "//folly/test/common:test_main",
         "@glog",
+    ],
+)
+
+cc_test(
+    name = "timerfd_timeout_manager_test",
+    srcs = ["TimerFDTimeoutManagerTest.cpp"],
+    deps = [
+        "//folly/io/async:timerfd",
+        "//folly/io/async/test:util",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
     ],
 )
 
@@ -653,6 +958,7 @@ cc_test(
     name = "zero_copy_test",
     srcs = ["ZeroCopyTest.cpp"],
     deps = [
+        ":io_uring_test_util",
         ":zero_copy_lib",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",

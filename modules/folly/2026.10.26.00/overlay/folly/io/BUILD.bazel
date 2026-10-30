@@ -74,7 +74,6 @@ cc_library(
         "//folly:portability",
         "//folly:range",
         "//folly:scope_guard",
-        "//folly/container:span",
         "//folly/detail:iterators",
         "//folly/hash:spooky_hash_v2",
         "//folly/lang:align",

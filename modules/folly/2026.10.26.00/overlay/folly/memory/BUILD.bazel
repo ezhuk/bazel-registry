@@ -55,9 +55,11 @@ cc_library(
     hdrs = ["IoUringArena.h"],
     include_prefix = "folly/memory",
     deps = [
+        ":fixed_region_allocator",
         ":malloc",
         "//folly:c_portability",
         "//folly:conv",
+        "//folly/detail:static_singleton_manager",
         "//folly/lang:align",
         "//folly/portability:string",
         "//folly/portability:sys_mman",

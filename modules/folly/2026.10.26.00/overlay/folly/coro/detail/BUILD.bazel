@@ -39,6 +39,18 @@ cc_library(
 )
 
 cc_library(
+    name = "detail_current_async_frame",
+    hdrs = ["CurrentAsyncFrame.h"],
+    include_prefix = "folly/coro/detail",
+    deps = [
+        "//folly:executor",
+        "//folly/coro:coroutine",
+        "//folly/coro:with_async_stack",
+        "//folly/tracing:async_stack",
+    ],
+)
+
+cc_library(
     name = "helpers",
     hdrs = ["Helpers.h"],
     include_prefix = "folly/coro/detail",

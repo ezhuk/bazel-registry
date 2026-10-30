@@ -7,6 +7,7 @@ cc_test(
         "//folly/concurrency/container:atomic_grow_array",
         "//folly/lang:keep",
         "//folly/portability:gtest",
+        "//folly/test:deterministic_schedule",
         "//folly/test/common:test_main",
     ],
 )

@@ -11,6 +11,7 @@ cc_library(
         "//folly:c_portability",
         "//folly/algorithm/simd/detail:simd_contains_impl",
         "//folly/algorithm/simd/detail:traits",
+        "//folly/lang:cast",
     ],
 )
 
@@ -22,7 +23,6 @@ cc_library(
         ":movemask",
         "//folly:portability",
         "//folly:utility",
-        "//folly/container:span",
         "//folly/container:sparse_byte_set",
         "//folly/lang:align",
         "//folly/lang:bits",
@@ -36,7 +36,6 @@ cc_library(
     include_prefix = "folly/algorithm/simd",
     deps = [
         "//folly:range",
-        "//folly/container:span",
     ],
 )
 

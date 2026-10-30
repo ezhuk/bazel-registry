@@ -114,7 +114,6 @@ cc_library(
         "//folly:range",
         "//folly:singleton",
         "//folly:string",
-        "//folly/portability:math",
         "@boost.regex",
     ],
 )

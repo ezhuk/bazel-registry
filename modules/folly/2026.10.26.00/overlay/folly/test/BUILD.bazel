@@ -520,6 +520,8 @@ cc_test(
         "//folly:random",
         "//folly:utility",
         "//folly/container:foreach",
+        "//folly/memory:uninitialized_memory_hacks",
+        "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
         "@boost.algorithm",
@@ -719,6 +721,16 @@ cc_test(
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/portability:unistd",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "indirect_test",
+    srcs = ["IndirectTest.cpp"],
+    deps = [
+        "//folly:indirect",
+        "//folly/portability:gtest",
         "//folly/test/common:test_main",
     ],
 )
@@ -1032,7 +1044,6 @@ cc_test(
     deps = [
         "//folly:memory",
         "//folly:range",
-        "//folly/container:span",
         "//folly/memory:allocator",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
@@ -1259,7 +1270,6 @@ cc_test(
     deps = [
         "//folly:range",
         "//folly:unicode",
-        "//folly/container:span",
         "//folly/lang:keep",
         "//folly/portability:gmock",
         "//folly/portability:gtest",

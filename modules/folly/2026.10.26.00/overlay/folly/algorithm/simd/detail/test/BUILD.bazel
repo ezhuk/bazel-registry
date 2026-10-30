@@ -7,7 +7,7 @@ cc_test(
         "//folly:range",
         "//folly/algorithm/simd/detail:simd_any_of",
         "//folly/algorithm/simd/detail:simd_platform",
-        "//folly/container:span",
+        "//folly/lang:cast",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",
     ],
@@ -29,6 +29,7 @@ cc_test(
     deps = [
         "//folly/algorithm/simd/detail:traits",
         "//folly/lang:bits",
+        "//folly/lang:cast",
         "//folly/portability:gmock",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",

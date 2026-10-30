@@ -16,7 +16,10 @@ cc_test(
 
 cc_library(
     name = "common",
-    hdrs = ["common.h"],
+    hdrs = [
+        "benchmark_common.h",
+        "common.h",
+    ],
     include_prefix = "folly/result/test",
     visibility = ["//visibility:public"],
     deps = [
@@ -378,16 +381,6 @@ cc_test(
     deps = [
         "//folly/portability:gtest",
         "//folly/result:try",
-        "//folly/test/common:test_main",
-    ],
-)
-
-cc_test(
-    name = "value_only_result_test",
-    srcs = ["value_only_result_test.cpp"],
-    deps = [
-        "//folly/result:gtest_helpers",
-        "//folly/result:value_only_result",
         "//folly/test/common:test_main",
     ],
 )

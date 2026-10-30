@@ -48,7 +48,6 @@ cc_test(
     srcs = ["BitsTest.cpp"],
     deps = [
         "//folly:random",
-        "//folly/container:span",
         "//folly/lang:bits",
         "//folly/portability:gtest",
         "//folly/test/common:test_main",

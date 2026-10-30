@@ -169,12 +169,6 @@ cc_library(
 )
 
 cc_library(
-    name = "math",
-    hdrs = ["Math.h"],
-    include_prefix = "folly/portability",
-)
-
-cc_library(
     name = "memory",
     hdrs = ["Memory.h"],
     include_prefix = "folly/portability",

@@ -109,7 +109,7 @@ cc_library(
     hdrs = ["UniqueHashKey.h"],
     include_prefix = "folly/hash",
     deps = [
-        "//folly/container:span",
+        "//folly/lang:cast",
         "//folly/portability:openssl",
         "//folly/portability:unistd",
         "@blake3",

@@ -18,6 +18,17 @@ cc_test(
 )
 
 cc_test(
+    name = "fixed_region_allocator_test",
+    srcs = ["FixedRegionAllocatorTest.cpp"],
+    deps = [
+        "//folly/memory:fixed_region_allocator",
+        "//folly/memory:sanitize_address",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
     name = "iobuf_arena_factory_test",
     srcs = ["IOBufArenaFactoryTest.cpp"],
     deps = [
