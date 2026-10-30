@@ -1,0 +1,24 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "hazptr_lock_free_lifo",
+    hdrs = ["HazptrLockFreeLIFO.h"],
+    include_prefix = "folly/synchronization/example",
+    deps = ["//folly/synchronization:hazptr"],
+)
+
+cc_library(
+    name = "hazptr_swmr_set",
+    hdrs = ["HazptrSWMRSet.h"],
+    include_prefix = "folly/synchronization/example",
+    deps = ["//folly/synchronization:hazptr"],
+)
+
+cc_library(
+    name = "hazptr_wide_cas",
+    hdrs = ["HazptrWideCAS.h"],
+    include_prefix = "folly/synchronization/example",
+    deps = ["//folly/synchronization:hazptr"],
+)

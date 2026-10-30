@@ -1,0 +1,70 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "immortal_exception_storage",
+    hdrs = ["immortal_exception_storage.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        "//folly/lang:exception",
+        "//folly/result:rich_error_fwd",
+    ],
+)
+
+cc_library(
+    name = "ptr_immortal_exception_storage",
+    hdrs = ["ptr_immortal_exception_storage.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        "//folly/lang:safe_assert",
+        "//folly/result:rich_error_base",
+    ],
+)
+
+cc_library(
+    name = "result_or_unwind",
+    hdrs = ["result_or_unwind.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        ":result_promise",
+        "//folly:cpp_attributes",
+        "//folly/coro:error",
+        "//folly/lang:must_use_immediately",
+        "//folly/result",
+    ],
+)
+
+cc_library(
+    name = "result_promise",
+    hdrs = ["result_promise.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        "//folly/coro:coroutine",
+        "//folly/result",
+        "//folly/result:epitaph",
+    ],
+)
+
+cc_library(
+    name = "rich_error_common",
+    hdrs = ["rich_error_common.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        "//folly:traits",
+        "//folly/lang:pretty",
+        "//folly/result:rich_error_base",
+    ],
+)
+
+cc_library(
+    name = "rich_exception_ptr_storage",
+    srcs = ["rich_exception_ptr_storage.cpp"],
+    hdrs = ["rich_exception_ptr_storage.h"],
+    include_prefix = "folly/result/detail",
+    deps = [
+        ":immortal_exception_storage",
+        "//folly:portability",
+        "@glog",
+    ],
+)

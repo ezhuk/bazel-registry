@@ -1,0 +1,81 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "blake2xb",
+    srcs = ["Blake2xb.cpp"],
+    hdrs = ["Blake2xb.h"],
+    include_prefix = "folly/crypto",
+    deps = [
+        "//folly:range",
+        "//folly/lang:bits",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "lt_hash",
+    srcs = ["LtHash.cpp"],
+    hdrs = ["LtHash.h"],
+    include_prefix = "folly/crypto",
+    textual_hdrs = ["LtHash-inl.h"],
+    deps = [
+        ":blake2xb",
+        "//folly:cpu_id",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:range",
+        "//folly/crypto/detail:lt_hash_internal",
+        "//folly/crypto/detail:math_operation_avx2_disable",
+        "//folly/crypto/detail:math_operation_simple",
+        "//folly/crypto/detail:math_operation_sse2_disable",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "lt_hash_avx2",
+    srcs = ["LtHash.cpp"],
+    hdrs = ["LtHash.h"],
+    include_prefix = "folly/crypto",
+    textual_hdrs = ["LtHash-inl.h"],
+    deps = [
+        ":blake2xb",
+        "//folly:cpu_id",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:range",
+        "//folly/crypto/detail:lt_hash_internal",
+        "//folly/crypto/detail:math_operation_avx2",
+        "//folly/crypto/detail:math_operation_simple",
+        "//folly/crypto/detail:math_operation_sse2",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "@libsodium",
+    ],
+)
+
+cc_library(
+    name = "lt_hash_sse2",
+    srcs = ["LtHash.cpp"],
+    hdrs = ["LtHash.h"],
+    include_prefix = "folly/crypto",
+    textual_hdrs = ["LtHash-inl.h"],
+    deps = [
+        ":blake2xb",
+        "//folly:cpu_id",
+        "//folly:memory",
+        "//folly:optional",
+        "//folly:range",
+        "//folly/crypto/detail:lt_hash_internal",
+        "//folly/crypto/detail:math_operation_avx2_disable",
+        "//folly/crypto/detail:math_operation_simple",
+        "//folly/crypto/detail:math_operation_sse2",
+        "//folly/io:iobuf",
+        "//folly/lang:bits",
+        "@libsodium",
+    ],
+)
