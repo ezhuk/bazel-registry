@@ -1,0 +1,37 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "cert_test",
+    srcs = ["CertTest.cpp"],
+    deps = [
+        "//fizz/backend/openssl/certificate:cert_utils",
+        "//fizz/protocol/test:cert_util",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cert_utils_test",
+    srcs = ["CertUtilsTest.cpp"],
+    deps = [
+        "//fizz/backend/openssl/certificate:cert_utils",
+        "//fizz/protocol/test:cert_test_types",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "openssl_certificate_verifier_test",
+    srcs = ["OpenSSLCertificateVerifierTest.cpp"],
+    deps = [
+        "//fizz/backend/openssl/certificate:cert_verifier",
+        "//fizz/protocol/test:cert_util",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/ssl:openssl_cert_utils",
+        "@googletest//:gtest_main",
+    ],
+)
