@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "better_enums",
+    hdrs = ["enum.h"],
+    include_prefix = "quic/common/third-party",
+)
+
+cc_library(
+    name = "expected",
+    hdrs = ["expected.hpp"],
+    include_prefix = "quic/common/third-party",
+)
+
+cc_library(
+    name = "tiny_optional",
+    hdrs = [
+        "optional.h",
+        "optional_flag_manipulator_fwd.h",
+    ],
+    include_prefix = "quic/common/third-party",
+)

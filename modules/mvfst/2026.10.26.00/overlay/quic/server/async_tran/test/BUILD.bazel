@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "QuicAsyncTransportServerTest",
+    srcs = ["QuicAsyncTransportServerTest.cpp"],
+    deps = [
+        "//quic/api/test:mocks",
+        "//quic/client",
+        "//quic/client:client_async_transport",
+        "//quic/common/test:test_client_utils",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/server",
+        "//quic/server/async_tran:server_async_transport",
+        "//quic/server/test:mocks",
+        "@folly//folly/futures:core",
+        "@folly//folly/io/async:async_transport",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

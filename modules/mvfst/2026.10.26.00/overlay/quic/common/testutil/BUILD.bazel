@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "mock_async_udp_socket",
+    hdrs = ["MockAsyncUDPSocket.h"],
+    include_prefix = "quic/common/testutil",
+    deps = [
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "@folly//folly/portability:gmock",
+    ],
+)
