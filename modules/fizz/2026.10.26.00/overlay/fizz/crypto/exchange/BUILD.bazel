@@ -1,0 +1,35 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "async_key_exchange",
+    hdrs = ["AsyncKeyExchange.h"],
+    include_prefix = "fizz/crypto/exchange",
+    deps = [
+        ":key_exchange",
+        "@folly//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "hybrid_key_exchange",
+    srcs = ["HybridKeyExchange.cpp"],
+    hdrs = ["HybridKeyExchange.h"],
+    include_prefix = "fizz/crypto/exchange",
+    deps = [
+        ":key_exchange",
+        "//fizz/util:status",
+    ],
+)
+
+cc_library(
+    name = "key_exchange",
+    hdrs = ["KeyExchange.h"],
+    include_prefix = "fizz/crypto/exchange",
+    deps = [
+        "//fizz/util:status",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+    ],
+)
