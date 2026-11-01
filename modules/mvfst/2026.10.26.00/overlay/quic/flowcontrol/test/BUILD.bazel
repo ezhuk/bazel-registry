@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "QuicFlowControlTest",
+    srcs = ["QuicFlowControlTest.cpp"],
+    deps = [
+        "//quic/client:state_and_handshake",
+        "//quic/common/test:test_utils",
+        "//quic/flowcontrol:flow_control",
+        "//quic/state/test:mocks",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

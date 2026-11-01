@@ -1,0 +1,41 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "echo_handler",
+    srcs = [
+    ],
+    hdrs = [
+        "EchoClient.h",
+        "EchoHandler.h",
+        "EchoServer.h",
+        "EchoTransportServer.h",
+        "LogQuicStats.h",
+    ],
+    include_prefix = "quic/samples/echo",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/api:transport",
+        "//quic/client",
+        "//quic/codec:types",
+        "//quic/common:buf_util",
+        "//quic/common:mvfst_logging",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_client_utils",
+        "//quic/common/test:test_utils",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/server",
+        "//quic/state:stats_callback",
+        "@fizz//fizz/backend/openssl",
+        "@fizz//fizz/compression:zlib_certificate_decompressor",
+        "@fizz//fizz/compression:zstd_certificate_decompressor",
+        "@fizz//fizz/util:status",
+        "@folly//folly:file_util",
+        "@folly//folly:synchronized",
+        "@folly//folly/fibers:core",
+        "@folly//folly/io/async:scoped_event_base_thread",
+    ],
+)
