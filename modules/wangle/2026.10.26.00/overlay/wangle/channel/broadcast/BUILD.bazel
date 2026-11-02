@@ -1,0 +1,51 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "broadcast_handler",
+    hdrs = ["BroadcastHandler.h"],
+    include_prefix = "wangle/channel/broadcast",
+    textual_hdrs = ["BroadcastHandler-inl.h"],
+    deps = [
+        ":subscriber",
+        "//wangle/channel",
+        "//wangle/channel:async_socket_handler",
+    ],
+)
+
+cc_library(
+    name = "broadcast_pool",
+    hdrs = ["BroadcastPool.h"],
+    include_prefix = "wangle/channel/broadcast",
+    textual_hdrs = ["BroadcastPool-inl.h"],
+    deps = [
+        ":broadcast_handler",
+        "//wangle/bootstrap:base_client_bootstrap",
+        "//wangle/bootstrap:client_bootstrap",
+        "//wangle/channel",
+        "@folly//folly:thread_local",
+        "@folly//folly/futures:shared_promise",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)
+
+cc_library(
+    name = "observing_handler",
+    hdrs = ["ObservingHandler.h"],
+    include_prefix = "wangle/channel/broadcast",
+    textual_hdrs = ["ObservingHandler-inl.h"],
+    deps = [
+        ":broadcast_pool",
+        ":subscriber",
+        "//wangle/bootstrap:accept_routing_handler",
+        "//wangle/bootstrap:server_bootstrap",
+    ],
+)
+
+cc_library(
+    name = "subscriber",
+    hdrs = ["Subscriber.h"],
+    include_prefix = "wangle/channel/broadcast",
+    deps = ["@folly//folly:exception_wrapper"],
+)
