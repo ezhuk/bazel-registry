@@ -1,0 +1,97 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "eventbase",
+    hdrs = ["QuicEventBase.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "@folly//folly:glog",
+    ],
+)
+
+cc_library(
+    name = "folly_eventbase",
+    srcs = ["FollyQuicEventBase.cpp"],
+    hdrs = ["FollyQuicEventBase.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":eventbase",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:async_base_fwd",
+    ],
+)
+
+cc_library(
+    name = "highres_quic_timer",
+    srcs = ["HighResQuicTimer.cpp"],
+    hdrs = ["HighResQuicTimer.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":quic_timer",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:timerfd",
+    ],
+)
+
+cc_library(
+    name = "libev_eventbase",
+    srcs = ["LibevQuicEventBase.cpp"],
+    hdrs = ["LibevQuicEventBase.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":eventbase",
+        ":quic_timer",
+        "//quic/common:mvfst_logging",
+        "@folly//folly:glog",
+        "@folly//folly:intrusive_list",
+        "@libev",
+    ],
+)
+
+cc_library(
+    name = "quic_executor",
+    hdrs = ["QuicExecutor.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":eventbase",
+        "@folly//folly:executor",
+    ],
+)
+
+cc_library(
+    name = "quic_folly_executor_impl",
+    srcs = ["QuicFollyExecutorImpl.cpp"],
+    hdrs = ["QuicFollyExecutorImpl.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":folly_eventbase",
+        ":quic_executor",
+        "@folly//folly/io/async:async_base",
+    ],
+)
+
+cc_library(
+    name = "quic_libev_executor_impl",
+    srcs = ["QuicLibevExecutorImpl.cpp"],
+    hdrs = ["QuicLibevExecutorImpl.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":libev_eventbase",
+        ":quic_executor",
+        "@folly//folly:intrusive_list",
+        "@libev",
+    ],
+)
+
+cc_library(
+    name = "quic_timer",
+    hdrs = ["QuicTimer.h"],
+    include_prefix = "quic/common/events",
+    deps = [
+        ":eventbase",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)

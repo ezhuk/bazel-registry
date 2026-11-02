@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/facebook/folly/releases/download/v2026.10.26.00/folly-v2026.10.26.00.tar.gz",
+  "url": "https://github.com/meta/folly/releases/download/v2026.10.26.00/folly-v2026.10.26.00.tar.gz",
   "integrity": "sha256-XX9ne9rF+Foo90oHAs/6hKdjcE5+iPUXqMmIxehm/D0=",
   "overlay": {
     "CMake/BUILD.bazel": "sha256-QGn1brUx1mNBFsI3goTlDHCp16/kVCYCCzIUKE6qT4s=",
@@ -31,7 +31,7 @@
     "folly/container/detail/test/BUILD.bazel": "sha256-Btf56KWsbhOa/pVDRMHGTN0Laq/LV7IVS3mDqYV/+GQ=",
     "folly/container/detail/BUILD.bazel": "sha256-DCTFp+Ku0xXoBeO7dUe7Kc/t98tm8E64ZhA9WINDH0A=",
     "folly/container/test/BUILD.bazel": "sha256-LSBhVQwfy9yOXSJoSCiw1tU+u3eeROT5WZ5ey1f2ybU=",
-    "folly/container/BUILD.bazel": "sha256-v3Oa4Y5LypA1VLe5rfLPGMRgfB6vNwTyUjZPQphinHE=",
+    "folly/container/BUILD.bazel": "sha256-VtzWLFYhtLKKDNKV4NSNsnDx+ynSLudgoYtjbNjR/3g=",
     "folly/coro/detail/test/BUILD.bazel": "sha256-Vexu7tDfMJ2CB+u1JW07o/uwz7S0XUHZvMmjHBkBEbY=",
     "folly/coro/detail/BUILD.bazel": "sha256-VA8ruJxJ6s+g+8rSfdiAJUgM1vPZUGZe/ztpLG1BWW4=",
     "folly/coro/safe/detail/test/BUILD.bazel": "sha256-0CZf10melsKQe/K4Rge8b+W1WhX6HwkSHqlo5O7cmrQ=",

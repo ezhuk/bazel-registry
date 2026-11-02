@@ -1,0 +1,154 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "quic/server/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/server",
+        "//quic/server/state:server_connection_id_rejector",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "quic_server_transport_test_util",
+    hdrs = ["QuicServerTransportTestUtil.h"],
+    include_prefix = "quic/server/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":mocks",
+        "//quic/api:transport_helpers",
+        "//quic/api/test:mocks",
+        "//quic/codec:types",
+        "//quic/common:mvfst_logging",
+        "//quic/common:transport_knobs",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_utils",
+        "//quic/common/testutil:mock_async_udp_socket",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/congestion_control:server_congestion_controller_factory",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/server",
+        "//quic/state/test:mocks",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "QuicClientServerIntegrationTest",
+    srcs = ["QuicClientServerIntegrationTest.cpp"],
+    deps = [
+        "//quic/api/test:mocks",
+        "//quic/client",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_client_utils",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/client/handshake:fizz_client_handshake",
+        "//quic/server",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicServerTest",
+    srcs = [
+        "QuicServerTest.cpp",
+        "QuicSocketTest.cpp",
+    ],
+    deps = [
+        ":mocks",
+        "//quic/api:transport",
+        "//quic/api/test:api_mocks",
+        "//quic/api/test:mocks",
+        "//quic/client",
+        "//quic/codec:header_codec",
+        "//quic/codec:types",
+        "//quic/codec/test:mocks",
+        "//quic/common:mvfst_logging",
+        "//quic/common/events:folly_eventbase",
+        "//quic/common/test:test_utils",
+        "//quic/common/udpsocket:folly_async_udp_socket",
+        "//quic/congestion_control:server_congestion_controller_factory",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/samples/echo:echo_handler",
+        "//quic/server",
+        "//quic/server:accept_observer",
+        "//quic/server:rate_limiter",
+        "//quic/server/handshake:token_generator",
+        "//quic/state/test:mocks",
+        "@folly//folly/futures:core",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicServerTransportMigrationTest",
+    srcs = ["QuicServerTransportMigrationTest.cpp"],
+    deps = [
+        ":quic_server_transport_test_util",
+        "//quic:constants",
+        "//quic/codec:pktbuilder",
+        "//quic/logging:file_qlogger",
+        "//quic/priority:http_priority_queue",
+        "//quic/state/test:mocks",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "QuicServerTransportTest",
+    srcs = ["QuicServerTransportTest.cpp"],
+    deps = [
+        ":quic_server_transport_test_util",
+        "//quic:constants",
+        "//quic/codec:pktbuilder",
+        "//quic/common:transport_knobs",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/logging:file_qlogger",
+        "//quic/priority:http_priority_queue",
+        "//quic/server/handshake:server_handshake",
+        "//quic/server/state:server",
+        "//quic/state:stream_functions",
+        "//quic/state/test:mocks",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "ServerStateMachineTest",
+    srcs = ["ServerStateMachineTest.cpp"],
+    deps = [
+        ":mocks",
+        "//quic/codec:types",
+        "//quic/codec/test:mocks",
+        "//quic/common/test:test_utils",
+        "//quic/fizz/server/handshake:fizz_server_handshake",
+        "//quic/server/state:server",
+        "//quic/state/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "SlidingWindowRateLimiterTest",
+    srcs = ["SlidingWindowRateLimiterTest.cpp"],
+    deps = [
+        "//quic/server:rate_limiter",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

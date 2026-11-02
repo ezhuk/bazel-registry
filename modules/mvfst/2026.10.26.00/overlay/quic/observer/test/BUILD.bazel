@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "SocketObserverInterfaceTest",
+    srcs = ["SocketObserverInterfaceTest.cpp"],
+    deps = [
+        "//quic/common/test:test_packet_builders",
+        "//quic/common/test:test_utils",
+        "//quic/observer:socket_observer_interface",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

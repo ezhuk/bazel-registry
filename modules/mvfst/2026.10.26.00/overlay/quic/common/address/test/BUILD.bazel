@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "QuicSocketAddressTest",
+    srcs = ["QuicSocketAddressTest.cpp"],
+    deps = [
+        "//quic/common/address:quic_address_util",
+        "//quic/common/address:quic_socket_address",
+        "//quic/common/address:quic_socket_address_bridge",
+        "@folly//folly:network_address",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:sockets",
+    ],
+)

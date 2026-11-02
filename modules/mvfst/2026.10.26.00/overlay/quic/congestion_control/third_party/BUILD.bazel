@@ -1,0 +1,9 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "chromium_windowed_filter",
+    hdrs = ["windowed_filter.h"],
+    include_prefix = "quic/congestion_control/third_party",
+)

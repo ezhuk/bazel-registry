@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "stream",
+    srcs = [
+        "StreamReceiveHandlers.cpp",
+        "StreamSendHandlers.cpp",
+        "StreamStateFunctions.cpp",
+    ],
+    hdrs = [
+        "StreamReceiveHandlers.h",
+        "StreamSendHandlers.h",
+        "StreamStateFunctions.h",
+    ],
+    include_prefix = "quic/state/stream",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/flowcontrol:flow_control",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:stream_functions",
+    ],
+)

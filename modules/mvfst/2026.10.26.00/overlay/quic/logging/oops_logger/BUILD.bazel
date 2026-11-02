@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "glog_oops_logger",
+    hdrs = ["GlogOopsLogger.h"],
+    include_prefix = "quic/logging/oops_logger",
+    deps = [
+        ":oops_logger",
+        "//quic/common:mvfst_logging",
+        "@fmt",
+        "@folly//folly/debugging/symbolizer",
+    ],
+)
+
+cc_library(
+    name = "oops_fields",
+    hdrs = ["OopsFields.h"],
+    include_prefix = "quic/logging/oops_logger",
+)
+
+cc_library(
+    name = "oops_logger",
+    srcs = ["OopsLogger.cpp"],
+    hdrs = ["OopsLogger.h"],
+    include_prefix = "quic/logging/oops_logger",
+    deps = [":oops_fields"],
+)

@@ -1,0 +1,77 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "folly_async_udp_socket",
+    srcs = ["FollyQuicAsyncUDPSocket.cpp"],
+    hdrs = ["FollyQuicAsyncUDPSocket.h"],
+    include_prefix = "quic/common/udpsocket",
+    deps = [
+        ":quic_async_udp_socket_impl",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:string_utils",
+        "//quic/common/address:quic_socket_address_bridge",
+        "//quic/common/events:folly_eventbase",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/io/async:async_udp_socket",
+        "@folly//folly/net:network_socket",
+    ],
+)
+
+cc_library(
+    name = "libev_async_udp_socket",
+    srcs = ["LibevQuicAsyncUDPSocket.cpp"],
+    hdrs = ["LibevQuicAsyncUDPSocket.h"],
+    include_prefix = "quic/common/udpsocket",
+    deps = [
+        ":quic_async_udp_socket_impl",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:string_utils",
+        "//quic/common/events:libev_eventbase",
+    ],
+)
+
+cc_library(
+    name = "quic_async_udp_socket",
+    srcs = ["QuicAsyncUDPSocket.cpp"],
+    hdrs = ["QuicAsyncUDPSocket.h"],
+    include_prefix = "quic/common/udpsocket",
+    deps = [
+        "//quic:config",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/common:mvfst_logging",
+        "//quic/common:network_data",
+        "//quic/common:optional",
+        "//quic/common/events:eventbase",
+        "@folly//folly:network_address",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io:socket_option_map",
+        "@folly//folly/io/async:async_socket_exception",
+        "@folly//folly/portability:sockets",
+    ],
+)
+
+cc_library(
+    name = "quic_async_udp_socket_impl",
+    srcs = ["QuicAsyncUDPSocketImpl.cpp"],
+    hdrs = ["QuicAsyncUDPSocketImpl.h"],
+    include_prefix = "quic/common/udpsocket",
+    deps = [
+        ":quic_async_udp_socket",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "//quic/common:string_utils",
+        "@folly//folly:likely",
+    ],
+)

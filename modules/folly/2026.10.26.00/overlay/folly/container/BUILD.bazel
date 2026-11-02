@@ -171,6 +171,7 @@ cc_library(
     include_prefix = "folly/container",
     deps = [
         ":iterator",
+        ":range_traits",
         "//folly:range",
         "//folly:scope_guard",
         "//folly:small_vector",
