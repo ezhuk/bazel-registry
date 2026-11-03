@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "stats",
+    srcs = [
+        "BaseStats.cpp",
+        "ResourceStats.cpp",
+    ],
+    hdrs = [
+        "BaseStats.h",
+        "PeriodicStats.h",
+        "PeriodicStatsDataBase.h",
+        "ResourceData.h",
+        "ResourceStats.h",
+    ],
+    include_prefix = "proxygen/lib/stats",
+    deps = [
+        "@folly//folly:conv",
+        "@folly//folly:range",
+        "@folly//folly:synchronized",
+        "@folly//folly/executors:function_scheduler",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/synchronization:rcu",
+        "@glog",
+    ],
+)

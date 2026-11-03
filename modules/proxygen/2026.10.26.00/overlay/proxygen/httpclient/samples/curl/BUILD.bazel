@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "proxygencurl",
+    srcs = ["CurlClient.cpp"],
+    hdrs = ["CurlClient.h"],
+    include_prefix = "proxygen/httpclient/samples/curl",
+    deps = [
+        "//proxygen/lib/http:client",
+        "//proxygen/lib/http:message",
+        "//proxygen/lib/http/codec:http2_codec",
+        "//proxygen/lib/http/session:http_transaction",
+        "//proxygen/lib/http/session:http_upstream_session",
+        "//proxygen/lib/utils:url",
+        "@folly//folly:file_util",
+        "@folly//folly:string",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/io/async:ssl_options",
+        "@folly//folly/portability:gflags",
+    ],
+)
