@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":license"],
+    default_visibility = ["//visibility:public"],
+)
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:Apache-2.0"],
+    license_text = "LICENSE",
+)
+
+cc_library(
+    name = "wangle",
+    deps = [
+        "//wangle:config",
+        "//wangle/acceptor",
+        "//wangle/bootstrap",
+        "//wangle/channel",
+        "//wangle/client/persistence",
+        "//wangle/client/ssl",
+        "//wangle/codec",
+        "//wangle/service",
+        "//wangle/ssl",
+        "//wangle/util",
+    ],
+)

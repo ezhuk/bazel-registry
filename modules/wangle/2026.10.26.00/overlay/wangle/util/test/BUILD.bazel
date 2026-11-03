@@ -1,0 +1,33 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "FilePollerTest",
+    srcs = ["FilePollerTest.cpp"],
+    deps = [
+        "//wangle/test:test_main",
+        "//wangle/util:file_poller",
+        "@folly//folly:file",
+        "@folly//folly:file_util",
+        "@folly//folly:singleton",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/portability:sys_stat",
+        "@folly//folly/synchronization:baton",
+        "@folly//folly/testing:test_util",
+    ],
+)
+
+cc_test(
+    name = "MultiFilePollerTest",
+    srcs = ["MultiFilePollerTest.cpp"],
+    deps = [
+        "//wangle/test:test_main",
+        "//wangle/util:multi_file_poller",
+        "@folly//folly:file_util",
+        "@folly//folly:map_util",
+        "@folly//folly:string",
+        "@folly//folly/futures:core",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:saturating_semaphore",
+        "@folly//folly/testing:test_util",
+    ],
+)
