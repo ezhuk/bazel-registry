@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "client",
+    srcs = ["H3DatagramClient.cpp"],
+    include_prefix = "proxygen/httpclient/samples/H3Datagram",
+    deps = [
+        "//proxygen/httpclient/samples/curl:proxygencurl",
+        "//proxygen/httpserver/samples/hq:proxygen_hq_insecure_verifier",
+        "//proxygen/lib/transport:connect_udp_utils",
+        "//proxygen/lib/transport:h3_datagram_async_socket",
+        "@folly//folly:init",
+        "@folly//folly:network_address",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gflags",
+    ],
+)

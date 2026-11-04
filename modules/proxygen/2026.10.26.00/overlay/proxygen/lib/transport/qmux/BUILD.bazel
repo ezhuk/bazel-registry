@@ -1,0 +1,93 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "folly_qmux_transport",
+    srcs = ["FollyQmuxTransport.cpp"],
+    hdrs = ["FollyQmuxTransport.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        ":qmux_transport",
+        "@folly//folly/io/coro:socket",
+    ],
+)
+
+cc_library(
+    name = "qmux_codec",
+    srcs = ["QmuxCodec.cpp"],
+    hdrs = ["QmuxCodec.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        ":qmux_framer",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "@folly//folly/io:iobuf",
+        "@mvfst//quic/folly_utils",
+    ],
+)
+
+cc_library(
+    name = "qmux_connector",
+    srcs = ["QmuxConnector.cpp"],
+    hdrs = ["QmuxConnector.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        ":qmux_framer",
+        ":qmux_session",
+        ":qmux_transport",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "@fmt",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/logging",
+        "@mvfst//quic/common/events:quic_executor",
+        "@mvfst//quic/folly_utils",
+    ],
+)
+
+cc_library(
+    name = "qmux_framer",
+    srcs = ["QmuxFramer.cpp"],
+    hdrs = ["QmuxFramer.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        "//proxygen/lib/http/codec:capsule_codec",
+        "//proxygen/lib/http/codec:varint_utils",
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "@folly//folly:expected",
+        "@folly//folly:optional",
+        "@folly//folly:utility",
+        "@folly//folly/io:iobuf",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+    ],
+)
+
+cc_library(
+    name = "qmux_session",
+    srcs = ["QmuxSession.cpp"],
+    hdrs = ["QmuxSession.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        ":qmux_codec",
+        ":qmux_framer",
+        ":qmux_transport",
+        "//proxygen/lib/http/coro/util:CoroWtSession",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "@folly//folly/logging",
+        "@mvfst//quic/common/events:quic_executor",
+    ],
+)
+
+cc_library(
+    name = "qmux_transport",
+    srcs = ["QmuxTransport.cpp"],
+    hdrs = ["QmuxTransport.h"],
+    include_prefix = "proxygen/lib/transport/qmux",
+    deps = [
+        "@folly//folly:network_address",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:iobuf",
+    ],
+)
