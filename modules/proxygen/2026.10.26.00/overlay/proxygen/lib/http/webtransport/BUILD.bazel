@@ -78,6 +78,7 @@ cc_library(
         ":flow_controller",
         ":webtransport",
         "//proxygen/lib/http/codec:codec_common",
+        "@folly//folly/io/async:destructor_check",
         "@glog",
         "@mvfst//quic:constants",
     ],
