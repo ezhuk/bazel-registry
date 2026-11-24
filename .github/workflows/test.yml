@@ -22,7 +22,6 @@ jobs:
           - folly
           - libaegis
           - liboqs
-          - libsodium
           - mvfst
           - proxygen
           - wangle
