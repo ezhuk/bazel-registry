@@ -1,0 +1,62 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mock_net_ops_dispatcher",
+    hdrs = ["MockNetOpsDispatcher.h"],
+    include_prefix = "folly/net/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/net:net_ops_dispatcher",
+        "//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "mock_tcpinfo_dispatcher",
+    hdrs = ["MockTcpInfoDispatcher.h"],
+    include_prefix = "folly/net/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/net:tcpinfo_dispatcher",
+        "//folly/portability:gmock",
+    ],
+)
+
+cc_library(
+    name = "net_ops_test",
+    srcs = ["NetOpsTest.cpp"],
+    include_prefix = "folly/net/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/net:net_ops",
+        "//folly/net:network_socket",
+        "//folly/portability:gtest",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "tcpinfo_test",
+    srcs = ["TcpInfoTest.cpp"],
+    deps = [
+        ":tcpinfo_test_util",
+        "//folly/net:tcpinfo",
+        "//folly/net/test:mock_net_ops_dispatcher",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_library(
+    name = "tcpinfo_test_util",
+    hdrs = ["TcpInfoTestUtil.h"],
+    include_prefix = "folly/net/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly/net:tcpinfo",
+        "//folly/net/test:mock_net_ops_dispatcher",
+        "//folly/portability:gmock",
+        "//folly/portability:gtest",
+    ],
+)

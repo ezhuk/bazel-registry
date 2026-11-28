@@ -33,6 +33,7 @@ test_suite(
         "@fizz//fizz/compression/test:cert_decompression_manager_test",
         "@fizz//fizz/compression/test:zlib_certificate_compressor_test",
         "@fizz//fizz/compression/test:zstd_certificate_compressor_test",
+        "@fizz//fizz/crypto/aead/test:crypto_util_test",
         "@fizz//fizz/crypto/aead/test:util_test",
         "@fizz//fizz/crypto/exchange/test:HybridExchange",
         "@fizz//fizz/crypto/exchange/test:x25519",

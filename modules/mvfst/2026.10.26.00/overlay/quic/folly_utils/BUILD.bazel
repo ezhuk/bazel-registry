@@ -1,0 +1,27 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "buf_conv",
+    srcs = ["BufConv.cpp"],
+    hdrs = ["BufConv.h"],
+    include_prefix = "quic/folly_utils",
+    deps = [
+        "//quic/common:quic_buffer",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/lang:assume",
+    ],
+)
+
+cc_library(
+    name = "folly_utils",
+    srcs = ["Utils.cpp"],
+    hdrs = ["Utils.h"],
+    include_prefix = "quic/folly_utils",
+    deps = [
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "@folly//folly/io:iobuf",
+    ],
+)

@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "hasher",
+    hdrs = ["Hasher.h"],
+    include_prefix = "fizz/backend/openssl",
+    deps = [
+        ":properties",
+        "//fizz/backend/openssl/crypto:sha",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "openssl",
+    hdrs = ["OpenSSL.h"],
+    include_prefix = "fizz/backend/openssl",
+    deps = [
+        ":hasher",
+        ":properties",
+        "//fizz:config",
+        "//fizz/backend/openssl/certificate:cert_utils",
+        "//fizz/backend/openssl/crypto:eccurve",
+        "//fizz/backend/openssl/crypto:key_utils",
+        "//fizz/backend/openssl/crypto/aead:evp_cipher",
+        "//fizz/backend/openssl/crypto/exchange:key_exchange",
+        "//fizz/backend/openssl/crypto/signature",
+        "//fizz/crypto:hkdf",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "properties",
+    hdrs = ["Properties.h"],
+    include_prefix = "fizz/backend/openssl",
+    deps = [
+        "//fizz/crypto",
+        "//fizz/util:status",
+        "@folly//folly/portability:openssl",
+        "@openssl",
+    ],
+)

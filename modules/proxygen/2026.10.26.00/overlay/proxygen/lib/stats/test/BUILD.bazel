@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mock_resources",
+    hdrs = ["MockResources.h"],
+    include_prefix = "proxygen/lib/stats/test",
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly:conv",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_library(
+    name = "periodic_stats_test_helper",
+    hdrs = ["PeriodicStatsTestHelper.h"],
+    include_prefix = "proxygen/lib/stats/test",
+    deps = [
+        "//proxygen/lib/stats",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:baton",
+    ],
+)
+
+cc_test(
+    name = "BaseStatsTest",
+    srcs = ["BaseStatsTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "//proxygen/lib/test:testmain",
+    ],
+)
+
+cc_test(
+    name = "PeriodicStatsTest",
+    srcs = ["PeriodicStatsTest.cpp"],
+    deps = [
+        ":periodic_stats_test_helper",
+        "//proxygen/lib/stats",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:baton",
+    ],
+)
+
+cc_test(
+    name = "ResourceDataTest",
+    srcs = ["ResourceDataTest.cpp"],
+    deps = [
+        "//proxygen/lib/stats",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "ResourceStatsTest",
+    srcs = ["ResourceStatsTest.cpp"],
+    deps = [
+        ":mock_resources",
+        ":periodic_stats_test_helper",
+        "//proxygen/lib/stats",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly/portability:gtest",
+    ],
+)

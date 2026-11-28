@@ -1,0 +1,31 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_test(
+    name = "exception_counter_test",
+    srcs = ["ExceptionCounterTest.cpp"],
+    deps = [
+        "//folly/debugging/exception_tracer:exception_counter",
+        "//folly/debugging/exception_tracer:exception_counter_static_registration",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_library(
+    name = "exception_tracer_benchmark_main",
+    srcs = ["ExceptionTracerBenchmark.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//folly:benchmark",
+        "//folly/debugging/exception_tracer:exception_tracer_base",
+        "//folly/portability:gflags",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "exception_tracer_test_main",
+    srcs = ["ExceptionTracerTest.cpp"],
+    visibility = ["//visibility:public"],
+    deps = ["//folly/debugging/exception_tracer:exception_tracer_base"],
+)

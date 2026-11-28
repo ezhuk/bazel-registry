@@ -1,0 +1,114 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "baton",
+    hdrs = ["Baton.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly/fibers:core",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "collect",
+    hdrs = ["Collect.h"],
+    include_prefix = "folly/fibers/async",
+    textual_hdrs = ["Collect-inl.h"],
+    deps = [
+        ":baton",
+        ":core",
+        ":fiber_manager",
+        ":future",
+        "//folly:traits",
+        "//folly:try",
+        "//folly/fibers:core_manager",
+        "//folly/fibers:when_n",
+        "//folly/functional:invoke",
+    ],
+)
+
+cc_library(
+    name = "core",
+    srcs = ["Async.cpp"],
+    hdrs = ["Async.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        "//folly:traits",
+        "//folly:unit",
+        "//folly/fibers:core",
+        "//folly/functional:invoke",
+        "//folly/lang:customization_point",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "fiber_manager",
+    hdrs = ["FiberManager.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly/fibers:core_manager",
+    ],
+)
+
+cc_library(
+    name = "future",
+    hdrs = ["Future.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly/futures:core",
+    ],
+)
+
+cc_library(
+    name = "promise",
+    hdrs = ["Promise.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly/fibers:core_manager",
+        "//folly/fibers:traits",
+    ],
+)
+
+cc_library(
+    name = "stack_tracing",
+    hdrs = ["AsyncStack.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly:c_portability",
+        "//folly:scope_guard",
+        "//folly/tracing:async_stack",
+        "@glog",
+    ],
+)
+
+cc_library(
+    name = "task",
+    hdrs = ["Task.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        "//folly/coro:blocking_wait",
+        "//folly/coro:task",
+    ],
+)
+
+cc_library(
+    name = "wait_utils",
+    hdrs = ["WaitUtils.h"],
+    include_prefix = "folly/fibers/async",
+    deps = [
+        ":core",
+        ":fiber_manager",
+        "//folly/fibers:core",
+        "//folly/fibers:fiber_manager_map",
+    ],
+)

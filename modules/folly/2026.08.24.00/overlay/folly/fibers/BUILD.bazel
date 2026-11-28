@@ -315,6 +315,7 @@ cc_library(
         "//folly:intrusive_list",
         "//folly:portability",
         "//folly:spin_lock",
+        "//folly/coro:task",
         "//folly/synchronization:call_once",
         "//folly/synchronization/detail:sleeper",
     ],

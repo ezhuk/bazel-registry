@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "ServiceTest",
+    srcs = ["ServiceTest.cpp"],
+    deps = [
+        "//wangle/codec:byte_to_message_decoder",
+        "//wangle/codec:string_codec",
+        "//wangle/service",
+        "//wangle/service:client_dispatcher",
+        "//wangle/service:close_on_release_filter",
+        "//wangle/service:expiring_filter",
+        "//wangle/service:server_dispatcher",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gtest",
+    ],
+)

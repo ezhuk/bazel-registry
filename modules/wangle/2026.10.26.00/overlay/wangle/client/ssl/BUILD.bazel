@@ -1,0 +1,90 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ssl",
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl_session_cache_data",
+        ":ssl_session_cache_utils",
+        ":ssl_session_callbacks",
+        ":ssl_session_persistent_cache",
+        ":threadsafe_cache",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_cache_data",
+    srcs = ["SSLSessionCacheData.cpp"],
+    hdrs = ["SSLSessionCacheData.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        "@folly//folly:fbstring",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_cache_utils",
+    srcs = ["SSLSessionCacheUtils.cpp"],
+    hdrs = ["SSLSessionCacheUtils.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl_session_cache_data",
+        "//wangle/ssl:ssl_util",
+        "@folly//folly:fbstring",
+        "@folly//folly:optional",
+        "@folly//folly/io:iobuf",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_callbacks",
+    srcs = ["SSLSessionCallbacks.cpp"],
+    hdrs = ["SSLSessionCallbacks.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl_session_cache_utils",
+        "//wangle/ssl:ssl_util",
+        "@folly//folly/io/async:async_ssl_socket",
+        "@folly//folly/io/async:ssl_context",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "ssl_session_persistent_cache",
+    hdrs = ["SSLSessionPersistentCache.h"],
+    include_prefix = "wangle/client/ssl",
+    textual_hdrs = ["SSLSessionPersistentCache-inl.h"],
+    deps = [
+        ":ssl_session_cache_data",
+        ":ssl_session_cache_utils",
+        ":ssl_session_callbacks",
+        "//wangle/client/persistence:file",
+        "//wangle/client/persistence:persistent_cache",
+        "//wangle/client/persistence:persistent_cache_common",
+        "@folly//folly:executor",
+        "@folly//folly:memory",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:openssl",
+        "@folly//folly/ssl:openssl_ptr_types",
+        "@openssl",
+    ],
+)
+
+cc_library(
+    name = "threadsafe_cache",
+    srcs = ["ThreadSafeSSLSessionCache.cpp"],
+    hdrs = ["ThreadSafeSSLSessionCache.h"],
+    include_prefix = "wangle/client/ssl",
+    deps = [
+        ":ssl_session_callbacks",
+        "@folly//folly:shared_mutex",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)

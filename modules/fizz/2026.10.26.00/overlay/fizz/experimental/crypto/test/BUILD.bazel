@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "batch_signature_test",
+    srcs = ["BatchSignatureTest.cpp"],
+    deps = [
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/experimental/crypto:batch_signature",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "merkle_tree_test",
+    srcs = ["MerkleTreeTest.cpp"],
+    deps = [
+        "//fizz/backend/openssl",
+        "//fizz/crypto/test:TestUtil",
+        "//fizz/experimental/crypto:merkle_tree",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

@@ -1,0 +1,27 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "StructuredHeadersTests",
+    srcs = [
+        "StructuredFieldsRfc9651Test.cpp",
+        "StructuredHeadersBufferTest.cpp",
+        "StructuredHeadersDecoderTest.cpp",
+        "StructuredHeadersEncoderTest.cpp",
+        "StructuredHeadersStandardTest.cpp",
+        "StructuredHeadersUtilitiesTest.cpp",
+    ],
+    deps = [
+        "//proxygen/lib/http/structuredheaders:decoder",
+        "//proxygen/lib/http/structuredheaders:encoder",
+        "//proxygen/lib/http/structuredheaders:structured_fields",
+        "//proxygen/lib/http/structuredheaders:structured_headers",
+        "//proxygen/lib/http/structuredheaders:utils",
+        "//proxygen/lib/test:testmain",
+        "@folly//folly:conv",
+        "@folly//folly/json:dynamic",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/testing:test_util",
+        "@glog",
+    ],
+)

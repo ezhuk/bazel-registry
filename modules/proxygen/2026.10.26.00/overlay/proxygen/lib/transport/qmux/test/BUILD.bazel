@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "QmuxCodecTest",
+    srcs = ["QmuxCodecTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/webtransport:wt_stream_manager",
+        "//proxygen/lib/http/webtransport:wt_util",
+        "//proxygen/lib/test:testmain",
+        "//proxygen/lib/transport/qmux:qmux_codec",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/priority:http_priority_queue",
+    ],
+)
+
+cc_test(
+    name = "QmuxConnectorTest",
+    srcs = ["QmuxConnectorTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/coro/transport/test:TestCoroTransport",
+        "//proxygen/lib/test:testmain",
+        "//proxygen/lib/transport/qmux:folly_qmux_transport",
+        "//proxygen/lib/transport/qmux:qmux_connector",
+        "//proxygen/lib/transport/qmux:qmux_framer",
+        "@folly//folly/coro:task",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/common/events:quic_folly_executor_impl",
+    ],
+)
+
+cc_test(
+    name = "QmuxFramerTest",
+    srcs = ["QmuxFramerTest.cpp"],
+    deps = [
+        "//proxygen/lib/test:testmain",
+        "//proxygen/lib/transport/qmux:qmux_framer",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/codec:types",
+        "@mvfst//quic/folly_utils",
+    ],
+)
+
+cc_test(
+    name = "QmuxSessionTest",
+    srcs = ["QmuxSessionTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/webtransport:webtransport_framer",
+        "//proxygen/lib/http/coro/transport/test:TestCoroTransport",
+        "//proxygen/lib/http/webtransport",
+        "//proxygen/lib/test:testmain",
+        "//proxygen/lib/transport/qmux:folly_qmux_transport",
+        "//proxygen/lib/transport/qmux:qmux_codec",
+        "//proxygen/lib/transport/qmux:qmux_framer",
+        "//proxygen/lib/transport/qmux:qmux_session",
+        "@folly//folly/io:iobuf",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gtest",
+        "@mvfst//quic/common/events:quic_folly_executor_impl",
+    ],
+)

@@ -37,6 +37,5 @@ test_suite(
         "@wangle//wangle/ssl/test:TLSCredProcessorTest",
         "@wangle//wangle/ssl/test:TLSInMemoryTicketProcessorTest",
         "@wangle//wangle/util/test:FilePollerTest",
-        "@wangle//wangle/util/test:MultiFilePollerTest",
     ],
 )

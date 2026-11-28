@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "async_socket_observer_container",
+    hdrs = ["AsyncSocketObserverContainer.h"],
+    include_prefix = "folly/io/async/observer",
+    deps = [
+        ":async_socket_observer_interface",
+        "//folly:observer_container",
+    ],
+)
+
+cc_library(
+    name = "async_socket_observer_interface",
+    hdrs = ["AsyncSocketObserverInterface.h"],
+    include_prefix = "folly/io/async/observer",
+    deps = [
+        "//folly:cpp_attributes",
+        "//folly:glog",
+        "//folly:optional",
+        "//folly/io/async:write_flags",
+    ],
+)

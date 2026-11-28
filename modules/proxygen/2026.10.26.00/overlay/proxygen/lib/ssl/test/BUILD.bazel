@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "FizzHandshakeErrorTypeTest",
+    srcs = ["FizzHandshakeErrorTypeTest.cpp"],
+    deps = [
+        "//proxygen/lib/ssl:fizz_handshake_error_type",
+        "//proxygen/lib/test:testmain",
+        "@fizz//fizz/record:alerts",
+        "@fizz//fizz/util:exceptions",
+        "@folly//folly:exception_wrapper",
+        "@folly//folly/portability:gtest",
+        "@wangle//wangle/acceptor",
+    ],
+)

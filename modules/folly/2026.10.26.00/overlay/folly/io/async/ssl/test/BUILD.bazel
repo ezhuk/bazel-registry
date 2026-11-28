@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "openssl_utils_test",
+    srcs = ["OpenSSLUtilsTest.cpp"],
+    deps = [
+        "//folly:string",
+        "//folly/io/async/ssl:openssl_utils",
+        "//folly/portability:gtest",
+        "//folly/portability:openssl",
+        "//folly/ssl:openssl_ptr_types",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "ssl_errors_test",
+    srcs = ["SSLErrorsTest.cpp"],
+    deps = [
+        "//folly/io/async/ssl:ssl_errors",
+        "//folly/portability:gtest",
+        "//folly/portability:openssl",
+        "//folly/test/common:test_main",
+    ],
+)

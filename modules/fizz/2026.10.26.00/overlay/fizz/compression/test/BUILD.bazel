@@ -1,0 +1,67 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "fizz/compression/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//fizz/compression:certificate_compressor",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "brotli_certificate_compressor_test",
+    srcs = ["BrotliCertificateCompressorTest.cpp"],
+    deps = [
+        "//fizz/compression:brotli_certificate_compressor",
+        "//fizz/compression:brotli_certificate_decompressor",
+        "//fizz/crypto:utils",
+        "//fizz/protocol/test:cert_util",
+        "//fizz/protocol/test:matchers",
+        "//fizz/record",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "cert_decompression_manager_test",
+    srcs = ["CertDecompressionManagerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//fizz/compression:cert_decompression_manager",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "zlib_certificate_compressor_test",
+    srcs = ["ZlibCertificateCompressorTest.cpp"],
+    deps = [
+        "//fizz/compression:zlib_certificate_compressor",
+        "//fizz/compression:zlib_certificate_decompressor",
+        "//fizz/protocol/test:cert_util",
+        "//fizz/protocol/test:matchers",
+        "//fizz/record",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "zstd_certificate_compressor_test",
+    srcs = ["ZstdCertificateCompressorTest.cpp"],
+    deps = [
+        "//fizz/compression:zstd_certificate_compressor",
+        "//fizz/compression:zstd_certificate_decompressor",
+        "//fizz/crypto:utils",
+        "//fizz/protocol/test:cert_util",
+        "//fizz/protocol/test:matchers",
+        "//fizz/record",
+        "@folly//folly/portability:gtest",
+        "@googletest//:gtest_main",
+    ],
+)

@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "binary_heap_test",
+    srcs = ["BinaryHeapTest.cpp"],
+    deps = [
+        "//folly/algorithm:binary_heap",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "stable_radix_sort_test",
+    srcs = ["StableRadixSortTest.cpp"],
+    deps = [
+        "//folly/algorithm:stable_radix_sort",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)

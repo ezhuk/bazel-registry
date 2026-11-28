@@ -1,0 +1,109 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "buffered_stat_test",
+    srcs = ["BufferedStatTest.cpp"],
+    deps = [
+        "//folly:range",
+        "//folly/portability:gtest",
+        "//folly/stats/detail:buffered_stat",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "digest_builder_test",
+    srcs = ["DigestBuilderTest.cpp"],
+    deps = [
+        "//folly:range",
+        "//folly/portability:gtest",
+        "//folly/stats:digest_builder",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "histogram_test",
+    srcs = ["HistogramTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats:histogram",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "quantile_estimator_test",
+    srcs = ["QuantileEstimatorTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats:quantile_estimator",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "quantile_histogram_test",
+    srcs = ["QuantileHistogramTest.cpp"],
+    deps = [
+        "//folly:range",
+        "//folly/portability:gtest",
+        "//folly/stats:quantile_histogram",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "sliding_window_test",
+    srcs = ["SlidingWindowTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats/detail:sliding_window",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "streaming_stats_test",
+    srcs = ["StreamingStatsTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats:streaming_stats",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "tdigest_test",
+    srcs = ["TDigestTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats:tdigest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "time_series_test",
+    srcs = ["TimeSeriesTest.cpp"],
+    deps = [
+        "//folly:random",
+        "//folly/container:foreach",
+        "//folly/portability:gtest",
+        "//folly/stats:bucketed_time_series",
+        "//folly/stats:multi_level_time_series",
+        "//folly/stats/detail:bucket",
+        "//folly/test/common:test_main",
+        "@glog",
+    ],
+)
+
+cc_test(
+    name = "timeseries_histogram_test",
+    srcs = ["TimeseriesHistogramTest.cpp"],
+    deps = [
+        "//folly/portability:gtest",
+        "//folly/stats:timeseries_histogram",
+        "//folly/test/common:test_main",
+    ],
+)

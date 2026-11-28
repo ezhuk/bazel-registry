@@ -122,10 +122,8 @@ cc_library(
         "@boost.intrusive",
         "@fmt",
         "@glog",
-    ] + select({
-        "@platforms//os:linux": ["@libaio//:aio"],
-        "//conditions:default": [],
-    }),
+        "@libaio//:aio",
+    ],
 )
 
 cc_library(
@@ -360,9 +358,9 @@ cc_library(
         "//folly:scope_guard",
         "//folly:small_vector",
         "//folly:utility",
-        "//folly/io/async:async_transport",
         "//folly/io:iobuf",
         "//folly/io:socket_option_map",
+        "//folly/io/async:async_transport",
         "//folly/net:net_ops",
         "//folly/net:net_ops_dispatcher",
         "//folly/net:network_socket",

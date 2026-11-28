@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["MockAsyncTransportCertificate.h"],
+    include_prefix = "proxygen/lib/transport/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@folly//folly/io/async:async_transport_certificate",
+        "@folly//folly/io/async/ssl:openssl_transport_certificate",
+        "@folly//folly/portability:gmock",
+    ],
+)
+
+cc_test(
+    name = "TransportTests",
+    srcs = ["H3DatagramAsyncSocketTest.cpp"],
+    deps = [
+        "//proxygen/lib/http/codec/test:codectestutils",
+        "//proxygen/lib/http/session/test:sessiontestutils",
+        "//proxygen/lib/transport:h3_datagram_async_socket",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+        "@glog",
+        "@googletest//:gtest_main",
+        "@mvfst//quic/common/udpsocket:folly_async_udp_socket",
+    ],
+)

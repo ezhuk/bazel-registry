@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "bind_async_closure_test",
+    srcs = ["BindAsyncClosureTest.cpp"],
+    deps = [
+        "//folly/coro:task",
+        "//folly/coro:value_or_fatal",
+        "//folly/coro/safe/detail:bind_async_closure",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)
+
+cc_test(
+    name = "define_movable_deep_const_lref_copyable_test",
+    srcs = ["DefineMovableDeepConstLrefCopyableTest.cpp"],
+    deps = [
+        "//folly/coro/safe/detail:define_movable_deep_const_lref_copyable",
+        "//folly/portability:gtest",
+        "//folly/test/common:test_main",
+    ],
+)

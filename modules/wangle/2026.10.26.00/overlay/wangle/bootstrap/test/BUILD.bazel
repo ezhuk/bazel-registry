@@ -1,0 +1,43 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
+cc_library(
+    name = "mocks",
+    hdrs = ["Mocks.h"],
+    include_prefix = "wangle/bootstrap/test",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//wangle/bootstrap:accept_routing_handler",
+        "//wangle/bootstrap:client_bootstrap",
+        "//wangle/bootstrap:routing_data_handler",
+        "//wangle/bootstrap:server_bootstrap",
+        "//wangle/channel:pipeline",
+        "//wangle/channel/test:mocks",
+        "@folly//folly/portability:gmock",
+        "@folly//folly/portability:gtest",
+    ],
+)
+
+cc_test(
+    name = "AcceptRoutingHandlerTest",
+    srcs = ["AcceptRoutingHandlerTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/test:test_main",
+        "@folly//folly/synchronization:latch",
+    ],
+)
+
+cc_test(
+    name = "BootstrapTest",
+    srcs = ["BootstrapTest.cpp"],
+    deps = [
+        ":mocks",
+        "//wangle/bootstrap:client_bootstrap",
+        "//wangle/bootstrap:server_bootstrap",
+        "//wangle/channel",
+        "//wangle/test:test_main",
+        "@folly//folly/portability:gtest",
+        "@folly//folly/synchronization:latch",
+        "@folly//folly/testing:test_util",
+    ],
+)

@@ -1,0 +1,107 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "app_token",
+    srcs = ["AppToken.cpp"],
+    hdrs = ["AppToken.h"],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:expected",
+        "//quic/handshake:transport_parameters",
+    ],
+)
+
+cc_library(
+    name = "default_app_token_validator",
+    srcs = ["DefaultAppTokenValidator.cpp"],
+    hdrs = ["DefaultAppTokenValidator.h"],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        "//quic:constants",
+        "//quic/api:transport",
+        "//quic/api:transport_helpers",
+        "//quic/common:mvfst_logging",
+        "//quic/common:optional",
+        "//quic/fizz/server/handshake:handshake_app_token",
+        "//quic/handshake:transport_parameters",
+        "//quic/server/state:server",
+        "@fizz//fizz/server:protocol",
+        "@fizz//fizz/server:resumption_state",
+        "@folly//folly:network_address",
+        "@folly//folly/io:iobuf",
+    ],
+)
+
+cc_library(
+    name = "server_extension",
+    hdrs = ["ServerTransportParametersExtension.h"],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        ":stateless_reset_generator",
+        "//quic/fizz/handshake:fizz_handshake",
+        "//quic/state:quic_state_machine",
+        "@fizz//fizz/server:server_extensions",
+    ],
+)
+
+cc_library(
+    name = "server_handshake",
+    srcs = ["ServerHandshake.cpp"],
+    hdrs = [
+        "ServerHandshake.h",
+        "ServerHandshakeFactory.h",
+    ],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        ":app_token",
+        ":server_extension",
+        "//quic:constants",
+        "//quic:exception",
+        "//quic/common:mvfst_logging",
+        "//quic/fizz/handshake:fizz_bridge",
+        "//quic/handshake",
+        "//quic/logging/oops_logger",
+        "//quic/state:connection_oops_fields",
+        "//quic/state:quic_state_machine",
+        "//quic/state:stream_functions",
+        "@fizz//fizz/protocol:default_certificate_verifier",
+        "@fizz//fizz/server:fizz_server",
+        "@fizz//fizz/server:fizz_server_context",
+        "@folly//folly:optional",
+        "@folly//folly/io/async:delayed_destruction",
+    ],
+)
+
+cc_library(
+    name = "stateless_reset_generator",
+    srcs = ["StatelessResetGenerator.cpp"],
+    hdrs = ["StatelessResetGenerator.h"],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        "//quic/codec:types",
+        "@fizz//fizz/backend/openssl",
+        "@fizz//fizz/crypto",
+        "@fizz//fizz/crypto:hkdf",
+        "@fizz//fizz/util:status",
+        "@folly//folly:range",
+    ],
+)
+
+cc_library(
+    name = "token_generator",
+    srcs = ["TokenGenerator.cpp"],
+    hdrs = ["TokenGenerator.h"],
+    include_prefix = "quic/server/handshake",
+    deps = [
+        "//quic/codec:decode",
+        "//quic/codec:types",
+        "//quic/common:mvfst_logging",
+        "@fizz//fizz/server:aead_token_cipher",
+        "@folly//folly:range",
+        "@folly//folly/io:iobuf",
+    ],
+)

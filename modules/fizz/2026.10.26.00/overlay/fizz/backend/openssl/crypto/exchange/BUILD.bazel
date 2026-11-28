@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "key_exchange",
+    srcs = ["OpenSSLKeyExchange.cpp"],
+    hdrs = ["OpenSSLKeyExchange.h"],
+    include_prefix = "fizz/backend/openssl/crypto/exchange",
+    deps = [
+        "//fizz/backend/openssl/crypto:key_utils",
+        "//fizz/crypto/exchange:key_exchange",
+        "@folly//folly/ssl:openssl_ptr_types",
+    ],
+)

@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "echo",
+    srcs = [
+        "EchoHandler.cpp",
+        "EchoServer.cpp",
+    ],
+    hdrs = [
+        "EchoHandler.h",
+        "EchoStats.h",
+    ],
+    include_prefix = "proxygen/httpserver/samples/echo",
+    deps = [
+        "//proxygen/httpserver",
+        "//proxygen/httpserver:httpserver_headers",
+        "@folly//folly:memory",
+        "@folly//folly/io/async:async_base",
+        "@folly//folly/portability:gflags",
+        "@folly//folly/portability:unistd",
+        "@folly//folly/system:hardware_concurrency",
+    ],
+)
