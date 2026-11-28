@@ -5,6 +5,14 @@ multi-ecosystem-groups:
       interval: "monthly"
 updates:
   - package-ecosystem: "github-actions"
+    cooldown:
+      default-days: 7
+    directory: "/"
+    patterns: ["*"]
+    multi-ecosystem-group: "all"
+  - package-ecosystem: "pre-commit"
+    cooldown:
+      default-days: 7
     directory: "/"
     patterns: ["*"]
     multi-ecosystem-group: "all"

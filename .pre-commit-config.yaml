@@ -1,0 +1,32 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+        exclude: ^modules/
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: ^modules/
+  - repo: https://github.com/keith/pre-commit-buildifier
+    rev: eedf58bbdbcdc64c28d7f6730d0a32706b32381a  # frozen: 10.2.0
+    hooks:
+      - id: buildifier
+        files: ^tests/.*\.bazel$
+      - id: buildifier-lint
+        files: ^tests/.*\.bazel$
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: ce4bd7270237e95464b37d808b942f02785192c4  # frozen: v23.1.5
+    hooks:
+      - id: clang-format
+        files: ^tests/
+        types_or: [c, c++]
+  - repo: https://github.com/rhysd/actionlint
+    rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
+    hooks:
+      - id: actionlint
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: c7d31dc612dffdd4d3b2f2b88b9660d3ab057ee8 # frozen: v1.33.1
+    hooks:
+      - id: zizmor
