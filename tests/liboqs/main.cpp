@@ -1,7 +1,5 @@
-#include <cstring>
-
 #include <oqs/oqs.h>
 
-int main() {
-  return std::strcmp(OQS_version(), "0.16.0");
-}
+#include <cstring>
+
+int main() { return std::strcmp(OQS_version(), "0.16.0"); }
